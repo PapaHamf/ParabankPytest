@@ -31,8 +31,6 @@ def setup(request):
             driver = webdriver.Firefox(options=chrome_options)
         case "edge":
             driver = webdriver.Edge(options=chrome_options)
-
-    driver.get("https://rahulshettyacademy.com/angularpractice/")
     driver.implicitly_wait(5)
     request.cls.driver = driver
     yield

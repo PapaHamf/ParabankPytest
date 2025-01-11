@@ -1,6 +1,5 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 
 class OpenAccountPage():
     driver: Chrome
