@@ -6,25 +6,34 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+
 @pytest.mark.usefixtures("setup")
 class BaseClass:
 
     def verify_element_presence(self, locator: str, timeout: int = 10) -> None:
         """
-            Verifies the web element presence on the page.
-            Accepts two arguments. First one is the locator (using the By.XPATH),
-            and the second one is a timeout: int.
-            :return: None
+        Verifies the web element presence on the page.
+        :param locator: The locator whose presence is going to be checked. It accepts the XPATH format.
+        :param timeout: The timeout for the explicit waiting. The default value is 10.
+        :return: None
         """
         wait = WebDriverWait(self._driver, timeout)
         wait.until(expected_conditions.presence_of_element_located((By.XPATH, locator)))
 
+    def select_value_from_dropdown(self, element, text: str):
+        """
+        Selects the value from the passed list (webelement) using the text.
+        :param element: Webelement that points to the static dropdown.
+        :param text: The text value to be selected.
+        :return: None
+        """
+
     def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> object:
         """
-            Creates the logger object and defines the logging level.
-            Accepts two arguments. First one is the file name of the log,
-            and the second one is the logging level.
-            :return: logger object
+        Creates the logger object and defines the logging level.
+        :param file_name: The file name of the log. The default value is logfile.log.
+        :param level:  The logging level. The default value is INFO.
+        :return: logger object
         """
         # Fixing the name of the file in the logs (otherwise it will be the name of the baseclass)
         logger_name = inspect.stack()[1][3]

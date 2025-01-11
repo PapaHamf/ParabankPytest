@@ -21,7 +21,7 @@ def browser_name(request):
 @pytest.fixture(scope="class")
 def setup(request):
     """
-        Set ups the environment for the tests.
+    Set ups the environment for the tests.
     """
     # Retrieving the value of the command line option
     match request.config.getoption("--browser-name"):
@@ -29,8 +29,8 @@ def setup(request):
             driver = webdriver.Chrome(options=chrome_options)
         case "firefox":
             driver = webdriver.Firefox(options=chrome_options)
-        case "ie":
-            driver = webdriver.Edge(service=service_obj, options=chrome_options)
+        case "edge":
+            driver = webdriver.Edge(options=chrome_options)
 
     driver.get("https://rahulshettyacademy.com/angularpractice/")
     driver.implicitly_wait(5)

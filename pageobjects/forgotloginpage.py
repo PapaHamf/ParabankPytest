@@ -30,106 +30,106 @@ class ForgotLoginPage():
 
     def get_first_name(self):
         """
-            Returns the first name field.
-            :return: webelement
+        Returns the first name field.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.first_name)
 
     def get_last_name(self):
         """
-            Returns the last name field.
-            :return: webelement
+        Returns the last name field.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.last_name)
 
     def get_address_street(self):
         """
-            Returns the address street name & number field.
-            :return: webelement
+        Returns the address street name & number field.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_street)
 
     def get_address_city(self):
         """
-            Returns the address city field.
-            :return: webelement
+        Returns the address city field.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_city)
 
     def get_address_state(self):
         """
-            Returns the address state field.
-            :return: webelement
+        Returns the address state field.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_state)
 
     def get_address_post_code(self):
         """
-            Returns the address post code field.
-            :return: webelement
+        Returns the address post code field.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_post_code)
 
     def get_social_security_number(self):
         """
-            Returns the social security number field.
-            :return: webelement
+        Returns the social security number field.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.social_security_number)
 
     def get_find_login_button(self):
         """
-            Returns the find login button.
-            :return: webelement
+        Returns the find login button.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.find_login_button)
 
     def get_first_name_error(self):
         """
-            Returns the first name field error text.
-            :return: webelement
+        Returns the first name field error text.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.first_name_error)
 
     def get_last_name_error(self):
         """
-            Returns the last name field error text.
-            :return: webelement
+        Returns the last name field error text.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.last_name_error)
 
     def get_address_street_error(self):
         """
-            Returns the address street name & number field error text.
-            :return: webelement
+        Returns the address street name & number field error text.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_street_error)
 
     def get_address_city_error(self):
         """
-            Returns the address city field error text.
-            :return: webelement
+        Returns the address city field error text.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_city_error)
 
     def get_address_state_error(self):
         """
-            Returns the address state field error text.
-            :return: webelement
+        Returns the address state field error text.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_state_error)
 
     def get_address_post_code_error(self):
         """
-            Returns the address post code field error text.
-            :return: webelement
+        Returns the address post code field error text.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.address_post_code_error)
 
     def get_social_security_number_error(self):
         """
-            Returns the social security number field error text.
-            :return: webelement
+        Returns the social security number field error text.
+        :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.social_security_number_error)
 
