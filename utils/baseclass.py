@@ -10,6 +10,15 @@ from selenium.webdriver.support.wait import WebDriverWait
 @pytest.mark.usefixtures("setup")
 class BaseClass:
 
+    HOMEPAGE = "https://parabank.parasoft.com/"
+    OPEN_ACCOUNT = "https://parabank.parasoft.com/parabank/openaccount.htm"
+    ACCOUNT_OVERVIEW = "https://parabank.parasoft.com/parabank/overview.htm"
+    TRANSFER_FUNDS = "https://parabank.parasoft.com/parabank/transfer.htm"
+    BILL_PAY = "https://parabank.parasoft.com/parabank/billpay.htm"
+    FIND_TRANS = "https://parabank.parasoft.com/parabank/findtrans.htm"
+    UPDATE_INFO = "https://parabank.parasoft.com/parabank/updateprofile.htm"
+    REQUEST_LOAN = "https://parabank.parasoft.com/parabank/requestloan.htm"
+
     def verify_element_presence(self, locator: str, timeout: int = 10) -> None:
         """
         Verifies the web element presence on the page.
@@ -27,6 +36,8 @@ class BaseClass:
         :param text: The text value to be selected.
         :return: None
         """
+        dropdown = Select(element)
+        dropdown.select_by_visible_text(text)
 
     def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> object:
         """
