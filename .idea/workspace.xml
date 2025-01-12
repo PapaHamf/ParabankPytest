@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Activity page, updated baseclass 12.01">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Activity page update 12.01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageobjects/activitypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/activitypage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736677331138</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Activity page update 12.01">
+      <option name="closed" value="true" />
+      <created>1736679245015</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1736679245015</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -146,6 +155,7 @@
     <MESSAGE value="Parabank Pytest baseclass update 11.01" />
     <MESSAGE value="Parabank Pytest account overview update 11.01" />
     <MESSAGE value="Activity page, updated baseclass 12.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="Activity page, updated baseclass 12.01" />
+    <MESSAGE value="Activity page update 12.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Activity page update 12.01" />
   </component>
 </project>
