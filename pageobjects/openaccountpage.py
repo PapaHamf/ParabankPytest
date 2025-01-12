@@ -21,7 +21,7 @@ class OpenAccountPage():
         """
         return self._driver.find_element(*OpenAccountPage.account_type)
 
-    def get_account_type(self):
+    def get_source_account(self):
         """
         Returns the source account dropdown list.
         :return: webelement
