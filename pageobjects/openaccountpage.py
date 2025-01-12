@@ -11,6 +11,9 @@ class OpenAccountPage():
     account_opened: tuple = (By.CSS_SELECTOR, "div#openAccountResult h1.title")
     new_account_id: tuple = (By.ID, "newAccountId")
 
+    # Declaring the error labels
+    internal_error: tuple = (By.ID, "openAccountError")
+
     def __init__(self, driver):
         self._driver = driver
 
@@ -48,6 +51,14 @@ class OpenAccountPage():
         :return: webelement
         """
         return self._driver.find_element(*OpenAccountPage.new_account_id)
+
+    def get_internal_error(self):
+        """
+        Returns the internal error message.
+        :return: webelement
+        """
+        return self._driver.find_element(*OpenAccountPage.internal_error)
+
 
 
 

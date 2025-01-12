@@ -1,8 +1,8 @@
 import logging
 import inspect
 import pytest
-from faker import Faker
 
+from faker import Faker
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -28,14 +28,16 @@ class MyFaker(Faker):
 @pytest.mark.usefixtures("setup")
 class BaseClass:
 
-    HOMEPAGE = "https://parabank.parasoft.com/"
-    OPEN_ACCOUNT = "https://parabank.parasoft.com/parabank/openaccount.htm"
-    ACCOUNT_OVERVIEW = "https://parabank.parasoft.com/parabank/overview.htm"
-    TRANSFER_FUNDS = "https://parabank.parasoft.com/parabank/transfer.htm"
-    BILL_PAY = "https://parabank.parasoft.com/parabank/billpay.htm"
-    FIND_TRANS = "https://parabank.parasoft.com/parabank/findtrans.htm"
-    UPDATE_INFO = "https://parabank.parasoft.com/parabank/updateprofile.htm"
-    REQUEST_LOAN = "https://parabank.parasoft.com/parabank/requestloan.htm"
+    HOMEPAGE = "http://localhost:8000/parabank/"
+    OPEN_ACCOUNT = "http://localhost:8000/parabank/openaccount.htm"
+    ACCOUNT_OVERVIEW = "http://localhost:8000/parabank/overview.htm"
+    ACTIVITY = "http://localhost:8000/parabank/activity.htm"
+    # TRANSACTION = "http://localhost:8000/parabank/transaction.htm"
+    TRANSFER_FUNDS = "http://localhost:8000/parabank/transfer.htm"
+    BILL_PAY = "http://localhost:8000/parabank/billpay.htm"
+    FIND_TRANS = "http://localhost:8000/parabank/findtrans.htm"
+    UPDATE_INFO = "http://localhost:8000/parabank/updateprofile.htm"
+    REQUEST_LOAN = "http://localhost:8000/parabank/requestloan.htm"
 
     def verify_element_presence(self, locator: str, timeout: int = 10) -> None:
         """
@@ -44,7 +46,7 @@ class BaseClass:
         :param timeout: The timeout for the explicit waiting. The default value is 10.
         :return: None
         """
-        wait = WebDriverWait(self._driver, timeout)
+        wait = WebDriverWait(self.driver, timeout)
         wait.until(expected_conditions.presence_of_element_located((By.XPATH, locator)))
 
     def select_value_from_dropdown(self, element, text: str):
