@@ -1,11 +1,29 @@
 import logging
 import inspect
 import pytest
+from faker import Faker
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+class MyFaker(Faker):
+
+    def name_with_random_no(self) -> str:
+        """
+        Returns random name with random number at the end.
+        :return: string
+        """
+        return self.name() + str(int(self.randint(0, 10000)))
+
+    def name_with_random_digits(self) -> str:
+        """
+        Returns random name with random numbers inside the name.
+        :return: string
+        """
+        name: str = self.name()
+        first: int = self.randint(0, len(name))
+        return name[:first] + "".join([str(self.randint(0, 9)) for i in range(first, first + 3)]) + name[first+3:]
 
 @pytest.mark.usefixtures("setup")
 class BaseClass:
@@ -60,3 +78,11 @@ class BaseClass:
             # Setting the minimum level
             logger.setLevel(level)
         return logger
+
+    def get_faker(self, locale: str = "pl_PL"):
+        """
+        Creates the faker object with given locale and returns it.
+        :param locale: Lets you define the locale of the fake data. Default value is pl_Pl.
+        :return: faker object
+        """
+        return MyFaker(locale)

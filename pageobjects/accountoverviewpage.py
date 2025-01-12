@@ -36,21 +36,21 @@ class AccountOverview():
 
     def get_account_numbers(self):
         """
-        Returns all cells with the account numbers.
+        Returns all cells with the account numbers list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.account_numbers)
 
     def get_account_balances(self):
         """
-        Returns all cells with the account balances.
+        Returns all cells with the account balances list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.account_balances)
 
     def get_available_amounts(self):
         """
-        Returns all cells with the available amounts.
+        Returns all cells with the available amounts list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.available_amounts)
