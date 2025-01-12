@@ -8,12 +8,12 @@ class AccountOverview():
     # Declaring the page objects (fields & buttons)
     table_head: tuple = (By.TAG_NAME, "thead")
     table_rows: tuple = (By.TAG_NAME, "tr")
+    # Re-used to get the single account number
     account_numbers: tuple = (By.XPATH, "//td[1]")
+    # Re-used to get the single account balance
     account_balances: tuple = (By.XPATH, "//td[2]")
-    account_balance: tuple = (By.XPATH, "//td[2]")
     account_link: tuple = (By.TAG_NAME, "a")
     available_amounts: tuple = (By.XPATH, "//td[3]")
-    available_amount: tuple = (By.XPATH, "//td[3]")
     total_text: tuple = (By.XPATH, "//td/b[text()='Total']")
     total_amount: tuple = (By.TAG_NAME, "b")
 
@@ -72,7 +72,7 @@ class AccountOverview():
         for row in rows:
             acc_no = row.find_element(*AccountOverview.account_link)
             if acc_no == account_number:
-                return row.find_element(*AccountOverview.account_balance)
+                return row.find_element(*AccountOverview.account_balances)
 
     def get_available_amount(self, account_number: int):
         """
@@ -84,7 +84,7 @@ class AccountOverview():
         for row in rows:
             acc_no = row.find_element(*AccountOverview.account_link)
             if acc_no == account_number:
-                return row.find_element(*AccountOverview.available_amount)
+                return row.find_element(*AccountOverview.available_amounts)
 
 
 

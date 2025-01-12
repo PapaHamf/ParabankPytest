@@ -118,3 +118,27 @@ class Activity():
             trans_name = row.find_element(*Activity.transaction_link)
             if text in trans_name.text:
                 return trans_name
+
+    def get_transaction_debit_by_name(self, text: str):
+        """
+        Returns the transactions debit amount using the text description.
+        :param text: Text describing the transaction name.
+        :return: webelement
+        """
+        table = self.get_transaction_table()
+        for row in table:
+            trans_name = row.find_element(*Activity.transaction_link)
+            if text in trans_name.text:
+                return row.find_element(*Activity.transaction_debits)
+
+    def get_transaction_credit_by_name(self, text: str):
+        """
+        Returns the transactions credit amount using the text description.
+        :param text: Text describing the transaction name.
+        :return: webelement
+        """
+        table = self.get_transaction_table()
+        for row in table:
+            trans_name = row.find_element(*Activity.transaction_link)
+            if text in trans_name.text:
+                return row.find_element(*Activity.transaction_credits)
