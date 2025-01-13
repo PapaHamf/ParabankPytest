@@ -32,6 +32,7 @@ class BaseClass:
     OPEN_ACCOUNT = "http://localhost:8000/parabank/openaccount.htm"
     ACCOUNT_OVERVIEW = "http://localhost:8000/parabank/overview.htm"
     ACTIVITY = "http://localhost:8000/parabank/activity.htm"
+    # Used to assert the proper bill payment or transfers (you can transfer infinite amounts to the same account)
     # TRANSACTION = "http://localhost:8000/parabank/transaction.htm"
     TRANSFER_FUNDS = "http://localhost:8000/parabank/transfer.htm"
     BILL_PAY = "http://localhost:8000/parabank/billpay.htm"

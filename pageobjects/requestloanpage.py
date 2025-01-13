@@ -1,0 +1,89 @@
+from selenium.webdriver import Chrome
+from selenium.webdriver.common.by import By
+
+class RequestLoanPage():
+    driver: Chrome
+
+    # Declaring the page objects (fields & buttons)
+    loan_amount: tuple = (By.ID, "amount")
+    down_payment_amount: tuple = (By.ID, "downPayment")
+    account_number: tuple = (By.ID, "fromAccountId")
+    apply_button: tuple = (By.CSS_SELECTOR, "input[value='Apply Now']")
+    # Loan status
+    # Possible values: Approved, Denied
+    loan_status: tuple = (By.ID, "loanStatus")
+    loan_account_id: tuple = (By.ID, "newAccountId")
+    # Div blocks w/ loan messages (either approved or denied)
+    loan_approved_msg: tuple = (By.ID, "loanRequestApproved")
+    loan_denied_msg: tuple = (By.ID, "loanRequestDenied")
+
+    # Declaring the error labels
+    # There's no field verification
+    loan_request_error: tuple = (By.ID, "requestLoanError")
+
+    def __init__(self, driver):
+        self._driver = driver
+
+    def get_loan_amount(self):
+        """
+        Returns the loan amount field.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.loan_amount)
+
+    def get_down_payment_amount(self):
+        """
+        Returns the down payment amount field.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.down_payment_amount)
+
+    def get_account_number(self):
+        """
+        Returns the account number field.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.account_number)
+
+    def get_apply_button(self):
+        """
+        Returns the apply for the loan button.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.apply_button)
+
+    def get_loan_status(self):
+        """
+        Returns the loan status.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.loan_status)
+
+    def get_loan_accout_id(self):
+        """
+        Returns the loan account identifier link.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.loan_account_id)
+
+    def get_loan_approved_msg(self):
+        """
+        Returns the loan approved messsage.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.loan_approved_msg)
+
+    def get_loan_denied_msg(self):
+        """
+        Returns the loan denied messsage.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.loan_denied_msg)
+
+    def get_loan_request_error(self):
+        """
+        Returns the loan request error text.
+        :return: webelement
+        """
+        return self._driver.find_element(*RequestLoanPage.loan_request_error)
+
