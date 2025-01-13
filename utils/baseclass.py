@@ -42,7 +42,7 @@ class BaseClass:
     def verify_element_presence(self, locator: str, timeout: int = 10) -> None:
         """
         Verifies the web element presence on the page.
-        :param locator: The locator whose presence is going to be checked. It accepts the XPATH format.
+        :param locator: The locator whose presence is going to be checked. It should be in the XPATH format.
         :param timeout: The timeout for the explicit waiting. The default value is 10.
         :return: None
         """
@@ -52,7 +52,7 @@ class BaseClass:
     def select_value_from_dropdown(self, element, text: str):
         """
         Selects the value from the passed list (webelement) using the text.
-        :param element: Webelement that points to the static dropdown.
+        :param element: Webelement that references the static dropdown.
         :param text: The text value to be selected.
         :return: None
         """
