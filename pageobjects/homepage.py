@@ -11,6 +11,13 @@ class HomePage():
     forgot_login: tuple = (By.PARTIAL_LINK_TEXT, "Forgot login")
     register_link: tuple = (By.LINK_TEXT, "Register")
 
+    # Declaring error labels
+    login_error: tuple = (By.TAG_NAME, "h1")
+    # Possible values:
+    # 1. Please enter a username and password.
+    # 2. The username and password could not be verified.
+    error_msg: tuple = (By.CLASS_NAME, "error")
+
     def __init__(self, driver):
         self._driver = driver
 
@@ -48,5 +55,19 @@ class HomePage():
         :return: webelement
         """
         return self._driver.find_element(*HomePage.register_link)
+
+    def get_login_error(self):
+        """
+        Returns the login error title.
+        :return: webelement
+        """
+        return self._driver.find_element(*HomePage.login_error)
+
+    def get_error_msg(self):
+        """
+        Returns the error message text.
+        :return: webelement
+        """
+        return self._driver.find_element(*HomePage.error_msg)
 
 

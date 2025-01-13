@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Activity page update 12.01">
-      <change afterPath="$PROJECT_DIR$/pageobjects/billpaypage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pageobjects/transferpage.py" afterDir="false" />
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Transfer page, bill payment page 13.01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/activitypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/activitypage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/billpaypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/billpaypage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/forgotloginpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/forgotloginpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageobjects/openaccountpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/openaccountpage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/registerpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/registerpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/transferpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/transferpage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736679716538</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Transfer page, bill payment page 13.01">
+      <option name="closed" value="true" />
+      <created>1736725759841</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736725759841</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -188,6 +197,7 @@
     <MESSAGE value="Parabank Pytest account overview update 11.01" />
     <MESSAGE value="Activity page, updated baseclass 12.01" />
     <MESSAGE value="Activity page update 12.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="Activity page update 12.01" />
+    <MESSAGE value="Transfer page, bill payment page 13.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transfer page, bill payment page 13.01" />
   </component>
 </project>

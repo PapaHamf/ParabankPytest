@@ -8,7 +8,7 @@ class OpenAccountPage():
     account_type: tuple = (By.ID, "type")
     source_account: tuple = (By.ID, "fromAccountId")
     open_account_button: tuple = (By.CSS_SELECTOR, "input[value='Open New Account']")
-    account_opened: tuple = (By.CSS_SELECTOR, "div#openAccountResult h1.title")
+    account_opened: tuple = (By.ID, "openAccountResult")
     new_account_id: tuple = (By.ID, "newAccountId")
 
     # Declaring the error labels

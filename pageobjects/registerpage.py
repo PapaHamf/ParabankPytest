@@ -31,11 +31,11 @@ class RegisterPage():
     password_error: tuple = (By.ID, "customer.password.errors")
     confirm_password_error: tuple = (By.ID, "repeatedPassword.errors")
 
-    # Successful login
+    # Successful registration
     # This locator should contain the text "Welcome"
-    successful_login: tuple = (By.CSS_SELECTOR, "h1.title")
+    successful_registration: tuple = (By.CSS_SELECTOR, "h1.title")
     # This locator should contain the text "Your account was created successfully."
-    # successful_login: tuple = (By.CSS_SELECTOR, "div#rightPanel p")
+    # successful_registration: tuple = (By.CSS_SELECTOR, "div#rightPanel p")
 
     def __init__(self, driver):
         self._driver = driver
@@ -206,5 +206,5 @@ class RegisterPage():
         Returns the successful registration text.
         :return: webelement
         """
-        return self._driver.find_element(*RegisterPage.successful_login)
+        return self._driver.find_element(*RegisterPage.successful_registration)
 

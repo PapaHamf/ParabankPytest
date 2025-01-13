@@ -24,6 +24,7 @@ class ForgotLoginPage():
     address_post_code_error: tuple = (By.ID, "address.zipCode.errors")
     phone_number_error: tuple = (By.ID, "phoneNumber.errors")
     social_security_number_error: tuple = (By.ID, "ssn.errors")
+    lookup_error: tuple = (By.CLASS_NAME, "error")
 
     def __init__(self, driver):
         self._driver = driver
@@ -132,6 +133,13 @@ class ForgotLoginPage():
         :return: webelement
         """
         return self._driver.find_element(*ForgotLoginPage.social_security_number_error)
+
+    def get_lookup_error(self):
+        """
+        Returns the lookup error text.
+        :return: webelement
+        """
+        return self._driver.find_element(*ForgotLoginPage.lookup_error)
 
 
 

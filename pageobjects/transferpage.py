@@ -15,7 +15,12 @@ class TransferPage():
     target_account_result: tuple = (By.ID, "toAccountIdResult")
 
     # Declaring the error labels
-    amount_error: tuple = (By.ID, "amount.errors")
+    # Possible values:
+    # 1. The amount cannot be empty.
+	# 2. Please enter a valid amount.
+    amount_errors: tuple = (By.ID, "amount.errors")
+    # Probably not used
+    internal_error: tuple = (By.ID, "showError")
 
     def __init__(self, driver):
         self._driver = driver
@@ -75,3 +80,10 @@ class TransferPage():
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.target_account_result)
+
+    def get_amount_errors(self):
+        """
+        Returns the amount errors.
+        :return: webelement
+        """
+        return self._driver.find_element(*TransferPage.amount_errors)
