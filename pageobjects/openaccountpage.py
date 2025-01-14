@@ -1,10 +1,13 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 
+from pageobjects.activitypage import ActivityPage
+
 class OpenAccountPage():
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)
+    # There are two types of accounts: CHECKING and SAVINGS
     account_type: tuple = (By.ID, "type")
     source_account: tuple = (By.ID, "fromAccountId")
     open_account_button: tuple = (By.CSS_SELECTOR, "input[value='Open New Account']")
@@ -24,12 +27,19 @@ class OpenAccountPage():
         """
         return self._driver.find_element(*OpenAccountPage.account_type)
 
-    def get_source_account(self):
+    def get_source_accounts(self):
         """
         Returns the source account dropdown list.
         :return: webelement
         """
         return self._driver.find_element(*OpenAccountPage.source_account)
+
+    def get_source_account(self):
+        """
+        Returns the source account number from the list.
+        :return: int account number
+        """
+        pass
 
     def get_open_account_button(self):
         """
@@ -48,9 +58,10 @@ class OpenAccountPage():
     def get_new_account_id(self):
         """
         Returns the new account id with a link.
-        :return: webelement
+        :return: page object
         """
-        return self._driver.find_element(*OpenAccountPage.new_account_id)
+        self._driver.find_element(*OpenAccountPage.new_account_id).click()
+        return ActivityPage(self._driver)
 
     def get_internal_error(self):
         """

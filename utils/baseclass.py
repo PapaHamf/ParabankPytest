@@ -4,6 +4,7 @@ import pytest
 
 from faker import Faker
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -39,6 +40,8 @@ class BaseClass:
     # Temporary constants
     # Move them to some config file (JSON or shelved binary?) or database?
     HOMEPAGE = "http://localhost:8000/parabank/"
+    FORGOT_LOGIN = "http://localhost:8000/parabank/lookup.htm"
+    REGISTER = "http://localhost:8000/parabank/register.htm"
     OPEN_ACCOUNT = "http://localhost:8000/parabank/openaccount.htm"
     ACCOUNT_OVERVIEW = "http://localhost:8000/parabank/overview.htm"
     ACTIVITY = "http://localhost:8000/parabank/activity.htm"
@@ -61,7 +64,7 @@ class BaseClass:
         wait = WebDriverWait(self.driver, timeout)
         wait.until(expected_conditions.presence_of_element_located((By.XPATH, locator)))
 
-    def select_value_from_dropdown(self, element, text: str):
+    def select_value_from_dropdown_text(self, element, text: str):
         """
         Selects the value from the passed list (webelement) using the text.
         :param element: Webelement that references the static dropdown.
@@ -70,6 +73,16 @@ class BaseClass:
         """
         dropdown = Select(element)
         dropdown.select_by_visible_text(text)
+
+    def select_value_from_dropdown_index(self, element, index: int):
+        """
+        Selects the value from the passed list (webelement) using the index value.
+        :param element: Webelement that references the static dropdown.
+        :param index: The index value to be selected.
+        :return: None
+        """
+        dropdown = Select(element)
+        dropdown.select_by_index(index)
 
     def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> object:
         """

@@ -1,6 +1,8 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 
+from pageobjects.forgotloginpage import ForgotLoginPage
+
 class HomePage():
     driver: Chrome
 
@@ -45,9 +47,10 @@ class HomePage():
     def get_forgot_login(self):
         """
         Returns the forgot login name link.
-        :return: webelement
+        :return: page object
         """
-        return self._driver.find_element(*HomePage.forgot_login)
+        self._driver.find_element(*HomePage.forgot_login).click()
+        return ForgotLoginPage(self._driver)
 
     def get_register_link(self):
         """

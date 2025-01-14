@@ -19,6 +19,7 @@ class RegisterPage():
     register_button: tuple = (By.CSS_SELECTOR, "input[value='Register']")
 
     # Declaring the errors labels
+    # All of the errors contain the phrase "is required."
     first_name_error: tuple = (By.ID, "customer.firstName.errors")
     last_name_error: tuple = (By.ID, "customer.lastName.errors")
     address_street_error: tuple = (By.ID, "customer.address.street.errors")
@@ -27,6 +28,9 @@ class RegisterPage():
     address_post_code_error: tuple = (By.ID, "customer.address.zipCode.errors")
     phone_number_error: tuple = (By.ID, "customer.phoneNumber.errors")
     social_security_number_error: tuple = (By.ID, "customer.ssn.errors")
+    # The possible errors:
+    # 1. Username is required.
+    # 2. This username already exists.
     username_error: tuple = (By.ID, "customer.username.errors")
     password_error: tuple = (By.ID, "customer.password.errors")
     confirm_password_error: tuple = (By.ID, "repeatedPassword.errors")

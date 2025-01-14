@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Find transaction page 13.01">
-      <change afterPath="$PROJECT_DIR$/pageobjects/updateprofilepage.py" afterDir="false" />
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Admin page 14.01">
+      <change afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/openaccountpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/openaccountpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/registerpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/registerpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/requestloanpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/requestloanpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/transferpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/transferpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,17 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.accountoverviewpage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.baseclass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.pytest in student.executor": "Run",
+    "Python.accountoverviewpage.executor": "Run",
+    "Python.baseclass.executor": "Run",
+    "Python.conftest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/student/PycharmProjects/ParabankPytest/tests",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="pytest in student" type="tests" factoryName="py.test" nameIsGenerated="true">
       <module name="ParabankPytest" />
@@ -65,7 +79,7 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.12 (ParabankPytest)" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -205,7 +219,39 @@
       <option name="project" value="LOCAL" />
       <updated>1736788777107</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Update profile page 13.01">
+      <option name="closed" value="true" />
+      <created>1736791675787</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1736791675787</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Request loan page 13.01">
+      <option name="closed" value="true" />
+      <created>1736795506121</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1736795506121</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Contact page 14.01">
+      <option name="closed" value="true" />
+      <created>1736872686157</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1736872686157</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Admin page 14.01">
+      <option name="closed" value="true" />
+      <created>1736881293896</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1736881293896</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -220,6 +266,10 @@
     <MESSAGE value="Updated pages w/ error locators 13.01" />
     <MESSAGE value="Updated bill pay page 13.01" />
     <MESSAGE value="Find transaction page 13.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="Find transaction page 13.01" />
+    <MESSAGE value="Update profile page 13.01" />
+    <MESSAGE value="Request loan page 13.01" />
+    <MESSAGE value="Contact page 14.01" />
+    <MESSAGE value="Admin page 14.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin page 14.01" />
   </component>
 </project>

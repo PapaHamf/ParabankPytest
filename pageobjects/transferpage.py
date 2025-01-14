@@ -32,14 +32,14 @@ class TransferPage():
         """
         return self._driver.find_element(*TransferPage.amount)
 
-    def get_source_account(self):
+    def get_source_accounts(self):
         """
         Returns the source account dropdown list.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.source_account)
 
-    def get_target_account(self):
+    def get_target_accounts(self):
         """
         Returns the target account dropdown list.
         :return: webelement

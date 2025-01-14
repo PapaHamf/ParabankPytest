@@ -1,6 +1,8 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 
+from pageobjects.activitypage import ActivityPage
+
 class RequestLoanPage():
     driver: Chrome
 
@@ -62,9 +64,10 @@ class RequestLoanPage():
     def get_loan_accout_id(self):
         """
         Returns the loan account identifier link.
-        :return: webelement
+        :return: page object
         """
-        return self._driver.find_element(*RequestLoanPage.loan_account_id)
+        self._driver.find_element(*RequestLoanPage.loan_account_id).click()
+        return ActivityPage(self._driver)
 
     def get_loan_approved_msg(self):
         """
