@@ -38,5 +38,5 @@ def setup(request):
             driver = webdriver.Edge(options=edge_options)
     driver.implicitly_wait(5)
     request.cls.driver = driver
-    yield
+    yield driver
     driver.close()

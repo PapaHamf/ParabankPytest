@@ -7,6 +7,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+# List of to dos
+# Implement sqlite3 database utilities (to log the test cases data)
+# Implement JSON utilities (to write temporary data used in other cases)
+# Implement Excel utilities (to inject some kind of data from outside)
+# Implement the screenshot on failure feature (there is a plug-in)
+# Implement the exception raising & catching utilities combined w/ the log.WARN
+# Implement allure
+
 class MyFaker(Faker):
 
     def name_with_random_no(self) -> str:
@@ -14,7 +22,7 @@ class MyFaker(Faker):
         Returns random name with random number at the end.
         :return: string
         """
-        return self.name() + str(int(self.randint(0, 10000)))
+        return self.name() + str(int(self.randint(0, 1000)))
 
     def name_with_random_digits(self) -> str:
         """
@@ -28,11 +36,14 @@ class MyFaker(Faker):
 @pytest.mark.usefixtures("setup")
 class BaseClass:
 
+    # Temporary constants
+    # Move them to some config file (JSON or shelved binary?) or database?
     HOMEPAGE = "http://localhost:8000/parabank/"
     OPEN_ACCOUNT = "http://localhost:8000/parabank/openaccount.htm"
     ACCOUNT_OVERVIEW = "http://localhost:8000/parabank/overview.htm"
     ACTIVITY = "http://localhost:8000/parabank/activity.htm"
-    # Used to assert the proper bill payment or transfers (you can transfer infinite amounts to the same account)
+    # Should use it to assert the proper bill payment or transfers (seems like you can
+    # transfer infinite amounts to the same account)
     # TRANSACTION = "http://localhost:8000/parabank/transaction.htm"
     TRANSFER_FUNDS = "http://localhost:8000/parabank/transfer.htm"
     BILL_PAY = "http://localhost:8000/parabank/billpay.htm"
