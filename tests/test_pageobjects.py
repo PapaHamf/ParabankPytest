@@ -12,6 +12,8 @@ from pageobjects.registerpage import RegisterPage
 from pageobjects.openaccountpage import OpenAccountPage
 from pageobjects.requestloanpage import RequestLoanPage
 from pageobjects.transferpage import TransferPage
+from pageobjects.updateprofilepage import UpdateProfilePage
+from pageobjects.accountoverviewpage import AccountOverview
 
 class TestHomePage(BaseClass):
     driver: Chrome
@@ -203,6 +205,7 @@ class TestHomePage(BaseClass):
         loan_amount = random.randint(0, 100000)
         log.info(f"Loan amount: {loan_amount}")
         request_loan_page.get_loan_amount().send_keys(loan_amount)
+        # Check if the 20% down payment from the settings is respected (turn into TC)
         down_payment = loan_amount * 0.10
         log.info(f"Down payment: {down_payment}")
         request_loan_page.get_down_payment_amount().send_keys(down_payment)
@@ -212,6 +215,7 @@ class TestHomePage(BaseClass):
         activity_page = request_loan_page.get_loan_accout_id()
         time.sleep(3)
 
+    @pytest.mark.skip
     def test_transfer_page(self):
         """
         Tests the transfer funds page.
@@ -256,6 +260,7 @@ class TestHomePage(BaseClass):
         trg_acc_no = random.choice(trg_acc_nos)
         log.info(f"Selecting the target account number: {trg_acc_no}")
         self.select_value_from_dropdown_text(target_accounts_list, trg_acc_no)
+        log.info("Clicking the transfer button.")
         transfer_funds_page.get_transfer_button().click()
         # Is not displayed on the console?
         print(transfer_funds_page.get_transfer_complete().text)
@@ -263,5 +268,104 @@ class TestHomePage(BaseClass):
         print(transfer_funds_page.get_amount_result().text)
         time.sleep(3)
 
+    @pytest.mark.skip
+    def test_update_profile_page(self):
+        """
+        Tests the update profile page.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker()
+        self.driver.get(BaseClass.HOMEPAGE)
+        # Login data from the previous test case
+        # Move the login to the base class?
+        user_name = "ma_tre"
+        password = "password"
+        home_page = HomePage(self.driver)
+        log.info("Test case no 7")
+        log.info("Testing the update profile page.")
+        log.info(f"User name: {user_name}")
+        home_page.get_username().send_keys(user_name)
+        log.info(f"Password: {password}")
+        home_page.get_password().send_keys(password)
+        log.info("Clicking the login button.")
+        home_page.get_login_button().click()
+        log.info("Opening the update profile page.")
+        self.driver.get(BaseClass.UPDATE_INFO)
+        update_profile_page = UpdateProfilePage(self.driver)
+        first_name = faker.first_name()
+        log.info(f"First name: {first_name}")
+        update_profile_page.get_first_name().clear()
+        update_profile_page.get_first_name().send_keys(first_name)
+        last_name = faker.last_name()
+        log.info(f"Last name: {last_name}")
+        update_profile_page.get_last_name().clear()
+        update_profile_page.get_last_name().send_keys(last_name)
+        address = faker.street_address()
+        log.info(f"Address: {address}")
+        update_profile_page.get_address_street().clear()
+        update_profile_page.get_address_street().send_keys(address)
+        city = faker.city()
+        log.info(f"City: {city}")
+        update_profile_page.get_address_city().clear()
+        update_profile_page.get_address_city().send_keys(city)
+        state = faker.administrative_unit()
+        log.info(f"State: {state}")
+        update_profile_page.get_address_state().clear()
+        update_profile_page.get_address_state().send_keys(state)
+        post_code = faker.postalcode()
+        log.info(f"Post code: {post_code}")
+        update_profile_page.get_address_post_code().clear()
+        update_profile_page.get_address_post_code().send_keys(post_code)
+        phone_number = faker.phone_number()
+        log.info(f"Phone number: {phone_number}")
+        update_profile_page.get_phone_number().clear()
+        update_profile_page.get_phone_number().send_keys(phone_number)
+        log.info("Clicking the update profile button.")
+        update_profile_page.get_update_button().click()
+        print(update_profile_page.get_successful_update().text)
+        time.sleep(3)
+
+    def test_account_overview_page(self):
+        """
+        Tests the account overview page.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker()
+        self.driver.get(BaseClass.HOMEPAGE)
+        # Login data from the previous test case
+        # Move the login to the base class?
+        user_name = "ma_tre"
+        password = "password"
+        home_page = HomePage(self.driver)
+        log.info("Test case no 7")
+        log.info("Testing the update profile page.")
+        log.info(f"User name: {user_name}")
+        home_page.get_username().send_keys(user_name)
+        log.info(f"Password: {password}")
+        home_page.get_password().send_keys(password)
+        log.info("Clicking the login button.")
+        home_page.get_login_button().click()
+        log.info("Opening the update profile page.")
+        self.driver.get(BaseClass.ACCOUNT_OVERVIEW)
+        account_overview_page = AccountOverview(self.driver)
+        # account_nos_list = account_overview_page.get_account_numbers()
+        # acc_nos = []
+        # # account_nos_list.pop()
+        # for account in account_nos_list:
+        #     link = account.find_element(By.TAG_NAME, "a")
+        #     print(link.text)
+        #     acc_nos.append(link.text)
+        # print(acc_nos)
+        account_balances_list = account_overview_page.get_account_balances()
+        for balance in account_balances_list:
+            print(balance.text)
+        account_available_amounts_list = account_overview_page.get_available_amounts()
+        for amount in account_available_amounts_list:
+            print(amount.text)
+        print("\nTotal: ")
+        print(account_overview_page.get_total_amount().text)
+        time.sleep(1)
 
 

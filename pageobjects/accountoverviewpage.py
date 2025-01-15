@@ -9,12 +9,14 @@ class AccountOverview():
     table_head: tuple = (By.TAG_NAME, "thead")
     table_rows: tuple = (By.TAG_NAME, "tr")
     # Re-used to get the single account number
-    account_numbers: tuple = (By.XPATH, "//td[1]")
+    # Does not work: change to //td/a, rename this one to account_number
+    account_numbers: tuple = (By.XPATH, "//td[1]/a")
+    account_number: tuple = (BY.XPATH, "//td[1]")
     # Re-used to get the single account balance
     account_balances: tuple = (By.XPATH, "//td[2]")
     account_link: tuple = (By.TAG_NAME, "a")
     available_amounts: tuple = (By.XPATH, "//td[3]")
-    total_text: tuple = (By.XPATH, "//td/b[text()='Total']")
+    total_text: tuple = {By.XPATH: "//td/b[text()='Total']"}
     total_amount: tuple = (By.TAG_NAME, "b")
 
     def __init__(self, driver):
@@ -60,7 +62,7 @@ class AccountOverview():
         Returns the total amount field.
         :return: webelement
         """
-        return self._driver.find_element(locate_with(*AccountOverview.total_amount).to_right_of(*AccountOverview.total_text))
+        return self._driver.find_element(locate_with(*AccountOverview.total_amount).to_right_of(AccountOverview.total_text))
 
     def get_account_balance(self, account_number: int):
         """

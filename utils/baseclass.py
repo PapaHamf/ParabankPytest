@@ -13,7 +13,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 # Implement JSON utilities (to write temporary data used in other cases)
 # Implement Excel utilities (to inject some kind of data from outside)
 # Implement the screenshot on failure feature (there is a plug-in)
-# Implement the exception raising & catching utilities combined w/ the log.WARN
+# Implement the exception raising & catching utilities combined w/ the log.WARN (you can
+# use the 'with pytest.raises(..) to catch the exceptions)
 # Implement allure
 
 class MyFaker(Faker):

@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Admin page 14.01">
-      <change afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Test page objects 14.01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/openaccountpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/openaccountpage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/registerpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/registerpage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/requestloanpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/requestloanpage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/transferpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/transferpage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_pageobjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,19 +48,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.pytest in student.executor": "Run",
-    "Python.accountoverviewpage.executor": "Run",
-    "Python.baseclass.executor": "Run",
-    "Python.conftest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/student/PycharmProjects/ParabankPytest/tests",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.pytest in student.executor&quot;: &quot;Run&quot;,
+    &quot;Python.accountoverviewpage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.baseclass.executor&quot;: &quot;Run&quot;,
+    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/student/PycharmProjects/ParabankPytest/tests&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -251,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736881293896</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Test page objects 14.01">
+      <option name="closed" value="true" />
+      <created>1736898677417</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1736898677417</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -270,6 +273,7 @@
     <MESSAGE value="Request loan page 13.01" />
     <MESSAGE value="Contact page 14.01" />
     <MESSAGE value="Admin page 14.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin page 14.01" />
+    <MESSAGE value="Test page objects 14.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test page objects 14.01" />
   </component>
 </project>
