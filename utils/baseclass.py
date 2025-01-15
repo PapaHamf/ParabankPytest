@@ -45,10 +45,12 @@ class BaseClass:
     REGISTER = "http://localhost:8000/parabank/register.htm"
     OPEN_ACCOUNT = "http://localhost:8000/parabank/openaccount.htm"
     ACCOUNT_OVERVIEW = "http://localhost:8000/parabank/overview.htm"
+    # There is an argument ?id= that contains the account number
     ACTIVITY = "http://localhost:8000/parabank/activity.htm"
     # Should use it to assert the proper bill payment or transfers (seems like you can
     # transfer infinite amounts to the same account)
-    # TRANSACTION = "http://localhost:8000/parabank/transaction.htm"
+    # There is an argument ?id= that contains the transaction number
+    TRANSACTION = "http://localhost:8000/parabank/transaction.htm"
     TRANSFER_FUNDS = "http://localhost:8000/parabank/transfer.htm"
     BILL_PAY = "http://localhost:8000/parabank/billpay.htm"
     FIND_TRANS = "http://localhost:8000/parabank/findtrans.htm"

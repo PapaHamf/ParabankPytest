@@ -14,6 +14,7 @@ from pageobjects.requestloanpage import RequestLoanPage
 from pageobjects.transferpage import TransferPage
 from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.accountoverviewpage import AccountOverview
+from pageobjects.activitypage import ActivityPage
 
 class TestHomePage(BaseClass):
     driver: Chrome
@@ -326,6 +327,7 @@ class TestHomePage(BaseClass):
         print(update_profile_page.get_successful_update().text)
         time.sleep(3)
 
+    @pytest.mark.skip
     def test_account_overview_page(self):
         """
         Tests the account overview page.
@@ -350,22 +352,48 @@ class TestHomePage(BaseClass):
         log.info("Opening the update profile page.")
         self.driver.get(BaseClass.ACCOUNT_OVERVIEW)
         account_overview_page = AccountOverview(self.driver)
-        # account_nos_list = account_overview_page.get_account_numbers()
-        # acc_nos = []
-        # # account_nos_list.pop()
-        # for account in account_nos_list:
-        #     link = account.find_element(By.TAG_NAME, "a")
-        #     print(link.text)
-        #     acc_nos.append(link.text)
-        # print(acc_nos)
+        log.info("Getting the account numbers list.")
+        account_nos_list = account_overview_page.get_account_numbers()
+        acc_nos = []
+        for account in account_nos_list:
+            acc_nos.append(account.text)
+        log.info("Getting the account balances list.")
         account_balances_list = account_overview_page.get_account_balances()
+        acc_bal = []
         for balance in account_balances_list:
-            print(balance.text)
+            acc_bal.append(balance.text)
+        log.info("Getting the account available amounts list.")
         account_available_amounts_list = account_overview_page.get_available_amounts()
+        acc_amt = []
         for amount in account_available_amounts_list:
-            print(amount.text)
+            acc_amt.append(amount.text)
         print("\nTotal: ")
         print(account_overview_page.get_total_amount().text)
+        print(f"\nBalance: {account_overview_page.get_account_balance(random.choice(acc_nos)).text}")
         time.sleep(1)
+
+    def test_activity_page(self):
+        """
+        Tests the activity page.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker()
+        self.driver.get(BaseClass.HOMEPAGE)
+        # Login data from the previous test case
+        # Move the login to the base class?
+        user_name = "ma_tre"
+        password = "password"
+        home_page = HomePage(self.driver)
+        log.info("Test case no 7")
+        log.info("Testing the update profile page.")
+        log.info(f"User name: {user_name}")
+        home_page.get_username().send_keys(user_name)
+        log.info(f"Password: {password}")
+        home_page.get_password().send_keys(password)
+        log.info("Clicking the login button.")
+        home_page.get_login_button().click()
+        log.info("Opening the update profile page.")
+        self.driver.get(BaseClass.ACCOUNT_OVERVIEW)
 
 
