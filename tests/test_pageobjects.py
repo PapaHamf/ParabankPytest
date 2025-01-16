@@ -341,7 +341,7 @@ class TestHomePage(BaseClass):
         user_name = "ma_tre"
         password = "password"
         home_page = HomePage(self.driver)
-        log.info("Test case no 7")
+        log.info("Test case no 8")
         log.info("Testing the update profile page.")
         log.info(f"User name: {user_name}")
         home_page.get_username().send_keys(user_name)
@@ -385,7 +385,7 @@ class TestHomePage(BaseClass):
         user_name = "ma_tre"
         password = "password"
         home_page = HomePage(self.driver)
-        log.info("Test case no 7")
+        log.info("Test case no 9")
         log.info("Testing the update profile page.")
         log.info(f"User name: {user_name}")
         home_page.get_username().send_keys(user_name)
@@ -395,5 +395,29 @@ class TestHomePage(BaseClass):
         home_page.get_login_button().click()
         log.info("Opening the update profile page.")
         self.driver.get(BaseClass.ACCOUNT_OVERVIEW)
-
+        account_overview_page = AccountOverview(self.driver)
+        log.info("Getting the account numbers list.")
+        account_nos_list = account_overview_page.get_account_numbers()
+        acc_nos = []
+        for account in account_nos_list:
+            acc_nos.append(account.text)
+        account_no = random.choice(acc_nos)
+        log.info(f"Opening the activity page for the account no: {account_no}")
+        self.driver.get(BaseClass.ACTIVITY + f"?id={account_no}")
+        # self.driver.get(BaseClass.ACTIVITY + f"?id=13566")
+        activity_page = ActivityPage(self.driver)
+        print(activity_page.get_account_number().text)
+        print(activity_page.get_account_type().text)
+        print(activity_page.get_account_balance().text)
+        print(activity_page.get_available_amount().text)
+        log.info("Selecting the activity period: January")
+        self.select_value_from_dropdown_text(activity_page.get_activity_period(), "January")
+        log.info("Selecting the activity type: Debit")
+        self.select_value_from_dropdown_text(activity_page.get_activity_type(), "Credit")
+        log.info("Clicking the Go button.")
+        activity_page.get_activity_button().click()
+        transaction_names = activity_page.get_transaction_names()
+        for transaction in transaction_names:
+            print(transaction.text)
+        time.sleep(5)
 

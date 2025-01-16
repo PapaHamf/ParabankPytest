@@ -16,6 +16,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 # Implement the exception raising & catching utilities combined w/ the log.WARN (you can
 # use the 'with pytest.raises(..) to catch the exceptions)
 # Implement allure
+# Add the method to check if the service and application are up and running.
 
 class MyFaker(Faker):
 

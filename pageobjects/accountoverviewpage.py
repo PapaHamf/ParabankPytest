@@ -18,7 +18,7 @@ class AccountOverview():
     account_link: tuple = (By.TAG_NAME, "a")
     available_amounts: tuple = (By.XPATH, "//td[3]")
     # locate_with accepts the dictionary!
-    total_text: tuple = {By.XPATH: "//td/b[text()='Total']"}
+    total_text: dict = {By.XPATH: "//td/b[text()='Total']"}
     total_amount: tuple = (By.TAG_NAME, "b")
 
     def __init__(self, driver):

@@ -35,7 +35,7 @@ class ActivityPage():
         Returns the account type.
         :return: webelement
         """
-        return self._driver.find_element(*ActivityPage.activity_type)
+        return self._driver.find_element(*ActivityPage.account_type)
 
     def get_account_balance(self):
         """
@@ -70,7 +70,7 @@ class ActivityPage():
         Returns the activity (transactions) display button.
         :return: webelement
         """
-        return self._driver.find_element(*ActivityPage.activity_period)
+        return self._driver.find_element(*ActivityPage.activity_button)
 
     def get_transaction_table(self):
         """
@@ -84,28 +84,28 @@ class ActivityPage():
         Returns the transactions dates list.
         :return: webelement
         """
-        return self._driver.find_element(*ActivityPage.transaction_dates)
+        return self._driver.find_elements(*ActivityPage.transaction_dates)
 
     def get_transaction_names(self):
         """
         Returns the transactions names list.
         :return: webelement
         """
-        return self._driver.find_element(*ActivityPage.transaction_names)
+        return self._driver.find_elements(*ActivityPage.transaction_names)
 
     def get_transaction_debits(self):
         """
         Returns the transactions debits amount list.
         :return: webelement
         """
-        return self._driver.find_element(*ActivityPage.transaction_debits)
+        return self._driver.find_elements(*ActivityPage.transaction_debits)
 
     def get_transaction_credits(self):
         """
         Returns the transactions credits amount list.
         :return: webelement
         """
-        return self._driver.find_element(*ActivityPage.transaction_credits)
+        return self._driver.find_elements(*ActivityPage.transaction_credits)
 
     def get_transaction_link(self, text: str):
         """
