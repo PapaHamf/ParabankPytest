@@ -57,6 +57,7 @@ class BaseClass:
     FIND_TRANS = "http://localhost:8000/parabank/findtrans.htm"
     UPDATE_INFO = "http://localhost:8000/parabank/updateprofile.htm"
     REQUEST_LOAN = "http://localhost:8000/parabank/requestloan.htm"
+    ADMIN_PAGE = "http://localhost:8000/parabank/admin.htm"
 
     def verify_element_presence(self, locator: str, timeout: int = 10) -> None:
         """

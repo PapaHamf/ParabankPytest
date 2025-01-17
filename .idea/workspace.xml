@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Test page objects 16.01">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Test page objects 1.01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/activitypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/activitypage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_pageobjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737054036674</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Test page objects 1.01">
+      <option name="closed" value="true" />
+      <created>1737149913521</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1737149913521</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -299,6 +307,7 @@
     <MESSAGE value="Test page objects 14.01" />
     <MESSAGE value="Test page objects 15.01" />
     <MESSAGE value="Test page objects 16.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test page objects 16.01" />
+    <MESSAGE value="Test page objects 1.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test page objects 1.01" />
   </component>
 </project>

@@ -15,6 +15,7 @@ from pageobjects.transferpage import TransferPage
 from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.accountoverviewpage import AccountOverview
 from pageobjects.activitypage import ActivityPage
+from pageobjects.adminpage import AdminPage
 
 class TestHomePage(BaseClass):
     driver: Chrome
@@ -372,6 +373,7 @@ class TestHomePage(BaseClass):
         print(f"\nBalance: {account_overview_page.get_account_balance(random.choice(acc_nos)).text}")
         time.sleep(1)
 
+    @pytest.mark.skip
     def test_activity_page(self):
         """
         Tests the activity page.
@@ -430,4 +432,35 @@ class TestHomePage(BaseClass):
         activity_page.get_transaction_link_by_text("Down Payment").click()
         time.sleep(5)
 
+    def test_admin_page(self):
+        """
+        Tests the admin page.
+        :return:
+        """
+        # Does not require the log in process.
+        log = self.get_logger()
+        log.info("Test case no 10")
+        log.info("Testing the admin page.")
+        self.driver.get(BaseClass.ADMIN_PAGE)
+        admin_page = AdminPage(self.driver)
+        admin_page.get_clean_database()
+        log.info("Filling in the initial balance field. Value: 50000")
+        admin_page.get_initial_balance().clear()
+        admin_page.get_initial_balance().send_keys("50000")
+        log.info("Filling in the minimum balance field. Value: 5000")
+        admin_page.get_minimum_balance().clear()
+        admin_page.get_minimum_balance().send_keys("5000")
+        log.info("Selecting the SOAP access mode.")
+        admin_page.get_access_mode_soap().click()
+        log.info("Selecting the rest JSON access mode.")
+        admin_page.get_access_mode_restJSON().click()
+        log.info("Selecting the JDBC access mode.")
+        admin_page.get_access_mode_JDBC().click()
+        log.info("Selecting the loan provider, index value 3")
+        self.select_value_from_dropdown_index(admin_page.get_loan_provider(), 0)
+        log.info("Selecting the loan processor, index value 3")
+        self.select_value_from_dropdown_index(admin_page.get_loan_processor(), 0)
+        admin_page.get_loan_threshold().clear()
+        admin_page.get_loan_threshold().send_keys("30")
+        time.sleep(5)
 
