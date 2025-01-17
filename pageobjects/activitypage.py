@@ -14,6 +14,7 @@ class ActivityPage():
     activity_type: tuple = (By.ID, "transactionType")
     activity_button: tuple = (By.CSS_SELECTOR, "input[value='Go']")
     transactions_table: tuple = (By.ID, "transactionTable")
+    # Skips the thead tag
     transactions_rows: tuple = (By.CSS_SELECTOR, "tbody tr")
     # Chaining does not work w/ XPATH locators...
     transaction_dates: tuple = (By.CSS_SELECTOR, "tr td:nth-child(1)")
