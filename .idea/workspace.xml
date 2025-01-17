@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Test page objects 15.01">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Test page objects 16.01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageobjects/activitypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/activitypage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_pageobjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,19 +47,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.pytest in student.executor&quot;: &quot;Run&quot;,
-    &quot;Python.accountoverviewpage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.baseclass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/student/PycharmProjects/ParabankPytest/tests&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.pytest in student.executor": "Run",
+    "Python.accountoverviewpage.executor": "Run",
+    "Python.baseclass.executor": "Run",
+    "Python.conftest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/student/PycharmProjects/ParabankPytest/tests",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -271,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736972835992</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Test page objects 16.01">
+      <option name="closed" value="true" />
+      <created>1737054036674</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1737054036674</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -292,6 +298,7 @@
     <MESSAGE value="Admin page 14.01" />
     <MESSAGE value="Test page objects 14.01" />
     <MESSAGE value="Test page objects 15.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test page objects 15.01" />
+    <MESSAGE value="Test page objects 16.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test page objects 16.01" />
   </component>
 </project>

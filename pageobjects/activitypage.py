@@ -1,3 +1,4 @@
+from selenium.common import NoSuchElementException
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 
@@ -13,10 +14,12 @@ class ActivityPage():
     activity_type: tuple = (By.ID, "transactionType")
     activity_button: tuple = (By.CSS_SELECTOR, "input[value='Go']")
     transactions_table: tuple = (By.ID, "transactionTable")
-    transaction_dates: tuple = (By.XPATH, "//td[1]")
-    transaction_names: tuple = (By.XPATH, "//td[2]")
-    transaction_debits: tuple = (By.XPATH, "//td[3]")
-    transaction_credits: tuple = (By.XPATH, "//td[4]")
+    transactions_rows: tuple = (By.CSS_SELECTOR, "tbody tr")
+    # Chaining does not work w/ XPATH locators...
+    transaction_dates: tuple = (By.CSS_SELECTOR, "tr td:nth-child(1)")
+    transaction_names: tuple = (By.CSS_SELECTOR, "tr td:nth-child(2)")
+    transaction_debits: tuple = (By.CSS_SELECTOR, "tr td:nth-child(3)")
+    transaction_credits: tuple = (By.CSS_SELECTOR, "tr td:nth-child(4)")
     transaction_link: tuple = (By.TAG_NAME, "a")
     no_transactions: tuple = (By.ID, "noTransactions")
 
@@ -81,43 +84,60 @@ class ActivityPage():
 
     def get_transaction_dates(self):
         """
-        Returns the transactions dates list.
+        Returns the transactions dates list or the no transactions message.
         :return: webelement
         """
-        return self._driver.find_elements(*ActivityPage.transaction_dates)
+        self._table = self.get_transaction_table()
+        try:
+            return self._table.find_elements(*ActivityPage.transaction_dates)
+        except NoSuchElementException:
+            return self.get_no_transactions()
+
 
     def get_transaction_names(self):
         """
-        Returns the transactions names list.
+        Returns the transactions names list or the no transactions message.
         :return: webelement
         """
-        return self._driver.find_elements(*ActivityPage.transaction_names)
+        self._table = self.get_transaction_table()
+        try:
+            return self._table.find_elements(*ActivityPage.transaction_names)
+        except NoSuchElementException:
+            return self.get_no_transactions()
 
     def get_transaction_debits(self):
         """
-        Returns the transactions debits amount list.
+        Returns the transactions debits amount list or the no transactions message.
         :return: webelement
         """
-        return self._driver.find_elements(*ActivityPage.transaction_debits)
+        self._table = self.get_transaction_table()
+        try:
+            return self._table.find_elements(*ActivityPage.transaction_debits)
+        except NoSuchElementException:
+            return self.get_no_transactions()
 
     def get_transaction_credits(self):
         """
-        Returns the transactions credits amount list.
+        Returns the transactions credits amount list or the no transactions message.
         :return: webelement
         """
-        return self._driver.find_elements(*ActivityPage.transaction_credits)
+        try:
+            return self._table.find_elements(*ActivityPage.transaction_credits)
+        except NoSuchElementException:
+            return self.get_no_transactions()
 
-    def get_transaction_link(self, text: str):
+    def get_transaction_link_by_text(self, text: str):
         """
         Returns the transactions link using the text description.
         :param text: Text describing the transaction name.
         :return: webelement
         """
-        table = self.get_transaction_table()
-        for row in table:
-            trans_name = row.find_element(*ActivityPage.transaction_link)
-            if text in trans_name.text:
-                return trans_name
+        self._table = self.get_transaction_table()
+        rows = self._table.find_elements(*ActivityPage.transactions_rows)
+        for row in rows:
+            trans_link = row.find_element(*ActivityPage.transaction_link)
+            if text in trans_link.text:
+                return trans_link
 
     def get_transaction_debit_by_name(self, text: str):
         """
@@ -125,10 +145,11 @@ class ActivityPage():
         :param text: Text describing the transaction name.
         :return: webelement
         """
-        table = self.get_transaction_table()
-        for row in table:
-            trans_name = row.find_element(*ActivityPage.transaction_link)
-            if text in trans_name.text:
+        self._table = self.get_transaction_table()
+        rows = self._table.find_elements(*ActivityPage.transactions_rows)
+        for row in rows:
+            trans_link = row.find_element(*ActivityPage.transaction_link)
+            if text in trans_link.text:
                 return row.find_element(*ActivityPage.transaction_debits)
 
     def get_transaction_credit_by_name(self, text: str):
@@ -137,10 +158,11 @@ class ActivityPage():
         :param text: Text describing the transaction name.
         :return: webelement
         """
-        table = self.get_transaction_table()
-        for row in table:
-            trans_name = row.find_element(*ActivityPage.transaction_link)
-            if text in trans_name.text:
+        self._table = self.get_transaction_table()
+        rows = self._table.find_elements(*ActivityPage.transactions_rows)
+        for row in rows:
+            trans_link = row.find_element(*ActivityPage.transaction_link)
+            if text in trans_link.text:
                 return row.find_element(*ActivityPage.transaction_credits)
 
     def get_no_transactions(self):
