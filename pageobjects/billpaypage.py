@@ -16,6 +16,10 @@ class BillPayPage():
     payment_amount: tuple = (By.NAME, "amount")
     source_account: tuple = (By.NAME, "fromAccountId")
     payment_button: tuple = (By.CSS_SELECTOR, "input[value='Send Payment']")
+    payment_success: tuple = (By.ID, "billpayResult")
+    payment_success_title: tuple = (By.CLASS_NAME, "title")
+    success_payee_name: tuple = (By.ID, "payeeName")
+    success_amount: tuple = (By.ID, "amount")
 
     # Declaring the error labels
     payee_name_error: tuple = (By.ID, "validationModel-name")
@@ -111,6 +115,8 @@ class BillPayPage():
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payment_button)
+
+    def
 
     def get_payee_name_error(self):
         """

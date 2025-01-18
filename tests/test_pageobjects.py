@@ -16,6 +16,7 @@ from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.accountoverviewpage import AccountOverview
 from pageobjects.activitypage import ActivityPage
 from pageobjects.adminpage import AdminPage
+from pageobjects.billpaypage import BillPayPage
 
 class TestHomePage(BaseClass):
     driver: Chrome
@@ -159,7 +160,7 @@ class TestHomePage(BaseClass):
         log.info("Selecting the account type: SAVINGS")
         self.select_value_from_dropdown_text(open_account_page.get_account_type(), "SAVINGS")
         log.info("Selecting the account number.")
-        # Move this to the utils?
+        # Should move this to the page object
         # Maybe add the get_source_account method to select one random account
         accounts_list = open_account_page.get_source_accounts()
         acc_nos = []
@@ -432,6 +433,7 @@ class TestHomePage(BaseClass):
         activity_page.get_transaction_link_by_text("Down Payment").click()
         time.sleep(5)
 
+    @pytest.mark.skip
     def test_admin_page(self):
         """
         Tests the admin page.
@@ -462,5 +464,67 @@ class TestHomePage(BaseClass):
         self.select_value_from_dropdown_index(admin_page.get_loan_processor(), 0)
         admin_page.get_loan_threshold().clear()
         admin_page.get_loan_threshold().send_keys("30")
+        # Needs the clean and submit test after testing the rest of the POM
         time.sleep(5)
 
+    def test_bill_pay_page(self):
+        """
+        Tests the bill pay page.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker("en_US")
+        self.driver.get(BaseClass.HOMEPAGE)
+        # Login data from the previous test case
+        # Move the login to the base class?
+        user_name = "ma_tre"
+        password = "password"
+        home_page = HomePage(self.driver)
+        log.info("Test case no 11")
+        log.info("Testing the bill pay page.")
+        log.info(f"User name: {user_name}")
+        home_page.get_username().send_keys(user_name)
+        log.info(f"Password: {password}")
+        home_page.get_password().send_keys(password)
+        log.info("Clicking the login button.")
+        home_page.get_login_button().click()
+        log.info("Opening the update profile page.")
+        self.driver.get(BaseClass.BILL_PAY)
+        bill_pay_page = BillPayPage(self.driver)
+        company_name = faker.company()
+        log.info(f"Payee name: {company_name}")
+        bill_pay_page.get_payee_name().send_keys(company_name)
+        address = faker.street_address()
+        log.info(f"Payee address: {address}")
+        bill_pay_page.get_payee_street().send_keys(address)
+        city = faker.city()
+        log.info(f"Payee city: {city}")
+        bill_pay_page.get_payee_city().send_keys(city)
+        state = faker.administrative_unit()
+        log.info(f"State: {state}")
+        bill_pay_page.get_payee_state().send_keys(state)
+        post_code = faker.postalcode()
+        log.info(f"Post code: {post_code}")
+        bill_pay_page.get_payee_post_code().send_keys(post_code)
+        phone_number = faker.phone_number()
+        log.info(f"Phone number: {phone_number}")
+        bill_pay_page.get_payee_phonenumber().send_keys(phone_number)
+        # IBAN is invalid (use in TC)
+        account_number = faker.aba()
+        log.info(f"Account number: {account_number}")
+        bill_pay_page.get_payee_account_number().send_keys(account_number)
+        log.info(f"Verify account number: {account_number}")
+        bill_pay_page.get_payee_verify_account().send_keys(account_number)
+        amount = random.randint(0, 10000)
+        log.info(f"Amount: {amount}")
+        bill_pay_page.get_payment_amount().send_keys(amount)
+        account_list = bill_pay_page.get_source_account()
+        acc_nos = []
+        for account in account_list.find_elements(By.TAG_NAME, "option"):
+            acc_nos.append(account.text)
+        acc_no = random.choice(acc_nos)
+        log.info(f"Selecting the account number: {acc_no}")
+        self.select_value_from_dropdown_text(bill_pay_page.get_source_account(), acc_no)
+        log.info("Clicking the payment button.")
+        bill_pay_page.get_payment_button().click()
+        time.sleep(15)
