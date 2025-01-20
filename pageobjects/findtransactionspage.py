@@ -16,6 +16,8 @@ class FindTransactionPage():
     find_by_date_range_button: tuple = (By.ID, "findByDateRange")
     transaction_amount: tuple = (By.ID, "amount")
     find_by_amount_button: tuple = (By.ID, "findByAmount")
+    results_table: tuple = (By.ID, "transactionTable")
+    results_row: tuple = (By.CSS_SELECTOR, "tbody tr")
 
     # Declaring the error labels
     error_block: tuple = (By.ID, "errorContainer")
@@ -104,6 +106,21 @@ class FindTransactionPage():
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.find_by_amount_button)
+
+    def get_results_table(self):
+        """
+        Returns the results table.
+        :return: webelement
+        """
+        return self._driver.find_element(*FindTransactionPage.results_table)
+
+    def get_results_transactions(self):
+        """
+       Returns the results rows.
+       :return: webelement
+       """
+        table = self.get_results_table()
+        return table.find_elements(*FindTransactionPage.results_row)
 
     def get_error_message(self):
         """

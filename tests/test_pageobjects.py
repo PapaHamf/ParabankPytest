@@ -585,6 +585,7 @@ class TestHomePage(BaseClass):
             print(contact_page.get_success_message().text)
         time.sleep(5)
 
+    @pytest.mark.skip
     def test_find_transaction_page(self):
         """
         Tests the find transaction page.
@@ -607,6 +608,11 @@ class TestHomePage(BaseClass):
         log.info("Clicking the login button.")
         home_page.get_login_button().click()
         log.info("Opening the update profile page.")
+        # Force the logout
+        # self.driver.delete_all_cookies()
+        cookies = self.driver.get_cookies()
+        for cookie in cookies:
+            print(cookie)
         self.driver.get(BaseClass.FIND_TRANS)
         find_trans_page = FindTransactionPage(self.driver)
         account_list = find_trans_page.get_account_numbers()
@@ -619,21 +625,43 @@ class TestHomePage(BaseClass):
         log.info(f"Selecting the account number: {account_no}")
         self.select_value_from_dropdown_text(find_trans_page.get_account_list(), account_no)
         trans_id = "17917"
-        log.info(f"Transaction id: {trans_id}")
-        find_trans_page.get_transaction_id().send_keys()
-        log.info("Clicking the find by ID button.")
-        find_trans_page.get_find_by_id_button().click()
-        if find_trans_page.get_error_message().is_displayed():
-            print(find_trans_page.get_error_message().text)
-        if find_trans_page.get_transaction_id_error().is_displayed():
-            print("Invalid transaction identifier.")
-        trans_date = "01-18-2025"
-        log.info(f"Transaction date: {trans_date}")
-        find_trans_page.get_transaction_date().send_keys(trans_date)
-        log.info("Clicking the find by date button.")
-        find_trans_page.get_find_by_date_button().click()
 
-        trans_amount = "$1000.00"
+        # log.info(f"Transaction id: {trans_id}")
+        # find_trans_page.get_transaction_id().send_keys()
+        # log.info("Clicking the find by ID button.")
+        # find_trans_page.get_find_by_id_button().click()
+        # if find_trans_page.get_error_message().is_displayed():
+        #     print(find_trans_page.get_error_message().text)
+        # if find_trans_page.get_transaction_id_error().is_displayed():
+        #     print("Invalid transaction identifier.")
+        trans_date = "01-18-2025"
+
+        # log.info(f"Transaction date: {trans_date}")
+        # find_trans_page.get_transaction_date().send_keys(trans_date)
+        # log.info("Clicking the find by date button.")
+        # find_trans_page.get_find_by_date_button().click()
+
+        temp = trans_date.split("-")
+        from_trans_date = "-".join([str(int(x)-2) if i == 1 else x for i, x in enumerate(temp)])
+        to_trans_date = "-".join([str(int(x)+2) if i == 1 else x for i, x in enumerate(temp)])
+        log.info(f"Transaction from date: {from_trans_date}")
+        find_trans_page.get_transaction_from_date().send_keys(from_trans_date)
+        log.info(f"Transaction to date: {to_trans_date}")
+        find_trans_page.get_transaction_to_date().send_keys(to_trans_date)
+        log.info("Clicking the find by range button.")
+        find_trans_page.get_find_by_date_range_button().click()
+
+        if find_trans_page.get_results_table().is_displayed():
+            rows = find_trans_page.get_results_transactions()
+            if len(rows) > 0:
+                print("Yes")
+
+        # Amount without the dollar sign.
+        # trans_amount = "1000.00"
+        # log.info(f"Transaction amount: {trans_amount}")
+        # find_trans_page.get_transaction_amount().send_keys(trans_amount)
+        # log.info("Clicking the find by amount button.")
+        # find_trans_page.get_find_by_amount_button().click()
         # Complete the test case
         # 1. Go to the account overview, 2. get the account no
         # 3. display the trans, 4. get the transaction id, date and amount

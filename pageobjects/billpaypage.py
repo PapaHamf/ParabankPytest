@@ -31,6 +31,7 @@ class BillPayPage():
     payee_verify_account_mismatch_error: tuple = (By.ID, "validationModel-verifyAccount-mismatch")
     payee_amount_empty_error: tuple = (By.ID, "validationModel-amount-empty")
     payee_amount_invalid_error: tuple = (By.ID, "validationModel-amount-invalid")
+    payment_error: tuple = (By.ID, "billpayError")
 
     # Success message
     payment_success: tuple = (By.ID, "billpayResult")
@@ -237,4 +238,10 @@ class BillPayPage():
         """
         return self._driver.find_element(*BillPayPage.payee_amount_invalid_error)
 
+    def get_payment_error(self):
+        """
+        Returns the payment error text (internal).
+        :return: webelement
+        """
+        return self._driver.find_element(*BillPayPage.payment_error)
 
