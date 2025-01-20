@@ -16,10 +16,6 @@ class BillPayPage():
     payment_amount: tuple = (By.NAME, "amount")
     source_account: tuple = (By.NAME, "fromAccountId")
     payment_button: tuple = (By.CSS_SELECTOR, "input[value='Send Payment']")
-    payment_success: tuple = (By.ID, "billpayResult")
-    payment_success_title: tuple = (By.CLASS_NAME, "title")
-    success_payee_name: tuple = (By.ID, "payeeName")
-    success_amount: tuple = (By.ID, "amount")
 
     # Declaring the error labels
     payee_name_error: tuple = (By.ID, "validationModel-name")
@@ -35,6 +31,12 @@ class BillPayPage():
     payee_verify_account_mismatch_error: tuple = (By.ID, "validationModel-verifyAccount-mismatch")
     payee_amount_empty_error: tuple = (By.ID, "validationModel-amount-empty")
     payee_amount_invalid_error: tuple = (By.ID, "validationModel-amount-invalid")
+
+    # Success message
+    payment_success: tuple = (By.ID, "billpayResult")
+    payment_success_title: tuple = (By.CLASS_NAME, "title")
+    success_payee_name: tuple = (By.ID, "payeeName")
+    success_amount: tuple = (By.ID, "amount")
 
     def __init__(self, driver):
         self._driver = driver
@@ -116,7 +118,33 @@ class BillPayPage():
         """
         return self._driver.find_element(*BillPayPage.payment_button)
 
-    def
+    def get_payment_success(self):
+        """
+        Returns the payment success message block.
+        :return: webelement
+        """
+        return self._driver.find_element(*BillPayPage.payment_success)
+
+    def get_payment_success_title(self):
+        """
+        Returns the payment success message title.
+        :return: webelement
+        """
+        return self._driver.find_element(*BillPayPage.payment_success_title)
+
+    def get_success_amount(self):
+        """
+        Returns the payment success amount.
+        :return: webelement
+        """
+        return self._driver.find_element(*BillPayPage.success_amount)
+
+    def get_success_payee_name(self):
+        """
+        Returns the payment success amount.
+        :return: webelement
+        """
+        return self._driver.find_element(*BillPayPage.success_payee_name)
 
     def get_payee_name_error(self):
         """

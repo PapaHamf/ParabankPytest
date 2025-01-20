@@ -5,7 +5,7 @@ class ContactPage():
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)
-    name: tuple = (By.ID. "name")
+    name: tuple = (By.ID, "name")
     email_address: tuple = (By.ID, "email")
     phone_number: tuple = (By.ID, "phone")
     message_body: tuple = (By.ID, "message")

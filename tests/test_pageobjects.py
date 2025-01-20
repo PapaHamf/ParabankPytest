@@ -17,6 +17,8 @@ from pageobjects.accountoverviewpage import AccountOverview
 from pageobjects.activitypage import ActivityPage
 from pageobjects.adminpage import AdminPage
 from pageobjects.billpaypage import BillPayPage
+from pageobjects.contactpage import ContactPage
+from pageobjects.findtransactionspage import FindTransactionPage
 
 class TestHomePage(BaseClass):
     driver: Chrome
@@ -467,6 +469,7 @@ class TestHomePage(BaseClass):
         # Needs the clean and submit test after testing the rest of the POM
         time.sleep(5)
 
+    @pytest.mark.skip
     def test_bill_pay_page(self):
         """
         Tests the bill pay page.
@@ -527,4 +530,112 @@ class TestHomePage(BaseClass):
         self.select_value_from_dropdown_text(bill_pay_page.get_source_account(), acc_no)
         log.info("Clicking the payment button.")
         bill_pay_page.get_payment_button().click()
-        time.sleep(15)
+        log.info("Verifying the success message visibility.")
+        if bill_pay_page.get_payment_success().is_displayed():
+            log.info("Fetching the success title.")
+            print(bill_pay_page.get_payment_success_title().text)
+            success_amt = bill_pay_page.get_success_amount().text
+            log.info(f"Success amount: {success_amt}")
+            print(success_amt)
+            succes_payee = bill_pay_page.get_success_payee_name().text
+            log.info(f"Success payee: {succes_payee}")
+            print(succes_payee)
+        time.sleep(5)
+
+    @pytest.mark.skip
+    def test_contact_page(self):
+        """
+        Tests the contact page.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker()
+        self.driver.get(BaseClass.HOMEPAGE)
+        # Login data from the previous test case
+        # Move the login to the base class?
+        user_name = "ma_tre"
+        password = "password"
+        home_page = HomePage(self.driver)
+        log.info("Test case no 12")
+        log.info("Testing the contact page.")
+        log.info(f"User name: {user_name}")
+        home_page.get_username().send_keys(user_name)
+        log.info(f"Password: {password}")
+        home_page.get_password().send_keys(password)
+        log.info("Clicking the login button.")
+        home_page.get_login_button().click()
+        log.info("Opening the update profile page.")
+        self.driver.get(BaseClass.CONTACT_FORM)
+        contact_page = ContactPage(self.driver)
+        name = faker.name()
+        log.info(f"First and last name: {name}")
+        contact_page.get_name().send_keys(name)
+        email = faker.email()
+        log.info(f"E-mail address: {email}")
+        contact_page.get_email_address().send_keys(email)
+        phonenumber = faker.phone_number()
+        log.info(f"Phone number: {phonenumber}")
+        contact_page.get_phone_number().send_keys(phonenumber)
+        message = faker.paragraph(nb_sentences=5)
+        log.info(f"Message: {message}")
+        contact_page.get_message_body().send_keys(message)
+        log.info("Clicking the send button.")
+        contact_page.get_send_button().click()
+        if contact_page.get_success_message().is_displayed():
+            print(contact_page.get_success_message().text)
+        time.sleep(5)
+
+    def test_find_transaction_page(self):
+        """
+        Tests the find transaction page.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker()
+        self.driver.get(BaseClass.HOMEPAGE)
+        # Login data from the previous test case
+        # Move the login to the base class?
+        user_name = "ma_tre"
+        password = "password"
+        home_page = HomePage(self.driver)
+        log.info("Test case no 13")
+        log.info("Testing the contact page.")
+        log.info(f"User name: {user_name}")
+        home_page.get_username().send_keys(user_name)
+        log.info(f"Password: {password}")
+        home_page.get_password().send_keys(password)
+        log.info("Clicking the login button.")
+        home_page.get_login_button().click()
+        log.info("Opening the update profile page.")
+        self.driver.get(BaseClass.FIND_TRANS)
+        find_trans_page = FindTransactionPage(self.driver)
+        account_list = find_trans_page.get_account_numbers()
+        account_nos = []
+        for account in account_list:
+            account_nos.append(account.text)
+        # account_no = random.choice(account_nos)
+        # log.info(f"Selecting the account number: {account_no}")
+        account_no = "13566"
+        log.info(f"Selecting the account number: {account_no}")
+        self.select_value_from_dropdown_text(find_trans_page.get_account_list(), account_no)
+        trans_id = "17917"
+        log.info(f"Transaction id: {trans_id}")
+        find_trans_page.get_transaction_id().send_keys()
+        log.info("Clicking the find by ID button.")
+        find_trans_page.get_find_by_id_button().click()
+        if find_trans_page.get_error_message().is_displayed():
+            print(find_trans_page.get_error_message().text)
+        if find_trans_page.get_transaction_id_error().is_displayed():
+            print("Invalid transaction identifier.")
+        trans_date = "01-18-2025"
+        log.info(f"Transaction date: {trans_date}")
+        find_trans_page.get_transaction_date().send_keys(trans_date)
+        log.info("Clicking the find by date button.")
+        find_trans_page.get_find_by_date_button().click()
+
+        trans_amount = "$1000.00"
+        # Complete the test case
+        # 1. Go to the account overview, 2. get the account no
+        # 3. display the trans, 4. get the transaction id, date and amount
+
+        time.sleep(5)

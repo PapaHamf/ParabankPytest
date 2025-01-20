@@ -5,7 +5,8 @@ class FindTransactionPage():
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)
-    account_number: tuple = (By.ID, "accountId")
+    account_list: tuple = (By.ID, "accountId")
+    account_numbers: tuple = (By.TAG_NAME, "option")
     transaction_id: tuple = (By.ID, "transactionId")
     find_by_id_button: tuple = (By.ID, "findById")
     transaction_date: tuple = (By.ID, "transactionDate")
@@ -17,6 +18,7 @@ class FindTransactionPage():
     find_by_amount_button: tuple = (By.ID, "findByAmount")
 
     # Declaring the error labels
+    error_block: tuple = (By.ID, "errorContainer")
     transaction_id_error: tuple = (By.ID, "transactionIdError")
     transaction_date_error: tuple = (By.ID, "transactionDateError")
     transaction_date_range_error: tuple = (By.ID, "dateRangeError")
@@ -25,12 +27,20 @@ class FindTransactionPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_account_number(self):
+    def get_account_list(self):
         """
-        Returns the account number field.
+        Returns the account list.
         :return: webelement
         """
-        return self._driver.find_element(*FindTransactionPage.account_number)
+        return self._driver.find_element(*FindTransactionPage.account_list)
+
+    def get_account_numbers(self):
+        """
+        Returns the account numbers list.
+        :return: webelement
+        """
+        accounts_list = self.get_account_list()
+        return accounts_list.find_elements(*FindTransactionPage.account_numbers)
 
     def get_transaction_id(self):
         """
@@ -94,6 +104,13 @@ class FindTransactionPage():
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.find_by_amount_button)
+
+    def get_error_message(self):
+        """
+        Returns the internal error message text.
+        :return: webelement
+        """
+        return self._driver.find_element(*FindTransactionPage.transaction_id_error)
 
     def get_transaction_id_error(self):
         """

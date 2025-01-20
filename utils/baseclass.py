@@ -58,6 +58,7 @@ class BaseClass:
     UPDATE_INFO = "http://localhost:8000/parabank/updateprofile.htm"
     REQUEST_LOAN = "http://localhost:8000/parabank/requestloan.htm"
     ADMIN_PAGE = "http://localhost:8000/parabank/admin.htm"
+    CONTACT_FORM = "http://localhost:8000/parabank/contact.htm"
 
     def verify_element_presence(self, locator: str, timeout: int = 10) -> None:
         """
@@ -69,7 +70,7 @@ class BaseClass:
         wait = WebDriverWait(self.driver, timeout)
         wait.until(expected_conditions.presence_of_element_located((By.XPATH, locator)))
 
-    def select_value_from_dropdown_text(self, element, text: str):
+    def select_value_from_dropdown_text(self, element, text: str) -> None:
         """
         Selects the value from the passed list (webelement) using the text.
         :param element: Webelement that references the static dropdown.
@@ -79,7 +80,7 @@ class BaseClass:
         dropdown = Select(element)
         dropdown.select_by_visible_text(text)
 
-    def select_value_from_dropdown_index(self, element, index: int):
+    def select_value_from_dropdown_index(self, element, index: int) -> None:
         """
         Selects the value from the passed list (webelement) using the index value.
         :param element: Webelement that references the static dropdown.
@@ -111,7 +112,7 @@ class BaseClass:
             logger.setLevel(level)
         return logger
 
-    def get_faker(self, locale: str = "pl_PL"):
+    def get_faker(self, locale: str = "pl_PL") -> object:
         """
         Creates the faker object with given locale and returns it.
         :param locale: Lets you define the locale of the fake data. Default value is pl_Pl.
