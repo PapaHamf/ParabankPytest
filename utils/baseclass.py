@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 # List of to dos
-# Implement sqlite3 database utilities (to log the test cases data)
+# Implement HYSQL database utilities (to get the data from the DB)
 # Implement JSON utilities (to write temporary data used in other cases)
 # Implement Excel utilities (to inject some kind of data from outside)
 # Implement the screenshot on failure feature (there is a plug-in)

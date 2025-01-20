@@ -585,7 +585,7 @@ class TestHomePage(BaseClass):
             print(contact_page.get_success_message().text)
         time.sleep(5)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_find_transaction_page(self):
         """
         Tests the find transaction page.
@@ -621,11 +621,11 @@ class TestHomePage(BaseClass):
             account_nos.append(account.text)
         # account_no = random.choice(account_nos)
         # log.info(f"Selecting the account number: {account_no}")
-        account_no = "13566"
+        account_no = "13677"
         log.info(f"Selecting the account number: {account_no}")
         self.select_value_from_dropdown_text(find_trans_page.get_account_list(), account_no)
-        trans_id = "17917"
 
+        # trans_id = "17917"
         # log.info(f"Transaction id: {trans_id}")
         # find_trans_page.get_transaction_id().send_keys()
         # log.info("Clicking the find by ID button.")
@@ -636,25 +636,27 @@ class TestHomePage(BaseClass):
         #     print("Invalid transaction identifier.")
         trans_date = "01-18-2025"
 
-        # log.info(f"Transaction date: {trans_date}")
-        # find_trans_page.get_transaction_date().send_keys(trans_date)
-        # log.info("Clicking the find by date button.")
-        # find_trans_page.get_find_by_date_button().click()
+        log.info(f"Transaction date: {trans_date}")
+        find_trans_page.get_transaction_date().send_keys(trans_date)
+        log.info("Clicking the find by date button.")
+        find_trans_page.get_find_by_date_button().click()
 
         temp = trans_date.split("-")
         from_trans_date = "-".join([str(int(x)-2) if i == 1 else x for i, x in enumerate(temp)])
         to_trans_date = "-".join([str(int(x)+2) if i == 1 else x for i, x in enumerate(temp)])
-        log.info(f"Transaction from date: {from_trans_date}")
-        find_trans_page.get_transaction_from_date().send_keys(from_trans_date)
-        log.info(f"Transaction to date: {to_trans_date}")
-        find_trans_page.get_transaction_to_date().send_keys(to_trans_date)
-        log.info("Clicking the find by range button.")
-        find_trans_page.get_find_by_date_range_button().click()
+        # log.info(f"Transaction from date: {from_trans_date}")
+        # find_trans_page.get_transaction_from_date().send_keys(from_trans_date)
+        # log.info(f"Transaction to date: {to_trans_date}")
+        # find_trans_page.get_transaction_to_date().send_keys(to_trans_date)
+        # log.info("Clicking the find by range button.")
+        # find_trans_page.get_find_by_date_range_button().click()
 
         if find_trans_page.get_results_table().is_displayed():
             rows = find_trans_page.get_results_transactions()
             if len(rows) > 0:
                 print("Yes")
+            else:
+                print("No")
 
         # Amount without the dollar sign.
         # trans_amount = "1000.00"
