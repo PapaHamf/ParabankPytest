@@ -11,7 +11,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 # List of to dos
 # Implement HYSQL database utilities (to get the data from the DB)
 # Implement JSON utilities (to write temporary data used in other cases)
-# Implement Excel utilities (to inject some kind of data from outside)
 # Implement the screenshot on failure feature (there is a plug-in)
 # Implement the exception raising & catching utilities combined w/ the log.WARN (you can
 # use the 'with pytest.raises(..) to catch the exceptions)

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Last page objects 20.01">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="ExcelData class 20.01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_pageobjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/exceldata.py" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/exceldata.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737401756694</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="ExcelData class 20.01">
+      <option name="closed" value="true" />
+      <created>1737405527955</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1737405527955</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -352,6 +359,7 @@
     <MESSAGE value="Test page objects 19.01" />
     <MESSAGE value="Test page objects 20.01" />
     <MESSAGE value="Last page objects 20.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="Last page objects 20.01" />
+    <MESSAGE value="ExcelData class 20.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="ExcelData class 20.01" />
   </component>
 </project>
