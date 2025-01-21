@@ -21,6 +21,7 @@ class ExcelData():
             sheet = book.active
         # Declaring temporary list
         excel_data: list = []
+        # Reading the data
         for row in range(2, sheet.max_row+1):
             temp_dict: dict = {}
             for column in range(1, sheet.max_column+1):
@@ -42,10 +43,16 @@ class ExcelData():
         book = Workbook()
         sheet = book.active
         sheet.title = "Data"
-        for r_key, row in enumerate(data):
-            for c_key, column in enumerate(row[r_key]):
-                sheet.cell(row = r_key, column = c_key).value = data[]
-
-data = ExcelData.get_excel_data("data_register.xlsx")
-for row in data:
-    print(row)
+        # Adding the header w/ column names
+        column_names = data[0].keys()
+        for key, name in enumerate(column_names, 1):
+            sheet.column_dimensions[sheet.cell(row = 1, column = key).column_letter].width = 30
+            sheet.cell(row = 1, column = key).value = name
+        # Adding the data in rows
+        for r_key, row in enumerate(data, 1):
+            values: list = list(row.values())
+            for c_key, column in enumerate(row, 1):
+                sheet.cell(row = r_key + 1, column = c_key).value = values[c_key - 1]
+        # Saving the file
+        # book.save(f"../testdata/{file_name}")
+        book.save(f"./{file_name}")
