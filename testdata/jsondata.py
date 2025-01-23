@@ -1,0 +1,84 @@
+import datetime
+import os
+from datetime import datetime
+
+import json
+
+class JSONData():
+
+    def __init__(self, testcase: str):
+        self._data: dict = {}
+        self._testcase: str = testcase
+
+    def add_data(self, key: str, value: str) -> None:
+        """
+        Allows you to add the test case data to the dictionary.
+        :param key: The key of the dictionary entry.
+        :param value: The value of the dictionary entry.
+        :return:
+        """
+        self._data[key] = value
+
+    def remove_data_by_key(self, key: str) -> None:
+        """
+        Allows you to remove the test case data from the dictionary by key.
+        :param key: The key of the dictionary entry.
+        :return:
+        """
+        self._data.pop(key)
+
+    def remove_data_by_value(self, value: str) -> None:
+        """
+        Allows you to remove the test case data from the dictionary by value.
+        :param value: The value of the dictionary entry.
+        :return:
+        """
+        self._data = { key:val for key, val in self._data.items() if val != value }
+
+    def save_data(self) -> None:
+        """
+        Saves the data to the Excel file.
+        The file name is created based on the date & the test case name.
+        :return:
+        """
+        # Adding the test case name
+        self._data["testcasename"] = self._testcase
+        # Saving the file
+        date = datetime.now().date()
+        time = datetime.now().time().strftime("%H:%M:%S")
+        file_name = f"{self._testcase}_{date}_{time}.json"
+        try:
+            with open(file_name, "w") as file_handle:
+                json.dump(self._data, file_handle, indent = 5)
+        except FileExistsError:
+            raise OperationError("File already exists. Could not open the file for writing.")
+
+
+    def read_data(self, testcase: str, date: str) -> dict | list [dict]:
+        """
+        Reads the data from the Excel file or mutiple files if there are multiple test cases
+        with the same name & date.
+        :param testcase: The name of the testcase for which the data should be read.
+        :param date: The date when the testcase was ran.
+        :return:
+        """
+        files = os.listdir("../")
+        valid_files = [file for file in files if testcase in file and date in file]
+        if len(valid_files) == 1:
+            # Reading the data
+            try:
+                with open(valid_files[0]) as file_handle:
+                    excel_data: dict = json.load(file_handle)
+            except FileNotFoundError:
+                raise OperationError("File not found.")
+        elif len(valid_files) > 1:
+            for file in valid_files:
+                # Declaring temporary list
+                excel_data: list = []
+                # Reading the data
+                with open(file) as file_handle
+                    temp_dict = json.load(file_handle)
+                excel_data.append(temp_dict)
+        else:
+            excel_data = None
+        return excel_data

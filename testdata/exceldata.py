@@ -1,8 +1,8 @@
 import datetime
 import os
+from datetime import datetime
 
 import openpyxl
-from datetime import datetime
 from openpyxl.workbook import Workbook
 
 
@@ -131,6 +131,7 @@ class ExcelData():
         valid_files = [file for file in files if testcase in file and date in file]
         if len(valid_files) == 1:
             book = openpyxl.load_workbook(f"../testdata/{valid_files[0]}")
+            sheet = book.active
             # Reading the data
             for row in range(2, sheet.max_row + 1):
                 excel_data: dict = {}
@@ -139,6 +140,7 @@ class ExcelData():
         elif len(valid_files) > 1:
             for file in valid_files:
                 book = openpyxl.load_workbook(f"../testdata/{file}")
+                sheet = book.active
                 # Declaring temporary list
                 excel_data: list = []
                 # Reading the data
