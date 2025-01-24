@@ -91,6 +91,20 @@ class ExcelData():
         """
         self._data = { key:val for key, val in self._data.items() if val != value }
 
+    def get_data(self) -> dict:
+        """
+        Returns the dictionary with data from the current test case.
+        :return:
+        """
+        return self._data
+
+    def get_testcase(self) -> str:
+        """
+        Returns the current test case name.
+        :return:
+        """
+        return self._testcase
+
     def save_data(self) -> None:
         """
         Saves the data to the Excel file.

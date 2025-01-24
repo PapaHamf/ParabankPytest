@@ -35,9 +35,23 @@ class JSONData():
         """
         self._data = { key:val for key, val in self._data.items() if val != value }
 
+    def get_data(self) -> dict:
+        """
+        Returns the dictionary with data from the current test case.
+        :return:
+        """
+        return self._data
+
+    def get_testcase(self) -> str:
+        """
+        Returns the current test case name.
+        :return:
+        """
+        return self._testcase
+
     def save_data(self) -> None:
         """
-        Saves the data to the Excel file.
+        Saves the data to the JSON file.
         The file name is created based on the date & the test case name.
         :return:
         """
@@ -56,7 +70,7 @@ class JSONData():
 
     def read_data(self, testcase: str, date: str) -> dict | list [dict]:
         """
-        Reads the data from the Excel file or mutiple files if there are multiple test cases
+        Reads the data from the JSON file or mutiple files if there are multiple test cases
         with the same name & date.
         :param testcase: The name of the testcase for which the data should be read.
         :param date: The date when the testcase was ran.

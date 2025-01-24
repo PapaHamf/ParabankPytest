@@ -10,7 +10,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 # List of to dos
 # Implement HYSQL database utilities (to get the data from the DB)
-# Implement JSON utilities (to write temporary data used in other cases)
 # Implement the screenshot on failure feature (there is a plug-in)
 # Implement the exception raising & catching utilities combined w/ the log.WARN (you can
 # use the 'with pytest.raises(..) to catch the exceptions)
@@ -36,7 +35,7 @@ class MyFaker(Faker):
         return name[:first] + "".join([str(self.randint(0, 9)) for i in range(first, first + 3)]) + name[first+3:]
 
 @pytest.mark.usefixtures("setup")
-class BaseClass:
+class BaseClass():
 
     # Temporary constants
     # Move them to some config file (JSON or shelved binary?) or database?
