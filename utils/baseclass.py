@@ -9,7 +9,6 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 # List of to dos
-# Implement HYSQL database utilities (to get the data from the DB)
 # Implement the screenshot on failure feature (there is a plug-in)
 # Implement the exception raising & catching utilities combined w/ the log.WARN (you can
 # use the 'with pytest.raises(..) to catch the exceptions)
