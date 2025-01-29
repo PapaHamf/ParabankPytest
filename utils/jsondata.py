@@ -6,9 +6,10 @@ import json
 
 class JSONData():
 
-    def __init__(self, testcase: str):
+    def __init__(self, test_scenario: str, log):
         self._data: dict = {}
-        self._testcase: str = testcase
+        self._test_scenario: str = test_scenario
+        self._log = log
 
     def add_data(self, key: str, value: str) -> None:
         """
@@ -42,33 +43,33 @@ class JSONData():
         """
         return self._data
 
-    def get_testcase(self) -> str:
+    def get_test_scenario(self) -> str:
         """
-        Returns the current test case name.
+        Returns the current test scenario name.
         :return:
         """
-        return self._testcase
+        return self._test_scenario
 
     def save_data(self) -> None:
         """
         Saves the data to the JSON file.
-        The file name is created based on the date & the test case name.
+        The file name is created based on the date & the test scenario name.
         :return:
         """
-        # Adding the test case name
-        self._data["testcasename"] = self._testcase
+        # Adding the test scenario name
+        self._data["testscenarioname"] = self._test_scenario
         # Saving the file
         date = datetime.now().date()
         time = datetime.now().time().strftime("%H:%M:%S")
-        file_name = f"{self._testcase}_{date}_{time}.json"
+        file_name = f"{self._test_scenario}_{date}_{time}.json"
         try:
             with open(file_name, "w") as file_handle:
                 json.dump(self._data, file_handle, indent = 5)
         except FileExistsError:
-            raise OperationError("File already exists. Could not open the file for writing.")
+            self._log.warn("File already exists. Could not open the file for writing.")
 
 
-    def read_data(self, testcase: str, date: str) -> dict | list [dict]:
+    def read_data(self, test_scenario: str, date: str) -> dict | list [dict]:
         """
         Reads the data from the JSON file or mutiple files if there are multiple test cases
         with the same name & date.
@@ -84,7 +85,7 @@ class JSONData():
                 with open(valid_files[0]) as file_handle:
                     excel_data: dict = json.load(file_handle)
             except FileNotFoundError:
-                raise OperationError("File not found.")
+                self._log.warn("File not found.")
         elif len(valid_files) > 1:
             for file in valid_files:
                 # Declaring temporary list

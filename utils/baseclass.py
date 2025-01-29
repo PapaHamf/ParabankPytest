@@ -10,8 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 # List of to dos
 # Implement the screenshot on failure feature (there is a plug-in)
-# Implement the exception raising & catching utilities combined w/ the log.WARN (you can
-# use the 'with pytest.raises(..) to catch the exceptions)
+# Implement the exception raising & catching utilities combined w/ the log.WARN (also pass the logger to data classes)
 # Implement allure
 # Add the method to check if the service and application are up and running.
 

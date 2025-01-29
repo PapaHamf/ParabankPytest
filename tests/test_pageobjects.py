@@ -6,6 +6,7 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 
 from utils.baseclass import BaseClass
+from utils.jsondata import JSONData
 from pageobjects.homepage import HomePage
 from pageobjects.forgotloginpage import ForgotLoginPage
 from pageobjects.registerpage import RegisterPage
@@ -22,6 +23,10 @@ from pageobjects.findtransactionspage import FindTransactionPage
 
 class TestHomePage(BaseClass):
     driver: Chrome
+
+    def __init__(self):
+        log = self.get_logger()
+        self._data = JSONData("TestHomePage", log)
 
     @pytest.mark.skip
     def test_login(self):
