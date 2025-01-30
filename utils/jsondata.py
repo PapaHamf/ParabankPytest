@@ -6,9 +6,9 @@ import json
 
 class JSONData():
 
-    def __init__(self, test_scenario: str, log):
+    def __init__(self, testcase: str, log):
         self._data: dict = {}
-        self._test_scenario: str = test_scenario
+        self._testcase: str = testcase
         self._log = log
 
     def add_data(self, key: str, value: str) -> None:
@@ -43,12 +43,12 @@ class JSONData():
         """
         return self._data
 
-    def get_test_scenario(self) -> str:
+    def get_testcase(self) -> str:
         """
         Returns the current test scenario name.
         :return:
         """
-        return self._test_scenario
+        return self._testcase
 
     def save_data(self) -> None:
         """
@@ -57,11 +57,11 @@ class JSONData():
         :return:
         """
         # Adding the test scenario name
-        self._data["testscenarioname"] = self._test_scenario
+        self._data["testcase"] = self._testcase
         # Saving the file
         date = datetime.now().date()
         time = datetime.now().time().strftime("%H:%M:%S")
-        file_name = f"{self._test_scenario}_{date}_{time}.json"
+        file_name = f"{self._testcase}_{date}_{time}.json"
         try:
             with open(file_name, "w") as file_handle:
                 json.dump(self._data, file_handle, indent = 5)
@@ -69,7 +69,7 @@ class JSONData():
             self._log.warn("File already exists. Could not open the file for writing.")
 
 
-    def read_data(self, test_scenario: str, date: str) -> dict | list [dict]:
+    def read_data(self, testcase: str, date: str) -> dict | list [dict]:
         """
         Reads the data from the JSON file or mutiple files if there are multiple test cases
         with the same name & date.
@@ -91,7 +91,7 @@ class JSONData():
                 # Declaring temporary list
                 excel_data: list = []
                 # Reading the data
-                with open(file) as file_handle
+                with open(file) as file_handle:
                     temp_dict = json.load(file_handle)
                 excel_data.append(temp_dict)
         else:

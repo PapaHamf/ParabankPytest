@@ -24,10 +24,6 @@ from pageobjects.findtransactionspage import FindTransactionPage
 class TestHomePage(BaseClass):
     driver: Chrome
 
-    def __init__(self):
-        log = self.get_logger()
-        self._data = JSONData("TestHomePage", log)
-
     @pytest.mark.skip
     def test_login(self):
         """
@@ -590,7 +586,7 @@ class TestHomePage(BaseClass):
             print(contact_page.get_success_message().text)
         time.sleep(5)
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_find_transaction_page(self):
         """
         Tests the find transaction page.
@@ -674,3 +670,43 @@ class TestHomePage(BaseClass):
         # 3. display the trans, 4. get the transaction id, date and amount
 
         time.sleep(5)
+
+    def test_json_data(self):
+        """
+        Tests the json data saving.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker()
+        data_collection = JSONData()
+        first_name = faker.first_name()
+        log.info(f"First name: {first_name}")
+        data.add_data("firstname", first_name)
+        last_name = faker.last_name()
+        log.info(f"Last name: {last_name}")
+        data.add_data("lastname", last_name)
+        address = faker.street_address()
+        log.info(f"Address: {address}")
+        data.add_data("streetaddress", address)
+        city = faker.city()
+        log.info(f"City: {city}")
+        data.add_data("city", city)
+        state = faker.administrative_unit()
+        log.info(f"State: {state}")
+        data.add_data("state", state)
+        post_code = faker.postalcode()
+        log.info(f"Post code: {post_code}")
+        data.add_data("postcode", post_code)
+        phone_number = faker.phone_number()
+        log.info(f"Phone number: {phone_number}")
+        data.add_data("phonenumber", phone_number)
+        ssn = faker.ssn()
+        log.info(f"SSN: {ssn}")
+        data.add_data("ssn", ssn)
+        user_name = faker.user_name()
+        log.info(f"User name: {user_name}")
+        data.add_data("username", user_name)
+        password = faker.password()
+        log.info(f"Password: {password}")
+        data.add_data("password", password)
+
