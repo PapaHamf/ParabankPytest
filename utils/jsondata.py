@@ -6,8 +6,9 @@ import json
 
 class JSONData():
 
-    def __init__(self, testcase: str, log):
+    def __init__(self, test_scenario: str, testcase: str, log):
         self._data: dict = {}
+        self._test_scenario = test_scenario
         self._testcase: str = testcase
         self._log = log
 
@@ -45,10 +46,17 @@ class JSONData():
 
     def get_testcase(self) -> str:
         """
-        Returns the current test scenario name.
+        Returns the current test case name.
         :return:
         """
         return self._testcase
+
+    def get_test_scenario(self) -> str:
+        """
+        Returns the current test scenario name.
+        :return:
+        """
+        return self._test_scenario
 
     def save_data(self) -> None:
         """
@@ -56,12 +64,17 @@ class JSONData():
         The file name is created based on the date & the test scenario name.
         :return:
         """
-        # Adding the test scenario name
+        # Adding the test case name
         self._data["testcase"] = self._testcase
-        # Saving the file
+        # Checking if the file exists
+        files = os.listdir("../")
+        valid_files = [file for file in files if self._test_scenario in file and date in file]
         date = datetime.now().date()
         time = datetime.now().time().strftime("%H:%M:%S")
-        file_name = f"{self._testcase}_{date}_{time}.json"
+        if len(valid_files) == 1:
+
+        # Saving the file
+        file_name = f"{self._test_scenario}_{date}_{time}.json"
         try:
             with open(file_name, "w") as file_handle:
                 json.dump(self._data, file_handle, indent = 5)
