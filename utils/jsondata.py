@@ -1,6 +1,6 @@
 import datetime
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import json
 
@@ -73,6 +73,8 @@ class JSONData():
         time = datetime.now().time().strftime("%H:%M:%S")
         if len(valid_files) == 1:
 
+            if not os.path.exists("../history"):
+                os.mkdir("../history")
         # Saving the file
         file_name = f"{self._test_scenario}_{date}_{time}.json"
         try:

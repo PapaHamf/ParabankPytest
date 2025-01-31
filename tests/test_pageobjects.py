@@ -678,7 +678,7 @@ class TestHomePage(BaseClass):
         """
         log = self.get_logger()
         faker = self.get_faker()
-        data_collection = JSONData("jsondata", log)
+        data_collection = JSONData("TestHomePage", "jsondata", log)
         # first_name = faker.first_name()
         first_name = "Maciej"
         log.info(f"First name: {first_name}")
