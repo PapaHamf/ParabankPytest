@@ -1,16 +1,17 @@
 import datetime
 import os
-from datetime import datetime
-
 import openpyxl
-from openpyxl.workbook import Workbook
 
+from datetime import datetime
+from openpyxl.workbook import Workbook
+from utils.testdataset import TestDataSet
+from logging import Logger
 
 class ExcelData():
 
-    def __init__(self, testcase: str):
-        self._data: dict = {}
-        self._testcase: str = testcase
+    def __init__(self, testscenario: str, testcase: str, log: Logger):
+        self._data: TestDataSet = TestDataSet(testscenario, testcase)
+        self._logger: Logger = log
 
     @staticmethod
     def get_excel_data(file_name: str, sheet_name: str = None) -> list [dict]:
@@ -46,7 +47,7 @@ class ExcelData():
         :param file_name: Filename of the Excel file
         :param data: List of lists containing the data to be written. First list should
         should contain the table headers.
-        :return:
+        :return: None
         """
         book = Workbook()
         sheet = book.active
@@ -65,45 +66,6 @@ class ExcelData():
         # Saving the file
         book.save(f"../testdata/{file_name}")
         # book.save(f"./{file_name}")
-
-    def add_data(self, key: str, value: str) -> None:
-        """
-        Allows you to add the test case data to the dictionary.
-        :param key: The key of the dictionary entry.
-        :param value: The value of the dictionary entry.
-        :return:
-        """
-        self._data[key] = value
-
-    def remove_data_by_key(self, key: str) -> None:
-        """
-        Allows you to remove the test case data from the dictionary by key.
-        :param key: The key of the dictionary entry.
-        :return:
-        """
-        self._data.pop(key)
-
-    def remove_data_by_value(self, value: str) -> None:
-        """
-        Allows you to remove the test case data from the dictionary by value.
-        :param value: The value of the dictionary entry.
-        :return:
-        """
-        self._data = { key:val for key, val in self._data.items() if val != value }
-
-    def get_data(self) -> dict:
-        """
-        Returns the dictionary with data from the current test case.
-        :return:
-        """
-        return self._data
-
-    def get_testcase(self) -> str:
-        """
-        Returns the current test case name.
-        :return:
-        """
-        return self._testcase
 
     def save_data(self) -> None:
         """
@@ -131,38 +93,3 @@ class ExcelData():
         time = datetime.now().time().strftime("%H:%M:%S")
         file_name = f"{self._testcase}_{date}_{time}.xlsx"
         book.save(f"../testdata/{file_name}")
-
-
-    def read_data(self, testcase: str, date: str) -> dict | list [dict]:
-        """
-        Reads the data from the Excel file or mutiple files if there are multiple test cases
-        with the same name & date.
-        :param testcase: The name of the testcase for which the data should be read.
-        :param date: The date when the testcase was ran.
-        :return:
-        """
-        files = os.listdir("../")
-        valid_files = [file for file in files if testcase in file and date in file]
-        if len(valid_files) == 1:
-            book = openpyxl.load_workbook(f"../testdata/{valid_files[0]}")
-            sheet = book.active
-            # Reading the data
-            for row in range(2, sheet.max_row + 1):
-                excel_data: dict = {}
-                for column in range(1, sheet.max_column + 1):
-                    excel_data[sheet.cell(row=1, column=column).value] = sheet.cell(row=row, column=column).value
-        elif len(valid_files) > 1:
-            for file in valid_files:
-                book = openpyxl.load_workbook(f"../testdata/{file}")
-                sheet = book.active
-                # Declaring temporary list
-                excel_data: list = []
-                # Reading the data
-                for row in range(2, sheet.max_row + 1):
-                    temp_dict: dict = {}
-                    for column in range(1, sheet.max_column + 1):
-                        temp_dict[sheet.cell(row=1, column=column).value] = sheet.cell(row=row, column=column).value
-                    excel_data.append(temp_dict)
-        else:
-            excel_data = None
-        return excel_data

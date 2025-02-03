@@ -21,6 +21,7 @@ from pageobjects.billpaypage import BillPayPage
 from pageobjects.contactpage import ContactPage
 from pageobjects.findtransactionspage import FindTransactionPage
 
+
 class TestHomePage(BaseClass):
     driver: Chrome
 
@@ -32,6 +33,7 @@ class TestHomePage(BaseClass):
         """
         log = self.get_logger()
         faker = self.get_faker()
+        # Change BaseClass.nameofpage to self.nameofpage
         self.driver.get(BaseClass.HOMEPAGE)
         home_page = HomePage(self.driver)
         log.info("Test case no 1")

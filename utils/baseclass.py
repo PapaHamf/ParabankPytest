@@ -4,15 +4,12 @@ import pytest
 
 from faker import Faker
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from logging import Logger
 
-# List of to dos
-# Implement the screenshot on failure feature (there is a plug-in)
-# Implement the exception raising & catching utilities combined w/ the log.WARN (also pass the logger to data classes)
-# Implement allure
-# Add the method to check if the service and application are up and running.
 
 class MyFaker(Faker):
 
@@ -35,58 +32,55 @@ class MyFaker(Faker):
 @pytest.mark.usefixtures("setup")
 class BaseClass():
 
-    # Temporary constants
-    # Move them to some config file (JSON or shelved binary?) or database?
-    HOMEPAGE = "http://localhost:8000/parabank/"
-    FORGOT_LOGIN = "http://localhost:8000/parabank/lookup.htm"
-    REGISTER = "http://localhost:8000/parabank/register.htm"
-    OPEN_ACCOUNT = "http://localhost:8000/parabank/openaccount.htm"
-    ACCOUNT_OVERVIEW = "http://localhost:8000/parabank/overview.htm"
+    # Web pages constants
+    HOMEPAGE: str = "http://localhost:8000/parabank/"
+    FORGOT_LOGIN: str = "http://localhost:8000/parabank/lookup.htm"
+    REGISTER: str = "http://localhost:8000/parabank/register.htm"
+    OPEN_ACCOUNT: str = "http://localhost:8000/parabank/openaccount.htm"
+    ACCOUNT_OVERVIEW: str = "http://localhost:8000/parabank/overview.htm"
     # There is an argument ?id= that contains the account number
-    ACTIVITY = "http://localhost:8000/parabank/activity.htm"
-    # Should use it to assert the proper bill payment or transfers (seems like you can
-    # transfer infinite amounts to the same account)
+    ACTIVITY: str = "http://localhost:8000/parabank/activity.htm"
     # There is an argument ?id= that contains the transaction number
-    TRANSACTION = "http://localhost:8000/parabank/transaction.htm"
-    TRANSFER_FUNDS = "http://localhost:8000/parabank/transfer.htm"
-    BILL_PAY = "http://localhost:8000/parabank/billpay.htm"
-    FIND_TRANS = "http://localhost:8000/parabank/findtrans.htm"
-    UPDATE_INFO = "http://localhost:8000/parabank/updateprofile.htm"
-    REQUEST_LOAN = "http://localhost:8000/parabank/requestloan.htm"
-    ADMIN_PAGE = "http://localhost:8000/parabank/admin.htm"
-    CONTACT_FORM = "http://localhost:8000/parabank/contact.htm"
+    TRANSACTION: str = "http://localhost:8000/parabank/transaction.htm"
+    TRANSFER_FUNDS: str = "http://localhost:8000/parabank/transfer.htm"
+    BILL_PAY: str = "http://localhost:8000/parabank/billpay.htm"
+    FIND_TRANS: str = "http://localhost:8000/parabank/findtrans.htm"
+    UPDATE_INFO: str = "http://localhost:8000/parabank/updateprofile.htm"
+    REQUEST_LOAN: str = "http://localhost:8000/parabank/requestloan.htm"
+    ADMIN_PAGE: str = "http://localhost:8000/parabank/admin.htm"
+    CONTACT_FORM: str = "http://localhost:8000/parabank/contact.htm"
 
-    def verify_element_presence(self, locator: str, timeout: int = 10) -> None:
+    def verify_element_presence(self, locator: str, timeout: int = 10) -> WebElement:
         """
         Verifies the web element presence on the page.
         :param locator: The locator whose presence is going to be checked. It should be in the XPATH format.
         :param timeout: The timeout for the explicit waiting. The default value is 10.
         :return: None
         """
-        wait = WebDriverWait(self.driver, timeout)
-        wait.until(expected_conditions.presence_of_element_located((By.XPATH, locator)))
+        wait: WebDriverWait = WebDriverWait(self.driver, timeout)
+        return wait.until(EC.presence_of_element_located((By.XPATH, locator)))
 
-    def select_value_from_dropdown_text(self, element, text: str) -> None:
+    def select_value_from_dropdown_text(self, element: WebElement, text: str) -> None:
         """
         Selects the value from the passed list (webelement) using the text.
         :param element: Webelement that references the static dropdown.
         :param text: The text value to be selected.
         :return: None
         """
-        dropdown = Select(element)
+        dropdown: Select = Select(element)
         dropdown.select_by_visible_text(text)
 
-    def select_value_from_dropdown_index(self, element, index: int) -> None:
+    def select_value_from_dropdown_index(self, element: WebElement, index: int) -> None:
         """
         Selects the value from the passed list (webelement) using the index value.
         :param element: Webelement that references the static dropdown.
         :param index: The index value to be selected.
         :return: None
         """
-        dropdown = Select(element)
+        dropdown: Select = Select(element)
         dropdown.select_by_index(index)
 
-    def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> object:
+    def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> Logger:
         """
         Creates the logger object and defines the logging level.
         :param file_name: The file name of the log. The default value is logfile.log.
@@ -95,7 +89,7 @@ class BaseClass():
         """
         # Fixing the name of the file in the logs (otherwise it will be the name of the baseclass)
         logger_name = inspect.stack()[1][3]
-        logger = logging.getLogger(logger_name)
+        logger: Logger = logging.getLogger(logger_name)
         # Check if the logger already exits to avoid creating new logger in parametrized tests.
         if not len(logger.handlers):
             # Defining the log file
@@ -108,7 +102,7 @@ class BaseClass():
             logger.setLevel(level)
         return logger
 
-    def get_faker(self, locale: str = "pl_PL") -> object:
+    def get_faker(self, locale: str = "pl_PL") -> Faker:
         """
         Creates the faker object with given locale and returns it.
         :param locale: Lets you define the locale of the fake data. Default value is pl_Pl.

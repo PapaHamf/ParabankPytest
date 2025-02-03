@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="JSON test 30.01">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="JSON test 31.01">
+      <change afterPath="$PROJECT_DIR$/utils/testdataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_pageobjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/jsondata.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/jsondata.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -432,11 +434,18 @@
       <option name="project" value="LOCAL" />
       <updated>1738273009997</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="JSON test 31.01">
+      <option name="closed" value="true" />
+      <created>1738363417131</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1738363417131</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated bill pay page 13.01" />
     <MESSAGE value="Find transaction page 13.01" />
     <MESSAGE value="Update profile page 13.01" />
     <MESSAGE value="Request loan page 13.01" />
@@ -461,6 +470,7 @@
     <MESSAGE value="Hyper SQL connector class 29.01" />
     <MESSAGE value="JSON update 29.01" />
     <MESSAGE value="JSON test 30.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="JSON test 30.01" />
+    <MESSAGE value="JSON test 31.01" />
+    <option name="LAST_COMMIT_MESSAGE" value="JSON test 31.01" />
   </component>
 </project>

@@ -1,6 +1,9 @@
 import pytest
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
 
 # Hook for command line options
 def pytest_addoption(parser):
@@ -22,17 +25,17 @@ def setup(request):
     # Retrieving the value of the command line option
     match request.config.getoption("--browser-name"):
         case "chrome":
-            chrome_options = webdriver.ChromeOptions()
+            chrome_options: ChromeOptions = webdriver.ChromeOptions()
             # chrome_options.add_argument("--headless")
             chrome_options.add_argument("--ignore-certificate-errors")
             driver = webdriver.Chrome(options=chrome_options)
         case "firefox":
-            firefox_options = webdriver.FirefoxOptions()
+            firefox_options: FirefoxOptions = webdriver.FirefoxOptions()
             firefox_options.add_argument("--headless")
             firefox_options.add_argument("--ignore-certificate-errors")
             driver = webdriver.Firefox(options=firefox_options)
         case "edge":
-            edge_options = webdriver.EdgeOptions()
+            edge_options: EdgeOptions = webdriver.EdgeOptions()
             edge_options.add_argument("--headless")
             edge_options.add_argument("--ignore-certificate-errors")
             driver = webdriver.Edge(options=edge_options)
