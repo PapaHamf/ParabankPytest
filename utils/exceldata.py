@@ -7,11 +7,22 @@ from openpyxl.workbook import Workbook
 from utils.testdataset import TestDataSet
 from logging import Logger
 
-class ExcelData():
+class ExcelData(TestDataSet):
+
+    DIR_PREFIX: str = "../testdata/"
+    EXCEL_ARCHIVE: str = "test_archive.xlsx"
 
     def __init__(self, testscenario: str, testcase: str, log: Logger):
-        self._data: TestDataSet = TestDataSet(testscenario, testcase)
+        super().__init__(test_scenario, testcase)
         self._logger: Logger = log
+
+    def convert_time_to_seconds(self, time: str) -> int:
+        """
+        Converts the given time string to the number of seconds.
+        :param time: The time in the hh:mm:ss format.
+        :return:
+        """
+        return sum(x * int(t) for x, t in zip([3600, 60, 1], time.split(":")))
 
     @staticmethod
     def get_excel_data(file_name: str, sheet_name: str = None) -> list [dict]:
@@ -23,7 +34,7 @@ class ExcelData():
         :param sheet_name:  Let's you select the sheet in the workbook.
         :return: List of dictionaries w/ data.
         """
-        book = openpyxl.load_workbook(f"../testdata/{file_name}")
+        book = openpyxl.load_workbook(ExcelData.DIR_PREFIX + file_name)
         if sheet_name:
             sheet = book[sheet_name]
         else:
@@ -37,7 +48,6 @@ class ExcelData():
                 temp_dict[sheet.cell(row = 1, column = column).value] = sheet.cell(row = row, column = column).value
             excel_data.append(temp_dict)
         return excel_data
-
 
     @staticmethod
     def save_excel_data(file_name: str, data: list [dict]) -> None:
@@ -64,21 +74,28 @@ class ExcelData():
             for c_key, column in enumerate(row, 1):
                 sheet.cell(row = r_key + 1, column = c_key).value = values[c_key - 1]
         # Saving the file
-        book.save(f"../testdata/{file_name}")
-        # book.save(f"./{file_name}")
+        book.save(ExcelData.DIR_PREFIX + file_name)
 
-    def save_data(self) -> None:
+    def save_data(self, timediff: int = 60) -> None:
         """
         Saves the data to the Excel file.
         The file name is created based on the date & the test case name.
         :return:
         """
         book = Workbook()
-        sheet = book.active
-        sheet.title = f"Data: {self._testcase}"
+        # Getting the test datetime
+        date_time = datetime.now()
+        # Switching to the sheet or creating it
+        if self._testcase in book.sheetnames:
+            sheet = book[self._testcase]
+        else:
+            book.create_sheet(self._testcase)
+            sheet = book[self._testcase]
         # Adding the header w/ column names
-        column_names = self._data.keys()
-        # Start from the number 2 to make room for the test case name
+        if sheet['A1'] == None:
+
+        column_names = self._data[self._testcase].keys()
+        # Start from the number 3 to make room for the test case name and date-time
         for key, name in enumerate(column_names, 2):
             sheet.column_dimensions[sheet.cell(row = 1, column = key).column_letter].width = 30
             sheet.cell(row = 1, column = key).value = name

@@ -10,6 +10,8 @@ class TestDataSet():
         self._data: dict = {}
         self._test_scenario: str = test_scenario
         self._testcase: str = testcase
+        self._data[self._test_scenario] = self._test_scenario
+        self._data[self._testcase] = {}
 
     def add_data(self, key: str, value: str) -> None:
         """
@@ -18,7 +20,7 @@ class TestDataSet():
         :param value: The value of the dictionary entry.
         :return:
         """
-        self._data[key] = value
+        self._data[self._testcase][key] = value
 
     def remove_data_by_key(self, key: str) -> None:
         """
@@ -26,7 +28,7 @@ class TestDataSet():
         :param key: The key of the dictionary entry.
         :return:
         """
-        self._data.pop(key)
+        self._data[self._testcase].pop(key)
 
     def remove_data_by_value(self, value: str) -> None:
         """
@@ -34,14 +36,14 @@ class TestDataSet():
         :param value: The value of the dictionary entry.
         :return:
         """
-        self._data = { key:val for key, val in self._data.items() if val != value }
+        self._data[self._testcase] = { key:val for key, val in self._data[self._testcase].items() if val != value }
 
     def get_data(self) -> dict:
         """
         Returns the dictionary with data from the current test case.
         :return:
         """
-        return self._data
+        return self._data[self._testcase]
 
     def get_testcase(self) -> str:
         """

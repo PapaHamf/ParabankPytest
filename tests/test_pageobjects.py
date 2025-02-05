@@ -680,7 +680,7 @@ class TestHomePage(BaseClass):
         """
         log = self.get_logger()
         faker = self.get_faker()
-        data_collection = JSONData("TestHomePage", "jsondata", log)
+        data_collection = JSONData("TestHomePage", "json_data", log)
         # first_name = faker.first_name()
         first_name = "Maciej"
         log.info(f"First name: {first_name}")
@@ -718,4 +718,31 @@ class TestHomePage(BaseClass):
         # print(data_collection.get_data())
         # data_collection.remove_data_by_value("Kapowski")
         # print(data_collection.get_data())
+        data_collection.save_data()
+
+    def test_json_new_set(self):
+        """
+        Tests the json data saving.
+        :return:
+        """
+        log = self.get_logger()
+        faker = self.get_faker()
+        data_collection = JSONData("TestHomePage", "json_new_set", log)
+        # first_name = faker.first_name()
+        first_name = "Maciej"
+        log.info(f"First name: {first_name}")
+        data_collection.add_data("firstname", first_name)
+        # last_name = faker.last_name()
+        last_name = "Kapowski"
+        log.info(f"Last name: {last_name}")
+        data_collection.add_data("lastname", last_name)
+        address = faker.street_address()
+        log.info(f"Address: {address}")
+        data_collection.add_data("streetaddress", address)
+        city = faker.city()
+        log.info(f"City: {city}")
+        data_collection.add_data("city", city)
+        state = faker.administrative_unit()
+        log.info(f"State: {state}")
+        data_collection.add_data("state", state)
         data_collection.save_data()
