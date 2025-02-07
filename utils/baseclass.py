@@ -55,7 +55,7 @@ class BaseClass():
         Verifies the web element presence on the page.
         :param locator: The locator whose presence is going to be checked. It should be in the XPATH format.
         :param timeout: The timeout for the explicit waiting. The default value is 10.
-        :return: None
+        :return: webelement
         """
         wait: WebDriverWait = WebDriverWait(self.driver, timeout)
         return wait.until(EC.presence_of_element_located((By.XPATH, locator)))

@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 
 from utils.baseclass import BaseClass
 from utils.jsondata import JSONData
+from utils.exceldata import ExcelData
 from pageobjects.homepage import HomePage
 from pageobjects.forgotloginpage import ForgotLoginPage
 from pageobjects.registerpage import RegisterPage
@@ -675,12 +676,12 @@ class TestHomePage(BaseClass):
 
     def test_json_data(self):
         """
-        Tests the json data saving.
+        Tests the excel data saving.
         :return:
         """
         log = self.get_logger()
         faker = self.get_faker()
-        data_collection = JSONData("TestHomePage", "json_data", log)
+        data_collection = ExcelData("TestHomePage", "json_data", log)
         # first_name = faker.first_name()
         first_name = "Maciej"
         log.info(f"First name: {first_name}")
@@ -722,12 +723,12 @@ class TestHomePage(BaseClass):
 
     def test_json_new_set(self):
         """
-        Tests the json data saving.
+        Tests the excel data saving.
         :return:
         """
         log = self.get_logger()
         faker = self.get_faker()
-        data_collection = JSONData("TestHomePage", "json_new_set", log)
+        data_collection = ExcelData("TestHomePage", "json_new_set", log)
         # first_name = faker.first_name()
         first_name = "Maciej"
         log.info(f"First name: {first_name}")

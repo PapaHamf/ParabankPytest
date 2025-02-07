@@ -29,7 +29,7 @@ class JSONData(TestDataSet):
         Returns the data from the JSON file as a dictionary.
         :param file_name: Filename of the JSON file.
         :param log: Logger object
-        :return: List of dictionaries w/ data or false is file is not found.
+        :return: Dictionary w/ data or false is file is not found.
         """
         log: Logger = log
         try:
@@ -44,7 +44,7 @@ class JSONData(TestDataSet):
         """
         Lets you save the formatted data to the JSON file.
         :param file_name: Filename of the JSON file
-        :param data: List of dicts containing the data to be written.
+        :param data: Dictionary containing the data to be written.
         :param log: Logger object
         :return: None or False if file already exists
         """
@@ -52,15 +52,15 @@ class JSONData(TestDataSet):
         try:
             with open(self.DIR_PREFIX + file_name, "w") as file_handle:
                 json.dump(data, file_handle, indent = 5)
-        except FileExistsError:
-            log.warning(f"File {self.DIR_PREFIX + file_name} already exists. Could not open the file for writing.")
+        except IOError:
+            log.warning(f"Could not open the file {JSONData.DIR_PREFIX + file_name} for writing.")
             return False
 
     def save_data(self, timediff: int = 60) -> None | bool:
         """
         Saves the data to the JSON file.
         The file name is created based on the date & the test scenario name.
-        :param timediff: Time difference used to add testcases to the same test scenario file.
+        :param timediff: Time difference used to add testcases to the same test scenario file. Default value is 60.
         :return: None or False if there was an error saving the file.
         """
         # Checking if the file exists
@@ -87,5 +87,5 @@ class JSONData(TestDataSet):
         try:
             with open(self.DIR_PREFIX + file_name, "w") as file_handle:
                 json.dump(self._data, file_handle, indent = 5)
-        except FileExistsError:
-            self._log.warning(f"File {file_name} already exists. Could not open the file for writing.")
+        except IOError:
+            self._log.warning(f"Could not open the file {self.DIR_PREFIX + file_name} for writing.")

@@ -12,52 +12,48 @@ class ExcelData(TestDataSet):
     DIR_PREFIX: str = "../testdata/"
     EXCEL_ARCHIVE: str = "test_archive.xlsx"
 
-    def __init__(self, testscenario: str, testcase: str, log: Logger):
+    def __init__(self, test_scenario: str, testcase: str, log: Logger):
         super().__init__(test_scenario, testcase)
-        self._logger: Logger = log
-
-    def convert_time_to_seconds(self, time: str) -> int:
-        """
-        Converts the given time string to the number of seconds.
-        :param time: The time in the hh:mm:ss format.
-        :return:
-        """
-        return sum(x * int(t) for x, t in zip([3600, 60, 1], time.split(":")))
+        self._log: Logger = log
 
     @staticmethod
-    def get_excel_data(file_name: str, sheet_name: str = None) -> list [dict]:
+    def get_excel_data(file_name: str, log: Logger, sheet_name: str = None) -> list [dict] | bool:
         """
         Returns the data from the Excel file as a dictionary.
-        The first row should contain the column names used for the
-        dictionary keys.
+        The first row should contain the column names used for the dictionary keys.
         :param file_name: Filename of the Excel file.
-        :param sheet_name:  Let's you select the sheet in the workbook.
-        :return: List of dictionaries w/ data.
+        :param log: Logger object used to log the info & errors.
+        :param sheet_name:  The name of the sheet in the workbook.
+        :return: List of dictionaries w/ data or false if the file does not exist.
         """
-        book = openpyxl.load_workbook(ExcelData.DIR_PREFIX + file_name)
-        if sheet_name:
-            sheet = book[sheet_name]
-        else:
-            sheet = book.active
-        # Declaring temporary list
-        excel_data: list = []
-        # Reading the data
-        for row in range(2, sheet.max_row+1):
-            temp_dict: dict = {}
-            for column in range(1, sheet.max_column+1):
-                temp_dict[sheet.cell(row = 1, column = column).value] = sheet.cell(row = row, column = column).value
-            excel_data.append(temp_dict)
-        return excel_data
+        try:
+            book = openpyxl.load_workbook(ExcelData.DIR_PREFIX + file_name)
+            if sheet_name:
+                sheet = book[sheet_name]
+            else:
+                sheet = book.active
+            # Declaring temporary list
+            excel_data: list = []
+            # Reading the data
+            for row in range(2, sheet.max_row+1):
+                temp_dict: dict = {}
+                for column in range(1, sheet.max_column+1):
+                    temp_dict[sheet.cell(row = 1, column = column).value] = sheet.cell(row = row, column = column).value
+                excel_data.append(temp_dict)
+        except FileNotFoundError:
+            log.warning(f"File {ExcelData.DIR_PREFIX + file_name} not found.")
+        return excel_data if 'excel_data' in locals() and len(excel_data) > 0 else False
 
     @staticmethod
-    def save_excel_data(file_name: str, data: list [dict]) -> None:
+    def save_excel_data(file_name: str, data: list [dict], log: Logger) -> None | bool:
         """
-        Lets you save the formatted data to the Excel file. The first row
-        will contain the column names used for the dictionary keys.
+        Saves the formatted data to the Excel file. The first row will contain the
+        column names based on the dictionary keys.
         :param file_name: Filename of the Excel file
-        :param data: List of lists containing the data to be written. First list should
+        :param data: List of dictionaries containing the data to be written. First list should
         should contain the table headers.
-        :return: None
+        :param log: Logger object used to log the info & errors.
+        :return: None or false if there was some problem writing to the file.
         """
         book = Workbook()
         sheet = book.active
@@ -74,39 +70,65 @@ class ExcelData(TestDataSet):
             for c_key, column in enumerate(row, 1):
                 sheet.cell(row = r_key + 1, column = c_key).value = values[c_key - 1]
         # Saving the file
-        book.save(ExcelData.DIR_PREFIX + file_name)
+        try:
+            book.save(ExcelData.DIR_PREFIX + file_name)
+        except IOError:
+            log.warning(f"Could not open the file {ExcelData.DIR_PREFIX + file_name} for writing.")
+            return False
 
-    def save_data(self, timediff: int = 60) -> None:
+    def save_data(self) -> None | bool:
         """
         Saves the data to the Excel file.
-        The file name is created based on the date & the test case name.
-        :return:
+        The file name is created based on the test scenario name.
+        The data for each test case is written to the sheets with the name of the test case.
+        :return: None or false if there was some problem writing to the file.
         """
-        book = Workbook()
         # Getting the test datetime
         date_time = datetime.now()
+        # Loading the existing data or creating the new workbook
+        if os.path.exists(self.DIR_PREFIX + self.EXCEL_ARCHIVE):
+            try:
+                book = openpyxl.load_workbook(self.DIR_PREFIX + self.EXCEL_ARCHIVE)
+            except IOError:
+                self._log.warning(f"Could not open the file {self.DIR_PREFIX + self.EXCEL_ARCHIVE}.")
+        else:
+            book = Workbook()
         # Switching to the sheet or creating it
         if self._testcase in book.sheetnames:
             sheet = book[self._testcase]
         else:
-            book.create_sheet(self._testcase)
-            sheet = book[self._testcase]
-        # Adding the header w/ column names
-        if sheet['A1'] == None:
-
-        column_names = self._data[self._testcase].keys()
-        # Start from the number 3 to make room for the test case name and date-time
-        for key, name in enumerate(column_names, 2):
-            sheet.column_dimensions[sheet.cell(row = 1, column = key).column_letter].width = 30
-            sheet.cell(row = 1, column = key).value = name
-        # Adding the test case name
-        sheet.cell(row = 2, column = 1).value = self._testcase
+            if book.sheetnames[0] == "Sheet":
+                sheet = book.active
+                sheet.title = self._testcase
+            else:
+                book.create_sheet(self._testcase)
+                sheet = book[self._testcase]
+            # Adding the header w/ column names
+            sheet["A1"] = self._test_scenario
+            sheet.column_dimensions["A"].width = 30
+            sheet["B1"] = "Date & time"
+            sheet.column_dimensions["B"].width = 30
+            column_names = self._data[self._testcase].keys()
+            # Start from the number 2 to make room for the test scenario name and date-time
+            for key, name in enumerate(column_names, 3):
+                sheet.column_dimensions[sheet.cell(row = 1, column = key).column_letter].width = 30
+                sheet.cell(row = 1, column = key).value = name
+        no_of_rows = sheet.max_row
+        if no_of_rows >= 2:
+            target_row = no_of_rows + 1
+        else:
+            target_row = 2
+        # Adding the test scenario name and date-time
+        sheet.cell(row = target_row, column = 1).value = self._test_scenario
+        sheet.cell(row = target_row, column = 2).value = date_time
         # Adding the data in columns
-        values: list = list(self._data.values())
-        for c_key, column in enumerate(self._data, 2):
-            sheet.cell(row = 2, column = c_key).value = values[c_key - 1]
+        values: list = list(self._data[self._testcase].values())
+        for c_key, column in enumerate(self._data[self._testcase], 3):
+            sheet.cell(row = target_row, column = c_key).value = values[c_key - 3]
         # Saving the file
-        date = datetime.now().date()
-        time = datetime.now().time().strftime("%H:%M:%S")
-        file_name = f"{self._testcase}_{date}_{time}.xlsx"
-        book.save(f"../testdata/{file_name}")
+        try:
+            book.save(self.DIR_PREFIX + self.EXCEL_ARCHIVE)
+        except IOError:
+            self._log.warning(f"Could not open the file {self.DIR_PREFIX + self.EXCEL_ARCHIVE} for writing.")
+            return False
+

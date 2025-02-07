@@ -16,7 +16,7 @@ class HyperSQLConnector():
 
     def get_cursor(self) -> None:
         """
-        Returns the jaydebeapi cursor to the database.
+        Creates the jaydebeapi cursor to the database.
         :return: None
         """
         self._connection = jaydebeapi.connect(self._driver, self._URL, self._credentials, self._path_to_driver)
