@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 class FindTransactionPage():
     driver: Chrome
@@ -29,14 +30,14 @@ class FindTransactionPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_account_list(self):
+    def get_account_list(self) -> WebElement:
         """
         Returns the account list.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.account_list)
 
-    def get_account_numbers(self):
+    def get_account_numbers(self) -> WebElement:
         """
         Returns the account numbers list.
         :return: webelement
@@ -44,77 +45,77 @@ class FindTransactionPage():
         accounts_list = self.get_account_list()
         return accounts_list.find_elements(*FindTransactionPage.account_numbers)
 
-    def get_transaction_id(self):
+    def get_transaction_id(self) -> WebElement:
         """
         Returns the transaction identifier field.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_id)
 
-    def get_find_by_id_button(self):
+    def get_find_by_id_button(self) -> WebElement:
         """
         Returns the find by identifier button.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.find_by_id_button)
 
-    def get_transaction_date(self):
+    def get_transaction_date(self) -> WebElement:
         """
         Returns the transaction date field.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_date)
 
-    def get_find_by_date_button(self):
+    def get_find_by_date_button(self) -> WebElement:
         """
         Returns the find by date button.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.find_by_date_button)
 
-    def get_transaction_from_date(self):
+    def get_transaction_from_date(self) -> WebElement:
         """
         Returns the transaction from date field.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_from_date)
 
-    def get_transaction_to_date(self):
+    def get_transaction_to_date(self) -> WebElement:
         """
         Returns the transaction to date field.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_to_date)
 
-    def get_find_by_date_range_button(self):
+    def get_find_by_date_range_button(self) -> WebElement:
         """
         Returns the find by date range button.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.find_by_date_range_button)
 
-    def get_transaction_amount(self):
+    def get_transaction_amount(self) -> WebElement:
         """
         Returns the transaction amount field.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_amount)
 
-    def get_find_by_amount_button(self):
+    def get_find_by_amount_button(self) -> WebElement:
         """
         Returns the find by amount button.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.find_by_amount_button)
 
-    def get_results_table(self):
+    def get_results_table(self) -> WebElement:
         """
         Returns the results table.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.results_table)
 
-    def get_results_transactions(self):
+    def get_results_transactions(self) -> list[WebElement]:
         """
        Returns the results rows.
        :return: webelement
@@ -122,35 +123,35 @@ class FindTransactionPage():
         table = self.get_results_table()
         return table.find_elements(*FindTransactionPage.results_row)
 
-    def get_error_message(self):
+    def get_error_message(self) -> WebElement:
         """
         Returns the internal error message text.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_id_error)
 
-    def get_transaction_id_error(self):
+    def get_transaction_id_error(self) -> WebElement:
         """
         Returns the transaction identifier field error text.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_id_error)
 
-    def get_transaction_date_error(self):
+    def get_transaction_date_error(self) -> WebElement:
         """
         Returns the transaction date field error text.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_date_error)
 
-    def get_transaction_date_range_error(self):
+    def get_transaction_date_range_error(self) -> WebElement:
         """
         Returns the transaction date range fields error text.
         :return: webelement
         """
         return self._driver.find_element(*FindTransactionPage.transaction_date_range_error)
 
-    def get_transaction_amount_error(self):
+    def get_transaction_amount_error(self) -> WebElement:
         """
         Returns the transaction amount field error text.
         :return: webelement

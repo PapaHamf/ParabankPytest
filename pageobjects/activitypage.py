@@ -1,6 +1,7 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 class ActivityPage():
     driver: Chrome
@@ -27,63 +28,63 @@ class ActivityPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_account_number(self):
+    def get_account_number(self) -> WebElement:
         """
         Returns the account number.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.account_number)
 
-    def get_account_type(self):
+    def get_account_type(self) -> WebElement:
         """
         Returns the account type.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.account_type)
 
-    def get_account_balance(self):
+    def get_account_balance(self) -> WebElement:
         """
         Returns the account balance.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.account_balance)
 
-    def get_available_amount(self):
+    def get_available_amount(self) -> WebElement:
         """
         Returns the account available amount.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.available_amount)
 
-    def get_activity_period(self):
+    def get_activity_period(self) -> WebElement:
         """
         Returns the activity (transactions) period dropdown list.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.activity_period)
 
-    def get_activity_type(self):
+    def get_activity_type(self) -> WebElement:
         """
         Returns the activity (transactions) type dropdown list.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.activity_type)
 
-    def get_activity_button(self):
+    def get_activity_button(self) -> WebElement:
         """
         Returns the activity (transactions) display button.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.activity_button)
 
-    def get_transaction_table(self):
+    def get_transaction_table(self) -> WebElement:
         """
         Returns the full transactions table.
         :return: webelement
         """
         return self._driver.find_element(*ActivityPage.transactions_table)
 
-    def get_transaction_dates(self):
+    def get_transaction_dates(self) -> WebElement:
         """
         Returns the transactions dates list or the no transactions message.
         :return: webelement
@@ -95,7 +96,7 @@ class ActivityPage():
             return self.get_no_transactions()
 
 
-    def get_transaction_names(self):
+    def get_transaction_names(self) -> WebElement:
         """
         Returns the transactions names list or the no transactions message.
         :return: webelement
@@ -106,7 +107,7 @@ class ActivityPage():
         except NoSuchElementException:
             return self.get_no_transactions()
 
-    def get_transaction_debits(self):
+    def get_transaction_debits(self) -> WebElement:
         """
         Returns the transactions debits amount list or the no transactions message.
         :return: webelement
@@ -117,7 +118,7 @@ class ActivityPage():
         except NoSuchElementException:
             return self.get_no_transactions()
 
-    def get_transaction_credits(self):
+    def get_transaction_credits(self) -> WebElement:
         """
         Returns the transactions credits amount list or the no transactions message.
         :return: webelement
@@ -127,7 +128,7 @@ class ActivityPage():
         except NoSuchElementException:
             return self.get_no_transactions()
 
-    def get_transaction_link_by_text(self, text: str):
+    def get_transaction_link_by_text(self, text: str) -> WebElement:
         """
         Returns the transactions link using the text description.
         :param text: Text describing the transaction name.
@@ -140,7 +141,7 @@ class ActivityPage():
             if text in trans_link.text:
                 return trans_link
 
-    def get_transaction_debit_by_name(self, text: str):
+    def get_transaction_debit_by_name(self, text: str) -> WebElement:
         """
         Returns the transactions debit amount using the text description.
         :param text: Text describing the transaction name.
@@ -153,7 +154,7 @@ class ActivityPage():
             if text in trans_link.text:
                 return row.find_element(*ActivityPage.transaction_debits)
 
-    def get_transaction_credit_by_name(self, text: str):
+    def get_transaction_credit_by_name(self, text: str) -> WebElement:
         """
         Returns the transactions credit amount using the text description.
         :param text: Text describing the transaction name.
@@ -166,7 +167,7 @@ class ActivityPage():
             if text in trans_link.text:
                 return row.find_element(*ActivityPage.transaction_credits)
 
-    def get_no_transactions(self):
+    def get_no_transactions(self) -> WebElement:
         """
         Returns the no transactions message.
         :return: webelement

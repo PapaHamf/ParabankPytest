@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 from pageobjects.activitypage import ActivityPage
 
@@ -20,14 +21,14 @@ class OpenAccountPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_account_type(self):
+    def get_account_type(self) -> WebElement:
         """
         Returns the account type dropdown list.
         :return: webelement
         """
         return self._driver.find_element(*OpenAccountPage.account_type)
 
-    def get_source_accounts(self):
+    def get_source_accounts(self) -> WebElement:
         """
         Returns the source account dropdown list.
         :return: webelement
@@ -41,21 +42,21 @@ class OpenAccountPage():
         """
         pass
 
-    def get_open_account_button(self):
+    def get_open_account_button(self) -> WebElement:
         """
         Returns the open new account button.
         :return: webelement
         """
         return self._driver.find_element(*OpenAccountPage.open_account_button)
 
-    def get_account_opened_msg(self):
+    def get_account_opened_msg(self) -> WebElement:
         """
         Returns the account opened message.
         :return: webelement
         """
         return self._driver.find_element(*OpenAccountPage.account_opened)
 
-    def get_new_account_id(self):
+    def get_new_account_id(self) -> ActivityPage:
         """
         Returns the new account id with a link.
         :return: page object
@@ -63,7 +64,7 @@ class OpenAccountPage():
         self._driver.find_element(*OpenAccountPage.new_account_id).click()
         return ActivityPage(self._driver)
 
-    def get_internal_error(self):
+    def get_internal_error(self)  -> WebElement:
         """
         Returns the internal error message.
         :return: webelement

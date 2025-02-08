@@ -1,0 +1,19 @@
+from selenium.webdriver import Chrome
+from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
+
+class AboutUs():
+    driver: Chrome
+
+    # Declaring the page objects
+    page_header: tuple = (By.CLASS_NAME, "title")
+
+    def __init__(self, driver):
+        self._driver = driver
+
+    def get_page_header(self) -> WebElement:
+        """
+        Returns the page header text.
+        :return: webelement
+        """
+        return self._driver.find_element(*AboutUs.page_header)

@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 class TransferPage():
     driver: Chrome
@@ -25,63 +26,63 @@ class TransferPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_amount(self):
+    def get_amount(self) -> WebElement:
         """
         Returns the amount to transfer.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.amount)
 
-    def get_source_accounts(self):
+    def get_source_accounts(self) -> WebElement:
         """
         Returns the source account dropdown list.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.source_account)
 
-    def get_target_accounts(self):
+    def get_target_accounts(self) -> WebElement:
         """
         Returns the target account dropdown list.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.target_account)
 
-    def get_transfer_button(self):
+    def get_transfer_button(self) -> WebElement:
         """
         Returns the transfer button.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.transfer_button)
 
-    def get_transfer_complete(self):
+    def get_transfer_complete(self) -> WebElement:
         """
         Returns the transfer complete message.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.transfer_complete)
 
-    def get_amount_result(self):
+    def get_amount_result(self) -> WebElement:
         """
         Returns the amount of the completed transfer.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.amount_result)
 
-    def get_source_account_result(self):
+    def get_source_account_result(self) -> WebElement:
         """
         Returns the source account of the completed transfer.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.source_account_result)
 
-    def get_target_account_result(self):
+    def get_target_account_result(self) -> WebElement:
         """
         Returns the target account of the completed transfer.
         :return: webelement
         """
         return self._driver.find_element(*TransferPage.target_account_result)
 
-    def get_amount_errors(self):
+    def get_amount_errors(self) -> WebElement:
         """
         Returns the amount errors.
         :return: webelement

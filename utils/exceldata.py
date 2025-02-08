@@ -109,7 +109,7 @@ class ExcelData(TestDataSet):
             sheet["B1"] = "Date & time"
             sheet.column_dimensions["B"].width = 30
             column_names = self._data[self._testcase].keys()
-            # Start from the number 2 to make room for the test scenario name and date-time
+            # Start from the number 3 to make room for the test scenario name and date-time
             for key, name in enumerate(column_names, 3):
                 sheet.column_dimensions[sheet.cell(row = 1, column = key).column_letter].width = 30
                 sheet.cell(row = 1, column = key).value = name

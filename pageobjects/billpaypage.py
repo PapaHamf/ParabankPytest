@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 class BillPayPage():
     driver: Chrome
@@ -42,203 +43,203 @@ class BillPayPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_payee_name(self):
+    def get_payee_name(self) -> WebElement:
         """
         Returns the payee name field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_name)
 
-    def get_payee_street(self):
+    def get_payee_street(self) -> WebElement:
         """
         Returns the payee address street name & number field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_street)
 
-    def get_payee_city(self):
+    def get_payee_city(self) -> WebElement:
         """
         Returns the payee address city field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_city)
 
-    def get_payee_state(self):
+    def get_payee_state(self) -> WebElement:
         """
         Returns the payee address state field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_state)
 
-    def get_payee_post_code(self):
+    def get_payee_post_code(self) -> WebElement:
         """
         Returns the payee address post code field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_post_code)
 
-    def get_payee_phonenumber(self):
+    def get_payee_phonenumber(self) -> WebElement:
         """
         Returns the payee phone number field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_phonenumber)
 
-    def get_payee_account_number(self):
+    def get_payee_account_number(self) -> WebElement:
         """
         Returns the payee account_number field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_account_number)
 
-    def get_payee_verify_account(self):
+    def get_payee_verify_account(self) -> WebElement:
         """
         Returns the payee verify account number field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_verify_account)
 
-    def get_payment_amount(self):
+    def get_payment_amount(self) -> WebElement:
         """
         Returns the payment amount field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payment_amount)
 
-    def get_source_account(self):
+    def get_source_account(self) -> WebElement:
         """
         Returns the source account field.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.source_account)
 
-    def get_payment_button(self):
+    def get_payment_button(self) -> WebElement:
         """
         Returns the payment button.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payment_button)
 
-    def get_payment_success(self):
+    def get_payment_success(self) -> WebElement:
         """
         Returns the payment success message block.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payment_success)
 
-    def get_payment_success_title(self):
+    def get_payment_success_title(self) -> WebElement:
         """
         Returns the payment success message title.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payment_success_title)
 
-    def get_success_amount(self):
+    def get_success_amount(self) -> WebElement:
         """
         Returns the payment success amount.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.success_amount)
 
-    def get_success_payee_name(self):
+    def get_success_payee_name(self) -> WebElement:
         """
         Returns the payment success amount.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.success_payee_name)
 
-    def get_payee_name_error(self):
+    def get_payee_name_error(self) -> WebElement:
         """
         Returns the payee name field error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_name_error)
 
-    def get_payee_street_error(self):
+    def get_payee_street_error(self) -> WebElement:
         """
         Returns the payee street name and number field error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_street_error)
 
-    def get_payee_city_error(self):
+    def get_payee_city_error(self) -> WebElement:
         """
         Returns the payee city field error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_city_error)
 
-    def get_payee_state_error(self):
+    def get_payee_state_error(self) -> WebElement:
         """
         Returns the payee state field error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_state_error)
 
-    def get_payee_post_code_error(self):
+    def get_payee_post_code_error(self) -> WebElement:
         """
         Returns the payee post code field error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_post_code_error)
 
-    def get_payee_phonenumber_error(self):
+    def get_payee_phonenumber_error(self) -> WebElement:
         """
         Returns the payee phone number field error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_phonenumber_error)
 
-    def get_account_number_empty_error(self):
+    def get_account_number_empty_error(self) -> WebElement:
         """
         Returns the account number field empty error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_account_number_empty_error)
 
-    def get_account_number_invalid_error(self):
+    def get_account_number_invalid_error(self) -> WebElement:
         """
         Returns the account number field invalid error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_account_number_invalid_error)
 
-    def get_verify_account_empty_error(self):
+    def get_verify_account_empty_error(self) -> WebElement:
         """
         Returns the verify account number field empty error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_verify_account_empty_error)
 
-    def get_verify_account_invalid_error(self):
+    def get_verify_account_invalid_error(self) -> WebElement:
         """
         Returns the verify account number field invalid error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_verify_account_invalid_error)
 
-    def get_verify_account_mismatch_error(self):
+    def get_verify_account_mismatch_error(self) -> WebElement:
         """
         Returns the verify account number field mismatch error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_verify_account_mismatch_error)
 
-    def get_payee_amount_empty_error(self):
+    def get_payee_amount_empty_error(self) -> WebElement:
         """
         Returns the amount field empty error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_amount_empty_error)
 
-    def get_payee_amount_invalid_error(self):
+    def get_payee_amount_invalid_error(self) -> WebElement:
         """
         Returns the amount field invalid error text.
         :return: webelement
         """
         return self._driver.find_element(*BillPayPage.payee_amount_invalid_error)
 
-    def get_payment_error(self):
+    def get_payment_error(self) -> WebElement:
         """
         Returns the payment error text (internal).
         :return: webelement

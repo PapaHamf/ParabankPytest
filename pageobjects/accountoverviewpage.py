@@ -2,6 +2,7 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.relative_locator import locate_with
+from selenium.webdriver.remote.webelement import WebElement
 
 class AccountOverview():
     driver: Chrome
@@ -24,49 +25,49 @@ class AccountOverview():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_table_head(self):
+    def get_table_head(self) -> WebElement:
         """
         Returns the table header.
         :return: webelement
         """
         return self._driver.find_element(*AccountOverview.table_head)
 
-    def get_table_rows(self):
+    def get_table_rows(self) -> WebElement:
         """
         Returns all table rows.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.table_rows)
 
-    def get_account_numbers(self):
+    def get_account_numbers(self) -> WebElement:
         """
         Returns all cells with the account numbers list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.account_numbers)
 
-    def get_account_balances(self):
+    def get_account_balances(self) -> WebElement:
         """
         Returns all cells with the account balances list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.account_balances)
 
-    def get_available_amounts(self):
+    def get_available_amounts(self) -> WebElement:
         """
         Returns all cells with the available amounts list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.available_amounts)
 
-    def get_total_amount(self):
+    def get_total_amount(self) -> WebElement:
         """
         Returns the total amount field.
         :return: webelement
         """
         return self._driver.find_element(locate_with(*AccountOverview.total_amount).to_right_of(AccountOverview.total_text))
 
-    def get_account_balance(self, account_number: str):
+    def get_account_balance(self, account_number: str) -> WebElement:
         """
         Returns the given account balance.
         :param account_number: The number of the account which balance should be returned.
@@ -81,7 +82,7 @@ class AccountOverview():
             if acc_no.text == account_number:
                 return row.find_element(*AccountOverview.account_balances)
 
-    def get_available_amount(self, account_number: str):
+    def get_available_amount(self, account_number: str) -> WebElement:
         """
         Returns the given account available amount.
         :param account_number: The number of the account which available amount should be returned.

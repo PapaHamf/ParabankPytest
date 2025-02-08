@@ -1,6 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.remote.webelement import WebElement
 
 class AdminPage():
     driver: Chrome
@@ -21,77 +21,77 @@ class AdminPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_clean_database(self):
+    def get_clean_database(self) -> WebElement:
         """
         Returns the clean database button.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.clean_db_button)
 
-    def get_initial_balance(self):
+    def get_initial_balance(self) -> WebElement:
         """
         Returns the initial balance field.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.initial_balance)
 
-    def get_minimum_balance(self):
+    def get_minimum_balance(self) -> WebElement:
         """
         Returns the minimum balance field.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.minimum_balance)
 
-    def get_access_mode_soap(self):
+    def get_access_mode_soap(self) -> WebElement:
         """
         Returns the access mode soap radio button.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.data_access_mode_soap)
 
-    def get_access_mode_restXML(self):
+    def get_access_mode_restXML(self) -> WebElement:
         """
         Returns the access mode rest XML radio button.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.data_access_mode_restXML)
 
-    def get_access_mode_restJSON(self):
+    def get_access_mode_restJSON(self) -> WebElement:
         """
         Returns the access mode rest JSON radio button.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.data_access_mode_restJSON)
 
-    def get_access_mode_JDBC(self):
+    def get_access_mode_JDBC(self) -> WebElement:
         """
         Returns the access mode JDBC radio button.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.data_access_mode_JDBC)
 
-    def get_loan_provider(self):
+    def get_loan_provider(self) -> WebElement:
         """
         Returns the loan provider list.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.loan_provider)
 
-    def get_loan_processor(self):
+    def get_loan_processor(self) -> WebElement:
         """
         Returns the loan processor list.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.loan_processor)
 
-    def get_loan_threshold(self):
+    def get_loan_threshold(self) -> WebElement:
         """
         Returns the loan threshold field.
         :return: webelement
         """
         return self._driver.find_element(*AdminPage.loan_threshold)
 
-    def get_submit_button(self):
+    def get_submit_button(self) -> WebElement:
         """
         Returns the submit button.
         :return: webelement

@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 class RegisterPage():
     driver: Chrome
@@ -44,168 +45,168 @@ class RegisterPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_first_name(self):
+    def get_first_name(self) -> WebElement:
         """
         Returns the first name field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.first_name)
 
-    def get_last_name(self):
+    def get_last_name(self) -> WebElement:
         """
         Returns the last name field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.last_name)
 
-    def get_address_street(self):
+    def get_address_street(self) -> WebElement:
         """
         Returns the address street name & number field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_street)
 
-    def get_address_city(self):
+    def get_address_city(self) -> WebElement:
         """
         Returns the address city field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_city)
 
-    def get_address_state(self):
+    def get_address_state(self) -> WebElement:
         """
         Returns the address state field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_state)
 
-    def get_address_post_code(self):
+    def get_address_post_code(self) -> WebElement:
         """
         Returns the address post code field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_post_code)
 
-    def get_phone_number(self):
+    def get_phone_number(self) -> WebElement:
         """
         Returns the phone number field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.phone_number)
 
-    def get_social_security_number(self):
+    def get_social_security_number(self) -> WebElement:
         """
         Returns the social security number field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.social_security_number)
 
-    def get_username(self):
+    def get_username(self) -> WebElement:
         """
         Returns the user name field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.username)
 
-    def get_password(self):
+    def get_password(self) -> WebElement:
         """
         Returns the password field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.password)
 
-    def get_confirm_password(self):
+    def get_confirm_password(self) -> WebElement:
         """
         Returns the confirm password field.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.confirm_password)
 
-    def get_register_button(self):
+    def get_register_button(self) -> WebElement:
         """
         Returns the register button.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.register_button)
 
-    def get_first_name_error(self):
+    def get_first_name_error(self) -> WebElement:
         """
         Returns the first name field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.first_name_error)
 
-    def get_last_name_error(self):
+    def get_last_name_error(self) -> WebElement:
         """
         Returns the last name field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.last_name_error)
 
-    def get_address_street_error(self):
+    def get_address_street_error(self) -> WebElement:
         """
         Returns the address street name & number field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_street_error)
 
-    def get_address_city_error(self):
+    def get_address_city_error(self) -> WebElement:
         """
         Returns the address city field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_city_error)
 
-    def get_address_state_error(self):
+    def get_address_state_error(self) -> WebElement:
         """
         Returns the address state field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_state_error)
 
-    def get_address_post_code_error(self):
+    def get_address_post_code_error(self) -> WebElement:
         """
         Returns the address post code field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.address_post_code_error)
 
-    def get_phone_number_error(self):
+    def get_phone_number_error(self) -> WebElement:
         """
         Returns the phone_number field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.phone_number_error)
 
-    def get_social_security_number_error(self):
+    def get_social_security_number_error(self) -> WebElement:
         """
         Returns the social security number field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.social_security_number_error)
 
-    def get_username_error(self):
+    def get_username_error(self) -> WebElement:
         """
         Returns the user name field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.username_error)
 
-    def get_password_error(self):
+    def get_password_error(self) -> WebElement:
         """
         Returns the password field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.password_error)
 
-    def get_confirm_password_error(self):
+    def get_confirm_password_error(self) -> WebElement:
         """
         Returns the confirm password field error text.
         :return: webelement
         """
         return self._driver.find_element(*RegisterPage.confirm_password_error)
 
-    def get_successful_registration(self):
+    def get_successful_registration(self) -> WebElement:
         """
         Returns the successful registration text.
         :return: webelement
