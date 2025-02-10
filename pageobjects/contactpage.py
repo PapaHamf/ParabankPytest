@@ -5,6 +5,9 @@ from selenium.webdriver.remote.webelement import WebElement
 class ContactPage():
     driver: Chrome
 
+    MESSAGE_BODY_WIDTH: float = 300
+    MESSAGE_BODY_HEIGHT: float = 126
+
     # Declaring the page objects (fields & buttons)
     name: tuple = (By.ID, "name")
     email_address: tuple = (By.ID, "email")

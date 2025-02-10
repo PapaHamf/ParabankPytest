@@ -26,6 +26,33 @@ from pageobjects.findtransactionspage import FindTransactionPage
 class TestHomePage(BaseClass):
     driver: Chrome
 
+    @pytest.fixture(scope="function")
+    def login_logout(self) -> None:
+        """
+        Logins the user in the app and logs him out after the test.
+        """
+        log = self.get_logger()
+        self.driver.get(self.HOMEPAGE)
+        # Get the user data from Excel file
+        user_data = random.choice(ExcelData.get_excel_data("test_usernames.xlsx", log))
+        user_name = user_data["username"]
+        password = user_data["password"]
+        log.info("Logging the user.")
+        # Create the home page object
+        home_page = HomePage(self.driver)
+        log.info(f"User name: {user_name}")
+        home_page.get_username().send_keys(user_name)
+        log.info(f"Password: {password}")
+        home_page.get_password().send_keys(password)
+        log.info("Clicking the login button.")
+        home_page.get_login_button().click()
+        yield user_data
+        # Log out the user
+        side_menu = SideMenu(self.driver)
+        log.info(f"Logging out the user {user_name}.")
+        side_menu.get_log_out_link().click()
+        self.driver.delete_all_cookies()
+
     @pytest.mark.skip
     def test_login(self):
         """
@@ -139,27 +166,16 @@ class TestHomePage(BaseClass):
         print(register_page.get_successful_registration().text)
         time.sleep(5)
 
-    @pytest.mark.skip
-    def test_openaccount_page(self):
+    @pytest.mark.usefixtures("login_logout")
+    def test_openaccount_page(self, login_logout):
         """
         Tests the open account page fields.
         :return:
         """
         log = self.get_logger()
         self.driver.get(BaseClass.HOMEPAGE)
-        # Login data from the previous test case
-        # Move the login to the base class?
-        user_name = "ma_tre"
-        password = "password"
-        home_page = HomePage(self.driver)
         log.info("Test case no 4")
         log.info("Testing the open account page.")
-        log.info(f"User name: {user_name}")
-        home_page.get_username().send_keys(user_name)
-        log.info(f"Password: {password}")
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the login button.")
-        home_page.get_login_button().click()
         log.info("Opening the Open account page.")
         self.driver.get(BaseClass.OPEN_ACCOUNT)
         open_account_page = OpenAccountPage(self.driver)
@@ -168,11 +184,9 @@ class TestHomePage(BaseClass):
         log.info("Selecting the account number.")
         # Should move this to the page object
         # Maybe add the get_source_account method to select one random account
-        accounts_list = open_account_page.get_source_accounts()
-        acc_nos = []
-        for account in accounts_list.find_elements(By.TAG_NAME, "option"):
-            acc_nos.append(account.text)
         # Select random account number
+        accounts_list = open_account_page.get_source_accounts()
+        acc_nos = self.get_list_values(accounts_list)
         acc_no = random.choice(acc_nos)
         log.info(f"Account number: {acc_no}")
         self.select_value_from_dropdown_text(accounts_list, acc_no)
@@ -252,6 +266,7 @@ class TestHomePage(BaseClass):
         amount = random.randint(0, 10000)
         log.info(f"Amount: {amount}")
         transfer_funds_page.get_amount().send_keys(amount)
+        # Move this to the page object
         source_accounts_list = transfer_funds_page.get_source_accounts()
         src_acc_nos = []
         for account in source_accounts_list.find_elements(By.TAG_NAME, "option"):
@@ -261,6 +276,7 @@ class TestHomePage(BaseClass):
         src_acc_no = random.choice(src_acc_nos)
         log.info(f"Selecting the source account number: {src_acc_no}")
         self.select_value_from_dropdown_text(source_accounts_list, src_acc_no)
+        # This too
         target_accounts_list = transfer_funds_page.get_target_accounts()
         trg_acc_nos = []
         for account in target_accounts_list.find_elements(By.TAG_NAME, "option"):
@@ -361,6 +377,7 @@ class TestHomePage(BaseClass):
         self.driver.get(BaseClass.ACCOUNT_OVERVIEW)
         account_overview_page = AccountOverview(self.driver)
         log.info("Getting the account numbers list.")
+        # Move these to the page object?
         account_nos_list = account_overview_page.get_account_numbers()
         acc_nos = []
         for account in account_nos_list:
@@ -406,6 +423,7 @@ class TestHomePage(BaseClass):
         self.driver.get(BaseClass.ACCOUNT_OVERVIEW)
         account_overview_page = AccountOverview(self.driver)
         log.info("Getting the account numbers list.")
+        # Move this to the page object
         account_nos_list = account_overview_page.get_account_numbers()
         acc_nos = []
         for account in account_nos_list:
@@ -525,6 +543,7 @@ class TestHomePage(BaseClass):
         amount = random.randint(0, 10000)
         log.info(f"Amount: {amount}")
         bill_pay_page.get_payment_amount().send_keys(amount)
+        # Move this to the page object
         account_list = bill_pay_page.get_source_account()
         acc_nos = []
         for account in account_list.find_elements(By.TAG_NAME, "option"):
@@ -619,6 +638,7 @@ class TestHomePage(BaseClass):
             print(cookie)
         self.driver.get(BaseClass.FIND_TRANS)
         find_trans_page = FindTransactionPage(self.driver)
+        # Move this to the page object
         account_list = find_trans_page.get_account_numbers()
         account_nos = []
         for account in account_list:
@@ -674,6 +694,7 @@ class TestHomePage(BaseClass):
 
         time.sleep(5)
 
+    @pytest.mark.skip
     def test_json_data(self):
         """
         Tests the excel data saving.
@@ -721,6 +742,7 @@ class TestHomePage(BaseClass):
         # print(data_collection.get_data())
         data_collection.save_data()
 
+    @pytest.mark.skip
     def test_json_new_set(self):
         """
         Tests the excel data saving.

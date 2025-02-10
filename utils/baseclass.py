@@ -32,7 +32,7 @@ class MyFaker(Faker):
 @pytest.mark.usefixtures("setup")
 class BaseClass():
 
-    # Web pages constants
+    # Web pages constants (not used in tests, except HOMEPAGE)
     HOMEPAGE: str = "http://localhost:8000/parabank/"
     FORGOT_LOGIN: str = "http://localhost:8000/parabank/lookup.htm"
     REGISTER: str = "http://localhost:8000/parabank/register.htm"
@@ -59,6 +59,17 @@ class BaseClass():
         """
         wait: WebDriverWait = WebDriverWait(self.driver, timeout)
         return wait.until(EC.presence_of_element_located((By.XPATH, locator)))
+
+    def get_list_values(self, dropdown_list: WebElement) -> list:
+        """
+        Returns the list of elements from the passed static dropdown (webelement).
+        :param element: Webelement that references the static dropdown.
+        :return: List of elements of the dropdown.
+        """
+        values = []
+        for element in dropdown_list.find_elements(By.TAG_NAME, "option"):
+            values.append(element.text)
+        return values
 
     def select_value_from_dropdown_text(self, element: WebElement, text: str) -> None:
         """

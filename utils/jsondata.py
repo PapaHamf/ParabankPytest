@@ -89,3 +89,4 @@ class JSONData(TestDataSet):
                 json.dump(self._data, file_handle, indent = 5)
         except IOError:
             self._log.warning(f"Could not open the file {self.DIR_PREFIX + file_name} for writing.")
+            return False

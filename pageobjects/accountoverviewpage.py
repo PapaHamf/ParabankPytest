@@ -32,28 +32,28 @@ class AccountOverview():
         """
         return self._driver.find_element(*AccountOverview.table_head)
 
-    def get_table_rows(self) -> WebElement:
+    def get_table_rows(self) -> list[WebElement]:
         """
         Returns all table rows.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.table_rows)
 
-    def get_account_numbers(self) -> WebElement:
+    def get_account_numbers(self) -> list[WebElement]:
         """
         Returns all cells with the account numbers list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.account_numbers)
 
-    def get_account_balances(self) -> WebElement:
+    def get_account_balances(self) -> list[WebElement]:
         """
         Returns all cells with the account balances list.
         :return: webelement
         """
         return self._driver.find_elements(*AccountOverview.account_balances)
 
-    def get_available_amounts(self) -> WebElement:
+    def get_available_amounts(self) -> list[WebElement]:
         """
         Returns all cells with the available amounts list.
         :return: webelement

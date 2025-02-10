@@ -6,7 +6,7 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 
 # Hook for command line options
-def pytest_addoption(parser):
+def pytest_addoption(parser) -> None:
     parser.addoption("--browser-name",
                      action="store",
                      default="chrome",
@@ -16,6 +16,7 @@ def pytest_addoption(parser):
 @pytest.fixture
 def browser_name(request):
     return request.config.getoption("--browser-name")
+
 
 @pytest.fixture(scope="class")
 def setup(request):

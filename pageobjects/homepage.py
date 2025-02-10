@@ -115,7 +115,7 @@ class HomePage():
         Returns the header image.
         :return: webelement
         """
-        return self._driver.find_element(*HomePage.)
+        return self._driver.find_element(*HomePage.header_image)
 
     def get_home_page_icon(self) -> WebElement:
         """

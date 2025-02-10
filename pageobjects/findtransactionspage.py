@@ -37,7 +37,7 @@ class FindTransactionPage():
         """
         return self._driver.find_element(*FindTransactionPage.account_list)
 
-    def get_account_numbers(self) -> WebElement:
+    def get_account_numbers(self) -> list[WebElement]:
         """
         Returns the account numbers list.
         :return: webelement
@@ -117,9 +117,9 @@ class FindTransactionPage():
 
     def get_results_transactions(self) -> list[WebElement]:
         """
-       Returns the results rows.
-       :return: webelement
-       """
+        Returns the results rows.
+        :return: webelement
+        """
         table = self.get_results_table()
         return table.find_elements(*FindTransactionPage.results_row)
 

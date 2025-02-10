@@ -35,13 +35,6 @@ class OpenAccountPage():
         """
         return self._driver.find_element(*OpenAccountPage.source_account)
 
-    def get_source_account(self):
-        """
-        Returns the source account number from the list.
-        :return: int account number
-        """
-        pass
-
     def get_open_account_button(self) -> WebElement:
         """
         Returns the open new account button.

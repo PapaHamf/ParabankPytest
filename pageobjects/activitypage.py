@@ -84,7 +84,7 @@ class ActivityPage():
         """
         return self._driver.find_element(*ActivityPage.transactions_table)
 
-    def get_transaction_dates(self) -> WebElement:
+    def get_transaction_dates(self) -> WebElement | list[WebElement]:
         """
         Returns the transactions dates list or the no transactions message.
         :return: webelement
@@ -96,7 +96,7 @@ class ActivityPage():
             return self.get_no_transactions()
 
 
-    def get_transaction_names(self) -> WebElement:
+    def get_transaction_names(self) -> WebElement | list[WebElement]:
         """
         Returns the transactions names list or the no transactions message.
         :return: webelement
@@ -107,7 +107,7 @@ class ActivityPage():
         except NoSuchElementException:
             return self.get_no_transactions()
 
-    def get_transaction_debits(self) -> WebElement:
+    def get_transaction_debits(self) -> WebElement | list[WebElement]:
         """
         Returns the transactions debits amount list or the no transactions message.
         :return: webelement
@@ -118,7 +118,7 @@ class ActivityPage():
         except NoSuchElementException:
             return self.get_no_transactions()
 
-    def get_transaction_credits(self) -> WebElement:
+    def get_transaction_credits(self) -> WebElement | list[WebElement]:
         """
         Returns the transactions credits amount list or the no transactions message.
         :return: webelement
