@@ -1,5 +1,7 @@
 import jaydebeapi
 
+from utils.exceptions import OperationError
+
 class HyperSQLConnector():
     """
     Class that allows you to connect to HyperSQL database server.
@@ -25,7 +27,7 @@ class HyperSQLConnector():
             self._cursor = self._connection.cursor()
         except Exception as error:
             self._connection.rollback()
-            raise error
+            raise OperationError(error.__str__())
 
     def get_data_from_db(self, statement: str) -> list:
         """

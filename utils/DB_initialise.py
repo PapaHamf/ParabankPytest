@@ -1,9 +1,12 @@
 import openpyxl
+import logging
+import inspect
 from jaydebeapi import DatabaseError
 from logging import Logger
 
 from utils.exceldata import ExcelData
 from utils.hysqlconnector import HyperSQLConnector
+from utils.exceptions import OperationError
 
 class DataBaseInitialise():
     """
@@ -46,7 +49,7 @@ class DataBaseInitialise():
 
     def clean_database(self) -> None:
         """
-        Initializes the dabatase by truncating the existing tables: TRANSACTION, ACCOUNT, POSITION,
+        Initializes the database by truncating the existing tables: TRANSACTION, ACCOUNT, POSITION,
         CUSTOMER and STOCK.
         :return:
         """
@@ -54,33 +57,33 @@ class DataBaseInitialise():
         try:
             self._log.info("Purging the Transaction table.")
             self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_TRANSACTION}")
-        except DatabaseError:
+        except DatabaseError as error:
             self._log.warning(f"Could not find the {DataBaseInitialise.DB_TRANSACTION} database table.")
-            raise
+            raise OperationError(error.__str__())
         try:
             self._log.info("Purging the Account table.")
             self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_ACCOUNT}")
-        except DatabaseError:
+        except DatabaseError as error:
             self._log.warning(f"Could not find the {DataBaseInitialise.DB_ACCOUNT} database table.")
-            raise
+            raise OperationError(error.__str__())
         try:
             self._log.info("Purging the Position table.")
             self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_POSITION}")
-        except DatabaseError:
+        except DatabaseError as error:
             self._log.warning(f"Could not find the {DataBaseInitialise.DB_POSITION} database table.")
-            raise
+            raise OperationError(error.__str__())
         try:
             self._log.info("Purging the Customer table.")
             self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_CUSTOMER}")
-        except DatabaseError:
+        except DatabaseError as error:
             self._log.warning(f"Could not find the {DataBaseInitialise.DB_CUSTOMER} database table.")
-            raise
+            raise OperationError(error.__str__())
         try:
             self._log.info("Purging the Stock table.")
             self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_STOCK}")
-        except DatabaseError:
+        except DatabaseError as error:
             self._log.warning(f"Could not find the {DataBaseInitialise.DB_STOCK} database table.")
-            raise
+            raise OperationError(error.__str__())
 
     def populate_database(self):
         """
@@ -89,7 +92,36 @@ class DataBaseInitialise():
         This is due to foreign key restrictions.
         :return:
         """
-        pass
+        customer_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + ExcelData.DATASET_CUSTOMER, self._log)
+        # Inserting the customer data (w/ usernames & passwords)
+        try:
+            for customer in customer_data:
+                values = ", ".join(str(int(value)) if isinstance(value, float) else f"'{value}'" for value in customer.values())
+                self._db.execute_sql_statement(f"INSERT INTO {DataBaseInitialise.DB_CUSTOMER} VALUES ({values})")
+        except DatabaseError as error:
+            self._log.warning(f"Error while inserting data into {DataBaseInitialise.DB_CUSTOMER} table.")
+            self._log.warning(f"Data: {values}")
+            raise OperationError(error.__str__())
+        account_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + ExcelData.DATASET_ACCOUNT, self._log)
+        # Inserting the account data
+        try:
+            for account in account_data:
+                values = ", ".join(str(int(value)) if isinstance(value, float) else f"'{value}'" for value in account.values())
+                self._db.execute_sql_statement(f"INSERT INTO {DataBaseInitialise.DB_ACCOUNT} VALUES ({values})")
+        except DatabaseError as error:
+            self._log.warning(f"Error while inserting data into {DataBaseInitialise.DB_ACCOUNT} table.")
+            self._log.warning(f"Data: {values}")
+            raise OperationError(error.__str__())
+        transaction_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + ExcelData.DATASET_TRANSACTION, self._log)
+        # Inserting the transaction data
+        try:
+            for transaction in transaction_data:
+                values = ", ".join(str(int(value)) if isinstance(value, float) else f"'{value}'" for value in transaction.values())
+                self._db.execute_sql_statement(f"INSERT INTO {DataBaseInitialise.DB_TRANSACTION} VALUES ({values})")
+        except DatabaseError as error:
+            self._log.warning(f"Error while inserting data into {DataBaseInitialise.DB_TRANSACTION} table.")
+            self._log.warning(f"Data: {values}")
+            raise OperationError(error.__str__())
 
     def get_database_table_customer(self):
         """
@@ -122,4 +154,4 @@ class DataBaseInitialise():
 
 DBini = DataBaseInitialise()
 DBini.clean_database()
-print(DBini.get_database_table_account())
+DBini.populate_database()

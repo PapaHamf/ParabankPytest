@@ -5,6 +5,7 @@ import openpyxl
 from datetime import datetime
 from openpyxl.workbook import Workbook
 from utils.testdataset import TestDataSet
+from utils.exceptions import OperationError
 from logging import Logger
 
 class ExcelData(TestDataSet):
@@ -49,8 +50,9 @@ class ExcelData(TestDataSet):
                 for column in range(1, sheet.max_column+1):
                     temp_dict[sheet.cell(row = 1, column = column).value] = sheet.cell(row = row, column = column).value
                 excel_data.append(temp_dict)
-        except FileNotFoundError:
+        except FileNotFoundError as error:
             log.warning(f"File {ExcelData.DIR_PREFIX + file_name} not found.")
+            raise OperationError(error.strerror)
         return excel_data
 
     @staticmethod
@@ -81,8 +83,9 @@ class ExcelData(TestDataSet):
         # Saving the file
         try:
             book.save(ExcelData.DIR_PREFIX + file_name)
-        except IOError:
+        except IOError as error:
             log.warning(f"Could not open the file {ExcelData.DIR_PREFIX + file_name} for writing.")
+            raise OperationError(error.strerror)
 
     def save_data(self) -> None:
         """
@@ -97,8 +100,9 @@ class ExcelData(TestDataSet):
         if os.path.exists(self.DIR_PREFIX + self.EXCEL_ARCHIVE):
             try:
                 book = openpyxl.load_workbook(self.DIR_PREFIX + self.EXCEL_ARCHIVE)
-            except IOError:
+            except IOError as error:
                 self._log.warning(f"Could not open the file {self.DIR_PREFIX + self.EXCEL_ARCHIVE}.")
+                raise OperationError(error.strerror, self._testcase)
         else:
             book = Workbook()
         # Switching to the sheet or creating it
@@ -136,6 +140,7 @@ class ExcelData(TestDataSet):
         # Saving the file
         try:
             book.save(self.DIR_PREFIX + self.EXCEL_ARCHIVE)
-        except IOError:
+        except IOError as error:
             self._log.warning(f"Could not open the file {self.DIR_PREFIX + self.EXCEL_ARCHIVE} for writing.")
+            raise OperationError(error.strerror, self._testcase)
 

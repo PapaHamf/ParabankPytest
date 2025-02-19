@@ -3,6 +3,8 @@ import datetime
 import os
 
 from datetime import datetime
+
+from utils.exceptions import OperationError
 from utils.testdataset import TestDataSet
 from logging import Logger
 
@@ -41,8 +43,9 @@ class JSONData(TestDataSet):
         try:
             with open(JSONData.DIR_PREFIX + file_name) as file_handle:
                 json_data: dict = json.load(file_handle)
-        except FileNotFoundError:
+        except FileNotFoundError as error:
             log.warning(f"File {JSONData.DIR_PREFIX + file_name} not found.")
+            raise OperationError(error.strerror)
         return json_data
 
     @staticmethod
@@ -58,8 +61,9 @@ class JSONData(TestDataSet):
         try:
             with open(self.DIR_PREFIX + file_name, "w") as file_handle:
                 json.dump(data, file_handle, indent = 5)
-        except IOError:
+        except IOError as error:
             log.warning(f"Could not open the file {JSONData.DIR_PREFIX + file_name} for writing.")
+            raise OperationError(error.strerror)
 
 
     def save_data(self, timediff: int = 60) -> None:
@@ -93,5 +97,6 @@ class JSONData(TestDataSet):
         try:
             with open(self.DIR_PREFIX + file_name, "w") as file_handle:
                 json.dump(self._data, file_handle, indent = 5)
-        except IOError:
+        except IOError as error:
             self._log.warning(f"Could not open the file {self.DIR_PREFIX + file_name} for writing.")
+            raise OperationError(error.strerror, self._testcase)
