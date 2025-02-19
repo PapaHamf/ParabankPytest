@@ -27,9 +27,10 @@ class TestHomePage(BaseClass):
     driver: Chrome
 
     @pytest.fixture(scope="function")
-    def login_logout(self) -> None:
+    def login_logout(self) -> list:
         """
         Logins the user in the app and logs him out after the test.
+        :return: List containing the dict w/ the user data and the logger object.
         """
         log = self.get_logger()
         self.driver.get(self.HOMEPAGE)
@@ -46,7 +47,7 @@ class TestHomePage(BaseClass):
         home_page.get_password().send_keys(password)
         log.info("Clicking the login button.")
         home_page.get_login_button().click()
-        yield user_data
+        yield [user_data, log]
         # Log out the user
         side_menu = SideMenu(self.driver)
         log.info(f"Logging out the user {user_name}.")
@@ -166,13 +167,16 @@ class TestHomePage(BaseClass):
         print(register_page.get_successful_registration().text)
         time.sleep(5)
 
+    @pytest.mark.skip
     @pytest.mark.usefixtures("login_logout")
     def test_openaccount_page(self, login_logout):
         """
         Tests the open account page fields.
         :return:
         """
-        log = self.get_logger()
+        # Fetching the data from the fixture
+        log = login_logout[1]
+        user_data = login_logout[0]
         self.driver.get(BaseClass.HOMEPAGE)
         log.info("Test case no 4")
         log.info("Testing the open account page.")
@@ -694,7 +698,6 @@ class TestHomePage(BaseClass):
 
         time.sleep(5)
 
-    @pytest.mark.skip
     def test_json_data(self):
         """
         Tests the excel data saving.
@@ -703,12 +706,14 @@ class TestHomePage(BaseClass):
         log = self.get_logger()
         faker = self.get_faker()
         data_collection = ExcelData("TestHomePage", "json_data", log)
-        # first_name = faker.first_name()
-        first_name = "Maciej"
+        id = 500
+        data_collection.add_data("id", id)
+        first_name = faker.first_name()
+        # first_name = "Maciej"
         log.info(f"First name: {first_name}")
         data_collection.add_data("firstname", first_name)
-        # last_name = faker.last_name()
-        last_name = "Kapowski"
+        last_name = faker.last_name()
+        # last_name = "Kapowski"
         log.info(f"Last name: {last_name}")
         data_collection.add_data("lastname", last_name)
         address = faker.street_address()

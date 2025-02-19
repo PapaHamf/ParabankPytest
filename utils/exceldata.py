@@ -11,20 +11,23 @@ class ExcelData(TestDataSet):
 
     DIR_PREFIX: str = "../testdata/"
     EXCEL_ARCHIVE: str = "test_archive.xlsx"
+    DATASET_TRANSACTION: str = "dataset_transaction.xlsx"
+    DATASET_ACCOUNT: str = "dataset_account.xlsx"
+    DATASET_CUSTOMER: str = "dataset_customer.xlsx"
 
     def __init__(self, test_scenario: str, testcase: str, log: Logger):
         super().__init__(test_scenario, testcase)
         self._log: Logger = log
 
     @staticmethod
-    def get_excel_data(file_name: str, log: Logger, sheet_name: str = None) -> list [dict] | bool:
+    def get_excel_data(file_name: str, log: Logger, sheet_name: str = None) -> list [dict]:
         """
         Returns the data from the Excel file as a dictionary.
         The first row should contain the column names used for the dictionary keys.
         :param file_name: Filename of the Excel file.
         :param log: Logger object used to log the info & errors.
         :param sheet_name:  The name of the sheet in the workbook.
-        :return: List of dictionaries w/ data or false if the file does not exist.
+        :return: List of dictionaries w/ data.
         """
         try:
             book = openpyxl.load_workbook(ExcelData.DIR_PREFIX + file_name)
@@ -42,10 +45,10 @@ class ExcelData(TestDataSet):
                 excel_data.append(temp_dict)
         except FileNotFoundError:
             log.warning(f"File {ExcelData.DIR_PREFIX + file_name} not found.")
-        return excel_data if 'excel_data' in locals() and len(excel_data) > 0 else False
+        return excel_data
 
     @staticmethod
-    def save_excel_data(file_name: str, data: list [dict], log: Logger) -> None | bool:
+    def save_excel_data(file_name: str, data: list [dict], log: Logger) -> None:
         """
         Saves the formatted data to the Excel file. The first row will contain the
         column names based on the dictionary keys.
@@ -53,7 +56,7 @@ class ExcelData(TestDataSet):
         :param data: List of dictionaries containing the data to be written. First list should
         should contain the table headers.
         :param log: Logger object used to log the info & errors.
-        :return: None or false if there was some problem writing to the file.
+        :return: None.
         """
         book = Workbook()
         sheet = book.active
@@ -74,14 +77,13 @@ class ExcelData(TestDataSet):
             book.save(ExcelData.DIR_PREFIX + file_name)
         except IOError:
             log.warning(f"Could not open the file {ExcelData.DIR_PREFIX + file_name} for writing.")
-            return False
 
-    def save_data(self) -> None | bool:
+    def save_data(self) -> None:
         """
         Saves the data to the Excel file.
         The file name is created based on the test scenario name.
         The data for each test case is written to the sheets with the name of the test case.
-        :return: None or false if there was some problem writing to the file.
+        :return: None.
         """
         # Getting the test datetime
         date_time = datetime.now()
@@ -130,5 +132,4 @@ class ExcelData(TestDataSet):
             book.save(self.DIR_PREFIX + self.EXCEL_ARCHIVE)
         except IOError:
             self._log.warning(f"Could not open the file {self.DIR_PREFIX + self.EXCEL_ARCHIVE} for writing.")
-            return False
 

@@ -24,12 +24,12 @@ class JSONData(TestDataSet):
         return sum(x * int(t) for x, t in zip([3600, 60, 1], time.split(":")))
 
     @staticmethod
-    def get_json_data(file_name: str, log: Logger) -> dict | bool:
+    def get_json_data(file_name: str, log: Logger) -> dict:
         """
         Returns the data from the JSON file as a dictionary.
         :param file_name: Filename of the JSON file.
         :param log: Logger object
-        :return: Dictionary w/ data or false is file is not found.
+        :return: Dictionary w/ data.
         """
         log: Logger = log
         try:
@@ -37,16 +37,16 @@ class JSONData(TestDataSet):
                 json_data: dict = json.load(file_handle)
         except FileNotFoundError:
             log.warning(f"File {JSONData.DIR_PREFIX + file_name} not found.")
-        return json_data if 'json_data' in locals() and len(json_data) > 0 else False
+        return json_data
 
     @staticmethod
-    def save_json_data(file_name: str, data: dict, log: Logger) -> None | bool:
+    def save_json_data(file_name: str, data: dict, log: Logger) -> None:
         """
         Lets you save the formatted data to the JSON file.
         :param file_name: Filename of the JSON file
         :param data: Dictionary containing the data to be written.
         :param log: Logger object
-        :return: None or False if file already exists
+        :return: None
         """
         log: Logger = log
         try:
@@ -54,14 +54,14 @@ class JSONData(TestDataSet):
                 json.dump(data, file_handle, indent = 5)
         except IOError:
             log.warning(f"Could not open the file {JSONData.DIR_PREFIX + file_name} for writing.")
-            return False
 
-    def save_data(self, timediff: int = 60) -> None | bool:
+
+    def save_data(self, timediff: int = 60) -> None:
         """
         Saves the data to the JSON file.
         The file name is created based on the date & the test scenario name.
         :param timediff: Time difference used to add testcases to the same test scenario file. Default value is 60.
-        :return: None or False if there was an error saving the file.
+        :return: None.
         """
         # Checking if the file exists
         date = datetime.now().date()
@@ -89,4 +89,3 @@ class JSONData(TestDataSet):
                 json.dump(self._data, file_handle, indent = 5)
         except IOError:
             self._log.warning(f"Could not open the file {self.DIR_PREFIX + file_name} for writing.")
-            return False
