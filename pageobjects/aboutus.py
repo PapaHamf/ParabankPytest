@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
 class AboutUs():
+    """
+    Class that holds the locators of the About us page and methods to get its webelements.
+    """
     driver: Chrome
 
     # Declaring the page objects

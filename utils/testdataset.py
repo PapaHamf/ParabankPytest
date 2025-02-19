@@ -1,12 +1,12 @@
 class TestDataSet():
+    """
+    Class that is responsible for collecting the data used in test cases.
+    It provides the methods to set and get the data.
+    :param test_scenario: Name of the test scenario.
+    :param testcase: Name of the test case.
+    """
 
     def __init__(self, test_scenario: str, testcase: str):
-        """
-        Class that is responsible for collecting the data used in test cases.
-        It provides the methods to set and get the data.
-        :param test_scenario: Name of the test scenario.
-        :param testcase: Name of the test case.
-        """
         self._data: dict = {}
         self._test_scenario: str = test_scenario
         self._testcase: str = testcase

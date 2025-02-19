@@ -13,6 +13,9 @@ from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.requestloanpage import RequestLoanPage
 
 class SiteMap():
+    """
+    Class that holds the locators of the Site map page and methods to get its webelements.
+    """
     driver: Chrome
 
     # Declaring the page objects (these need chaining)

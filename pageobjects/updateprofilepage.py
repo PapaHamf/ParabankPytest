@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
 class UpdateProfilePage():
+    """
+    Class that holds the locators of the Update profile page and methods to get its webelements.
+    """
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)

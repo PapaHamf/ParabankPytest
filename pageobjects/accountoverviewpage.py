@@ -5,6 +5,9 @@ from selenium.webdriver.support.relative_locator import locate_with
 from selenium.webdriver.remote.webelement import WebElement
 
 class AccountOverview():
+    """
+    Class that holds the locators of the Account overview page and methods to get its webelements.
+    """
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)

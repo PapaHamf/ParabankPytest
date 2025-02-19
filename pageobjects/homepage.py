@@ -10,6 +10,9 @@ from pageobjects.adminpage import AdminPage
 from pageobjects.contactpage import ContactPage
 
 class HomePage():
+    """
+    Class that holds the locators of the Home page and methods to get its webelements.
+    """
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)

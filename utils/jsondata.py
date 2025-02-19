@@ -8,6 +8,12 @@ from logging import Logger
 
 
 class JSONData(TestDataSet):
+    """
+    Class that provides the methods to handle the test data in JSON files.
+    :param test_scenario: The name of the test scenario.
+    :param testcase: The name of the current test case.
+    :param log: Logger object.
+    """
 
     DIR_PREFIX: str = "../testdata/"
 

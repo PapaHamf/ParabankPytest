@@ -5,6 +5,9 @@ from selenium.webdriver.remote.webelement import WebElement
 from pageobjects.activitypage import ActivityPage
 
 class OpenAccountPage():
+    """
+    Class that holds the locators of the Open account page and methods to get its webelements.
+    """
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)

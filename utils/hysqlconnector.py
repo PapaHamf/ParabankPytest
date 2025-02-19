@@ -1,11 +1,11 @@
 import jaydebeapi
 
 class HyperSQLConnector():
+    """
+    Class that allows you to connect to HyperSQL database server.
+    """
 
     def __init__(self):
-        """
-        Class that allows you to connect to HyperSQL database server.
-        """
         self._server: str = "localhost"
         self._driver: str = "org.hsqldb.jdbcDriver"
         self._URL: str = f"jdbc:hsqldb:hsql://{self._server}/Parabank"

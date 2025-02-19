@@ -12,6 +12,9 @@ from logging import Logger
 
 
 class MyFaker(Faker):
+    """
+    Faker sub-class with couple of new methods especially w/ random numbers in names.
+    """
 
     def name_with_random_no(self) -> str:
         """
@@ -31,6 +34,9 @@ class MyFaker(Faker):
 
 @pytest.mark.usefixtures("setup")
 class BaseClass():
+    """
+    Base class for all of the test scenarios.
+    """
 
     # Web pages constants (not used in tests, except HOMEPAGE)
     HOMEPAGE: str = "http://localhost:8000/parabank/"

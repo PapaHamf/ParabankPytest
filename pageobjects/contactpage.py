@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
 class ContactPage():
+    """
+    Class that holds the locators of the Contact page and methods to get its webelements.
+    """
     driver: Chrome
 
     MESSAGE_BODY_WIDTH: float = 300
