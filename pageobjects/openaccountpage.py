@@ -12,14 +12,14 @@ class OpenAccountPage():
 
     # Declaring the page objects (fields & buttons)
     # There are two types of accounts: CHECKING and SAVINGS
-    account_type: tuple = (By.ID, "type")
-    source_account: tuple = (By.ID, "fromAccountId")
-    open_account_button: tuple = (By.CSS_SELECTOR, "input[value='Open New Account']")
-    account_opened: tuple = (By.ID, "openAccountResult")
-    new_account_id: tuple = (By.ID, "newAccountId")
+    ACCOUNT_TYPE: tuple = (By.ID, "type")
+    SOURCE_ACCOUNT: tuple = (By.ID, "fromAccountId")
+    OPEN_ACCOUNT_BUTTON: tuple = (By.CSS_SELECTOR, "input[value='Open New Account']")
+    ACCOUNT_OPENED: tuple = (By.ID, "openAccountResult")
+    NEW_ACCOUNT_ID: tuple = (By.ID, "newAccountId")
 
     # Declaring the error labels
-    internal_error: tuple = (By.ID, "openAccountError")
+    INTERNAL_ERROR: tuple = (By.ID, "openAccountError")
 
     def __init__(self, driver):
         self._driver = driver
@@ -29,35 +29,35 @@ class OpenAccountPage():
         Returns the account type dropdown list.
         :return: webelement
         """
-        return self._driver.find_element(*OpenAccountPage.account_type)
+        return self._driver.find_element(*OpenAccountPage.ACCOUNT_TYPE)
 
     def get_source_accounts(self) -> WebElement:
         """
         Returns the source account dropdown list.
         :return: webelement
         """
-        return self._driver.find_element(*OpenAccountPage.source_account)
+        return self._driver.find_element(*OpenAccountPage.SOURCE_ACCOUNT)
 
     def get_open_account_button(self) -> WebElement:
         """
         Returns the open new account button.
         :return: webelement
         """
-        return self._driver.find_element(*OpenAccountPage.open_account_button)
+        return self._driver.find_element(*OpenAccountPage.OPEN_ACCOUNT_BUTTON)
 
     def get_account_opened_msg(self) -> WebElement:
         """
         Returns the account opened message.
         :return: webelement
         """
-        return self._driver.find_element(*OpenAccountPage.account_opened)
+        return self._driver.find_element(*OpenAccountPage.ACCOUNT_OPENED)
 
     def get_new_account_id(self) -> ActivityPage:
         """
         Returns the new account id with a link.
         :return: page object
         """
-        self._driver.find_element(*OpenAccountPage.new_account_id).click()
+        self._driver.find_element(*OpenAccountPage.NEW_ACCOUNT_ID).click()
         return ActivityPage(self._driver)
 
     def get_internal_error(self)  -> WebElement:
@@ -65,7 +65,7 @@ class OpenAccountPage():
         Returns the internal error message.
         :return: webelement
         """
-        return self._driver.find_element(*OpenAccountPage.internal_error)
+        return self._driver.find_element(*OpenAccountPage.INTERNAL_ERROR)
 
 
 

@@ -11,19 +11,19 @@ class AccountOverview():
     driver: Chrome
 
     # Declaring the page objects (fields & buttons)
-    table_head: tuple = (By.TAG_NAME, "thead")
-    table_rows: tuple = (By.TAG_NAME, "tr")
+    TABLE_HEAD: tuple = (By.TAG_NAME, "thead")
+    TABLE_ROWS: tuple = (By.TAG_NAME, "tr")
     # Re-used to get the single account number
-    # Does not work: change to //td/a, rename this one to account_number
-    account_numbers: tuple = (By.XPATH, "//td[1]/a")
-    account_number: tuple = (By.XPATH, "//td[1]")
+    # Does not work: change to //td/a, rename this one to ACCOUNT_NUMBER
+    ACCOUNT_NUMBERS: tuple = (By.XPATH, "//td[1]/a")
+    ACCOUNT_NUMBER: tuple = (By.XPATH, "//td[1]")
     # Re-used to get the single account balance
-    account_balances: tuple = (By.XPATH, "//td[2]")
-    account_link: tuple = (By.TAG_NAME, "a")
-    available_amounts: tuple = (By.XPATH, "//td[3]")
+    ACCOUNT_BALANCES: tuple = (By.XPATH, "//td[2]")
+    ACCOUNT_LINK: tuple = (By.TAG_NAME, "a")
+    AVAILABLE_AMOUNTS: tuple = (By.XPATH, "//td[3]")
     # locate_with accepts the dictionary!
-    total_text: dict = {By.XPATH: "//td/b[text()='Total']"}
-    total_amount: tuple = (By.TAG_NAME, "b")
+    TOTAL_TEXT: dict = {By.XPATH: "//td/b[text()='Total']"}
+    TOTAL_AMOUNT: tuple = (By.TAG_NAME, "b")
 
     def __init__(self, driver):
         self._driver = driver
@@ -33,42 +33,42 @@ class AccountOverview():
         Returns the table header.
         :return: webelement
         """
-        return self._driver.find_element(*AccountOverview.table_head)
+        return self._driver.find_element(*AccountOverview.TABLE_HEAD)
 
     def get_table_rows(self) -> list[WebElement]:
         """
         Returns all table rows.
         :return: webelement
         """
-        return self._driver.find_elements(*AccountOverview.table_rows)
+        return self._driver.find_elements(*AccountOverview.TABLE_ROWS)
 
     def get_account_numbers(self) -> list[WebElement]:
         """
         Returns all cells with the account numbers list.
         :return: webelement
         """
-        return self._driver.find_elements(*AccountOverview.account_numbers)
+        return self._driver.find_elements(*AccountOverview.ACCOUNT_NUMBERS)
 
     def get_account_balances(self) -> list[WebElement]:
         """
         Returns all cells with the account balances list.
         :return: webelement
         """
-        return self._driver.find_elements(*AccountOverview.account_balances)
+        return self._driver.find_elements(*AccountOverview.ACCOUNT_BALANCES)
 
     def get_available_amounts(self) -> list[WebElement]:
         """
         Returns all cells with the available amounts list.
         :return: webelement
         """
-        return self._driver.find_elements(*AccountOverview.available_amounts)
+        return self._driver.find_elements(*AccountOverview.AVAILABLE_AMOUNTS)
 
     def get_total_amount(self) -> WebElement:
         """
         Returns the total amount field.
         :return: webelement
         """
-        return self._driver.find_element(locate_with(*AccountOverview.total_amount).to_right_of(AccountOverview.total_text))
+        return self._driver.find_element(locate_with(*AccountOverview.TOTAL_AMOUNT).to_right_of(AccountOverview.TOTAL_TEXT))
 
     def get_account_balance(self, account_number: str) -> WebElement:
         """
@@ -79,11 +79,11 @@ class AccountOverview():
         rows = self.get_table_rows()
         for row in rows:
             try:
-                acc_no = row.find_element(*AccountOverview.account_link)
+                acc_no = row.find_element(*AccountOverview.ACCOUNT_LINK)
             except NoSuchElementException:
                 continue
             if acc_no.text == account_number:
-                return row.find_element(*AccountOverview.account_balances)
+                return row.find_element(*AccountOverview.ACCOUNT_BALANCES)
 
     def get_available_amount(self, account_number: str) -> WebElement:
         """
@@ -94,11 +94,11 @@ class AccountOverview():
         rows = self.get_table_rows()
         for row in rows:
             try:
-                acc_no = row.find_element(*AccountOverview.account_link)
+                acc_no = row.find_element(*AccountOverview.ACCOUNT_LINK)
             except NoSuchElementException:
                 continue
             if acc_no.text == account_number:
-                return row.find_element(*AccountOverview.available_amounts)
+                return row.find_element(*AccountOverview.AVAILABLE_AMOUNTS)
 
 
 

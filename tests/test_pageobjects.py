@@ -448,8 +448,8 @@ class TestHomePage(BaseClass):
         # log.info("Clicking the Go button.")
         # activity_page.get_activity_button().click()
         # log.info("Displaying the transactions")
-        # transaction_names = activity_page.get_transaction_dates()
-        # for transaction in transaction_names:
+        # TRANSACTION_NAMES = activity_page.get_transaction_dates()
+        # for transaction in TRANSACTION_NAMES:
         #     print(transaction.text)
         trans = activity_page.get_transaction_link_by_text("Down Payment")
         trans_id = trans.get_attribute("href").split("=")[1]

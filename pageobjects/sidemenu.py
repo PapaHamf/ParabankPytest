@@ -17,16 +17,16 @@ class SideMenu():
     driver: Chrome
 
     # Declaring the page objects
-    left_panel: tuple = (By.ID, "leftPanel")
-    left_panel_header: tuple = (By.CLASS_NAME, "smallText")
-    open_account_link: tuple = (By.PARTIAL_LINK_TEXT, "Open New")
-    accounts_overview_link: tuple = (By.PARTIAL_LINK_TEXT, "Accounts")
-    transfer_funds_link: tuple = (By.PARTIAL_LINK_TEXT, "Transfer")
-    bill_pay_link: tuple = (By.LINK_TEXT, "Bill Pay")
-    find_transactions_link: tuple = (By.PARTIAL_LINK_TEXT, "Find")
-    update_info_link: tuple = (By.PARTIAL_LINK_TEXT, "Update Contact")
-    request_loan_link: tuple = (By.LINK_TEXT, "Request Loan")
-    log_out_link: tuple = (By.LINK_TEXT, "Log Out")
+    LEFT_PANEL: tuple = (By.ID, "leftPanel")
+    LEFT_PANEL_HEADER: tuple = (By.CLASS_NAME, "smallText")
+    OPEN_ACCOUNT_LINK: tuple = (By.PARTIAL_LINK_TEXT, "Open New")
+    ACCOUNTS_OVERVIEW_LINK: tuple = (By.PARTIAL_LINK_TEXT, "Accounts")
+    TRANSFER_FUNDS_LINK: tuple = (By.PARTIAL_LINK_TEXT, "Transfer")
+    BILL_PAY_LINK: tuple = (By.LINK_TEXT, "Bill Pay")
+    FIND_TRANSACTIONS_LINK: tuple = (By.PARTIAL_LINK_TEXT, "Find")
+    UPDATE_INFO_LINK: tuple = (By.PARTIAL_LINK_TEXT, "Update Contact")
+    REQUEST_LOAN_LINK: tuple = (By.LINK_TEXT, "Request Loan")
+    LOG_OUT_LINK: tuple = (By.LINK_TEXT, "Log Out")
 
     def __init__(self, driver):
         self._driver = driver
@@ -36,15 +36,15 @@ class SideMenu():
         Returns the left panel header text.
         :return: webelement
         """
-        return self._driver.find_element(*SideMenu.left_panel_header)
+        return self._driver.find_element(*SideMenu.LEFT_PANEL_HEADER)
 
     def get_open_account_page(self) -> OpenAccountPage:
         """
         Returns the open account page object.
         :return: page object
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        l_panel.find_element(*SideMenu.open_account_link).click()
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        l_panel.find_element(*SideMenu.OPEN_ACCOUNT_LINK).click()
         return OpenAccountPage(self._driver)
 
     def get_accounts_overview_page(self) -> AccountOverview:
@@ -52,8 +52,8 @@ class SideMenu():
         Returns the accounts overview page object.
         :return: page object
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        l_panel.find_element(*SideMenu.accounts_overview_link).click()
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        l_panel.find_element(*SideMenu.ACCOUNTS_OVERVIEW_LINK).click()
         return AccountOverview(self._driver)
 
     def get_transfer_funds_page(self) -> TransferPage:
@@ -61,8 +61,8 @@ class SideMenu():
         Returns the transfer funds page object.
         :return: page object
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        l_panel.find_element(*SideMenu.transfer_funds_link).click()
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        l_panel.find_element(*SideMenu.TRANSFER_FUNDS_LINK).click()
         return TransferPage(self._driver)
 
     def get_bill_pay_page(self) -> BillPayPage:
@@ -70,8 +70,8 @@ class SideMenu():
         Returns the bill pay page object.
         :return: page object
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        l_panel.find_element(*SideMenu.bill_pay_link).click()
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        l_panel.find_element(*SideMenu.BILL_PAY_LINK).click()
         return BillPayPage(self._driver)
 
     def get_find_transactions_page(self) -> FindTransactionPage:
@@ -79,8 +79,8 @@ class SideMenu():
         Returns the find transactions page object.
         :return: page object
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        l_panel.find_element(*SideMenu.find_transactions_link).click()
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        l_panel.find_element(*SideMenu.FIND_TRANSACTIONS_LINK).click()
         return FindTransactionPage(self._driver)
 
     def get_update_info_page(self) -> UpdateProfilePage:
@@ -88,8 +88,8 @@ class SideMenu():
         Returns the update profile information page object.
         :return: page object
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        l_panel.find_element(*SideMenu.update_info_link).click()
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        l_panel.find_element(*SideMenu.UPDATE_INFO_LINK).click()
         return UpdateProfilePage(self._driver)
 
     def get_request_loan_page(self) -> RequestLoanPage:
@@ -97,8 +97,8 @@ class SideMenu():
         Returns the request loan page object.
         :return: page object
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        l_panel.find_element(*SideMenu.request_loan_link).click()
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        l_panel.find_element(*SideMenu.REQUEST_LOAN_LINK).click()
         return RequestLoanPage(self._driver)
 
     def get_log_out_link(self) -> WebElement:
@@ -106,5 +106,5 @@ class SideMenu():
         Returns the log out link.
         :return: webelement
         """
-        l_panel = self._driver.find_element(*SideMenu.left_panel)
-        return l_panel.find_element(*SideMenu.log_out_link)
+        l_panel = self._driver.find_element(*SideMenu.LEFT_PANEL)
+        return l_panel.find_element(*SideMenu.LOG_OUT_LINK)

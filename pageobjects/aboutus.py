@@ -9,7 +9,7 @@ class AboutUs():
     driver: Chrome
 
     # Declaring the page objects
-    page_header: tuple = (By.CLASS_NAME, "title")
+    PAGE_HEADER: tuple = (By.CLASS_NAME, "title")
 
     def __init__(self, driver):
         self._driver = driver
@@ -19,4 +19,4 @@ class AboutUs():
         Returns the page header text.
         :return: webelement
         """
-        return self._driver.find_element(*AboutUs.page_header)
+        return self._driver.find_element(*AboutUs.PAGE_HEADER)

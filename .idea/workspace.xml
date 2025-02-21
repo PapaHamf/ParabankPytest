@@ -4,13 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Classes docstrings 19.02">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Exc handling &amp; DB init 19.02">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/aboutus.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/aboutus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/activitypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/activitypage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/adminpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/adminpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/contactpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/contactpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/findtransactionspage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/findtransactionspage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/forgotloginpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/forgotloginpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/openaccountpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/openaccountpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/registerpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/registerpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/requestloanpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/requestloanpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/sidemenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/sidemenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/sitemap.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/sitemap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/transferpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/transferpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/updateprofilepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/updateprofilepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_pageobjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pageobjects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/DB_initialise.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/DB_initialise.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/exceldata.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/exceldata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/exceptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/hysqlconnector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/hysqlconnector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/jsondata.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/jsondata.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,29 +66,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests in test_pageobjects.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in student.executor&quot;: &quot;Run&quot;,
-    &quot;Python.DB_initialise.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HYSQLData.executor&quot;: &quot;Run&quot;,
-    &quot;Python.accountoverviewpage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.baseclass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.change_date.executor&quot;: &quot;Run&quot;,
-    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.country.executor&quot;: &quot;Run&quot;,
-    &quot;Python.exceldata.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hysqlconnector.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hysqldata.executor&quot;: &quot;Run&quot;,
-    &quot;Python.jsondata.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/student/NonameBranch/NonameTesters/utils/country.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in test_pageobjects.py.executor": "Run",
+    "Python tests.pytest in student.executor": "Run",
+    "Python.DB_initialise.executor": "Run",
+    "Python.HYSQLData.executor": "Run",
+    "Python.accountoverviewpage.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.baseclass.executor": "Run",
+    "Python.change_date.executor": "Run",
+    "Python.conftest.executor": "Run",
+    "Python.country.executor": "Run",
+    "Python.exceldata.executor": "Run",
+    "Python.fixdata.executor": "Run",
+    "Python.hysqlconnector.executor": "Run",
+    "Python.hysqldata.executor": "Run",
+    "Python.jsondata.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/student/NonameBranch/NonameTesters/utils/country.py",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/testdata/history" />
@@ -504,11 +518,18 @@
       <option name="project" value="LOCAL" />
       <updated>1739983590506</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Exc handling &amp; DB init 19.02">
+      <option name="closed" value="true" />
+      <created>1739990448654</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1739990448654</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test page objects 16.01" />
     <MESSAGE value="Test page objects 1.01" />
     <MESSAGE value="Test page objects 17.01" />
     <MESSAGE value="Test page objects 19.01" />
@@ -533,6 +554,7 @@
     <MESSAGE value="Login &amp; logout fixture 10.02" />
     <MESSAGE value="DB initialise 19.02" />
     <MESSAGE value="Classes docstrings 19.02" />
-    <option name="LAST_COMMIT_MESSAGE" value="Classes docstrings 19.02" />
+    <MESSAGE value="Exc handling &amp; DB init 19.02" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exc handling &amp; DB init 19.02" />
   </component>
 </project>
