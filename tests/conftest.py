@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
+from utils.DB_initialise import DataBaseInitialise
 
 # Hook for command line options
 def pytest_addoption(parser) -> None:
@@ -23,6 +24,10 @@ def setup(request):
     """
     Set ups the environment for the tests.
     """
+    # Purging the database and filling it w/ test data
+    DBini = DataBaseInitialise()
+    DBini.purge_database()
+    DBini.populate_database()
     # Retrieving the value of the command line option
     match request.config.getoption("--browser-name"):
         case "chrome":

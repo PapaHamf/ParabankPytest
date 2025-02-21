@@ -1,0 +1,39 @@
+import csv
+
+from utils.testdataset import TestDataSet
+from utils.exceptions import OperationError
+from logging import Logger
+
+class CSVData(TestDataSet):
+    """
+    Class that provides the methods to handle the test data in CSV format.
+    :param test_scenario: The name of the test scenario.
+    :param testcase: The name of the current test case.
+    :param log: Logger object.
+    """
+
+    DIR_PREFIX: str = "../testdata/"
+
+    def __init__(self, test_scenario: str, testcase: str, log: Logger):
+        super().__init__(test_scenario, testcase)
+        self._log: Logger = log
+
+    @staticmethod
+    def get_csv_data(file_name: str, log: Logger = None):
+        """
+        Returns the data from the CSV file as a dictionary.
+        The first row should contain the column names used for the dictionary keys.
+        :param file_name: Filename of the CSV file.
+        :param log: Logger object used to log the info & errors.
+        :return: List of dictionaries w/ data.
+        """
+        try:
+            csv_data: list = []
+            with open(CSVData.DIR_PREFIX + file_name, "r") as file_handle:
+                reader = csv.DictReader(file_handle)
+                for row in reader:
+                    csv_data.append(row)
+        except FileNotFoundError as error:
+            log.warning(f"File {CSVData.DIR_PREFIX + file_name} not found.")
+            raise OperationError(error.strerror)
+        return csv_data

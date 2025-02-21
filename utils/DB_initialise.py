@@ -1,12 +1,12 @@
-import openpyxl
 import logging
 import inspect
-from jaydebeapi import DatabaseError
-from logging import Logger
 
 from utils.exceldata import ExcelData
 from utils.hysqlconnector import HyperSQLConnector
 from utils.exceptions import OperationError
+from jaydebeapi import DatabaseError
+from logging import Logger
+
 
 class DataBaseInitialise():
     """
@@ -47,43 +47,50 @@ class DataBaseInitialise():
             logger.setLevel(level)
         return logger
 
-    def clean_database(self) -> None:
+    def truncate_table(self, table_name: str) -> None:
+        """
+        Truncates the given table of the database.
+        :param table_name: The name of the table to truncate/delete from.
+        :return:
+        """
+        try:
+            self._log.info(f"Purging the {table_name.capitalize()} table.")
+            self._db.execute_sql_statement(f"TRUNCATE TABLE {table_name}")
+        except DatabaseError as error:
+            self._log.warning(f"Could not find the {table_name.capitalize()} database table.")
+            raise OperationError(error.__str__())
+
+    def insert_table(self, table_name: str, dataset: str) -> None:
+        """
+        Inserts the given data set to the table of the database.
+        :param table_name: The name of the table to insert data to.
+        :param dataset: Data set that will be inserted into DB.
+        :return:
+        """
+        read_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + dataset, log = self._log)
+        try:
+            self._log.info(f"Inserting the data into {table_name.capitalize()} table.")
+            for single_data in read_data:
+                values = ", ".join(str(int(value)) if isinstance(value, float) else f"'{value}'" for value in single_data.values())
+                self._db.execute_sql_statement(f"INSERT INTO {table_name} VALUES ({values})")
+            self._log.info("Inserting completed successfully.")
+        except DatabaseError as error:
+            self._log.warning(f"Error while inserting data into {table_name.capitalize()} table.")
+            self._log.warning(f"Data: {values}")
+            raise OperationError(error.__str__())
+
+    def purge_database(self) -> None:
         """
         Initializes the database by truncating the existing tables: TRANSACTION, ACCOUNT, POSITION,
         CUSTOMER and STOCK.
         :return:
         """
         self._log.info("Cleaning the database.")
-        try:
-            self._log.info("Purging the Transaction table.")
-            self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_TRANSACTION}")
-        except DatabaseError as error:
-            self._log.warning(f"Could not find the {DataBaseInitialise.DB_TRANSACTION} database table.")
-            raise OperationError(error.__str__())
-        try:
-            self._log.info("Purging the Account table.")
-            self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_ACCOUNT}")
-        except DatabaseError as error:
-            self._log.warning(f"Could not find the {DataBaseInitialise.DB_ACCOUNT} database table.")
-            raise OperationError(error.__str__())
-        try:
-            self._log.info("Purging the Position table.")
-            self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_POSITION}")
-        except DatabaseError as error:
-            self._log.warning(f"Could not find the {DataBaseInitialise.DB_POSITION} database table.")
-            raise OperationError(error.__str__())
-        try:
-            self._log.info("Purging the Customer table.")
-            self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_CUSTOMER}")
-        except DatabaseError as error:
-            self._log.warning(f"Could not find the {DataBaseInitialise.DB_CUSTOMER} database table.")
-            raise OperationError(error.__str__())
-        try:
-            self._log.info("Purging the Stock table.")
-            self._db.execute_sql_statement(f"TRUNCATE TABLE {DataBaseInitialise.DB_STOCK}")
-        except DatabaseError as error:
-            self._log.warning(f"Could not find the {DataBaseInitialise.DB_STOCK} database table.")
-            raise OperationError(error.__str__())
+        self.truncate_table(DataBaseInitialise.DB_TRANSACTION)
+        self.truncate_table(DataBaseInitialise.DB_ACCOUNT)
+        self.truncate_table(DataBaseInitialise.DB_POSITION)
+        self.truncate_table(DataBaseInitialise.DB_CUSTOMER)
+        self.truncate_table(DataBaseInitialise.DB_STOCK)
 
     def populate_database(self):
         """
@@ -92,36 +99,12 @@ class DataBaseInitialise():
         This is due to foreign key restrictions.
         :return:
         """
-        customer_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + ExcelData.DATASET_CUSTOMER, self._log)
         # Inserting the customer data (w/ usernames & passwords)
-        try:
-            for customer in customer_data:
-                values = ", ".join(str(int(value)) if isinstance(value, float) else f"'{value}'" for value in customer.values())
-                self._db.execute_sql_statement(f"INSERT INTO {DataBaseInitialise.DB_CUSTOMER} VALUES ({values})")
-        except DatabaseError as error:
-            self._log.warning(f"Error while inserting data into {DataBaseInitialise.DB_CUSTOMER} table.")
-            self._log.warning(f"Data: {values}")
-            raise OperationError(error.__str__())
-        account_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + ExcelData.DATASET_ACCOUNT, self._log)
+        self.insert_table(DataBaseInitialise.DB_CUSTOMER, ExcelData.DATASET_CUSTOMER)
         # Inserting the account data
-        try:
-            for account in account_data:
-                values = ", ".join(str(int(value)) if isinstance(value, float) else f"'{value}'" for value in account.values())
-                self._db.execute_sql_statement(f"INSERT INTO {DataBaseInitialise.DB_ACCOUNT} VALUES ({values})")
-        except DatabaseError as error:
-            self._log.warning(f"Error while inserting data into {DataBaseInitialise.DB_ACCOUNT} table.")
-            self._log.warning(f"Data: {values}")
-            raise OperationError(error.__str__())
-        transaction_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + ExcelData.DATASET_TRANSACTION, self._log)
+        self.insert_table(DataBaseInitialise.DB_ACCOUNT, ExcelData.DATASET_ACCOUNT)
         # Inserting the transaction data
-        try:
-            for transaction in transaction_data:
-                values = ", ".join(str(int(value)) if isinstance(value, float) else f"'{value}'" for value in transaction.values())
-                self._db.execute_sql_statement(f"INSERT INTO {DataBaseInitialise.DB_TRANSACTION} VALUES ({values})")
-        except DatabaseError as error:
-            self._log.warning(f"Error while inserting data into {DataBaseInitialise.DB_TRANSACTION} table.")
-            self._log.warning(f"Data: {values}")
-            raise OperationError(error.__str__())
+        self.insert_table(DataBaseInitialise.DB_TRANSACTION, ExcelData.DATASET_TRANSACTION)
 
     def get_database_table_customer(self):
         """
@@ -151,7 +134,8 @@ class DataBaseInitialise():
         """
         return self._db.get_data_from_db(f"SELECT * FROM {DataBaseInitialise.DB_STOCK}")
 
-
-DBini = DataBaseInitialise()
-DBini.clean_database()
-DBini.populate_database()
+if __name__ == "__main__":
+    DBini = DataBaseInitialise()
+    # DBini.purge_database()
+    # DBini.populate_database()
+    print(DBini.get_database_table_transaction())

@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from utils.baseclass import BaseClass
 from utils.jsondata import JSONData
 from utils.exceldata import ExcelData
+from utils.csvdata import CSVData
 from pageobjects.homepage import HomePage
 from pageobjects.forgotloginpage import ForgotLoginPage
 from pageobjects.registerpage import RegisterPage
@@ -21,7 +22,7 @@ from pageobjects.adminpage import AdminPage
 from pageobjects.billpaypage import BillPayPage
 from pageobjects.contactpage import ContactPage
 from pageobjects.findtransactionspage import FindTransactionPage
-
+from pageobjects.sidemenu import SideMenu
 
 class TestHomePage(BaseClass):
     driver: Chrome
@@ -53,6 +54,16 @@ class TestHomePage(BaseClass):
         log.info(f"Logging out the user {user_name}.")
         side_menu.get_log_out_link().click()
         self.driver.delete_all_cookies()
+
+    # Fixture for loading the data
+    # @pytest.fixture(params = ExcelData.get_excel_data("test_data.xlsx"))
+    # def load_data(self, request):
+    #     """
+    #     Returns the data for parametrized (data driven) tests.
+    #     :param request:
+    #     :return:
+    #     """
+    #     return request.param
 
     @pytest.mark.skip
     def test_login(self):
@@ -698,6 +709,7 @@ class TestHomePage(BaseClass):
 
         time.sleep(5)
 
+    @pytest.mark.skip
     def test_json_data(self):
         """
         Tests the excel data saving.
@@ -774,3 +786,14 @@ class TestHomePage(BaseClass):
         log.info(f"State: {state}")
         data_collection.add_data("state", state)
         data_collection.save_data()
+
+
+    def test_csv_data(self):
+        """
+        Tests the csv data reader
+        :return:
+        """
+        log = self.get_logger()
+        csv_data = CSVData("TestHomePage", "Test CSV reader", log)
+        csv_dataset = CSVData.get_csv_data("test_data.csv", log)
+        print(csv_dataset)

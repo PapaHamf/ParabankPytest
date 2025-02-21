@@ -32,7 +32,7 @@ class JSONData(TestDataSet):
         return sum(x * int(t) for x, t in zip([3600, 60, 1], time.split(":")))
 
     @staticmethod
-    def get_json_data(file_name: str, log: Logger) -> dict:
+    def get_json_data(file_name: str, log: Logger = None) -> dict:
         """
         Returns the data from the JSON file as a dictionary.
         :param file_name: Filename of the JSON file.

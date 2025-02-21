@@ -27,7 +27,7 @@ class ExcelData(TestDataSet):
         self._log: Logger = log
 
     @staticmethod
-    def get_excel_data(file_name: str, log: Logger, sheet_name: str = None) -> list [dict]:
+    def get_excel_data(file_name: str, sheet_name: str = None, log: Logger = None) -> list [dict]:
         """
         Returns the data from the Excel file as a dictionary.
         The first row should contain the column names used for the dictionary keys.
@@ -62,7 +62,7 @@ class ExcelData(TestDataSet):
         column names based on the dictionary keys.
         :param file_name: Filename of the Excel file
         :param data: List of dictionaries containing the data to be written. First list should
-        should contain the table headers.
+        contain the table headers.
         :param log: Logger object used to log the info & errors.
         :return: None.
         """
