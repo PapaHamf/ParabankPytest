@@ -6,6 +6,7 @@ from datetime import datetime
 from openpyxl.workbook import Workbook
 from utils.testdataset import TestDataSet
 from utils.exceptions import OperationError
+from utils.baseclass import BaseClass
 from logging import Logger
 
 class ExcelData(TestDataSet):
@@ -13,7 +14,6 @@ class ExcelData(TestDataSet):
     Class that provides the methods to handle the test data in Excel files.
     :param test_scenario: The name of the test scenario.
     :param testcase: The name of the current test case.
-    :param log: Logger object.
     """
 
     DIR_PREFIX: str = "../testdata/"
@@ -22,20 +22,22 @@ class ExcelData(TestDataSet):
     DATASET_ACCOUNT: str = "dataset_account.xlsx"
     DATASET_CUSTOMER: str = "dataset_customer.xlsx"
 
-    def __init__(self, test_scenario: str, testcase: str, log: Logger):
+    def __init__(self, test_scenario: str, testcase: str):
         super().__init__(test_scenario, testcase)
-        self._log: Logger = log
+        self._baseclass: BaseClass = BaseClass()
+        self._log: Logger = self._baseclass.get_logger()
 
     @staticmethod
-    def get_excel_data(file_name: str, sheet_name: str = None, log: Logger = None) -> list [dict]:
+    def get_excel_data(file_name: str, sheet_name: str = None) -> list [dict]:
         """
         Returns the data from the Excel file as a dictionary.
         The first row should contain the column names used for the dictionary keys.
         :param file_name: Filename of the Excel file.
-        :param log: Logger object used to log the info & errors.
         :param sheet_name:  The name of the sheet in the workbook.
         :return: List of dictionaries w/ data.
         """
+        baseclass: BaseClass = BaseClass()
+        log = baseclass.get_logger()
         try:
             book = openpyxl.load_workbook(ExcelData.DIR_PREFIX + file_name)
             if sheet_name:
@@ -56,16 +58,17 @@ class ExcelData(TestDataSet):
         return excel_data
 
     @staticmethod
-    def save_excel_data(file_name: str, data: list [dict], log: Logger) -> None:
+    def save_excel_data(file_name: str, data: list [dict]) -> None:
         """
         Saves the formatted data to the Excel file. The first row will contain the
         column names based on the dictionary keys.
         :param file_name: Filename of the Excel file
         :param data: List of dictionaries containing the data to be written. First list should
         contain the table headers.
-        :param log: Logger object used to log the info & errors.
         :return: None.
         """
+        baseclass: BaseClass = BaseClass()
+        log = baseclass.get_logger()
         book = Workbook()
         sheet = book.active
         sheet.title = "Data"

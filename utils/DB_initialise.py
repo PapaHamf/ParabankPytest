@@ -1,12 +1,9 @@
-import logging
-import inspect
-
 from utils.exceldata import ExcelData
 from utils.hysqlconnector import HyperSQLConnector
 from utils.exceptions import OperationError
+from utils.baseclass import BaseClass
 from jaydebeapi import DatabaseError
 from logging import Logger
-
 
 class DataBaseInitialise():
     """
@@ -21,31 +18,10 @@ class DataBaseInitialise():
     DB_TRANSACTION = "transaction"
 
     def __init__(self):
-        self._log = self.get_logger()
+        self._baseclass: BaseClass = BaseClass()
+        self._log: Logger = self._baseclass.get_logger()
         self._db = HyperSQLConnector()
         self._db.get_cursor()
-
-    def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> Logger:
-        """
-        Creates the logger object and defines the logging level.
-        :param file_name: The file name of the log. The default value is logfile.log.
-        :param level:  The logging level. The default value is INFO.
-        :return: logger object
-        """
-        # Fixing the name of the file in the logs (otherwise it will be the name of the baseclass)
-        logger_name = inspect.stack()[1][3]
-        logger: Logger = logging.getLogger(logger_name)
-        # Check if the logger already exits to avoid creating new logger in parametrized tests.
-        if not len(logger.handlers):
-            # Defining the log file
-            file_handler = logging.FileHandler(file_name)
-            # Defining the log format
-            file_formater = logging.Formatter("%(asctime)s : %(levelname)s : %(name)s : %(message)s")
-            file_handler.setFormatter(file_formater)
-            logger.addHandler(file_handler)
-            # Setting the minimum level
-            logger.setLevel(level)
-        return logger
 
     def truncate_table(self, table_name: str) -> None:
         """

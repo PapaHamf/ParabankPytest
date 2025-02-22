@@ -6,6 +6,7 @@ from datetime import datetime
 
 from utils.exceptions import OperationError
 from utils.testdataset import TestDataSet
+from utils.baseclass import BaseClass
 from logging import Logger
 
 
@@ -19,9 +20,10 @@ class JSONData(TestDataSet):
 
     DIR_PREFIX: str = "../testdata/"
 
-    def __init__(self, test_scenario: str, testcase: str, log: Logger):
+    def __init__(self, test_scenario: str, testcase: str):
         super().__init__(test_scenario, testcase)
-        self._log: Logger = log
+        self._baseclass: BaseClass = BaseClass()
+        self._log: Logger = self._baseclass.get_logger()
 
     def convert_time_to_seconds(self, time: str) -> int:
         """
@@ -32,14 +34,14 @@ class JSONData(TestDataSet):
         return sum(x * int(t) for x, t in zip([3600, 60, 1], time.split(":")))
 
     @staticmethod
-    def get_json_data(file_name: str, log: Logger = None) -> dict:
+    def get_json_data(file_name: str) -> dict:
         """
         Returns the data from the JSON file as a dictionary.
         :param file_name: Filename of the JSON file.
-        :param log: Logger object
         :return: Dictionary w/ data.
         """
-        log: Logger = log
+        baseclass: BaseClass = BaseClass()
+        log = baseclass.get_logger()
         try:
             with open(JSONData.DIR_PREFIX + file_name) as file_handle:
                 json_data: dict = json.load(file_handle)
@@ -49,15 +51,15 @@ class JSONData(TestDataSet):
         return json_data
 
     @staticmethod
-    def save_json_data(file_name: str, data: dict, log: Logger) -> None:
+    def save_json_data(file_name: str, data: dict) -> None:
         """
         Lets you save the formatted data to the JSON file.
         :param file_name: Filename of the JSON file
         :param data: Dictionary containing the data to be written.
-        :param log: Logger object
         :return: None
         """
-        log: Logger = log
+        baseclass: BaseClass = BaseClass()
+        log = baseclass.get_logger()
         try:
             with open(self.DIR_PREFIX + file_name, "w") as file_handle:
                 json.dump(data, file_handle, indent = 5)
@@ -90,7 +92,7 @@ class JSONData(TestDataSet):
                 file_name = f"{self._test_scenario}_{date}_{time}.json"
             else:
                 file_name = valid_files[0]
-                self._data.update(JSONData.get_json_data(file_name, self._log))
+                self._data.update(JSONData.get_json_data(file_name))
         else:
             file_name = f"{self._test_scenario}_{date}_{time}.json"
         # Saving the file

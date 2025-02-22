@@ -2,7 +2,9 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-class AboutUs():
+from pageobjects.basepage import BasePage
+
+class AboutUs(BasePage):
     """
     Class that holds the locators of the About us page and methods to get its webelements.
     """
@@ -19,4 +21,4 @@ class AboutUs():
         Returns the page header text.
         :return: webelement
         """
-        return self._driver.find_element(*AboutUs.PAGE_HEADER)
+        return self.verify_element_presence(AboutUs.PAGE_HEADER)

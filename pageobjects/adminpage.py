@@ -24,7 +24,7 @@ class AdminPage():
     def __init__(self, driver):
         self._driver = driver
 
-    def get_clean_database(self) -> WebElement:
+    def get_clean_databas_button(self) -> WebElement:
         """
         Returns the clean database button.
         :return: webelement

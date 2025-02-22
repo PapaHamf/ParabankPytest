@@ -10,6 +10,7 @@ from pageobjects.findtransactionspage import FindTransactionPage
 from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.requestloanpage import RequestLoanPage
 
+
 class SideMenu():
     """
     Class that holds the locators of the Side menu and methods to get its webelements.

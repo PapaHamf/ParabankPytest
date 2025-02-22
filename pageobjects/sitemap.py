@@ -12,6 +12,7 @@ from pageobjects.findtransactionspage import FindTransactionPage
 from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.requestloanpage import RequestLoanPage
 
+
 class SiteMap():
     """
     Class that holds the locators of the Site map page and methods to get its webelements.

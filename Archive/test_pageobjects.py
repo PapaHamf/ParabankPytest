@@ -1,6 +1,7 @@
 import time
 import pytest
 import random
+import allure
 
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
@@ -26,34 +27,6 @@ from pageobjects.sidemenu import SideMenu
 
 class TestHomePage(BaseClass):
     driver: Chrome
-
-    @pytest.fixture(scope="function")
-    def login_logout(self) -> list:
-        """
-        Logins the user in the app and logs him out after the test.
-        :return: List containing the dict w/ the user data and the logger object.
-        """
-        log = self.get_logger()
-        self.driver.get(self.HOMEPAGE)
-        # Get the user data from Excel file
-        user_data = random.choice(ExcelData.get_excel_data("test_usernames.xlsx", log))
-        user_name = user_data["username"]
-        password = user_data["password"]
-        log.info("Logging the user.")
-        # Create the home page object
-        home_page = HomePage(self.driver)
-        log.info(f"User name: {user_name}")
-        home_page.get_username().send_keys(user_name)
-        log.info(f"Password: {password}")
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the login button.")
-        home_page.get_login_button().click()
-        yield [user_data, log]
-        # Log out the user
-        side_menu = SideMenu(self.driver)
-        log.info(f"Logging out the user {user_name}.")
-        side_menu.get_log_out_link().click()
-        self.driver.delete_all_cookies()
 
     # Fixture for loading the data
     # @pytest.fixture(params = ExcelData.get_excel_data("test_data.xlsx"))
@@ -787,7 +760,12 @@ class TestHomePage(BaseClass):
         data_collection.add_data("state", state)
         data_collection.save_data()
 
-
+    @allure.title("CSV Data class test")
+    @allure.description("This tests attempts to read the data from the CSV file.")
+    @allure.label("owner", "Jaroslaw Puchala")
+    @allure.suite("Test for the page objects")
+    @allure.sub_suite("Tests for data classes")
+    @allure.testcase("TC16")
     def test_csv_data(self):
         """
         Tests the csv data reader
