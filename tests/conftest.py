@@ -19,8 +19,16 @@ def pytest_addoption(parser) -> None:
 def browser_name(request):
     return request.config.getoption("--browser-name")
 
+# @pytest.fixture(params = ExcelData.get_excel_data("test_data.xlsx"))
+#     def load_data(request):
+#         """
+#         Returns the data for parametrized (data driven) tests.
+#         :return:
+#         """
+#         return request.param
 
 @pytest.fixture(scope = "class")
+@allure.title("Setting up the environment")
 def setup(request):
     """
     Set ups the environment for the tests.

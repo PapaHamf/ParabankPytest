@@ -1,40 +1,17 @@
+import pytest
 import logging
 import inspect
 
-from faker import Faker
 from logging import Logger
+from utils.myfaker import MyFaker
 
-class MyFaker(Faker):
-    """
-    Faker sub-class with couple of new methods especially w/ random numbers in names.
-    """
-
-    def name_with_random_no(self) -> str:
-        """
-        Returns random name with random number at the end.
-        :return: string
-        """
-        return self.name() + str(int(self.randint(0, 1000)))
-
-    def name_with_random_digits(self) -> str:
-        """
-        Returns random name with random numbers inside the name.
-        :return: string
-        """
-        name: str = self.name()
-        first: int = self.randint(0, len(name))
-        return name[:first] + "".join([str(self.randint(0, 9)) for i in range(first, first + 3)]) + name[first+3:]
-
+@pytest.mark.usefixtures("setup")
 class BaseClass():
     """
     Base class for all the test scenarios.
     """
 
     DIR_PREFIX: str = "../testdata/"
-
-    def __init__(self):
-        self._log: Logger = self.get_logger()
-        self._faker: MyFaker = self.get_faker()
 
     def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> Logger:
         """

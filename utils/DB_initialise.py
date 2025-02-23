@@ -43,7 +43,7 @@ class DataBaseInitialise():
         :param dataset: Data set that will be inserted into DB.
         :return:
         """
-        read_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + dataset, log = self._log)
+        read_data = ExcelData.get_excel_data(ExcelData.DIR_PREFIX + dataset)
         try:
             self._log.info(f"Inserting the data into {table_name.capitalize()} table.")
             for single_data in read_data:
@@ -114,4 +114,4 @@ if __name__ == "__main__":
     DBini = DataBaseInitialise()
     # DBini.purge_database()
     # DBini.populate_database()
-    print(DBini.get_database_table_transaction())
+    print(DBini.get_database_table_customer())
