@@ -9,9 +9,9 @@ from pageobjects.billpaypage import BillPayPage
 from pageobjects.findtransactionspage import FindTransactionPage
 from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.requestloanpage import RequestLoanPage
+from pageobjects.basepage import BasePage
 
-
-class SideMenu():
+class SideMenu(BasePage):
     """
     Class that holds the locators of the Side menu and methods to get its webelements.
     """

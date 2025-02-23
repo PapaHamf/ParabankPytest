@@ -4,7 +4,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.relative_locator import locate_with
 from selenium.webdriver.remote.webelement import WebElement
 
-class AccountOverview():
+from pageobjects.basepage import BasePage
+
+class AccountOverview(BasePage):
     """
     Class that holds the locators of the Account overview page and methods to get its webelements.
     """

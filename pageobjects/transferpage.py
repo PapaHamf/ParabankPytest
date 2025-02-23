@@ -2,7 +2,9 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-class TransferPage():
+from pageobjects.basepage import BasePage
+
+class TransferPage(BasePage):
     """
     Class that holds the locators of the Transfer page and methods to get its webelements.
     """

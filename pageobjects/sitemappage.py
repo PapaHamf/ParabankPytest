@@ -2,7 +2,7 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-from pageobjects.aboutus import AboutUs
+from pageobjects.aboutuspage import AboutUs
 from pageobjects.adminpage import AdminPage
 from pageobjects.openaccountpage import OpenAccountPage
 from pageobjects.accountoverviewpage import AccountOverview
@@ -11,9 +11,9 @@ from pageobjects.billpaypage import BillPayPage
 from pageobjects.findtransactionspage import FindTransactionPage
 from pageobjects.updateprofilepage import UpdateProfilePage
 from pageobjects.requestloanpage import RequestLoanPage
+from pageobjects.basepage import BasePage
 
-
-class SiteMap():
+class SiteMap(BasePage):
     """
     Class that holds the locators of the Site map page and methods to get its webelements.
     """

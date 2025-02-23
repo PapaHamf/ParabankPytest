@@ -3,7 +3,9 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-class ActivityPage():
+from pageobjects.basepage import BasePage
+
+class ActivityPage(BasePage):
     """
     Class that holds the locators of the Activity page and methods to get its webelements.
     """

@@ -2,7 +2,9 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-class UpdateProfilePage():
+from pageobjects.basepage import BasePage
+
+class UpdateProfilePage(BasePage):
     """
     Class that holds the locators of the Update profile page and methods to get its webelements.
     """

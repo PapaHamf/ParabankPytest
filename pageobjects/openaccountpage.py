@@ -3,8 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
 from pageobjects.activitypage import ActivityPage
+from pageobjects.basepage import BasePage
 
-class OpenAccountPage():
+class OpenAccountPage(BasePage):
     """
     Class that holds the locators of the Open account page and methods to get its webelements.
     """

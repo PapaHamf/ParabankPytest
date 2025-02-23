@@ -3,8 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
 from pageobjects.activitypage import ActivityPage
+from pageobjects.basepage import BasePage
 
-class RequestLoanPage():
+class RequestLoanPage(BasePage):
     """
     Class that holds the locators of the Request Loan page and methods to get its webelements.
     """

@@ -1,3 +1,5 @@
+from enum import verify
+
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -22,3 +24,18 @@ class AboutUs(BasePage):
         :return: webelement
         """
         return self.verify_element_presence(AboutUs.PAGE_HEADER)
+
+    def get_about_us_message(self, text: str) -> bool:
+        """
+        Verifies if the given text (about us message) is present on the page.
+        :param text: Text
+        :return: webelement
+        """
+        return self.verify_text_present_in_element(AboutUs.PAGE_HEADER, text)
+
+    def check_page_header_visibility(self):
+        """
+        Verifies if the page header is visible on the page.
+        :return:
+        """
+        return self.verify_element_visibility(self.get_page_header())

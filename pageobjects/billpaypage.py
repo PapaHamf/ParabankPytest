@@ -2,7 +2,9 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-class BillPayPage():
+from pageobjects.basepage import BasePage
+
+class BillPayPage(BasePage):
     """
     Class that holds the locators of the Bill Pay page and methods to get its webelements.
     """
