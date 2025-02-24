@@ -26,6 +26,7 @@ class RegisterPage(BasePage):
 
     # Declaring the errors labels
     # All of the errors contain the phrase "is required."
+    ERROR_LABEL: tuple = (By.CLASS_NAME, "error")
     FIRST_NAME_ERROR: tuple = (By.ID, "customer.firstName.errors")
     LAST_NAME_ERROR: tuple = (By.ID, "customer.lastName.errors")
     ADDRESS_STREET_ERROR: tuple = (By.ID, "customer.address.street.errors")
@@ -45,14 +46,17 @@ class RegisterPage(BasePage):
     # This locator should contain the text "Welcome"
     SUCCESSFUL_REGISTRATION: tuple = (By.CSS_SELECTOR, "h1.title")
     # This locator should contain the text "Your account was created successfully."
-    # SUCCESSFUL_REGISTRATION: tuple = (By.CSS_SELECTOR, "div#rightPanel p")
+    SUCCESSFUL_REGISTRATION_FULL_MSG: tuple = (By.CSS_SELECTOR, "div#rightPanel p")
 
     # Declaring the success & errors messages
-    ERROR_REQUIRED_MSG = "is required."
-    ERROR_INVALID_MSG = "is invalid."
+    ERROR_REQUIRED_MSG = " is required."
+    ERROR_INVALID_MSG = " is invalid."
     USERNAME_EXISTS_MSG = "This username already exists."
     REGISTRATION_SUCCESS_MSG = "Welcome"
     REGISTRATION_SUCCESS_FULL_MSG = "Your account was created successfully."
+    BAD_REQUEST_TITLE = "HTTP Status 400"
+    VALID_PAGE_TITLE_NEGATIVE = "ParaBank | Register for Free Online Account Access"
+    VALID_PAGE_TITLE_POSITIVE = "ParaBank | Customer Created"
     # Full text "An internal error has occurred and has been logged."
     GENERAL_ERROR_MSG = "internal error"
 
@@ -143,6 +147,13 @@ class RegisterPage(BasePage):
         """
         return self.verify_element_presence(RegisterPage.REGISTER_BUTTON)
 
+    def get_errors(self) -> list[str]:
+        """
+        Returns all of the errors from the page.
+        :return:
+        """
+        return [element.text for element in self._driver.find_elements(*RegisterPage.ERROR_LABEL)]
+
     def get_first_name_error(self) -> WebElement:
         """
         Returns the first name field error text.
@@ -227,3 +238,23 @@ class RegisterPage(BasePage):
         """
         return self.verify_element_presence(RegisterPage.SUCCESSFUL_REGISTRATION)
 
+    def get_successful_registration_full(self) -> WebElement:
+        """
+        Returns the successful registration full message.
+        :return: webelement
+        """
+        return self.verify_element_presence(RegisterPage.SUCCESSFUL_REGISTRATION_FULL_MSG)
+
+    def get_bad_request_title(self) -> bool:
+        """
+        Verifies if the page title contains the "bad request" text.
+        :return: bool
+        """
+        return self.verify_title_contains(RegisterPage.BAD_REQUEST_TITLE)
+
+    def get_page_title(self) -> str:
+        """
+        Returns the page title.
+        :return:
+        """
+        return self._driver.title

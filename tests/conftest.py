@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from utils.DB_initialise import DataBaseInitialise
+from utils.myfaker import MyFaker
 
 # Hook for command line options
 def pytest_addoption(parser) -> None:
@@ -26,6 +27,22 @@ def browser_name(request):
 #         :return:
 #         """
 #         return request.param
+
+@pytest.fixture(scope = "function", params = MyFaker.customer_data_one_empty_field())
+def get_customer_data_negative(request) -> list[dict]:
+    """
+    Returns the fake customer data w/ one element missing (empty) in each dictionary.
+    :return: List containing the dictionaries w/ generated user data.
+    """
+    return request.param
+
+@pytest.fixture(scope = "function", params = MyFaker.customer_data_all_fields())
+def get_customer_data_positive(request) -> list[dict]:
+    """
+    Returns the fake customer data w/ all valid fields in each dictionary.
+    :return: List containing the dictionaries w/ generated user data.
+    """
+    return request.param
 
 @pytest.fixture(scope = "class")
 @allure.title("Setting up the environment")

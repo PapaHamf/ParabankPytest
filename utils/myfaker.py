@@ -11,9 +11,9 @@ class MyFaker(Faker):
                        "state", "postcode", "ssn",
                        "username", "password", "confirm"]
     # Declaring the form field names (used for error messages)
-    FAKER_CUSTOMER_FIELD_NAMES = {"firstname" : "First Name", "lastname" : "Last Name",
+    FAKER_CUSTOMER_FIELD_NAMES = {"firstname" : "First name", "lastname" : "Last name",
                                   "address" : "Address", "city" : "City", "state": "State",
-                                  "postcode" : "Post Code", "phonenumber" : "Phone number",
+                                  "postcode" : "Zip Code", "phonenumber" : "Phone number",
                                   "ssn" : "Social Security Number", "username" : "Username",
                                   "password" : "Password", "confirm" : "Password confirmation"}
 
@@ -44,6 +44,33 @@ class MyFaker(Faker):
             temp_dict[MyFaker.FAKER_CUSTOMER_KEYS[i]] = ""
             cust_data.append(temp_dict)
         return cust_data
+
+    @staticmethod
+    def customer_data_all_fields(locale: str = "pl_PL") -> list[dict]:
+        """
+        Generates the customer data w/ all fields w/ proper values.
+        :param locale: Lets you define the locale of the fake data. Default value is pl_Pl.
+        :return:
+        """
+        cust_data: list = []
+        # TC's number starts at 11
+        for i in range(11, 16):
+            temp_dict: dict = {}
+            temp_dict["tc"] = i
+            temp_dict["firstname"] = MyFaker(locale).first_name()
+            temp_dict["lastname"] = MyFaker(locale).last_name()
+            temp_dict["address"] = MyFaker(locale).street_address()
+            temp_dict["city"] = MyFaker(locale).city()
+            temp_dict["state"] = MyFaker(locale).administrative_unit()
+            temp_dict["postcode"] = MyFaker(locale).postalcode()
+            temp_dict["phonenumber"] = MyFaker(locale).phone_number()
+            temp_dict["ssn"] = MyFaker(locale).ssn()
+            temp_dict["username"] = MyFaker(locale).user_name()
+            temp_dict["password"] = MyFaker(locale).password()
+            temp_dict["confirm"] = temp_dict["password"]
+            cust_data.append(temp_dict)
+        return cust_data
+
 
     def name_with_random_no(self) -> str:
         """

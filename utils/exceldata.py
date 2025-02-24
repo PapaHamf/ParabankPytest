@@ -37,7 +37,7 @@ class ExcelData(TestDataSet):
         :return: List of dictionaries w/ data.
         """
         baseclass: BaseClass = BaseClass()
-        log = baseclass.get_logger()
+        log: Logger = baseclass.get_logger()
         try:
             book = openpyxl.load_workbook(ExcelData.DIR_PREFIX + file_name)
             if sheet_name:
@@ -68,7 +68,7 @@ class ExcelData(TestDataSet):
         :return: None.
         """
         baseclass: BaseClass = BaseClass()
-        log = baseclass.get_logger()
+        log: Logger = baseclass.get_logger()
         book = Workbook()
         sheet = book.active
         sheet.title = "Data"
