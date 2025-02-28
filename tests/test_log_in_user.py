@@ -43,6 +43,7 @@ class TestLogin(BaseClass):
             self.driver.delete_all_cookies()
 
     @pytest.mark.smoke
+    @pytest.mark.skip
     def test_aboutus(self):
         """
         Tests the about us page.

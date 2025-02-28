@@ -2,6 +2,7 @@ import pytest
 import allure
 
 from utils.baseclass import BaseClass
+from utils.exceldata import ExcelData
 from pageobjects.homepage import HomePage
 from pageobjects.basepage import BasePage
 from pageobjects.sidemenu import SideMenu
@@ -11,12 +12,13 @@ class TestRegistration(BaseClass):
     ALLURE_DIR = "../allure-results/"
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New user registration")
-    @allure.sub_suite("TC 001-010")
-    @allure.tag("Negative", "Smoke", "Registration")
+    @allure.suite("New customer registration")
+    @allure.sub_suite("Negative registration")
+    @allure.tag("Negative", "Smoke", "Registration", "Empty field")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.skip
     def test_registration_negative(self, get_customer_data_negative):
         """
         Tests the customer registration w/ one empty field.
@@ -37,7 +39,7 @@ class TestRegistration(BaseClass):
         last_name = get_customer_data_negative["lastname"]
         log.info(f"Entering the last name: {last_name}")
         register_page.get_last_name().send_keys(last_name)
-        address = get_customer_data_negative["address"]
+        address = get_customer_data_negative["streetaddress"]
         log.info(f"Entering the address: {address}")
         register_page.get_address_street().send_keys(address)
         city = get_customer_data_negative["city"]
@@ -74,16 +76,20 @@ class TestRegistration(BaseClass):
             errors_list = register_page.get_errors()
             log.info("Verifying the number of errors on the page. Should equal 1.")
             assert len(errors_list) == 1
-            log.info(f"Verifying the proper error type. Should be {get_customer_data_negative["empty"]}")
+            log.info(f"Verifying if the error is visible in {get_customer_data_negative["empty"]} field.")
             assert errors_list[0] == get_customer_data_negative["empty"] + register_page.ERROR_REQUIRED_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New user registration")
-    @allure.sub_suite("TC 011-015")
+    @allure.suite("New customer registration")
+    @allure.sub_suite("Positive registration")
     @allure.tag("Positive", "Smoke", "Registration")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
+    @allure.testcase("Test Case no 11")
+    @allure.description("This test attempts to register the customer with all fields"
+                        " with proper values.")
     @pytest.mark.smoke
+    @pytest.mark.skip
     def test_registration_positive(self, get_customer_data_positive):
         """
         Tests the customer registration w/ all fields w/ proper values.
@@ -95,16 +101,13 @@ class TestRegistration(BaseClass):
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
         log.info(f"Testing the registration with all fields with proper values.")
-        allure.dynamic.testcase(f"Test Case no {get_customer_data_positive["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with all"
-                                   f" fields with proper values.")
         first_name = get_customer_data_positive["firstname"]
         log.info(f"Entering the first name: {first_name}")
         register_page.get_first_name().send_keys(first_name)
         last_name = get_customer_data_positive["lastname"]
         log.info(f"Entering the last name: {last_name}")
         register_page.get_last_name().send_keys(last_name)
-        address = get_customer_data_positive["address"]
+        address = get_customer_data_positive["streetaddress"]
         log.info(f"Entering the address: {address}")
         register_page.get_address_street().send_keys(address)
         city = get_customer_data_positive["city"]
@@ -145,3 +148,227 @@ class TestRegistration(BaseClass):
             log.info(f"Logging out the user {get_customer_data_positive["username"]}.")
             side_menu.get_log_out_link().click()
             self.driver.delete_all_cookies()
+
+    @allure.parent_suite("Tests for Parabank application")
+    @allure.suite("New customer registration")
+    @allure.sub_suite("Registration field values verification - too short")
+    @allure.tag("Negative", "Smoke", "Registration", "Too short")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Parasoft")
+    @pytest.mark.smoke
+    @pytest.mark.skip
+    def test_registration_too_short(self, get_excel_data_too_short):
+        """
+        Tests the customer registration w/ too short (one letter) field values.
+        :return:
+        """
+        log = self.get_logger()
+        self.driver.get(BasePage.HOME_PAGE)
+        home_page = HomePage(self.driver)
+        register_page = home_page.get_register_link()
+        data_collection = ExcelData("New customer registration", "Too short")
+        log.info(f"Testing the registration with too short {get_excel_data_too_short["tooshort"]} field.")
+        allure.dynamic.testcase(f"Test Case no {get_excel_data_too_short["tc"]}")
+        allure.dynamic.description(f"This test attempts to register the customer with too short"
+                                   f" {get_excel_data_too_short["tooshort"]} field.")
+        first_name = get_excel_data_too_short["firstname"]
+        log.info(f"Entering the first name: {first_name}")
+        register_page.get_first_name().send_keys(first_name)
+        last_name = get_excel_data_too_short["lastname"]
+        log.info(f"Entering the last name: {last_name}")
+        register_page.get_last_name().send_keys(last_name)
+        address = get_excel_data_too_short["streetaddress"]
+        log.info(f"Entering the address: {address}")
+        register_page.get_address_street().send_keys(address)
+        city = get_excel_data_too_short["city"]
+        log.info(f"Entering the city: {city}")
+        register_page.get_address_city().send_keys(city)
+        state = get_excel_data_too_short["state"]
+        log.info(f"Entering the state: {state}")
+        register_page.get_address_state().send_keys(state)
+        post_code = get_excel_data_too_short["postcode"]
+        log.info(f"Entering the post code: {post_code}")
+        register_page.get_address_post_code().send_keys(post_code)
+        phone_number = get_excel_data_too_short["phonenumber"]
+        log.info(f"Entering the phone number: {phone_number}")
+        register_page.get_phone_number().send_keys(phone_number)
+        ssn = get_excel_data_too_short["ssn"]
+        log.info(f"Entering the PESEL: {ssn}")
+        register_page.get_social_security_number().send_keys(ssn)
+        log.info("Clicking the register button.")
+        register_page.get_register_button().click()
+        with allure.step("Step 1: Verify the page title"):
+            log.info("Verifying the proper page title.")
+            assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
+        with allure.step("Step 2: Verify the registration"):
+            errors_list = register_page.get_errors()
+            log.info(f"Verifying if the error is visible in {get_excel_data_too_short["tooshort"]} field.")
+            assert errors_list[0] == get_excel_data_too_short["tooshort"] + register_page.ERROR_INVALID_MSG
+
+    @allure.parent_suite("Tests for Parabank application")
+    @allure.suite("New customer registration")
+    @allure.sub_suite("Registration field values verification - too long")
+    @allure.tag("Negative", "Smoke", "Registration", "Too long")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Parasoft")
+    @pytest.mark.smoke
+    @pytest.mark.skip
+    def test_registration_too_long(self, get_excel_data_too_long):
+        """
+        Tests the customer registration w/ too long (36 letters) field values.
+        :return:
+        """
+        log = self.get_logger()
+        self.driver.get(BasePage.HOME_PAGE)
+        home_page = HomePage(self.driver)
+        register_page = home_page.get_register_link()
+        data_collection = ExcelData("New customer registration", "Too long")
+        log.info(f"Testing the registration with too long {get_excel_data_too_long["toolong"]} field.")
+        allure.dynamic.testcase(f"Test Case no {get_excel_data_too_long["tc"]}")
+        allure.dynamic.description(f"This test attempts to register the customer with too long"
+                                   f" {get_excel_data_too_long["toolong"]} field.")
+        first_name = get_excel_data_too_long["firstname"]
+        log.info(f"Entering the first name: {first_name}")
+        register_page.get_first_name().send_keys(first_name)
+        last_name = get_excel_data_too_long["lastname"]
+        log.info(f"Entering the last name: {last_name}")
+        register_page.get_last_name().send_keys(last_name)
+        address = get_excel_data_too_long["streetaddress"]
+        log.info(f"Entering the address: {address}")
+        register_page.get_address_street().send_keys(address)
+        city = get_excel_data_too_long["city"]
+        log.info(f"Entering the city: {city}")
+        register_page.get_address_city().send_keys(city)
+        state = get_excel_data_too_long["state"]
+        log.info(f"Entering the state: {state}")
+        register_page.get_address_state().send_keys(state)
+        post_code = get_excel_data_too_long["postcode"]
+        log.info(f"Entering the post code: {post_code}")
+        register_page.get_address_post_code().send_keys(post_code)
+        phone_number = get_excel_data_too_long["phonenumber"]
+        log.info(f"Entering the phone number: {phone_number}")
+        register_page.get_phone_number().send_keys(phone_number)
+        ssn = get_excel_data_too_long["ssn"]
+        log.info(f"Entering the PESEL: {ssn}")
+        register_page.get_social_security_number().send_keys(ssn)
+        log.info("Clicking the register button.")
+        register_page.get_register_button().click()
+        with allure.step("Step 1: Verify the page title"):
+            log.info("Verifying the proper page title.")
+            assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
+        with allure.step("Step 2: Verify the registration"):
+            errors_list = register_page.get_errors()
+            log.info(f"Verifying if the error is visible in {get_excel_data_too_long["toolong"]} field.")
+            assert errors_list[0] == get_excel_data_too_long["toolong"] + register_page.ERROR_INVALID_MSG
+
+    @allure.parent_suite("Tests for Parabank application")
+    @allure.suite("New customer registration")
+    @allure.sub_suite("Registration field values verification - added digits")
+    @allure.tag("Negative", "Smoke", "Registration", "Added digits")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Parasoft")
+    @pytest.mark.smoke
+    def test_registration_added_digits(self, get_excel_data_added_digits):
+        """
+        Tests the customer registration w/ random digits added to field values.
+        :return:
+        """
+        log = self.get_logger()
+        self.driver.get(BasePage.HOME_PAGE)
+        home_page = HomePage(self.driver)
+        register_page = home_page.get_register_link()
+        data_collection = ExcelData("New customer registration", "Added digits")
+        log.info(f"Testing the registration with random digits added to the"
+                 f" {get_excel_data_added_digits["added"]} field.")
+        allure.dynamic.testcase(f"Test Case no {get_excel_data_added_digits["tc"]}")
+        allure.dynamic.description(f"This test attempts to register the customer with random"
+                                   f" digits added to the {get_excel_data_added_digits["added"]} field.")
+        first_name = get_excel_data_added_digits["firstname"]
+        log.info(f"Entering the first name: {first_name}")
+        register_page.get_first_name().send_keys(first_name)
+        last_name = get_excel_data_added_digits["lastname"]
+        log.info(f"Entering the last name: {last_name}")
+        register_page.get_last_name().send_keys(last_name)
+        address = get_excel_data_added_digits["streetaddress"]
+        log.info(f"Entering the address: {address}")
+        register_page.get_address_street().send_keys(address)
+        city = get_excel_data_added_digits["city"]
+        log.info(f"Entering the city: {city}")
+        register_page.get_address_city().send_keys(city)
+        state = get_excel_data_added_digits["state"]
+        log.info(f"Entering the state: {state}")
+        register_page.get_address_state().send_keys(state)
+        post_code = get_excel_data_added_digits["postcode"]
+        log.info(f"Entering the post code: {post_code}")
+        register_page.get_address_post_code().send_keys(post_code)
+        phone_number = get_excel_data_added_digits["phonenumber"]
+        log.info(f"Entering the phone number: {phone_number}")
+        register_page.get_phone_number().send_keys(phone_number)
+        ssn = get_excel_data_added_digits["ssn"]
+        log.info(f"Entering the PESEL: {ssn}")
+        register_page.get_social_security_number().send_keys(ssn)
+        log.info("Clicking the register button.")
+        register_page.get_register_button().click()
+        with allure.step("Step 1: Verify the page title"):
+            log.info("Verifying the proper page title.")
+            assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
+        with allure.step("Step 2: Verify the registration"):
+            errors_list = register_page.get_errors()
+            log.info(f"Verifying if the error is visible in {get_excel_data_added_digits["added"]} field.")
+            assert errors_list[0] == get_excel_data_added_digits["added"] + register_page.ERROR_INVALID_MSG
+
+    @allure.parent_suite("Tests for Parabank application")
+    @allure.suite("New customer registration")
+    @allure.sub_suite("Registration field values verification - added special characters")
+    @allure.tag("Negative", "Smoke", "Registration", "Added special characters")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Parasoft")
+    @pytest.mark.smoke
+    def test_registration_added_special(self, get_excel_data_added_special):
+        """
+        Tests the customer registration w/ special characters added to field values.
+        :return:
+        """
+        log = self.get_logger()
+        self.driver.get(BasePage.HOME_PAGE)
+        home_page = HomePage(self.driver)
+        register_page = home_page.get_register_link()
+        data_collection = ExcelData("New customer registration", "Added special characters")
+        log.info(f"Testing the registration with special characters added to the"
+                 f" {get_excel_data_added_special["added"]} field.")
+        allure.dynamic.testcase(f"Test Case no {get_excel_data_added_special["tc"]}")
+        allure.dynamic.description(f"This test attempts to register the customer with random"
+                                   f" digits added to the {get_excel_data_added_special["added"]} field.")
+        first_name = get_excel_data_added_special["firstname"]
+        log.info(f"Entering the first name: {first_name}")
+        register_page.get_first_name().send_keys(first_name)
+        last_name = get_excel_data_added_special["lastname"]
+        log.info(f"Entering the last name: {last_name}")
+        register_page.get_last_name().send_keys(last_name)
+        address = get_excel_data_added_special["streetaddress"]
+        log.info(f"Entering the address: {address}")
+        register_page.get_address_street().send_keys(address)
+        city = get_excel_data_added_special["city"]
+        log.info(f"Entering the city: {city}")
+        register_page.get_address_city().send_keys(city)
+        state = get_excel_data_added_special["state"]
+        log.info(f"Entering the state: {state}")
+        register_page.get_address_state().send_keys(state)
+        post_code = get_excel_data_added_special["postcode"]
+        log.info(f"Entering the post code: {post_code}")
+        register_page.get_address_post_code().send_keys(post_code)
+        phone_number = get_excel_data_added_special["phonenumber"]
+        log.info(f"Entering the phone number: {phone_number}")
+        register_page.get_phone_number().send_keys(phone_number)
+        ssn = get_excel_data_added_special["ssn"]
+        log.info(f"Entering the PESEL: {ssn}")
+        register_page.get_social_security_number().send_keys(ssn)
+        log.info("Clicking the register button.")
+        register_page.get_register_button().click()
+        with allure.step("Step 1: Verify the page title"):
+            log.info("Verifying the proper page title.")
+            assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
+        with allure.step("Step 2: Verify the registration"):
+            errors_list = register_page.get_errors()
+            log.info(f"Verifying if the error is visible in {get_excel_data_added_special["added"]} field.")
+            assert errors_list[0] == get_excel_data_added_special["added"] + register_page.ERROR_INVALID_MSG

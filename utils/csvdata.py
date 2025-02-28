@@ -31,7 +31,7 @@ class CSVData(TestDataSet):
         log = baseclass.get_logger()
         try:
             csv_data: list = []
-            with open(CSVData.DIR_PREFIX + file_name, "r") as file_handle:
+            with open(CSVData.DIR_PREFIX + file_name, "r", encoding = "utf-8-sig") as file_handle:
                 reader = csv.DictReader(file_handle)
                 for row in reader:
                     csv_data.append(row)

@@ -6,7 +6,9 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from utils.DB_initialise import DataBaseInitialise
+from utils.exceldata import ExcelData
 from utils.myfaker import MyFaker
+from utils.csvdata import CSVData
 
 # Hook for command line options
 def pytest_addoption(parser) -> None:
@@ -20,13 +22,37 @@ def pytest_addoption(parser) -> None:
 def browser_name(request):
     return request.config.getoption("--browser-name")
 
-# @pytest.fixture(params = ExcelData.get_excel_data("test_data.xlsx"))
-#     def load_data(request):
-#         """
-#         Returns the data for parametrized (data driven) tests.
-#         :return:
-#         """
-#         return request.param
+@pytest.fixture(params = ExcelData.get_excel_data("test_data_too_short.xlsx"))
+def get_excel_data_too_short(request):
+    """
+    Returns the data w/ too short values for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
+@pytest.fixture(params = ExcelData.get_excel_data("test_data_too_long.xlsx"))
+def get_excel_data_too_long(request):
+    """
+    Returns the data w/ too long values for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
+@pytest.fixture(params = CSVData.get_csv_data("test_data_added_digits.csv"))
+def get_excel_data_added_digits(request):
+    """
+    Returns the data w/ random digits for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
+@pytest.fixture(params = CSVData.get_csv_data("test_data_added_special.csv"))
+def get_excel_data_added_special(request):
+    """
+    Returns the data w/ special characters for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
 
 @pytest.fixture(scope = "function", params = MyFaker.customer_data_one_empty_field())
 def get_customer_data_negative(request) -> list[dict]:
@@ -51,27 +77,30 @@ def setup(request):
     Set ups the environment for the tests.
     """
     # Purging the database and filling it w/ test data
-    DBini = DataBaseInitialise()
-    DBini.purge_database()
-    DBini.populate_database()
+    with allure.step("Step 1: Initializing the database"):
+        DBini = DataBaseInitialise()
+        DBini.purge_database()
+        DBini.populate_database()
     # Retrieving the value of the command line option
-    match request.config.getoption("--browser-name"):
-        case "chrome":
-            chrome_options: ChromeOptions = webdriver.ChromeOptions()
-            # chrome_options.add_argument("--headless")
-            chrome_options.add_argument("--ignore-certificate-errors")
-            driver = webdriver.Chrome(options = chrome_options)
-        case "firefox":
-            firefox_options: FirefoxOptions = webdriver.FirefoxOptions()
-            firefox_options.add_argument("--headless")
-            firefox_options.add_argument("--ignore-certificate-errors")
-            driver = webdriver.Firefox(options = firefox_options)
-        case "edge":
-            edge_options: EdgeOptions = webdriver.EdgeOptions()
-            edge_options.add_argument("--headless")
-            edge_options.add_argument("--ignore-certificate-errors")
-            driver = webdriver.Edge(options = edge_options)
-    driver.implicitly_wait(5)
-    request.cls.driver = driver
+    with allure.step("Step 2: Initializing the driver"):
+        match request.config.getoption("--browser-name"):
+            case "chrome":
+                chrome_options: ChromeOptions = webdriver.ChromeOptions()
+                # chrome_options.add_argument("--headless")
+                chrome_options.add_argument("--ignore-certificate-errors")
+                driver = webdriver.Chrome(options = chrome_options)
+            case "firefox":
+                firefox_options: FirefoxOptions = webdriver.FirefoxOptions()
+                firefox_options.add_argument("--headless")
+                firefox_options.add_argument("--ignore-certificate-errors")
+                driver = webdriver.Firefox(options = firefox_options)
+            case "edge":
+                edge_options: EdgeOptions = webdriver.EdgeOptions()
+                edge_options.add_argument("--headless")
+                edge_options.add_argument("--ignore-certificate-errors")
+                driver = webdriver.Edge(options = edge_options)
+        driver.implicitly_wait(5)
+        request.cls.driver = driver
     yield driver
-    driver.close()
+    with allure.step("Step 3: Closing the driver"):
+        driver.close()
