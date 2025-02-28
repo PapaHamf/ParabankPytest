@@ -1,0 +1,38 @@
+{
+     "Test case 36": {
+          "tc": "36",
+          "tooshort": "Social Security Number",
+          "firstname": "\u0141ukasz",
+          "lastname": "Kossak",
+          "streetaddress": "pl. Wi\u015bniowa 978",
+          "city": "\u0141ukow",
+          "state": "Warmi\u0144sko - mazurskie",
+          "postcode": "05-003",
+          "phonenumber": "+48 882 708 397",
+          "ssn": "2"
+     },
+     "Test case 35": {
+          "tc": "35",
+          "tooshort": "Phone number",
+          "firstname": "Jeremi",
+          "lastname": "Nabia\u0142ek",
+          "streetaddress": "pl. Cmentarna 57",
+          "city": "Grudzi\u0105dz",
+          "state": "Podkarpackie",
+          "postcode": "34-891",
+          "phonenumber": "7",
+          "ssn": "83101537105"
+     },
+     "Test case 34": {
+          "tc": "34",
+          "tooshort": "Zip Code",
+          "firstname": "Juliusz",
+          "lastname": "Hyjek",
+          "streetaddress": "ul. Sokola 92",
+          "city": "Boles\u0142awiec",
+          "state": "Mazowieckie",
+          "postcode": "3",
+          "phonenumber": "22 357 37 73",
+          "ssn": "01261101150"
+     }
+}

@@ -32,7 +32,7 @@ class MyFaker(Faker):
             temp_dict["empty"] = MyFaker.FAKER_CUSTOMER_FIELD_NAMES[MyFaker.FAKER_CUSTOMER_KEYS[i]]
             temp_dict["firstname"] = MyFaker(locale).unique.first_name()
             temp_dict["lastname"] = MyFaker(locale).unique.last_name()
-            temp_dict["address"] = MyFaker(locale).unique.street_address()
+            temp_dict["streetaddress"] = MyFaker(locale).unique.street_address()
             temp_dict["city"] = MyFaker(locale).unique.city()
             temp_dict["state"] = MyFaker(locale).unique.administrative_unit()
             temp_dict["postcode"] = MyFaker(locale).unique.postalcode()
@@ -58,7 +58,7 @@ class MyFaker(Faker):
             temp_dict: dict = {}
             temp_dict["firstname"] = MyFaker(locale).unique.first_name()
             temp_dict["lastname"] = MyFaker(locale).unique.last_name()
-            temp_dict["address"] = MyFaker(locale).unique.street_address()
+            temp_dict["streetaddress"] = MyFaker(locale).unique.street_address()
             temp_dict["city"] = MyFaker(locale).unique.city()
             temp_dict["state"] = MyFaker(locale).unique.administrative_unit()
             temp_dict["postcode"] = MyFaker(locale).unique.postalcode()

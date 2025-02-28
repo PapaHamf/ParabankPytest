@@ -1,0 +1,38 @@
+{
+     "Test case 42": {
+          "tc": "42",
+          "specials": "Social Security Number",
+          "firstname": "Tomasz",
+          "lastname": "Weso\u0142y",
+          "streetaddress": "ulica Lipowa 83",
+          "city": "Grodzisk Mazowiecki",
+          "state": "\u015al\u0105skie",
+          "postcode": "65-238",
+          "phonenumber": "+48 508 517 269",
+          "ssn": "0022126025$"
+     },
+     "Test case 41": {
+          "tc": "41",
+          "specials": "Phone number",
+          "firstname": "Krystyna",
+          "lastname": "Makaruk",
+          "streetaddress": "al. Gorska 41",
+          "city": "\u017baga\u0144",
+          "state": "Lubelskie",
+          "postcode": "21-340",
+          "phonenumber": "690 551 07$",
+          "ssn": "02242282767"
+     },
+     "Test case 40": {
+          "tc": "40",
+          "specials": "Zip Code",
+          "firstname": "Mateusz",
+          "lastname": "Jaroch",
+          "streetaddress": "ulica Majowa 27",
+          "city": "Stalowa Wola",
+          "state": "\u0141odzkie",
+          "postcode": "81-97$",
+          "phonenumber": "577 050 196",
+          "ssn": "85120321321"
+     }
+}

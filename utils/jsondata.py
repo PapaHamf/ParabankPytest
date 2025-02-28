@@ -43,8 +43,11 @@ class JSONData(TestDataSet):
         baseclass: BaseClass = BaseClass()
         log = baseclass.get_logger()
         try:
+            json_data: list = []
             with open(JSONData.DIR_PREFIX + file_name) as file_handle:
-                json_data: dict = json.load(file_handle)
+                file_data: dict = json.load(file_handle)
+                for key, value in file_data.items():
+                    json_data.append(value)
         except FileNotFoundError as error:
             log.warning(f"File {JSONData.DIR_PREFIX + file_name} not found.")
             raise OperationError(error.strerror)

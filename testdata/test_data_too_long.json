@@ -1,0 +1,38 @@
+{
+     "Test case 39": {
+          "tc": "39",
+          "toolong": "Social Security Number",
+          "firstname": "Blanka",
+          "lastname": "Dargacz",
+          "streetaddress": "aleja \u017beromskiego 89",
+          "city": "Pi\u0142a",
+          "state": "Mazowieckie",
+          "postcode": "19-341",
+          "phonenumber": "735 843 553",
+          "ssn": "740512046834412"
+     },
+     "Test case 38": {
+          "tc": "38",
+          "toolong": "Phone number",
+          "firstname": "Marcin",
+          "lastname": "Py\u015b",
+          "streetaddress": "aleja Osiedlowa 61/84",
+          "city": "Marki",
+          "state": "Warmi\u0144sko - mazurskie",
+          "postcode": "08-888",
+          "phonenumber": "740512046834412",
+          "ssn": "13222113825"
+     },
+     "Test case 37": {
+          "tc": "37",
+          "toolong": "Zip Code",
+          "firstname": "Kornel",
+          "lastname": "Koman",
+          "streetaddress": "ulica Jana III Sobieskiego 45/21",
+          "city": "Szczecin",
+          "state": "Warmi\u0144sko - mazurskie",
+          "postcode": "740512046834412",
+          "phonenumber": "+48 608 947 651",
+          "ssn": "74051204683"
+     }
+}

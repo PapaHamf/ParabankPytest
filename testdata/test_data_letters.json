@@ -1,0 +1,38 @@
+{
+     "Test case 33": {
+          "tc": "33",
+          "letters": "Social Security Number",
+          "firstname": "Miko\u0142aj",
+          "lastname": "Goss",
+          "streetaddress": "plac Poniatowskiego 28/74",
+          "city": "Tychy",
+          "state": "\u015awi\u0119tokrzyskie",
+          "postcode": "52-962",
+          "phonenumber": "+48 665 799 322",
+          "ssn": "Jagoda"
+     },
+     "Test case 32": {
+          "tc": "32",
+          "letters": "Phone number",
+          "firstname": "El\u017cbieta",
+          "lastname": "Opas",
+          "streetaddress": "ul. Parkowa 411",
+          "city": "Katowice",
+          "state": "Ma\u0142opolskie",
+          "postcode": "59-279",
+          "phonenumber": "Jagoda",
+          "ssn": "72041057156"
+     },
+     "Test case 31": {
+          "tc": "31",
+          "letters": "Zip Code",
+          "firstname": "Kornelia",
+          "lastname": "Jandu\u0142a",
+          "streetaddress": "al. Korfantego 28",
+          "city": "\u015awi\u0119toch\u0142owice",
+          "state": "Pomorskie",
+          "postcode": "Jagoda",
+          "phonenumber": "+48 880 380 941",
+          "ssn": "18301428814"
+     }
+}

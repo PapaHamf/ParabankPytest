@@ -9,6 +9,7 @@ from utils.DB_initialise import DataBaseInitialise
 from utils.exceldata import ExcelData
 from utils.myfaker import MyFaker
 from utils.csvdata import CSVData
+from utils.jsondata import JSONData
 
 # Hook for command line options
 def pytest_addoption(parser) -> None:
@@ -23,7 +24,7 @@ def browser_name(request):
     return request.config.getoption("--browser-name")
 
 @pytest.fixture(params = ExcelData.get_excel_data("test_data_too_short.xlsx"))
-def get_excel_data_too_short(request):
+def get_excel_data_strings_too_short(request):
     """
     Returns the data w/ too short values for parametrized (data driven) tests.
     :return: List containing the dictionaries w/ data.
@@ -31,7 +32,7 @@ def get_excel_data_too_short(request):
     return request.param
 
 @pytest.fixture(params = ExcelData.get_excel_data("test_data_too_long.xlsx"))
-def get_excel_data_too_long(request):
+def get_excel_data_strings_too_long(request):
     """
     Returns the data w/ too long values for parametrized (data driven) tests.
     :return: List containing the dictionaries w/ data.
@@ -39,7 +40,7 @@ def get_excel_data_too_long(request):
     return request.param
 
 @pytest.fixture(params = CSVData.get_csv_data("test_data_added_digits.csv"))
-def get_excel_data_added_digits(request):
+def get_excel_data_strings_added_digits(request):
     """
     Returns the data w/ random digits for parametrized (data driven) tests.
     :return: List containing the dictionaries w/ data.
@@ -47,7 +48,39 @@ def get_excel_data_added_digits(request):
     return request.param
 
 @pytest.fixture(params = CSVData.get_csv_data("test_data_added_special.csv"))
-def get_excel_data_added_special(request):
+def get_excel_data_strings_added_special(request):
+    """
+    Returns the data w/ special characters for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
+@pytest.fixture(params = JSONData.get_json_data("test_data_letters.json"))
+def get_json_data_numbers_letters(request):
+    """
+    Returns the data w/ letters in numerical fields for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
+@pytest.fixture(params = JSONData.get_json_data("test_data_too_short.json"))
+def get_json_data_numbers_too_short(request):
+    """
+    Returns the data w/ too short values for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
+@pytest.fixture(params = JSONData.get_json_data("test_data_too_long.json"))
+def get_json_data_numbers_too_long(request):
+    """
+    Returns the data w/ too long values for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
+@pytest.fixture(params = JSONData.get_json_data("test_data_specials.json"))
+def get_json_data_numbers_special(request):
     """
     Returns the data w/ special characters for parametrized (data driven) tests.
     :return: List containing the dictionaries w/ data.

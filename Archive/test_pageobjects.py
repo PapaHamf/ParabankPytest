@@ -766,6 +766,7 @@ class TestHomePage(BaseClass):
     @allure.suite("Test for the page objects")
     @allure.sub_suite("Tests for data classes")
     @allure.testcase("TC16")
+    @pytest.mark.skip
     def test_csv_data(self):
         """
         Tests the csv data reader
@@ -775,3 +776,39 @@ class TestHomePage(BaseClass):
         csv_data = CSVData("TestHomePage", "Test CSV reader", log)
         csv_dataset = CSVData.get_csv_data("test_data.csv", log)
         print(csv_dataset)
+
+    @pytest.mark.skip
+    def test_data_gen(self):
+        self.faker = self.get_faker()
+        self.driver.get(BasePage.HOME_PAGE)
+        home_page = HomePage(self.driver)
+        register_page = home_page.get_register_link()
+        data_collection = JSONData("New customer registration", "Test case 42")
+        first_name = self.faker.first_name()
+        data_collection.add_data("firstname", first_name)
+        register_page.get_first_name().send_keys(first_name)
+        last_name = self.faker.last_name()
+        data_collection.add_data("lastname", last_name)
+        register_page.get_last_name().send_keys(last_name)
+        address = self.faker.street_address()
+        data_collection.add_data("streetaddress", address)
+        register_page.get_address_street().send_keys(address)
+        city = self.faker.city()
+        data_collection.add_data("city", city)
+        register_page.get_address_city().send_keys(city)
+        state = self.faker.administrative_unit()
+        data_collection.add_data("state", state)
+        register_page.get_address_state().send_keys(state)
+        post_code = self.faker.postalcode()
+        data_collection.add_data("postcode", post_code)
+        register_page.get_address_post_code().send_keys(post_code)
+        phone_number = self.faker.phone_number()
+        data_collection.add_data("phonenumber", phone_number)
+        register_page.get_phone_number().send_keys(phone_number)
+        ssn = self.faker.ssn()
+        data_collection.add_data("ssn", ssn)
+        register_page.get_social_security_number().send_keys(ssn)
+        data_collection.save_data()
+
+    def test_json(self, get_json_data_numbers_letters):
+        print(get_json_data_numbers_letters)
