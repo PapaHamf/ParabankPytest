@@ -52,6 +52,7 @@ class RegisterPage(BasePage):
     ERROR_REQUIRED_MSG = " is required."
     ERROR_INVALID_MSG = " is invalid."
     USERNAME_EXISTS_MSG = "This username already exists."
+    PASSWORDS_DO_NOT_MATCH = "Passwords did not match."
     REGISTRATION_SUCCESS_MSG = "Welcome"
     REGISTRATION_SUCCESS_FULL_MSG = "Your account was created successfully."
     BAD_REQUEST_TITLE = "HTTP Status 400"

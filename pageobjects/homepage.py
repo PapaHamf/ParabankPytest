@@ -43,6 +43,12 @@ class HomePage(BasePage):
     # 2. The username and password could not be verified.
     ERROR_MSG: tuple = (By.CLASS_NAME, "error")
 
+    # Declaring the success and error messages
+    VALID_PAGE_TITLE_NEGATIVE = "ParaBank | Error"
+    ERROR_HEADER = "Error!"
+    MISSING_USER_PASSWORD_MSG = "Please enter a username and password."
+    NOT_VERIFIED_USER_PASSWORD_MSG = "The username and password could not be verified."
+
     def __init__(self, driver):
         self._driver = driver
 
@@ -158,4 +164,10 @@ class HomePage(BasePage):
         """
         return self.verify_element_presence(HomePage.ERROR_MSG)
 
+    def get_page_title(self) -> str:
+        """
+        Returns the page title.
+        :return:
+        """
+        return self._driver.title
 

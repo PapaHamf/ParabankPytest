@@ -4,22 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="CSV class + logger fixes 21.02">
-      <change afterPath="$PROJECT_DIR$/pageobjects/basepage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_homepage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_log_in_user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_user_registration.py" afterDir="false" />
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Added tcs 01.03">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/aboutus.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/aboutus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/adminpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/adminpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageobjects/registerpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/registerpage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pageobjects/sidemenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/sidemenu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/sitemap.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/sitemap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_pageobjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/Archive/test_pageobjects.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/DB_initialise.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/DB_initialise.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/csvdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/csvdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/dataset_account.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/dataset_account.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/dataset_customer.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/dataset_customer.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/dataset_transaction.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/dataset_transaction.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_archive.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_archive.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_added_digits.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_added_digits.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_added_special.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_added_special.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_letters.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_letters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_specials.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_specials.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_long.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_too_long.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_long.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_too_long.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_short.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_too_short.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_short.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_too_short.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_customer_registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_customer_registration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_log_in_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_log_in_user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,10 +68,12 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests in test_log_in_user.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests in test_pageobjects.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in student.executor&quot;: &quot;Run&quot;,
     &quot;Python.DB_initialise.executor&quot;: &quot;Run&quot;,
     &quot;Python.HYSQLData.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aboutus.executor&quot;: &quot;Run&quot;,
     &quot;Python.accountoverviewpage.executor&quot;: &quot;Run&quot;,
     &quot;Python.app.executor&quot;: &quot;Run&quot;,
     &quot;Python.baseclass.executor&quot;: &quot;Run&quot;,
@@ -118,7 +124,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-1b1018131e27-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.180" />
+        <option value="bundled-python-sdk-14705d77f0bb-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.25659.43" />
       </set>
     </attachedChunks>
   </component>
@@ -130,62 +136,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736602020130</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Parabank Pytest baseclass changes &amp; openaccount page 11.01">
-      <option name="closed" value="true" />
-      <created>1736613320431</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1736613320431</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Parabank Pytest openaccount page 11.01">
-      <option name="closed" value="true" />
-      <created>1736622346376</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1736622346376</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Parabank Pytest baseclass update 11.01">
-      <option name="closed" value="true" />
-      <created>1736622364396</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1736622364396</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Parabank Pytest account overview update 11.01">
-      <option name="closed" value="true" />
-      <created>1736626790927</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1736626790927</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Parabank Pytest account overview update 11.01">
-      <option name="closed" value="true" />
-      <created>1736642001000</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1736642001000</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Activity page, updated baseclass 12.01">
-      <option name="closed" value="true" />
-      <created>1736677331138</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1736677331138</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Activity page update 12.01">
-      <option name="closed" value="true" />
-      <created>1736679245015</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1736679245015</updated>
     </task>
     <task id="LOCAL-00010" summary="Activity page update 12.01">
       <option name="closed" value="true" />
@@ -523,17 +473,66 @@
       <option name="project" value="LOCAL" />
       <updated>1740172841703</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Base class + base page 22.02">
+      <option name="closed" value="true" />
+      <created>1740258681949</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1740258681950</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Base page inher added 23.02">
+      <option name="closed" value="true" />
+      <created>1740343606351</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1740343606351</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Test cases added 23.02">
+      <option name="closed" value="true" />
+      <created>1740343640036</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1740343640036</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Test cases registration 24.02">
+      <option name="closed" value="true" />
+      <created>1740428865255</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1740428865255</updated>
+    </task>
+    <task id="LOCAL-00056" summary="TCs too long/short, digits &amp; specials 28.02">
+      <option name="closed" value="true" />
+      <created>1740731970055</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1740731970056</updated>
+    </task>
+    <task id="LOCAL-00057" summary="TCs numerical fields verif 28.02">
+      <option name="closed" value="true" />
+      <created>1740780128339</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1740780128339</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Added tcs 01.03">
+      <option name="closed" value="true" />
+      <created>1740862646365</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1740862646365</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test page objects 19.01" />
-    <MESSAGE value="Test page objects 20.01" />
-    <MESSAGE value="Last page objects 20.01" />
-    <MESSAGE value="ExcelData class 20.01" />
-    <MESSAGE value="ExcelData class 21.01" />
-    <MESSAGE value="ExcelData class done 21.01" />
-    <MESSAGE value="ExcelData class update 23.01" />
     <MESSAGE value="JSONData class  23.01" />
     <MESSAGE value="Data classes done  24.01" />
     <MESSAGE value="HyperSQLConnector class 26.01" />
@@ -552,6 +551,13 @@
     <MESSAGE value="Exc handling &amp; DB init 19.02" />
     <MESSAGE value="Constant update 21.02" />
     <MESSAGE value="CSV class + logger fixes 21.02" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSV class + logger fixes 21.02" />
+    <MESSAGE value="Base class + base page 22.02" />
+    <MESSAGE value="Base page inher added 23.02" />
+    <MESSAGE value="Test cases added 23.02" />
+    <MESSAGE value="Test cases registration 24.02" />
+    <MESSAGE value="TCs too long/short, digits &amp; specials 28.02" />
+    <MESSAGE value="TCs numerical fields verif 28.02" />
+    <MESSAGE value="Added tcs 01.03" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tcs 01.03" />
   </component>
 </project>
