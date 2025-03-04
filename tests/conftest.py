@@ -23,6 +23,14 @@ def pytest_addoption(parser) -> None:
 def browser_name(request):
     return request.config.getoption("--browser-name")
 
+@pytest.fixture(params  = ExcelData.get_excel_data("dataset_customer.xlsx"))
+def get_excel_data_customer_logins(request):
+    """
+    Returns the customer login data for parametrized (data driven) tests.
+    :return: List containing the dictionaries w/ data.
+    """
+    return request.param
+
 @pytest.fixture(params = ExcelData.get_excel_data("test_data_too_short.xlsx"))
 def get_excel_data_strings_too_short(request):
     """

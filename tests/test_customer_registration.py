@@ -167,14 +167,14 @@ class TestRegistration(BaseClass):
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
-        with allure.step("Step 2: Verify if the user is logged in."):
+        with allure.step("Step 2: Verify if the user is logged in"):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
-            assert logged_msg[1] == get_customer_data_positive["username"]
             side_menu = SideMenu(self.driver)
             log.info(f"Logging out the user {get_customer_data_positive["username"]}.")
             side_menu.get_log_out_link().click()
             self.driver.delete_all_cookies()
+            assert logged_msg[1] == get_customer_data_positive["username"]
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("New customer registration")
@@ -774,11 +774,11 @@ class TestRegistration(BaseClass):
         with allure.step("Step 2: Verify if the user is logged in."):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
-            assert logged_msg[1] == customer_data["username"]
             side_menu = SideMenu(self.driver)
             log.info(f"Logging out the user {customer_data["username"]}.")
             side_menu.get_log_out_link().click()
             self.driver.delete_all_cookies()
+            assert logged_msg[1] == customer_data["username"]
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("New customer registration")
@@ -1005,11 +1005,11 @@ class TestRegistration(BaseClass):
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
-        with allure.step("Step 2: Verify if the user is logged in."):
+        with allure.step("Step 2: Verify if the user is logged in"):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
             assert logged_msg[1] == customer_data["username"]
-        with allure.step("Step 3: Verify if the data is written to the database."):
+        with allure.step("Step 3: Verify if the data is written to the database"):
             log.info("Fetching the data from the database.")
             db_handle = HyperSQLConnector()
             db_handle.get_cursor()
@@ -1021,11 +1021,11 @@ class TestRegistration(BaseClass):
             db_data.pop(0)
             tc_data = list(customer_data.values())
             tc_data.pop()
-            assert tc_data == db_data
             side_menu = SideMenu(self.driver)
             log.info(f"Logging out the user {customer_data["username"]}.")
             side_menu.get_log_out_link().click()
             self.driver.delete_all_cookies()
+            assert tc_data == db_data
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("New customer registration")
@@ -1106,12 +1106,11 @@ class TestRegistration(BaseClass):
             error = register_page.get_confirm_password_error()
             log.info(f"Verifying if the error is visible in the Confirm password field.")
             assert error.text == register_page.PASSWORDS_DO_NOT_MATCH
-        with allure.step("Step 3: Verify if the data is not written to the database."):
+        with allure.step("Step 3: Verify if the data is not written to the database"):
             log.info("Fetching the data from the database.")
             db_handle = HyperSQLConnector()
             db_handle.get_cursor()
             db_data = db_handle.get_data_from_db(f"SELECT * FROM customer WHERE first_name = '{first_name}'"
                                                  f" AND last_name = '{last_name}'")
             db_handle.close_connection()
-            print(db_data)
             assert len(db_data) == 0

@@ -9,6 +9,7 @@ from pageobjects.aboutuspage import AboutUs
 from pageobjects.adminpage import AdminPage
 from pageobjects.contactpage import ContactPage
 from pageobjects.basepage import BasePage
+from pageobjects.sidemenu import SideMenu
 
 class HomePage(BasePage):
     """
@@ -45,6 +46,7 @@ class HomePage(BasePage):
 
     # Declaring the success and error messages
     VALID_PAGE_TITLE_NEGATIVE = "ParaBank | Error"
+    VALID_PAGE_TITLE_POSITIVE = "ParaBank | Accounts Overview"
     ERROR_HEADER = "Error!"
     MISSING_USER_PASSWORD_MSG = "Please enter a username and password."
     NOT_VERIFIED_USER_PASSWORD_MSG = "The username and password could not be verified."
@@ -66,12 +68,13 @@ class HomePage(BasePage):
         """
         return self.verify_element_presence(HomePage.PASSWORD)
 
-    def get_login_button(self) -> WebElement:
+    def get_login_button(self) -> SideMenu:
         """
         Returns the login button.
         :return: webelement
         """
-        return self.verify_element_clickable(HomePage.LOGIN_BUTTON)
+        self.verify_element_clickable(HomePage.LOGIN_BUTTON).click()
+        return SideMenu(self._driver)
 
     def get_forgot_login(self) -> ForgotLoginPage:
         """

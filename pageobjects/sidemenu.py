@@ -29,6 +29,12 @@ class SideMenu(BasePage):
     REQUEST_LOAN_LINK: tuple = (By.LINK_TEXT, "Request Loan")
     LOG_OUT_LINK: tuple = (By.LINK_TEXT, "Log Out")
 
+    # Successful login
+    SUCCESSFUL_LOGIN: tuple = (By.CLASS_NAME, "smallText")
+
+    # Declaring the errors & success messages
+    SUCCESSFULL_LOGIN_MSG = "Welcome "
+
     def __init__(self, driver):
         self._driver = driver
 
@@ -109,3 +115,10 @@ class SideMenu(BasePage):
         """
         l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
         return l_panel.find_element(*SideMenu.LOG_OUT_LINK)
+
+    def get_successful_registration(self) -> WebElement:
+        """
+        Returns the successful registration message.
+        :return: webelement
+        """
+        return self.verify_element_presence(SideMenu.SUCCESSFUL_LOGIN)
