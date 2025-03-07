@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
 from pageobjects.basepage import BasePage
+from pageobjects.sidemenu import SideMenu
 
 class RegisterPage(BasePage):
     """
@@ -141,12 +142,13 @@ class RegisterPage(BasePage):
         """
         return self.verify_element_presence(RegisterPage.CONFIRM_PASSWORD)
 
-    def get_register_button(self) -> WebElement:
+    def get_register_button(self) -> SideMenu:
         """
         Returns the register button.
         :return: webelement
         """
-        return self.verify_element_presence(RegisterPage.REGISTER_BUTTON)
+        self.verify_element_presence(RegisterPage.REGISTER_BUTTON).click()
+        return SideMenu(self._driver)
 
     def get_errors(self) -> list[str]:
         """

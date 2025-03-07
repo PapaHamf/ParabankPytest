@@ -32,7 +32,7 @@ class BasePage():
         """
         Verifies the webelement presence on the page.
         :param locator: The locator describing the webelement to be checked. Tuple containing the By
-        strategy and locator.
+                        strategy and locator.
         :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return: webelement
         """
@@ -43,7 +43,7 @@ class BasePage():
         """
         Verifies if the webelement is clickable.
         :param locator: The locator describing the webelement to be checked. Tuple containing the By
-        strategy and locator.
+                        strategy and locator.
         :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return: webelement
         """
@@ -64,7 +64,7 @@ class BasePage():
         """
         Verifies if the text is present in the webelement.
         :param locator: The locator describing the webelement to be checked. Tuple containing the By
-        strategy and locator.
+                        strategy and locator.
         :param text: Text to be located in given webelement.
         :param timeout: The timeout of the explicit waiting. The default value is 5.
         :return:

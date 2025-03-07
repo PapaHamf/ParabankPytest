@@ -10,15 +10,14 @@ from utils.hysqlconnector import HyperSQLConnector
 from utils.myfaker import MyFaker
 from pageobjects.homepage import HomePage
 from pageobjects.basepage import BasePage
-from pageobjects.sidemenu import SideMenu
 
 class TestRegistration(BaseClass):
 
     ALLURE_DIR = "../allure-results/"
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
-    @allure.sub_suite("Negative registration")
+    @allure.suite("Tests for new customer registration")
+    @allure.sub_suite("Negative registration tests")
     @allure.tag("Negative", "Smoke", "Registration", "Empty field")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -84,7 +83,7 @@ class TestRegistration(BaseClass):
         register_page.get_confirm_password().send_keys(confirm_password)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -96,8 +95,8 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_customer_data_negative["empty"] + register_page.ERROR_REQUIRED_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
-    @allure.sub_suite("Positive registration")
+    @allure.suite("Tests for new customer registration")
+    @allure.sub_suite("Positive registration tests")
     @allure.tag("Positive", "Smoke", "Registration")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -163,21 +162,20 @@ class TestRegistration(BaseClass):
         register_page.get_confirm_password().send_keys(confirm_password)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        side_menu = register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
         with allure.step("Step 2: Verify if the user is logged in"):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
-            side_menu = SideMenu(self.driver)
             log.info(f"Logging out the user {get_customer_data_positive["username"]}.")
             side_menu.get_log_out_link().click()
             self.driver.delete_all_cookies()
             assert logged_msg[1] == get_customer_data_positive["username"]
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - too short strings")
     @allure.tag("Negative", "Smoke", "Registration", "Too short", "Strings")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -232,7 +230,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -242,7 +240,7 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_excel_data_strings_too_short["tooshort"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - too long strings")
     @allure.tag("Negative", "Smoke", "Registration", "Too long", "Strings")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -297,7 +295,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -307,7 +305,7 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_excel_data_strings_too_long["toolong"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - added digits to strings")
     @allure.tag("Negative", "Smoke", "Registration", "Added digits", "Strings")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -363,7 +361,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -373,7 +371,7 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_excel_data_strings_added_digits["added"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - added special characters to strings")
     @allure.tag("Negative", "Smoke", "Registration", "Added special characters", "Strings")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -429,7 +427,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -439,7 +437,7 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_excel_data_strings_added_special["added"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - letters in numbers")
     @allure.tag("Negative", "Smoke", "Registration", "Letters", "Numbers")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -494,7 +492,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -504,7 +502,7 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_json_data_numbers_letters["letters"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - too short numbers")
     @allure.tag("Negative", "Smoke", "Registration", "Too short", "Numbers")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -559,7 +557,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -569,7 +567,7 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_json_data_numbers_too_short["tooshort"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - too long numbers")
     @allure.tag("Negative", "Smoke", "Registration", "Too long", "Numbers")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -624,7 +622,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -634,7 +632,7 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_json_data_numbers_too_long["toolong"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
+    @allure.suite("Tests for new customer registration")
     @allure.sub_suite("Registration field values verification - added special characters to numbers")
     @allure.tag("Negative", "Smoke", "Registration", "Added special characters", "Numbers")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -690,7 +688,7 @@ class TestRegistration(BaseClass):
         register_page.get_social_security_number().send_keys(ssn)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -700,8 +698,8 @@ class TestRegistration(BaseClass):
             assert errors_list[0] == get_json_data_numbers_special["specials"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
-    @allure.sub_suite("Positive registration")
+    @allure.suite("Tests for new customer registration")
+    @allure.sub_suite("Positive registration tests")
     @allure.tag("Positive", "Smoke", "Registration", "Two last names")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -767,22 +765,21 @@ class TestRegistration(BaseClass):
         register_page.get_confirm_password().send_keys(confirm_password)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        side_menu = register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
         with allure.step("Step 2: Verify if the user is logged in."):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
-            side_menu = SideMenu(self.driver)
             log.info(f"Logging out the user {customer_data["username"]}.")
             side_menu.get_log_out_link().click()
             self.driver.delete_all_cookies()
             assert logged_msg[1] == customer_data["username"]
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
-    @allure.sub_suite("Negative registration")
+    @allure.suite("Tests for new customer registration")
+    @allure.sub_suite("Negative registration tests")
     @allure.tag("Negative", "Smoke", "Registration", "Existing username")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -847,7 +844,7 @@ class TestRegistration(BaseClass):
         register_page.get_confirm_password().send_keys(confirm_password)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -857,8 +854,8 @@ class TestRegistration(BaseClass):
             assert error.text == register_page.USERNAME_EXISTS_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
-    @allure.sub_suite("Negative registration")
+    @allure.suite("Tests for new customer registration")
+    @allure.sub_suite("Negative registration tests")
     @allure.tag("Negative", "Smoke", "Registration", "Different passwords")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -924,7 +921,7 @@ class TestRegistration(BaseClass):
         register_page.get_confirm_password().send_keys(confirm_password)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
@@ -934,8 +931,8 @@ class TestRegistration(BaseClass):
             assert error.text == register_page.PASSWORDS_DO_NOT_MATCH
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
-    @allure.sub_suite("Positive registration")
+    @allure.suite("Tests for new customer registration")
+    @allure.sub_suite("Positive registration tests")
     @allure.tag("Positive", "Smoke", "Registration", "Database verification")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -1001,7 +998,7 @@ class TestRegistration(BaseClass):
         register_page.get_confirm_password().send_keys(confirm_password)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        side_menu = register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
@@ -1021,15 +1018,14 @@ class TestRegistration(BaseClass):
             db_data.pop(0)
             tc_data = list(customer_data.values())
             tc_data.pop()
-            side_menu = SideMenu(self.driver)
             log.info(f"Logging out the user {customer_data["username"]}.")
             side_menu.get_log_out_link().click()
             self.driver.delete_all_cookies()
             assert tc_data == db_data
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("New customer registration")
-    @allure.sub_suite("Negative registration")
+    @allure.suite("Tests for new customer registration")
+    @allure.sub_suite("Negative registration tests")
     @allure.tag("Negative", "Smoke", "Registration", "Database verification")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -1098,7 +1094,7 @@ class TestRegistration(BaseClass):
         register_page.get_confirm_password().send_keys(confirm_password)
         data_collection.save_data()
         log.info("Clicking the register button.")
-        register_page.get_register_button().click()
+        register_page.get_register_button()
         with allure.step("Step 1: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE

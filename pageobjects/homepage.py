@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 
 from pageobjects.forgotloginpage import ForgotLoginPage
@@ -47,9 +48,14 @@ class HomePage(BasePage):
     # Declaring the success and error messages
     VALID_PAGE_TITLE_NEGATIVE = "ParaBank | Error"
     VALID_PAGE_TITLE_POSITIVE = "ParaBank | Accounts Overview"
+    ABOUT_US_TITLE = "ParaBank | About Us"
+    CONTACT_US_TITLE = "ParaBank | Customer Care"
     ERROR_HEADER = "Error!"
     MISSING_USER_PASSWORD_MSG = "Please enter a username and password."
     NOT_VERIFIED_USER_PASSWORD_MSG = "The username and password could not be verified."
+    HOME_HOVER = "images/home-hover.gif"
+    ABOUT_US_HOVER = "images/aboutus-hover.gif"
+    CONTACT_US_HOVER = "images/contact-hover.gif"
 
     def __init__(self, driver):
         self._driver = driver
@@ -123,6 +129,20 @@ class HomePage(BasePage):
         """
         return self.verify_element_presence(HomePage.LOGO)
 
+    def verify_logo_visibility(self) -> WebElement:
+        """
+        Verifies if the header logo image is visible on the page.
+        :return:
+        """
+        return self.verify_element_visibility(self.get_logo())
+
+    def verify_logo_clickable(self) -> WebElement:
+        """
+        Verifies if the header logo image is clickable.
+        :return:
+        """
+        return self.verify_element_clickable(HomePage.LOGO)
+
     def get_header_image(self) -> WebElement:
         """
         Returns the header image.
@@ -135,7 +155,17 @@ class HomePage(BasePage):
         Returns the home page icon.
         :return: webelement
         """
-        return self.verify_element_presence(HomePage.HOME_PAGE_ICON)
+        return self.verify_element_clickable(HomePage.HOME_PAGE_ICON)
+
+    def hover_over_home_page_icon(self) -> str:
+        """
+        Returns the value of CSS property "background" of the home page icon.
+        :return:
+        """
+        action = ActionChains(self._driver)
+        action.move_to_element(self.get_home_page_icon()).perform()
+        print(self.get_home_page_icon().get_property("innerHTML"))
+        return self.get_home_page_icon().value_of_css_property("img")
 
     def get_about_us_icon(self) -> AboutUs:
         """

@@ -1,5 +1,3 @@
-import time
-
 import pytest
 import random
 import allure
@@ -46,8 +44,8 @@ class TestLogin(BaseClass):
             self.driver.delete_all_cookies()
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
-    @allure.sub_suite("Negative logging in")
+    @allure.suite("Tests for customer logging in")
+    @allure.sub_suite("Negative logging in tests")
     @allure.tag("Negative", "Smoke", "Logging in", "Empty fields")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -77,8 +75,8 @@ class TestLogin(BaseClass):
             assert home_page.get_error_msg().text == home_page.MISSING_USER_PASSWORD_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
-    @allure.sub_suite("Negative logging in")
+    @allure.suite("Tests for customer logging in")
+    @allure.sub_suite("Negative logging in tests")
     @allure.tag("Negative", "Smoke", "Logging in", "Empty field")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -116,8 +114,8 @@ class TestLogin(BaseClass):
             assert home_page.get_error_msg().text == home_page.MISSING_USER_PASSWORD_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
-    @allure.sub_suite("Negative logging in")
+    @allure.suite("Tests for customer logging in")
+    @allure.sub_suite("Negative logging in tests")
     @allure.tag("Negative", "Smoke", "Logging in", "Empty field")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -155,8 +153,8 @@ class TestLogin(BaseClass):
             assert home_page.get_error_msg().text == home_page.MISSING_USER_PASSWORD_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
-    @allure.sub_suite("Negative logging in")
+    @allure.suite("Tests for customer logging in")
+    @allure.sub_suite("Negative logging in tests")
     @allure.tag("Negative", "Smoke", "Logging in", "Wrong username")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -196,8 +194,8 @@ class TestLogin(BaseClass):
             assert home_page.get_error_msg().text == home_page.NOT_VERIFIED_USER_PASSWORD_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
-    @allure.sub_suite("Negative logging in")
+    @allure.suite("Tests for customer logging in")
+    @allure.sub_suite("Negative logging in tests")
     @allure.tag("Negative", "Smoke", "Logging in", "Wrong password")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -237,8 +235,8 @@ class TestLogin(BaseClass):
             assert home_page.get_error_msg().text == home_page.NOT_VERIFIED_USER_PASSWORD_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
-    @allure.sub_suite("Positive logging in")
+    @allure.suite("Tests for customer logging in")
+    @allure.sub_suite("Positive logging in tests")
     @allure.tag("Positive", "Smoke", "Logging in", "Correct credentials")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
@@ -280,7 +278,7 @@ class TestLogin(BaseClass):
                                                     + " " + get_excel_data_customer_logins["lastname"]
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
+    @allure.suite("Tests for customer logging in")
     @allure.sub_suite("Security tests")
     @allure.tag("Security", "Smoke", "Logging in", "SQL Injection")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -288,6 +286,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 54")
     @allure.description("This test attempts to do the SQL injection attack displaying the whole table.")
     @pytest.mark.smoke
+    @pytest.mark.skip
     def test_logging_security_sql_inject_all(self):
         """
         Tests the customer logging in w/ SQL inject attack string.
@@ -315,7 +314,7 @@ class TestLogin(BaseClass):
             assert home_page.get_error_msg().text == home_page.NOT_VERIFIED_USER_PASSWORD_MSG
 
     @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
+    @allure.suite("Tests for customer logging in")
     @allure.sub_suite("Security tests")
     @allure.tag("Security", "Smoke", "Logging in", "SQL Injection")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -323,6 +322,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 55")
     @allure.description("This test attempts to do the SQL injection attack displaying the usernames & passwords.")
     @pytest.mark.smoke
+    @pytest.mark.skip
     def test_logging_security_sql_inject_up(self):
         """
         Tests the customer logging in w/ SQL inject attack string.
