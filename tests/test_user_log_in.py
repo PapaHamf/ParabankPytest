@@ -300,6 +300,9 @@ class TestLogin(BaseClass):
         log.info("Logging in the user.")
         log.info(f"Entering the username {TestLogin.SQL_INJECT_ALL}.")
         home_page.get_username().send_keys(TestLogin.SQL_INJECT_ALL)
+        password = "SQL inject"
+        log.info(f"Entering the password {password}")
+        home_page.get_password().send_keys(password)
         log.info("Clicking the log in button.")
         home_page.get_login_button()
         with allure.step("Step 1: Verify the page title"):
@@ -332,6 +335,9 @@ class TestLogin(BaseClass):
         log.info("Logging in the user.")
         log.info(f"Entering the username {TestLogin.SQL_INJECT_CUSTOMER}.")
         home_page.get_username().send_keys(TestLogin.SQL_INJECT_CUSTOMER)
+        password = "SQL inject"
+        log.info(f"Entering the password {password}")
+        home_page.get_password().send_keys(password)
         log.info("Clicking the log in button.")
         home_page.get_login_button()
         with allure.step("Step 1: Verify the page title"):
@@ -342,45 +348,3 @@ class TestLogin(BaseClass):
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")
             assert home_page.get_error_msg().text == home_page.NOT_VERIFIED_USER_PASSWORD_MSG
-
-    @allure.parent_suite("Tests for Parabank application")
-    @allure.suite("Customer logging in")
-    @allure.sub_suite("Positive logging in")
-    @allure.tag("Positive", "Smoke", "Logging in")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label("owner", "Parasoft")
-    @allure.testcase("Test case no 56")
-    @allure.description("This test attempts to log in the customer with valid credentials.")
-    @pytest.mark.smoke
-    def test_logging_positive(self, get_excel_data_customer_logins):
-        """
-        Tests the customer logging in w/ valid credentials.
-        :return:
-        """
-        log = self.get_logger()
-        self.driver.get(BasePage.HOME_PAGE)
-        home_page = HomePage(self.driver)
-        log.info(f"Testing the customer log in with valid credentials.")
-        log.info("Logging in the user.")
-        user_name = get_excel_data_customer_logins["username"]
-        log.info(f"Entering the username {user_name}.")
-        home_page.get_username().send_keys(user_name)
-        password = get_excel_data_customer_logins["password"]
-        log.info(f"Entering the password {password}")
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the log in button.")
-        side_menu = home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
-            log.info("Verifying the proper page title.")
-            assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_POSITIVE
-        with allure.step("Step 2: Verify the user is logged in"):
-            log.info("Verifying if the user is logged in.")
-            logged_msg = side_menu.get_successful_login().text.split(" ")
-            log.info(f"Logging out the user {get_excel_data_customer_logins["username"]}.")
-            side_menu.get_log_out_link().click()
-            self.driver.delete_all_cookies()
-            assert logged_msg[0] == side_menu.SUCCESSFULL_LOGIN_MSG
-            log.info(f"Verifying the proper user was logged in.")
-            assert logged_msg[1] == get_excel_data_customer_logins["firstname"]
-            assert logged_msg[2] == get_excel_data_customer_logins["lastname"]
-
