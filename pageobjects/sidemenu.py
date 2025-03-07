@@ -35,6 +35,7 @@ class SideMenu(BasePage):
     # Declaring the errors & success messages
     SUCCESSFULL_LOGIN_MSG = "Welcome "
 
+
     def __init__(self, driver):
         self._driver = driver
 
@@ -116,9 +117,9 @@ class SideMenu(BasePage):
         l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
         return l_panel.find_element(*SideMenu.LOG_OUT_LINK)
 
-    def get_successful_registration(self) -> WebElement:
+    def get_successful_login(self) -> WebElement:
         """
-        Returns the successful registration message.
+        Returns the successful login customer welcome message.
         :return: webelement
         """
         return self.verify_element_presence(SideMenu.SUCCESSFUL_LOGIN)
