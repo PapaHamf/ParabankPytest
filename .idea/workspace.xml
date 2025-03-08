@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Homepage TCs 08.03">
-      <change afterPath="$PROJECT_DIR$/tests/test_contact_us.py" afterDir="false" />
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Homepage TCs finished 08.03">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_added_digits.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_digits.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_added_special.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_special.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_letters.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_letters.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_specials.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_specials.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_long.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_too_long.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_long.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_too_long.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_short.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_too_short.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_short.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_too_short.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_customer_registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_customer_registration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/contactpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/contactpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/dataset_account.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/dataset_account.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/dataset_customer.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/dataset_customer.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/dataset_transaction.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/dataset_transaction.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_contact_us.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_contact_us.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_homepage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,14 +124,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736602020130</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Request loan page 13.01">
-      <option name="closed" value="true" />
-      <created>1736795506121</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1736795506121</updated>
     </task>
     <task id="LOCAL-00017" summary="Contact page 14.01">
       <option name="closed" value="true" />
@@ -525,11 +509,18 @@
       <option name="project" value="LOCAL" />
       <updated>1741450504185</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Homepage TCs finished 08.03">
+      <option name="closed" value="true" />
+      <created>1741469220301</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1741469220301</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="JSON test 30.01" />
     <MESSAGE value="JSON test 31.01" />
     <MESSAGE value="Hinting fixes, data classes rebuild 03.02" />
     <MESSAGE value="Data classes rebuild 05.02" />
@@ -554,6 +545,7 @@
     <MESSAGE value="Fixed log in TCs 07.03" />
     <MESSAGE value="Homepage TCs 07.03" />
     <MESSAGE value="Homepage TCs 08.03" />
-    <option name="LAST_COMMIT_MESSAGE" value="Homepage TCs 08.03" />
+    <MESSAGE value="Homepage TCs finished 08.03" />
+    <option name="LAST_COMMIT_MESSAGE" value="Homepage TCs finished 08.03" />
   </component>
 </project>

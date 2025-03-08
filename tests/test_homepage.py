@@ -124,10 +124,10 @@ class TestHomePage(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        with allure.step("Step 1: Fetching the loading times"):
+        with allure.step("Step 1: Fetch the loading times"):
             log.info("Fetching the loading times using the Performance Timing JS interface.")
             load_data = home_page.get_header_image_load_timings()
-        with allure.step("Step 2: Verifying if the header image loads w/ other content"):
+        with allure.step("Step 2: Verify if the header image loads w/ other content"):
             log.info("Verifying if the header image load time is similar to the DOM load end time.")
             # Increase the DOM load end time by 10%; if the diff is not higher than this,
             # we can consider this as loading at the same time
@@ -151,10 +151,10 @@ class TestHomePage(BaseClass):
         home_page = HomePage(self.driver)
         allure.dynamic.testcase(f"Test Case no {get_csv_data_footer_links["tc"]}")
         allure.dynamic.description(f"This test attempts to click the footer link {get_csv_data_footer_links["link"]}.")
-        with allure.step("Step 1: Clicking the footer link"):
+        with allure.step("Step 1: Click the footer link"):
             log.info(f"Clicking the footer link {get_csv_data_footer_links["link"]}.")
             home_page.click_footer_links(get_csv_data_footer_links["link"])
-        with allure.step("Step 2: Verifying the page title"):
+        with allure.step("Step 2: Verify the page title"):
             log.info(f"Checking if the page title is {get_csv_data_footer_links["pagetitle"]}.")
             assert home_page.get_page_title() == get_csv_data_footer_links["pagetitle"]
 
