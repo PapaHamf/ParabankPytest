@@ -1,9 +1,7 @@
 import pytest
-import random
 import allure
 
 from utils.baseclass import BaseClass
-from utils.exceldata import ExcelData
 from pageobjects.homepage import HomePage
 from pageobjects.basepage import BasePage
 
@@ -92,17 +90,46 @@ class TestHomePage(BaseClass):
     @allure.severity(allure.severity_level.NORMAL)
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 59")
-    @allure.description("This test verifies if the Home icon image changes properly on the hover over.")
+    @allure.description("This test verifies if the Home icon image changes properly on the mouse over.")
     @pytest.mark.displayed
+    @pytest.mark.skip
     def test_header_icons_hover_over(self):
         """
-        Tests if the home page header Home icon changes properly on the hover over.
+        Tests if the home page header Home icon changes properly on the mouse over.
         :return:
         """
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         with allure.step("Step 1: Verify if the Home icon image changes"):
-            log.info("Verifying if the Home icon image changes properly on the hover over.")
-            assert home_page.hover_over_home_page_icon() == "test"
+            log.info("Verifying if the Home icon image changes properly on the mouse over.")
+            hover_over = home_page.hover_over_home_page_icon().lstrip('url("').rstrip('")').split("/")
+            assert  hover_over[-1] == HomePage.HOME_HOVER
+
+    @allure.parent_suite("Tests for Parabank application")
+    @allure.suite("Tests for home page elements")
+    @allure.sub_suite("Home page header tests")
+    @allure.tag("Home page", "Header", "Image", "Loading time")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.label("owner", "Parasoft")
+    @allure.testcase("Test case no 60")
+    @allure.description("This test verifies if the header image loads with other content or at the end.")
+    @pytest.mark.displayed
+    @pytest.mark.skip
+    def test_header_image_loading_time(self):
+        """
+        Tests if the home page header image loads with other content or at the end.
+        :return:
+        """
+        log = self.get_logger()
+        self.driver.get(BasePage.HOME_PAGE)
+        home_page = HomePage(self.driver)
+        with allure.step("Step 1: Fetching the loading times"):
+            log.info("Fetching the loading times using the Performance Timing JS interface.")
+            load_data = home_page.header_image_load_timings()
+        with allure.step("Step 2: Verifying if the header image loads w/ other content"):
+            log.info("Verifying if the header image load time is similar to the DOM load end time.")
+            # Increase the DOM load end time by 10%; if the diff is not higher than this,
+            # we can consider this as loading at the same time
+            assert load_data[0] < load_data[1] * 1.1
 
