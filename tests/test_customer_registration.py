@@ -312,7 +312,7 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.skip
-    def test_registration_strings_added_digits(self, get_excel_data_strings_added_digits):
+    def test_registration_strings_added_digits(self, get_csv_data_strings_added_digits):
         """
         Tests the customer registration w/ random digits added to string field values.
         :return:
@@ -323,39 +323,39 @@ class TestRegistration(BaseClass):
         register_page = home_page.get_register_link()
         data_collection = ExcelData("New customer registration", "Added digits")
         log.info(f"Testing the registration with random digits added to the"
-                 f" {get_excel_data_strings_added_digits["added"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_excel_data_strings_added_digits["tc"]}")
+                 f" {get_csv_data_strings_added_digits["added"]} field.")
+        allure.dynamic.testcase(f"Test Case no {get_csv_data_strings_added_digits["tc"]}")
         allure.dynamic.description(f"This test attempts to register the customer with random"
-                                   f" digits added to the {get_excel_data_strings_added_digits["added"]} field.")
-        first_name = get_excel_data_strings_added_digits["firstname"]
+                                   f" digits added to the {get_csv_data_strings_added_digits["added"]} field.")
+        first_name = get_csv_data_strings_added_digits["firstname"]
         log.info(f"Entering the first name: {first_name}")
         data_collection.add_data("firstname", first_name)
         register_page.get_first_name().send_keys(first_name)
-        last_name = get_excel_data_strings_added_digits["lastname"]
+        last_name = get_csv_data_strings_added_digits["lastname"]
         log.info(f"Entering the last name: {last_name}")
         data_collection.add_data("lastname", last_name)
         register_page.get_last_name().send_keys(last_name)
-        address = get_excel_data_strings_added_digits["streetaddress"]
+        address = get_csv_data_strings_added_digits["streetaddress"]
         log.info(f"Entering the address: {address}")
         data_collection.add_data("streetaddress", address)
         register_page.get_address_street().send_keys(address)
-        city = get_excel_data_strings_added_digits["city"]
+        city = get_csv_data_strings_added_digits["city"]
         log.info(f"Entering the city: {city}")
         data_collection.add_data("city", city)
         register_page.get_address_city().send_keys(city)
-        state = get_excel_data_strings_added_digits["state"]
+        state = get_csv_data_strings_added_digits["state"]
         log.info(f"Entering the state: {state}")
         data_collection.add_data("state", state)
         register_page.get_address_state().send_keys(state)
-        post_code = get_excel_data_strings_added_digits["postcode"]
+        post_code = get_csv_data_strings_added_digits["postcode"]
         log.info(f"Entering the post code: {post_code}")
         data_collection.add_data("postcode", post_code)
         register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_excel_data_strings_added_digits["phonenumber"]
+        phone_number = get_csv_data_strings_added_digits["phonenumber"]
         log.info(f"Entering the phone number: {phone_number}")
         data_collection.add_data("phonenumber", phone_number)
         register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_excel_data_strings_added_digits["ssn"]
+        ssn = get_csv_data_strings_added_digits["ssn"]
         log.info(f"Entering the PESEL: {ssn}")
         data_collection.add_data("ssn", ssn)
         register_page.get_social_security_number().send_keys(ssn)
@@ -367,8 +367,8 @@ class TestRegistration(BaseClass):
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
         with allure.step("Step 2: Verify the registration"):
             errors_list = register_page.get_errors()
-            log.info(f"Verifying if the error is visible in {get_excel_data_strings_added_digits["added"]} field.")
-            assert errors_list[0] == get_excel_data_strings_added_digits["added"] + register_page.ERROR_INVALID_MSG
+            log.info(f"Verifying if the error is visible in {get_csv_data_strings_added_digits["added"]} field.")
+            assert errors_list[0] == get_csv_data_strings_added_digits["added"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for new customer registration")
@@ -378,7 +378,7 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.skip
-    def test_registration_strings_added_special(self, get_excel_data_strings_added_special):
+    def test_registration_strings_added_special(self, get_csv_data_strings_added_special):
         """
         Tests the customer registration w/ special characters added to string field values.
         :return:
@@ -389,39 +389,39 @@ class TestRegistration(BaseClass):
         register_page = home_page.get_register_link()
         data_collection = ExcelData("New customer registration", "Added special")
         log.info(f"Testing the registration with special characters added to the"
-                 f" {get_excel_data_strings_added_special["added"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_excel_data_strings_added_special["tc"]}")
+                 f" {get_csv_data_strings_added_special["added"]} field.")
+        allure.dynamic.testcase(f"Test Case no {get_csv_data_strings_added_special["tc"]}")
         allure.dynamic.description(f"This test attempts to register the customer with random"
-                                   f" digits added to the {get_excel_data_strings_added_special["added"]} field.")
-        first_name = get_excel_data_strings_added_special["firstname"]
+                                   f" digits added to the {get_csv_data_strings_added_special["added"]} field.")
+        first_name = get_csv_data_strings_added_special["firstname"]
         log.info(f"Entering the first name: {first_name}")
         data_collection.add_data("firstname", first_name)
         register_page.get_first_name().send_keys(first_name)
-        last_name = get_excel_data_strings_added_special["lastname"]
+        last_name = get_csv_data_strings_added_special["lastname"]
         log.info(f"Entering the last name: {last_name}")
         data_collection.add_data("lastname", last_name)
         register_page.get_last_name().send_keys(last_name)
-        address = get_excel_data_strings_added_special["streetaddress"]
+        address = get_csv_data_strings_added_special["streetaddress"]
         log.info(f"Entering the address: {address}")
         data_collection.add_data("streetaddress", address)
         register_page.get_address_street().send_keys(address)
-        city = get_excel_data_strings_added_special["city"]
+        city = get_csv_data_strings_added_special["city"]
         log.info(f"Entering the city: {city}")
         data_collection.add_data("city", city)
         register_page.get_address_city().send_keys(city)
-        state = get_excel_data_strings_added_special["state"]
+        state = get_csv_data_strings_added_special["state"]
         log.info(f"Entering the state: {state}")
         data_collection.add_data("state", state)
         register_page.get_address_state().send_keys(state)
-        post_code = get_excel_data_strings_added_special["postcode"]
+        post_code = get_csv_data_strings_added_special["postcode"]
         log.info(f"Entering the post code: {post_code}")
         data_collection.add_data("postcode", post_code)
         register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_excel_data_strings_added_special["phonenumber"]
+        phone_number = get_csv_data_strings_added_special["phonenumber"]
         log.info(f"Entering the phone number: {phone_number}")
         data_collection.add_data("phonenumber", phone_number)
         register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_excel_data_strings_added_special["ssn"]
+        ssn = get_csv_data_strings_added_special["ssn"]
         log.info(f"Entering the PESEL: {ssn}")
         data_collection.add_data("ssn", ssn)
         register_page.get_social_security_number().send_keys(ssn)
@@ -433,8 +433,8 @@ class TestRegistration(BaseClass):
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
         with allure.step("Step 2: Verify the registration"):
             errors_list = register_page.get_errors()
-            log.info(f"Verifying if the error is visible in {get_excel_data_strings_added_special["added"]} field.")
-            assert errors_list[0] == get_excel_data_strings_added_special["added"] + register_page.ERROR_INVALID_MSG
+            log.info(f"Verifying if the error is visible in {get_csv_data_strings_added_special["added"]} field.")
+            assert errors_list[0] == get_csv_data_strings_added_special["added"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for new customer registration")

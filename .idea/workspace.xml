@@ -4,10 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Log in TCs 04.03">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Homepage TCs 08.03">
+      <change afterPath="$PROJECT_DIR$/tests/test_contact_us.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/sidemenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/sidemenu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_user_log_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_user_log_in.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_added_digits.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_digits.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_added_special.csv" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_special.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_letters.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_letters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_specials.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_specials.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_long.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_too_long.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_long.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_too_long.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_short.json" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_numbers_too_short.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/test_data_too_short.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/testdata/test_data_register_strings_too_short.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_customer_registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_customer_registration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_homepage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,32 +62,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests in test_log_in_user.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_pageobjects.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in student.executor&quot;: &quot;Run&quot;,
-    &quot;Python.DB_initialise.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HYSQLData.executor&quot;: &quot;Run&quot;,
-    &quot;Python.aboutus.executor&quot;: &quot;Run&quot;,
-    &quot;Python.accountoverviewpage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.baseclass.executor&quot;: &quot;Run&quot;,
-    &quot;Python.change_date.executor&quot;: &quot;Run&quot;,
-    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.country.executor&quot;: &quot;Run&quot;,
-    &quot;Python.exceldata.executor&quot;: &quot;Run&quot;,
-    &quot;Python.fixdata.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hysqlconnector.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hysqldata.executor&quot;: &quot;Run&quot;,
-    &quot;Python.jsondata.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/student/NonameBranch/NonameTesters/utils/country.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in test_log_in_user.py.executor": "Run",
+    "Python tests.Python tests in test_pageobjects.py.executor": "Run",
+    "Python tests.pytest in student.executor": "Run",
+    "Python.DB_initialise.executor": "Run",
+    "Python.HYSQLData.executor": "Run",
+    "Python.aboutus.executor": "Run",
+    "Python.accountoverviewpage.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.baseclass.executor": "Run",
+    "Python.change_date.executor": "Run",
+    "Python.conftest.executor": "Run",
+    "Python.country.executor": "Run",
+    "Python.exceldata.executor": "Run",
+    "Python.fixdata.executor": "Run",
+    "Python.hysqlconnector.executor": "Run",
+    "Python.hysqldata.executor": "Run",
+    "Python.jsondata.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/student/NonameBranch/NonameTesters/utils/country.py",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Archive" />
@@ -120,38 +132,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736602020130</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Updated pages w/ error locators 13.01">
-      <option name="closed" value="true" />
-      <created>1736760067544</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1736760067544</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Updated bill pay page 13.01">
-      <option name="closed" value="true" />
-      <created>1736768750576</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1736768750576</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Find transaction page 13.01">
-      <option name="closed" value="true" />
-      <created>1736788777107</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1736788777107</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Update profile page 13.01">
-      <option name="closed" value="true" />
-      <created>1736791675787</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1736791675787</updated>
     </task>
     <task id="LOCAL-00016" summary="Request loan page 13.01">
       <option name="closed" value="true" />
@@ -513,14 +493,42 @@
       <option name="project" value="LOCAL" />
       <updated>1741078915112</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Log in TCs 07.03">
+      <option name="closed" value="true" />
+      <created>1741358710205</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1741358710205</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Fixed log in TCs 07.03">
+      <option name="closed" value="true" />
+      <created>1741358996306</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1741358996306</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Homepage TCs 07.03">
+      <option name="closed" value="true" />
+      <created>1741386584963</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1741386584963</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Homepage TCs 08.03">
+      <option name="closed" value="true" />
+      <created>1741450504184</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1741450504185</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="HyperSQLConnector class 26.01" />
-    <MESSAGE value="Moved Excel &amp; JSON classes 26.01" />
-    <MESSAGE value="Hyper SQL connector class 29.01" />
-    <MESSAGE value="JSON update 29.01" />
     <MESSAGE value="JSON test 30.01" />
     <MESSAGE value="JSON test 31.01" />
     <MESSAGE value="Hinting fixes, data classes rebuild 03.02" />
@@ -542,6 +550,10 @@
     <MESSAGE value="Added tcs 01.03" />
     <MESSAGE value="Register &amp; log in TCs 03.03" />
     <MESSAGE value="Log in TCs 04.03" />
-    <option name="LAST_COMMIT_MESSAGE" value="Log in TCs 04.03" />
+    <MESSAGE value="Log in TCs 07.03" />
+    <MESSAGE value="Fixed log in TCs 07.03" />
+    <MESSAGE value="Homepage TCs 07.03" />
+    <MESSAGE value="Homepage TCs 08.03" />
+    <option name="LAST_COMMIT_MESSAGE" value="Homepage TCs 08.03" />
   </component>
 </project>

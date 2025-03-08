@@ -126,10 +126,35 @@ class TestHomePage(BaseClass):
         home_page = HomePage(self.driver)
         with allure.step("Step 1: Fetching the loading times"):
             log.info("Fetching the loading times using the Performance Timing JS interface.")
-            load_data = home_page.header_image_load_timings()
+            load_data = home_page.get_header_image_load_timings()
         with allure.step("Step 2: Verifying if the header image loads w/ other content"):
             log.info("Verifying if the header image load time is similar to the DOM load end time.")
             # Increase the DOM load end time by 10%; if the diff is not higher than this,
             # we can consider this as loading at the same time
             assert load_data[0] < load_data[1] * 1.1
+
+    @allure.parent_suite("Tests for Parabank application")
+    @allure.suite("Tests for home page elements")
+    @allure.sub_suite("Home page bottom links")
+    @allure.tag("Home page", "Bottom links")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.label("owner", "Parasoft")
+    @pytest.mark.clickable
+    @pytest.mark.skip
+    def test_footer_links(self, get_csv_data_footer_links):
+        """
+        Tests if the home page footer links direct to the correct page.
+        :return:
+        """
+        log = self.get_logger()
+        self.driver.get(BasePage.HOME_PAGE)
+        home_page = HomePage(self.driver)
+        allure.dynamic.testcase(f"Test Case no {get_csv_data_footer_links["tc"]}")
+        allure.dynamic.description(f"This test attempts to click the footer link {get_csv_data_footer_links["link"]}.")
+        with allure.step("Step 1: Clicking the footer link"):
+            log.info(f"Clicking the footer link {get_csv_data_footer_links["link"]}.")
+            home_page.click_footer_links(get_csv_data_footer_links["link"])
+        with allure.step("Step 2: Verifying the page title"):
+            log.info(f"Checking if the page title is {get_csv_data_footer_links["pagetitle"]}.")
+            assert home_page.get_page_title() == get_csv_data_footer_links["pagetitle"]
 

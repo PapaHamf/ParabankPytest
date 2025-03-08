@@ -28,6 +28,7 @@ class HomePage(BasePage):
     HOME_PAGE_LINK: tuple = (By.LINK_TEXT, "Home")
     ABOUT_US_LINK: tuple = (By.LINK_TEXT, "About Us")
     ADMIN_PAGE_LINK: tuple = (By.LINK_TEXT, "Admin Page")
+    FOOTER: tuple = (By.ID, "footerPanel")
 
     # Declaring the images locators
     LOGO: tuple = (By.CLASS_NAME, "logo")
@@ -47,8 +48,10 @@ class HomePage(BasePage):
     # Declaring the success and error messages
     VALID_PAGE_TITLE_NEGATIVE = "ParaBank | Error"
     VALID_PAGE_TITLE_POSITIVE = "ParaBank | Accounts Overview"
+    HOME_PAGE_TITLE = "ParaBank | Welcome | Online Banking"
     ABOUT_US_TITLE = "ParaBank | About Us"
     CONTACT_US_TITLE = "ParaBank | Customer Care"
+
     ERROR_HEADER = "Error!"
     MISSING_USER_PASSWORD_MSG = "Please enter a username and password."
     NOT_VERIFIED_USER_PASSWORD_MSG = "The username and password could not be verified."
@@ -56,6 +59,14 @@ class HomePage(BasePage):
     ABOUT_US_HOVER = "aboutus-hover.gif"
     CONTACT_US_HOVER = "contact-hover.gif"
     HEADER_IMAGE_FILE = "header-main.jpg"
+
+    # JavaScript codes
+    JS_IMAGE_LOAD_END = 'var resourceList = window.performance.getEntriesByType("resource");' \
+                        'for (i = 0; i < resourceList.length; i++) { if (resourceList[i].name.includes("' \
+                        + HEADER_IMAGE_FILE + '")) { return resourceList[i].responseEnd; } }'
+    JS_SITE_DOM_LOAD_END = 'return window.performance.getEntriesByType("navigation")[0].domContentLoadedEventEnd;'
+    # Returns the complete Navigation Timing interface; not used for now
+    JS_NAVIGATION_ALL = 'return window.performance.getEntriesByType("navigation")[0];'
 
     def __init__(self, driver):
         self._driver = driver
@@ -122,6 +133,21 @@ class HomePage(BasePage):
         self.verify_element_clickable(HomePage.ADMIN_PAGE_LINK).click()
         return AdminPage(self._driver)
 
+    def get_footer(self) -> WebElement:
+        """
+        Returns the footer div element.
+        :return:
+        """
+        return self.verify_element_presence(HomePage.FOOTER)
+
+    def click_footer_links(self, link_name: str) -> None:
+        """
+        Clicks the link in the footer of the page identified by the link text.
+        :param link_name: Link text
+        :return:
+        """
+        self.get_footer().find_element(By.LINK_TEXT, link_name).click()
+
     def get_logo(self) -> WebElement:
         """
         Returns the header logo image.
@@ -150,19 +176,13 @@ class HomePage(BasePage):
         """
         return self.verify_element_presence(HomePage.HEADER_IMAGE)
 
-    def header_image_load_timings(self) -> tuple:
+    def get_header_image_load_timings(self) -> tuple:
         """
         Returns the header image response end time and the DOM load event end time.
         :return: Tuple containing the image response end time & DOM load event end time.
         """
-        JS_image_load_end = 'var resourceList = window.performance.getEntriesByType("resource");' \
-                     'for (i = 0; i < resourceList.length; i++) { if (resourceList[i].name.includes("' \
-                     + HomePage.HEADER_IMAGE_FILE + '")) { return resourceList[i].responseEnd; } }'
-        JS_site_dom_load_end = 'return window.performance.getEntriesByType("navigation")[0].domContentLoadedEventEnd;'
-        # Returns the complete Navigation Timing interface; not used for now
-        JS_navigation_all = 'return window.performance.getEntriesByType("navigation")[0];'
-        image_load_end = self._driver.execute_script(JS_image_load_end)
-        site_dom_load_end = self._driver.execute_script(JS_site_dom_load_end)
+        image_load_end = self._driver.execute_script(HomePage.JS_IMAGE_LOAD_END)
+        site_dom_load_end = self._driver.execute_script(HomePage.JS_SITE_DOM_LOAD_END)
         return image_load_end, site_dom_load_end
 
     def get_home_page_icon(self) -> WebElement:
@@ -198,7 +218,6 @@ class HomePage(BasePage):
         action.move_to_element(self.verify_element_presence(HomePage.ABOUT_US_ICON)).perform()
         return self.verify_element_presence(HomePage.ABOUT_US_ICON). \
                 find_element(*HomePage.ICON_A).value_of_css_property("background-image")
-
 
     def get_contact_icon(self) -> ContactPage:
         """
