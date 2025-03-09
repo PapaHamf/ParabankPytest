@@ -52,6 +52,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 48")
     @allure.description("This test attempts to log in the customer with empty Username and Password field.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_logging_negative_no_username(self):
         """
@@ -83,6 +84,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 49")
     @allure.description("This test attempts to log in the customer with empty Username field.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_logging_negative_no_username(self):
         """
@@ -122,6 +124,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 50")
     @allure.description("This test attempts to log in the customer with empty Password field.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_logging_negative_no_password(self):
         """
@@ -161,6 +164,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 51")
     @allure.description("This test attempts to log in the customer with wrong username.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_logging_negative_wrong_username(self):
         """
@@ -202,6 +206,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 52")
     @allure.description("This test attempts to log in the customer with wrong password.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_logging_negative_wrong_password(self):
         """
@@ -243,6 +248,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 53")
     @allure.description("This test attempts to log in the customer with correct username and password.")
     @pytest.mark.smoke
+    @pytest.mark.positive
     @pytest.mark.skip
     def test_logging_positive_correct_credentials(self, get_excel_data_customer_logins):
         """
@@ -286,6 +292,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 54")
     @allure.description("This test attempts to do the SQL injection attack displaying the whole table.")
     @pytest.mark.smoke
+    @pytest.mark.security
     @pytest.mark.skip
     def test_logging_security_sql_inject_all(self):
         """
@@ -322,6 +329,7 @@ class TestLogin(BaseClass):
     @allure.testcase("Test case no 55")
     @allure.description("This test attempts to do the SQL injection attack displaying the usernames & passwords.")
     @pytest.mark.smoke
+    @pytest.mark.security
     @pytest.mark.skip
     def test_logging_security_sql_inject_up(self):
         """

@@ -15,7 +15,7 @@ class TestHomePage(BaseClass):
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 56")
     @allure.description("This test verifies if the header logo is displayed properly.")
-    @pytest.mark.displayed
+    @pytest.mark.functional
     @pytest.mark.skip
     def test_header_logo_displayed(self):
         """
@@ -37,7 +37,7 @@ class TestHomePage(BaseClass):
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 57")
     @allure.description("This test verifies if the header logo is clickable.")
-    @pytest.mark.clickable
+    @pytest.mark.functional
     @pytest.mark.skip
     def test_header_logo_clickable(self):
         """
@@ -59,7 +59,7 @@ class TestHomePage(BaseClass):
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 58")
     @allure.description("This test verifies if the icons on the home page are clickable and working.")
-    @pytest.mark.clickable
+    @pytest.mark.functional
     @pytest.mark.skip
     def test_header_icons_working(self):
         """
@@ -91,7 +91,7 @@ class TestHomePage(BaseClass):
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 59")
     @allure.description("This test verifies if the Home icon image changes properly on the mouse over.")
-    @pytest.mark.displayed
+    @pytest.mark.functional
     @pytest.mark.skip
     def test_header_icons_hover_over(self):
         """
@@ -114,7 +114,7 @@ class TestHomePage(BaseClass):
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 60")
     @allure.description("This test verifies if the header image loads with other content or at the end.")
-    @pytest.mark.displayed
+    @pytest.mark.functional
     @pytest.mark.skip
     def test_header_image_loading_time(self):
         """
@@ -139,7 +139,7 @@ class TestHomePage(BaseClass):
     @allure.tag("Home page", "Bottom links")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.label("owner", "Parasoft")
-    @pytest.mark.clickable
+    @pytest.mark.functional
     @pytest.mark.skip
     def test_footer_links(self, get_csv_data_footer_links):
         """

@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 
 from pageobjects.basepage import BasePage
@@ -10,8 +11,8 @@ class ContactPage(BasePage):
     """
     driver: Chrome
 
-    MESSAGE_BODY_WIDTH: float = 300
-    MESSAGE_BODY_HEIGHT: float = 126
+    MESSAGE_BODY_WIDTH: int = 300
+    MESSAGE_BODY_HEIGHT: int = 126
     MESSAGE_SENTENCES: int = 5
 
     # Declaring the page objects (fields & buttons)
@@ -70,12 +71,44 @@ class ContactPage(BasePage):
         """
         return self.verify_element_presence(ContactPage.MESSAGE_BODY)
 
+    def resize_message_body_text_area(self) -> None:
+        """
+        Resizes the message body text area.
+        :return:
+        """
+        textarea_size = self.get_message_body().size
+        action = ActionChains(self._driver)
+        action.move_to_element_with_offset(self.get_message_body(),
+                                           int(( textarea_size["width"] - 6 ) / 2),
+                                           int(( textarea_size["height"] - 6 ) / 2)) \
+            .click_and_hold() \
+            .move_by_offset(100, 100) \
+            .release() \
+            .perform()
+
+    def get_message_body_size(self) -> tuple[int]:
+        """
+        Returns the tuple with the width and height of the text area.
+        :return: Width and height of text area
+        """
+        sizes = self.get_message_body().get_attribute("style").split(";")
+        width = int(sizes[0].split(":")[1].rstrip("px"))
+        height = int(sizes[1].split(":")[1].rstrip("px"))
+        return width, height
+
     def get_send_button(self) -> WebElement:
         """
         Returns the send message button.
         :return: webelement
         """
         return self.verify_element_clickable(ContactPage.SEND_BUTTON)
+
+    def get_errors(self) -> int:
+        """
+        Returns the number of errors on the page.
+        :return:
+        """
+        return len(self.verify_elements_presence(ContactPage.ERROR_LABEL))
 
     def get_name_error(self) -> WebElement:
         """

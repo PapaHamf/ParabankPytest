@@ -93,7 +93,6 @@ class ExcelData(TestDataSet):
     def save_data(self) -> None:
         """
         Saves the data to the Excel file.
-        The file name is created based on the test scenario name.
         The data for each test case is written to the sheets with the name of the test case.
         :return: None.
         """

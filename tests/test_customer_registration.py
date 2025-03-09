@@ -22,6 +22,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_negative(self, get_customer_data_negative):
         """
@@ -104,6 +105,7 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer with all fields"
                         " with proper values.")
     @pytest.mark.smoke
+    @pytest.mark.positive
     @pytest.mark.skip
     def test_registration_positive(self, get_customer_data_positive):
         """
@@ -181,6 +183,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_strings_too_short(self, get_excel_data_strings_too_short):
         """
@@ -246,6 +249,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_strings_too_long(self, get_excel_data_strings_too_long):
         """
@@ -311,6 +315,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_strings_added_digits(self, get_csv_data_strings_added_digits):
         """
@@ -377,6 +382,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_strings_added_special(self, get_csv_data_strings_added_special):
         """
@@ -443,6 +449,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_numbers_letters(self, get_json_data_numbers_letters):
         """
@@ -508,6 +515,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_numbers_too_short(self, get_json_data_numbers_too_short):
         """
@@ -573,6 +581,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_numbers_too_long(self, get_json_data_numbers_too_long):
         """
@@ -638,6 +647,7 @@ class TestRegistration(BaseClass):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_numbers_specials(self, get_json_data_numbers_special):
         """
@@ -707,6 +717,7 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer with two last names"
                         "separated by hyphen.")
     @pytest.mark.smoke
+    @pytest.mark.positive
     @pytest.mark.skip
     def test_registration_two_last_names(self):
         """
@@ -786,6 +797,7 @@ class TestRegistration(BaseClass):
     @allure.testcase("Test case no 44")
     @allure.description("This test attempts to register the customer with the existing username.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_existing_username(self):
         """
@@ -862,6 +874,7 @@ class TestRegistration(BaseClass):
     @allure.testcase("Test case no 45")
     @allure.description("This test attempts to register the customer with passwords not matching.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_two_different_passwords(self):
         """
@@ -940,6 +953,7 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer and verifies if the data"
                         " is written to the database correctly.")
     @pytest.mark.smoke
+    @pytest.mark.positive
     @pytest.mark.skip
     def test_registration_verify_database(self):
         """
@@ -1033,6 +1047,7 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer with passwords not"
                         " matching and verifies if the data is not written to the database.")
     @pytest.mark.smoke
+    @pytest.mark.negative
     @pytest.mark.skip
     def test_registration_wrong_password_verify_database(self):
         """
