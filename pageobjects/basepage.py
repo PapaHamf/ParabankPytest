@@ -39,6 +39,17 @@ class BasePage():
         wait: WebDriverWait = WebDriverWait(self._driver, timeout)
         return wait.until(EC.presence_of_element_located(locator))
 
+    def verify_elements_presence(self, locator: tuple, timeout: int = 5) -> list[WebElement]:
+        """
+        Verifies the webelements presence on the page.
+        :param locator: The locator describing the webelements to be checked. Tuple containing the By
+                        strategy and locator.
+        :param timeout: The timeout for the explicit waiting. The default value is 5.
+        :return: webelement
+        """
+        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return wait.until(EC.presence_of_all_elements_located(locator))
+
     def verify_element_clickable(self, locator: tuple, timeout: int = 5) -> WebElement:
         """
         Verifies if the webelement is clickable.
