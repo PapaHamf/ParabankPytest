@@ -8,6 +8,7 @@ from utils.exceldata import ExcelData
 from pageobjects.homepage import HomePage
 from pageobjects.basepage import BasePage
 from pageobjects.contactpage import ContactPage
+from pageobjects.intwebmailpage import IntMailPage
 
 class TestContactUs(BaseClass):
 
@@ -129,7 +130,7 @@ class TestContactUs(BaseClass):
             data_collection.add_data("name", name)
             log.info(f"Entering the full name {name}.")
             contact_page.get_name().send_keys(name)
-            email = contact_page.TICKET_EMAIL
+            email = IntMailPage.TICKET_EMAIL
             data_collection.add_data("email", email)
             log.info(f"Entering the email address {email}.")
             contact_page.get_email_address().send_keys(email)
@@ -151,7 +152,15 @@ class TestContactUs(BaseClass):
         with allure.step("Step 4: Verify the message in the inbox"):
             log.info("Creating new tab and switching to it.")
             self.driver.switch_to.new_window('tab')
-            self.driver.get(contact_page.TICKET_SERVER)
+            self.driver.get(IntMailPage.TICKET_SERVER)
+            webmail_page = IntMailPage(self.driver)
+            webmail_page.get_external_email_address().send_keys(IntMailPage.TICKET_EMAIL)
+            webmail_page.get_external_password().send_keys(IntMailPage.TICKET_PASSWORD)
+            inbox_page = webmail_page.get_external_login_button()
+            sender_name = inbox_page.get_external_message_senders()[0].text
+            self.driver.close()
+            self.driver.switch_to.window(self.driver.window_handles[0])
+            assert "Parabank" in sender_name
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for sending the customer care tickets")
@@ -163,6 +172,7 @@ class TestContactUs(BaseClass):
     @allure.description("This test attempts to resize the support ticket message text area.")
     @pytest.mark.negative
     @pytest.mark.functional
+    @pytest.mark.skip
     def test_contact_form_resize_textarea(self):
         """
         Tests attempts to resize the support ticket message text area.

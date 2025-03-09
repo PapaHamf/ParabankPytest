@@ -8,7 +8,7 @@ from pageobjects.intinboxpage import IntInboxPage
 class IntMailPage(BasePage):
     driver: Chrome
 
-    TICKET_SERVER = "poczta.int.pl"
+    TICKET_SERVER = "http://poczta.int.pl"
     TICKET_EMAIL = "mareczek_testowy@int.pl"
     TICKET_PASSWORD = "m4reczek1234!"
 
