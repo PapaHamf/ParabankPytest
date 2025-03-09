@@ -125,7 +125,7 @@ class TestContactUs(BaseClass):
         with allure.step("Step 1: Verify the proper page title"):
             log.info("Verifying if the the page title is correct.")
             assert contact_page.get_page_title() == contact_page.VALID_PAGE_TITLE
-        with allure.step("Step 2: Enter the proper data"):
+        with allure.step("Step 2: Enter the form data"):
             name = faker.name()
             data_collection.add_data("name", name)
             log.info(f"Entering the full name {name}.")
@@ -146,16 +146,19 @@ class TestContactUs(BaseClass):
             log.info("Clicking the Send button.")
             contact_page.get_send_button().click()
             data_collection.save_data()
-        with allure.step("Step 3: Verify the successful sending"):
-            log.info("Verifying the successful sending of the form.")
+        with allure.step("Step 3: Verify the submitting of form"):
+            log.info("Verifying the successful submitting of the form.")
             assert contact_page.get_success_message().text == contact_page.CUSTOMER_CARE_SUCCESS_MSG + name
         with allure.step("Step 4: Verify the message in the inbox"):
             log.info("Creating new tab and switching to it.")
             self.driver.switch_to.new_window('tab')
             self.driver.get(IntMailPage.TICKET_SERVER)
             webmail_page = IntMailPage(self.driver)
+            log.info("Entering the e-mail account address.")
             webmail_page.get_external_email_address().send_keys(IntMailPage.TICKET_EMAIL)
+            log.info("Entering the e-mail account password.")
             webmail_page.get_external_password().send_keys(IntMailPage.TICKET_PASSWORD)
+            log.info("Clicking the log in button.")
             inbox_page = webmail_page.get_external_login_button()
             sender_name = inbox_page.get_external_message_senders()[0].text
             self.driver.close()
