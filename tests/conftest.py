@@ -23,7 +23,7 @@ def pytest_addoption(parser) -> None:
 def browser_name(request):
     return request.config.getoption("--browser-name")
 
-@pytest.fixture(params  = ExcelData.get_excel_data("dataset_customer.xlsx"))
+@pytest.fixture(scope = "function", params  = ExcelData.get_excel_data("dataset_customer.xlsx"))
 def get_excel_data_customer_logins(request):
     """
     Returns the customer login data for parametrized (data driven) tests.
@@ -31,7 +31,7 @@ def get_excel_data_customer_logins(request):
     """
     return request.param
 
-@pytest.fixture(params = ExcelData.get_excel_data("test_data_register_strings_too_short.xlsx"))
+@pytest.fixture(scope = "function", params = ExcelData.get_excel_data("test_data_register_strings_too_short.xlsx"))
 def get_excel_data_strings_too_short(request):
     """
     Returns the data w/ too short values for parametrized (data driven) tests.
@@ -39,7 +39,7 @@ def get_excel_data_strings_too_short(request):
     """
     return request.param
 
-@pytest.fixture(params = ExcelData.get_excel_data("test_data_register_strings_too_long.xlsx"))
+@pytest.fixture(scope = "function", params = ExcelData.get_excel_data("test_data_register_strings_too_long.xlsx"))
 def get_excel_data_strings_too_long(request):
     """
     Returns the data w/ too long values for parametrized (data driven) tests.
@@ -47,7 +47,7 @@ def get_excel_data_strings_too_long(request):
     """
     return request.param
 
-@pytest.fixture(params = CSVData.get_csv_data("test_data_register_strings_digits.csv"))
+@pytest.fixture(scope = "function", params = CSVData.get_csv_data("test_data_register_strings_digits.csv"))
 def get_csv_data_strings_added_digits(request):
     """
     Returns the data w/ random digits for parametrized (data driven) tests.
@@ -55,7 +55,7 @@ def get_csv_data_strings_added_digits(request):
     """
     return request.param
 
-@pytest.fixture(params = CSVData.get_csv_data("test_data_register_strings_special.csv"))
+@pytest.fixture(scope = "function", params = CSVData.get_csv_data("test_data_register_strings_special.csv"))
 def get_csv_data_strings_added_special(request):
     """
     Returns the data w/ special characters for parametrized (data driven) tests.
@@ -63,7 +63,7 @@ def get_csv_data_strings_added_special(request):
     """
     return request.param
 
-@pytest.fixture(params = CSVData.get_csv_data("test_data_homepage_footer_links.csv"))
+@pytest.fixture(scope = "function", params = CSVData.get_csv_data("test_data_homepage_footer_links.csv"))
 def get_csv_data_footer_links(request):
     """
     Returns the data w/ footer links for parametrized (data driven) tests.
@@ -71,7 +71,7 @@ def get_csv_data_footer_links(request):
     """
     return request.param
 
-@pytest.fixture(params = JSONData.get_json_data("test_data_register_numbers_letters.json"))
+@pytest.fixture(scope = "function", params = JSONData.get_json_data("test_data_register_numbers_letters.json"))
 def get_json_data_numbers_letters(request):
     """
     Returns the data w/ letters in numerical fields for parametrized (data driven) tests.
@@ -79,7 +79,7 @@ def get_json_data_numbers_letters(request):
     """
     return request.param
 
-@pytest.fixture(params = JSONData.get_json_data("test_data_register_numbers_too_short.json"))
+@pytest.fixture(scope = "function", params = JSONData.get_json_data("test_data_register_numbers_too_short.json"))
 def get_json_data_numbers_too_short(request):
     """
     Returns the data w/ too short values for parametrized (data driven) tests.
@@ -87,7 +87,7 @@ def get_json_data_numbers_too_short(request):
     """
     return request.param
 
-@pytest.fixture(params = JSONData.get_json_data("test_data_register_numbers_too_long.json"))
+@pytest.fixture(scope = "function", params = JSONData.get_json_data("test_data_register_numbers_too_long.json"))
 def get_json_data_numbers_too_long(request):
     """
     Returns the data w/ too long values for parametrized (data driven) tests.
@@ -95,7 +95,7 @@ def get_json_data_numbers_too_long(request):
     """
     return request.param
 
-@pytest.fixture(params = JSONData.get_json_data("test_data_register_numbers_specials.json"))
+@pytest.fixture(scope = "function", params = JSONData.get_json_data("test_data_register_numbers_specials.json"))
 def get_json_data_numbers_special(request):
     """
     Returns the data w/ special characters for parametrized (data driven) tests.
@@ -152,4 +152,4 @@ def setup(request):
         request.cls.driver = driver
     yield driver
     with allure.step("Step 3: Closing the driver"):
-        driver.close()
+        driver.quit()

@@ -1,3 +1,5 @@
+import re
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
@@ -112,6 +114,28 @@ class BasePage():
         values = []
         for element in dropdown_list.find_elements(By.TAG_NAME, "option"):
             values.append(element.text)
+        return values
+
+    def get_elements_texts(self, elements: list[WebElement]) -> list:
+        """
+        Returns the list of webelement texts from the passed list of webelements.
+        :param elements: List of webelements
+        :return: List of text strings
+        """
+        values = []
+        for element in elements:
+            values.append(element.text)
+        return values
+
+    def get_elements_numbers(self, elements: list[WebElement]) -> list:
+        """
+        Returns the list of webelement texts converted to float from the passed list of webelements.
+        :param elements: List of webelements
+        :return: List of text strings
+        """
+        values = []
+        for element in elements:
+            values.append(float(re.sub(r"[^0-9.]", "", element.text)))
         return values
 
     def select_value_from_dropdown_text(self, element: WebElement, text: str) -> None:
