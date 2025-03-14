@@ -1,5 +1,3 @@
-import time
-
 import pytest
 import allure
 import random
@@ -1027,10 +1025,13 @@ class TestRegistration(BaseClass):
             db_data = db_handle.get_data_from_db(f"SELECT * FROM customer WHERE first_name = '{first_name}'"
                                        f" AND last_name = '{last_name}'")
             db_handle.close_connection()
+            # fetchall returns tuples, convert it to list w/ index 0
             if len(db_data) > 0:
                 db_data = list(db_data[0])
+            # Remove the customer id
             db_data.pop(0)
             tc_data = list(customer_data.values())
+            # Remove the confirmation password
             tc_data.pop()
             log.info(f"Logging out the user {customer_data["username"]}.")
             side_menu.get_log_out_link().click()

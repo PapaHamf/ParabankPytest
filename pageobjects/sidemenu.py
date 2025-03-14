@@ -35,7 +35,6 @@ class SideMenu(BasePage):
     # Declaring the errors & success messages
     SUCCESSFULL_LOGIN_MSG = "Welcome "
 
-
     def __init__(self, driver):
         self._driver = driver
 

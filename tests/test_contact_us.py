@@ -1,5 +1,3 @@
-import time
-
 import pytest
 import allure
 
@@ -25,7 +23,7 @@ class TestContactUs(BaseClass):
     @pytest.mark.skip
     def test_contact_form_positive(self):
         """
-        Tests attempts to send the customer care support ticket.
+        Tests the sending of the customer care support ticket.
         :return:
         """
         log = self.get_logger()
@@ -76,7 +74,7 @@ class TestContactUs(BaseClass):
     @pytest.mark.skip
     def test_contact_form_negative(self):
         """
-        Tests attempts to send the customer care support ticket with all fields empty.
+        Tests the sending of the customer care support ticket with all fields empty.
         :return:
         """
         log = self.get_logger()
@@ -111,8 +109,7 @@ class TestContactUs(BaseClass):
     @pytest.mark.skip
     def test_contact_form_verify_email(self):
         """
-        Tests attempts to verify if the support ticket confirmation message is sent to the given
-        customer e-mail address.
+        Tests if the support ticket confirmation message is sent to the given customer e-mail address.
         :return:
         """
         log = self.get_logger()
@@ -175,7 +172,7 @@ class TestContactUs(BaseClass):
     @pytest.mark.skip
     def test_contact_form_resize_textarea(self):
         """
-        Tests attempts to resize the support ticket message text area.
+        Tests the resize function of support ticket message text area.
         :return:
         """
         log = self.get_logger()
@@ -192,6 +189,7 @@ class TestContactUs(BaseClass):
         with allure.step("Step 3: Verify if the text area was enlarged"):
             log.info("Verifying if the text area was enlarged properly.")
             sizes = contact_page.get_message_body_size()
-            assert sizes[0] >= ContactPage.MESSAGE_BODY_WIDTH and sizes[1] >= ContactPage.MESSAGE_BODY_HEIGHT
+            assert sizes[0] >= ContactPage.MESSAGE_BODY_WIDTH + 100 \
+                   and sizes[1] >= ContactPage.MESSAGE_BODY_HEIGHT + 100
 
 

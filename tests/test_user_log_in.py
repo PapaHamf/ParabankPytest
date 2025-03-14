@@ -13,36 +13,6 @@ class TestLogin(BaseClass):
     SQL_INJECT_ALL = "' OR 1=1#"
     SQL_INJECT_CUSTOMER = "' UNION SELECT username, password FROM customer#"
 
-    @allure.title("Logging in/out the user")
-    @pytest.fixture(scope = "function")
-    def login_logout(self) -> list:
-        """
-        Logins the user in the app and logs him out after the test.
-        :return: List containing the dict w/ the home page object and user data.
-        """
-        with allure.step("Step 1: Logging in"):
-            self._log = self.get_logger()
-            self.driver.get(BasePage.HOMEPAGE)
-            # Get the user data from Excel file
-            user_data = random.choice(ExcelData.get_excel_data("test_usernames.xlsx"))
-            user_name = user_data["username"]
-            password = user_data["password"]
-            self._log.info("Logging the user.")
-            # Create the home page object
-            home_page = HomePage(self.driver)
-            self._log.info(f"User name: {user_name}")
-            home_page.get_username().send_keys(user_name)
-            self._log.info(f"Password: {password}")
-            home_page.get_password().send_keys(password)
-            self._log.info("Clicking the login button.")
-            side_menu = home_page.get_login_button()
-        yield [side_menu, user_data]
-        # Log out the user
-        with allure.step("Step 2: Logging out"):
-            self._log.info(f"Logging out the user {user_name}.")
-            side_menu.get_log_out_link().click()
-            self.driver.delete_all_cookies()
-
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for customer logging in")
     @allure.sub_suite("Negative logging in tests")
