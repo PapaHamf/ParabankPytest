@@ -144,10 +144,3 @@ class ContactPage(BasePage):
         :return: webelement
         """
         return self.verify_element_presence(ContactPage.SUCCESS_MSG)
-
-    def get_page_title(self) -> str:
-        """
-        Returns the page title.
-        :return:
-        """
-        return self._driver.title

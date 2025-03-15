@@ -241,10 +241,3 @@ class HomePage(BasePage):
         """
         return self.verify_element_presence(HomePage.ERROR_MSG)
 
-    def get_page_title(self) -> str:
-        """
-        Returns the page title.
-        :return:
-        """
-        return self._driver.title
-

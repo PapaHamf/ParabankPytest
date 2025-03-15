@@ -254,10 +254,3 @@ class RegisterPage(BasePage):
         :return: bool
         """
         return self.verify_title_contains(RegisterPage.BAD_REQUEST_TITLE)
-
-    def get_page_title(self) -> str:
-        """
-        Returns the page title.
-        :return:
-        """
-        return self._driver.title
