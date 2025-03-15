@@ -30,6 +30,9 @@ class ActivityPage(BasePage):
     TRANSACTION_LINK: tuple = (By.TAG_NAME, "a")
     NO_TRANSACTION: tuple = (By.ID, "noTransactions")
 
+    # Declaring the success and error messages
+    VALID_PAGE_TITLE_POSITIVE = "ParaBank | Account Activity"
+
     def __init__(self, driver):
         self._driver = driver
 

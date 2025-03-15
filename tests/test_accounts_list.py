@@ -8,10 +8,8 @@ from utils.exceldata import ExcelData
 from utils.hysqlconnector import HyperSQLConnector
 from pageobjects.homepage import HomePage
 from pageobjects.basepage import BasePage
-from pageobjects.sidemenu import SideMenu
 
 class TestContactUs(BaseClass):
-    side_menu: SideMenu
 
     @allure.title("Logging in/out the user")
     @pytest.fixture(scope = "function")

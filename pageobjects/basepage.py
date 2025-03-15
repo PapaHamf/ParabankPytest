@@ -157,3 +157,10 @@ class BasePage():
         """
         dropdown: Select = Select(element)
         dropdown.select_by_index(index)
+
+    def get_page_title(self) -> str:
+        """
+        Returns the page title.
+        :return:
+        """
+        return self._driver.title

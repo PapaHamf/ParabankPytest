@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.relative_locator import locate_with
 from selenium.webdriver.remote.webelement import WebElement
 
+from pageobjects.activitypage import ActivityPage
 from pageobjects.basepage import BasePage
 
 class AccountOverview(BasePage):
@@ -51,10 +52,22 @@ class AccountOverview(BasePage):
         """
         return self.verify_elements_presence(AccountOverview.ACCOUNT_NUMBERS)
 
+    def select_account_number(self, acc_no: str) -> ActivityPage:
+        """
+        Returns the activity page object for the passed account number.
+        :param acc_no: The number of the account to open the activity page for.
+        :return: page object
+        """
+        acc_nos = self.get_account_numbers()
+        for acc in acc_nos:
+            if acc.text == acc_no:
+                acc.click()
+                return ActivityPage(self._driver)
+
     def get_account_numbers_text(self) -> list:
         """
         Returns the account numbers list as strings.
-        :return:
+        :return: List of account numbers
         """
         return self.get_elements_texts(self.get_account_numbers())
 
@@ -68,7 +81,7 @@ class AccountOverview(BasePage):
     def get_account_balances_texts(self) -> list[str]:
         """
         Returns the account balances list as strings
-        :return:
+        :return: List of account balances strings
         """
         balances = self.get_elements_texts(self.get_account_balances())
         # Removes the total amount from the list
@@ -78,7 +91,7 @@ class AccountOverview(BasePage):
     def get_account_balances_numbers(self) -> list[float]:
         """
         Returns the account balances list as float values.
-        :return:
+        :return: List of account balances numbers
         """
         balances = self.get_elements_numbers(self.get_account_balances())
         # Removes the total amount from the list
@@ -95,7 +108,7 @@ class AccountOverview(BasePage):
     def get_available_amounts_numbers(self) -> list:
         """
         Returns the available amounts list as float values.
-        :return:
+        :return: List of available amounts numbers
         """
         return self.get_elements_numbers(self.get_available_amounts())
 
