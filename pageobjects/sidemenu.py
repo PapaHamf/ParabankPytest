@@ -50,8 +50,8 @@ class SideMenu(BasePage):
         Returns the open account page object.
         :return: page object
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        l_panel.find_element(*SideMenu.OPEN_ACCOUNT_LINK).click()
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        self._l_panel.find_element(*SideMenu.OPEN_ACCOUNT_LINK).click()
         return OpenAccountPage(self._driver)
 
     def get_accounts_overview_page(self) -> AccountOverview:
@@ -59,8 +59,8 @@ class SideMenu(BasePage):
         Returns the accounts overview page object.
         :return: page object
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        l_panel.find_element(*SideMenu.ACCOUNTS_OVERVIEW_LINK).click()
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        self._l_panel.find_element(*SideMenu.ACCOUNTS_OVERVIEW_LINK).click()
         return AccountOverview(self._driver)
 
     def get_transfer_funds_page(self) -> TransferPage:
@@ -68,8 +68,8 @@ class SideMenu(BasePage):
         Returns the transfer funds page object.
         :return: page object
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        l_panel.find_element(*SideMenu.TRANSFER_FUNDS_LINK).click()
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        self._l_panel.find_element(*SideMenu.TRANSFER_FUNDS_LINK).click()
         return TransferPage(self._driver)
 
     def get_bill_pay_page(self) -> BillPayPage:
@@ -77,8 +77,8 @@ class SideMenu(BasePage):
         Returns the bill pay page object.
         :return: page object
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        l_panel.find_element(*SideMenu.BILL_PAY_LINK).click()
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        self._l_panel.find_element(*SideMenu.BILL_PAY_LINK).click()
         return BillPayPage(self._driver)
 
     def get_find_transactions_page(self) -> FindTransactionPage:
@@ -86,8 +86,8 @@ class SideMenu(BasePage):
         Returns the find transactions page object.
         :return: page object
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        l_panel.find_element(*SideMenu.FIND_TRANSACTIONS_LINK).click()
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        self._l_panel.find_element(*SideMenu.FIND_TRANSACTIONS_LINK).click()
         return FindTransactionPage(self._driver)
 
     def get_update_info_page(self) -> UpdateProfilePage:
@@ -95,8 +95,8 @@ class SideMenu(BasePage):
         Returns the update profile information page object.
         :return: page object
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        l_panel.find_element(*SideMenu.UPDATE_INFO_LINK).click()
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        self._l_panel.find_element(*SideMenu.UPDATE_INFO_LINK).click()
         return UpdateProfilePage(self._driver)
 
     def get_request_loan_page(self) -> RequestLoanPage:
@@ -104,8 +104,8 @@ class SideMenu(BasePage):
         Returns the request loan page object.
         :return: page object
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        l_panel.find_element(*SideMenu.REQUEST_LOAN_LINK).click()
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        self._l_panel.find_element(*SideMenu.REQUEST_LOAN_LINK).click()
         return RequestLoanPage(self._driver)
 
     def get_log_out_link(self) -> WebElement:
@@ -113,8 +113,8 @@ class SideMenu(BasePage):
         Returns the log out link.
         :return: webelement
         """
-        l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
-        return l_panel.find_element(*SideMenu.LOG_OUT_LINK)
+        self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)
+        return self._l_panel.find_element(*SideMenu.LOG_OUT_LINK)
 
     def get_successful_login(self) -> WebElement:
         """

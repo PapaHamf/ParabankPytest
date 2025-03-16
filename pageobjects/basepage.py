@@ -38,8 +38,8 @@ class BasePage():
         :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return: webelement
         """
-        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
-        return wait.until(EC.presence_of_element_located(locator))
+        self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return self._wait.until(EC.presence_of_element_located(locator))
 
     def verify_elements_presence(self, locator: tuple, timeout: int = 5) -> list[WebElement]:
         """
@@ -49,8 +49,8 @@ class BasePage():
         :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return: webelement
         """
-        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
-        return wait.until(EC.presence_of_all_elements_located(locator))
+        self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return self._wait.until(EC.presence_of_all_elements_located(locator))
 
     def verify_element_clickable(self, locator: tuple, timeout: int = 5) -> WebElement:
         """
@@ -60,8 +60,8 @@ class BasePage():
         :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return: webelement
         """
-        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
-        return wait.until(EC.element_to_be_clickable(locator))
+        self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return self._wait.until(EC.element_to_be_clickable(locator))
 
     def verify_element_visibility(self, element: WebElement, timeout: int = 5) -> WebElement:
         """
@@ -70,8 +70,8 @@ class BasePage():
         :param timeout: The timeout of the explicit waiting. The default value is 5.
         :return: webelement
         """
-        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
-        return wait.until(EC.visibility_of(element))
+        self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return self._wait.until(EC.visibility_of(element))
 
     def verify_text_present_in_element(self, locator: tuple, text: str, timeout: int = 5) -> bool:
         """
@@ -82,8 +82,8 @@ class BasePage():
         :param timeout: The timeout of the explicit waiting. The default value is 5.
         :return:
         """
-        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
-        return wait.until(EC.text_to_be_present_in_element(locator, text))
+        self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return self._wait.until(EC.text_to_be_present_in_element(locator, text))
 
     def verify_title_contains(self, text: str, timeout: int = 5) -> bool:
         """
@@ -92,8 +92,8 @@ class BasePage():
         :param timeout: The timeout of the explicit waiting. The default value is 5.
         :return:
         """
-        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
-        return wait.until(EC.title_contains(text))
+        self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return self._wait.until(EC.title_contains(text))
 
     def verify_element_selected(self, element: WebElement, timeout: int = 10):
         """
@@ -102,8 +102,8 @@ class BasePage():
         :param timeout: The timeout of the explicit waiting. The default value is 10.
         :return:
         """
-        wait: WebDriverWait = WebDriverWait(self._driver, timeout)
-        return wait.until(EC.element_to_be_selected(element))
+        self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
+        return self._wait.until(EC.element_to_be_selected(element))
 
     def get_list_values(self, dropdown_list: WebElement) -> list:
         """
@@ -111,10 +111,10 @@ class BasePage():
         :param element: Webelement that references the static dropdown.
         :return: List of elements of the dropdown.
         """
-        values = []
+        self._values = []
         for element in dropdown_list.find_elements(By.TAG_NAME, "option"):
-            values.append(element.text)
-        return values
+            self._values.append(element.text)
+        return self._values
 
     def get_elements_texts(self, elements: list[WebElement]) -> list:
         """
@@ -122,10 +122,10 @@ class BasePage():
         :param elements: List of webelements
         :return: List of text strings
         """
-        values = []
+        self._values = []
         for element in elements:
-            values.append(element.text)
-        return values
+            self._values.append(element.text)
+        return self._values
 
     def get_elements_numbers(self, elements: list[WebElement]) -> list:
         """
@@ -133,10 +133,10 @@ class BasePage():
         :param elements: List of webelements
         :return: List of text strings
         """
-        values = []
+        self._values = []
         for element in elements:
-            values.append(float(re.sub(r"[^0-9.]", "", element.text)))
-        return values
+            self._values.append(float(re.sub(r"[^0-9.]", "", element.text)))
+        return self._values
 
     def select_value_from_dropdown_text(self, element: WebElement, text: str) -> None:
         """

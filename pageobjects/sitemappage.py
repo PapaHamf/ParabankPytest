@@ -43,8 +43,8 @@ class SiteMap(BasePage):
         Returns the about us page object.
         :return: page object
         """
-        r_panel = self._driver.find_element(*SiteMap.RIGHT_PANEL)
-        r_panel.find_element(*SiteMap.ABOUT_US_LINK).click()
+        self._r_panel = self._driver.find_element(*SiteMap.RIGHT_PANEL)
+        self._r_panel.find_element(*SiteMap.ABOUT_US_LINK).click()
         return AboutUs(self._driver)
 
     def get_services_link(self) -> WebElement:
@@ -52,7 +52,7 @@ class SiteMap(BasePage):
         Returns the services link.
         :return: webelement
         """
-        r_panel = self._driver.find_element(*SiteMap.RIGHT_PANEL)
+        self._r_panel = self._driver.find_element(*SiteMap.RIGHT_PANEL)
         return r_panel.find_element(*SiteMap.SERVICES_LINK)
 
     def get_admin_page_link(self) -> AdminPage:
@@ -60,8 +60,8 @@ class SiteMap(BasePage):
         Returns the admin page object.
         :return: page object
         """
-        r_panel = self._driver.find_element(*SiteMap.RIGHT_PANEL)
-        r_panel.find_element(*SiteMap.ADMIN_PAGE_LINK).click()
+        self._r_panel = self._driver.find_element(*SiteMap.RIGHT_PANEL)
+        self._r_panel.find_element(*SiteMap.ADMIN_PAGE_LINK).click()
         return AdminPage(self._driver)
 
     def get_open_account_link(self) -> OpenAccountPage:

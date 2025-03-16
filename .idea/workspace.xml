@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Int page objects 09.03">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Added Open account TCs 16.03">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/intwebmailpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/intwebmailpage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_contact_us.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_contact_us.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/accountoverviewpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/activitypage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/activitypage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/basepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/basepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/contactpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/contactpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/homepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/openaccountpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/openaccountpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/sidemenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/sidemenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pageobjects/sitemappage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/sitemappage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_open_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_open_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,54 +128,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736602020130</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Test page objects 15.01">
-      <option name="closed" value="true" />
-      <created>1736958145249</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1736958145249</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Test page objects 15.01">
-      <option name="closed" value="true" />
-      <created>1736972835992</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1736972835992</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Test page objects 16.01">
-      <option name="closed" value="true" />
-      <created>1737054036674</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1737054036674</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Test page objects 1.01">
-      <option name="closed" value="true" />
-      <created>1737149913521</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1737149913521</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Test page objects 17.01">
-      <option name="closed" value="true" />
-      <created>1737152026801</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1737152026801</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Test page objects 17.01">
-      <option name="closed" value="true" />
-      <created>1737152129753</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1737152129753</updated>
     </task>
     <task id="LOCAL-00026" summary="Test page objects 19.01">
       <option name="closed" value="true" />
@@ -513,16 +473,58 @@
       <option name="project" value="LOCAL" />
       <updated>1741550888709</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Int TCs 09.03">
+      <option name="closed" value="true" />
+      <created>1741552030469</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1741552030469</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Acc Overview TCs 14.03">
+      <option name="closed" value="true" />
+      <created>1741986568240</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1741986568241</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Docstrings fixes 14.03">
+      <option name="closed" value="true" />
+      <created>1741986615606</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1741986615606</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Open Account TCs 15.03">
+      <option name="closed" value="true" />
+      <created>1742070965197</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1742070965197</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Moved get_title 15.03">
+      <option name="closed" value="true" />
+      <created>1742071008328</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1742071008328</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Added Open account TCs 16.03">
+      <option name="closed" value="true" />
+      <created>1742154905097</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1742154905100</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Data classes rebuild complete 07.02" />
-    <MESSAGE value="Hinting fix, added page objects 08.02" />
-    <MESSAGE value="Login &amp; logout fixture 10.02" />
-    <MESSAGE value="DB initialise 19.02" />
-    <MESSAGE value="Classes docstrings 19.02" />
-    <MESSAGE value="Exc handling &amp; DB init 19.02" />
     <MESSAGE value="Constant update 21.02" />
     <MESSAGE value="CSV class + logger fixes 21.02" />
     <MESSAGE value="Base class + base page 22.02" />
@@ -542,6 +544,12 @@
     <MESSAGE value=" Contact TCs and allure steps 08.03" />
     <MESSAGE value="Contact TCs 08.03" />
     <MESSAGE value="Int page objects 09.03" />
-    <option name="LAST_COMMIT_MESSAGE" value="Int page objects 09.03" />
+    <MESSAGE value="Int TCs 09.03" />
+    <MESSAGE value="Acc Overview TCs 14.03" />
+    <MESSAGE value="Docstrings fixes 14.03" />
+    <MESSAGE value="Open Account TCs 15.03" />
+    <MESSAGE value="Moved get_title 15.03" />
+    <MESSAGE value="Added Open account TCs 16.03" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Open account TCs 16.03" />
   </component>
 </project>

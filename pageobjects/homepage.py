@@ -181,9 +181,9 @@ class HomePage(BasePage):
         Returns the header image response end time and the DOM load event end time.
         :return: Tuple containing the image response end time & DOM load event end time.
         """
-        image_load_end = self._driver.execute_script(HomePage.JS_IMAGE_LOAD_END)
-        site_dom_load_end = self._driver.execute_script(HomePage.JS_SITE_DOM_LOAD_END)
-        return image_load_end, site_dom_load_end
+        self._image_load_end = self._driver.execute_script(HomePage.JS_IMAGE_LOAD_END)
+        self._site_dom_load_end = self._driver.execute_script(HomePage.JS_SITE_DOM_LOAD_END)
+        return self._image_load_end, self._site_dom_load_end
 
     def get_home_page_icon(self) -> WebElement:
         """
@@ -197,8 +197,8 @@ class HomePage(BasePage):
         Returns the value of CSS property "background" of the home page icon.
         :return:
         """
-        action = ActionChains(self._driver)
-        action.move_to_element(self.get_home_page_icon()).perform()
+        self._action = ActionChains(self._driver)
+        self._action.move_to_element(self.get_home_page_icon()).perform()
         return self.get_home_page_icon().find_element(*HomePage.ICON_A).value_of_css_property("background-image")
 
     def get_about_us_icon(self) -> AboutUs:
@@ -214,8 +214,8 @@ class HomePage(BasePage):
         Returns the value of CSS property "background" of the home page icon.
         :return:
         """
-        action = ActionChains(self._driver)
-        action.move_to_element(self.verify_element_presence(HomePage.ABOUT_US_ICON)).perform()
+        self._action = ActionChains(self._driver)
+        self._action.move_to_element(self.verify_element_presence(HomePage.ABOUT_US_ICON)).perform()
         return self.verify_element_presence(HomePage.ABOUT_US_ICON). \
                 find_element(*HomePage.ICON_A).value_of_css_property("background-image")
 

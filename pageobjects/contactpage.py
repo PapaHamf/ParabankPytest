@@ -91,10 +91,10 @@ class ContactPage(BasePage):
         Returns the tuple with the width and height of the text area.
         :return: Width and height of text area
         """
-        sizes = self.get_message_body().get_attribute("style").split(";")
-        width = int(sizes[0].split(":")[1].rstrip("px"))
-        height = int(sizes[1].split(":")[1].rstrip("px"))
-        return width, height
+        self._sizes = self.get_message_body().get_attribute("style").split(";")
+        self._width = int(self._sizes[0].split(":")[1].rstrip("px"))
+        self._height = int(self._sizes[1].split(":")[1].rstrip("px"))
+        return self._width, self._height
 
     def get_send_button(self) -> WebElement:
         """
