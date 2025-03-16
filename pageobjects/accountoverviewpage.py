@@ -58,8 +58,8 @@ class AccountOverview(BasePage):
         :param acc_no: The number of the account to open the activity page for.
         :return: page object
         """
-        acc_nos = self.get_account_numbers()
-        for acc in acc_nos:
+        self._acc_nos = self.get_account_numbers()
+        for acc in self._acc_nos:
             if acc.text == acc_no:
                 acc.click()
                 return ActivityPage(self._driver)
@@ -83,20 +83,20 @@ class AccountOverview(BasePage):
         Returns the account balances list as strings
         :return: List of account balances strings
         """
-        balances = self.get_elements_texts(self.get_account_balances())
+        self._balances = self.get_elements_texts(self.get_account_balances())
         # Removes the total amount from the list
-        balances.pop()
-        return balances
+        self._balances.pop()
+        return self._balances
 
     def get_account_balances_numbers(self) -> list[float]:
         """
         Returns the account balances list as float values.
         :return: List of account balances numbers
         """
-        balances = self.get_elements_numbers(self.get_account_balances())
+        self._balances = self.get_elements_numbers(self.get_account_balances())
         # Removes the total amount from the list
-        balances.pop()
-        return balances
+        self._balances.pop()
+        return self._balances
 
     def get_available_amounts(self) -> list[WebElement]:
         """
@@ -125,8 +125,8 @@ class AccountOverview(BasePage):
         :param account_number: The number of the account which balance should be returned.
         :return: webelement
         """
-        rows = self.get_table_rows()
-        for row in rows:
+        self._rows = self.get_table_rows()
+        for row in self._rows:
             try:
                 acc_no = row.find_element(*AccountOverview.ACCOUNT_LINK)
             except NoSuchElementException:
@@ -140,8 +140,8 @@ class AccountOverview(BasePage):
         :param account_number: The number of the account which available amount should be returned.
         :return: webelement
         """
-        rows = self.get_table_rows()
-        for row in rows:
+        self._rows = self.get_table_rows()
+        for row in self._rows:
             try:
                 acc_no = row.find_element(*AccountOverview.ACCOUNT_LINK)
             except NoSuchElementException:

@@ -81,6 +81,13 @@ class OpenAccountPage(BasePage):
         self.verify_element_presence(OpenAccountPage.NEW_ACCOUNT_ID).click()
         return ActivityPage(self._driver)
 
+    def get_new_account_id_text(self) -> str:
+        """
+        Returns the new account number text.
+        :return: Number of new account
+        """
+        return self.verify_element_presence(OpenAccountPage.NEW_ACCOUNT_ID).text
+
     def get_internal_error(self)  -> WebElement:
         """
         Returns the internal error message.

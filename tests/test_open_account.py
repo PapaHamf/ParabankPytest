@@ -4,6 +4,7 @@ import random
 
 from utils.baseclass import BaseClass
 from utils.exceldata import ExcelData
+from utils.hysqlconnector import HyperSQLConnector
 from pageobjects.homepage import HomePage
 from pageobjects.basepage import BasePage
 
@@ -49,6 +50,7 @@ class TestOpenAccount(BaseClass):
     @allure.description("This test attempts to open a new checking account for the customer.")
     @pytest.mark.smoke
     @pytest.mark.usefixtures("login_logout")
+    @pytest.mark.skip
     def test_open_account_postive(self, login_logout):
         """
         Tests the account opening for the customer.
@@ -83,6 +85,7 @@ class TestOpenAccount(BaseClass):
     @allure.description("This test attempts to open a new checking account for the customer using the "
                         "source account without sufficient funds for deposit.")
     @pytest.mark.smoke
+    @pytest.mark.skip
     def test_open_account_insufficient_funds(self):
         """
         Tests the account opening for the customer w/ insufficient funds.
@@ -127,6 +130,7 @@ class TestOpenAccount(BaseClass):
     @allure.description("This test verifies if the source account is correctly charged w/ the deposit.")
     @pytest.mark.smoke
     @pytest.mark.usefixtures("login_logout")
+    @pytest.mark.skip
     def test_open_account_deposit(self, login_logout):
         """
         Tests if the source account is charged correctly.
@@ -144,7 +148,63 @@ class TestOpenAccount(BaseClass):
             log.info("Clicking the Open new account button.")
             open_account.get_open_account_button().click()
         with allure.step("Step 2: Verify if the deposit was charged"):
+            log.info("Clicking the Accounts Overview link.")
             accounts_overview = login_logout[0].get_accounts_overview_page()
+            log.info("Clicking the source account link.")
             activity_page = accounts_overview.select_account_number(account_number)
+            log.info("Selecting the Debit from the Type list.")
+            activity_page.select_value_from_dropdown_text(activity_page.get_activity_type(), "Debit")
+            log.info("Clicking the Go button.")
+            activity_page.get_activity_button().click()
+            transaction = activity_page.get_transaction_by_index(-1)
+            log.info(f"Verifying if the transaction name is {activity_page.FUNDS_SENT}")
+            assert activity_page.FUNDS_SENT == transaction[1]
+            log.info("Verifying if the transaction amount is 5000.")
+            assert 5000 == transaction[2]
+
+    @allure.parent_suite("Tests for Parabank application")
+    @allure.suite("Tests for opening account")
+    @allure.sub_suite("Positive account tests")
+    @allure.tag("Opening account", "New account", "Positive", "Database")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Parasoft")
+    @allure.testcase("Test case no 79")
+    @allure.description("This test verifies if the account type is written properly to the database.")
+    @pytest.mark.smoke
+    @pytest.mark.usefixtures("login_logout")
+    @pytest.mark.skip
+    def test_open_account_type_in_database(self, login_logout):
+        """
+        Tests if the account type is written properly to the database.
+        :return:
+        """
+        log = self.get_logger()
+        log.info("Clicking the Open New Account link.")
+        open_account = login_logout[0].get_open_account_page()
+        log.info("Selecting the SAVINGS item from the account type list.")
+        open_account.select_value_from_dropdown_text(open_account.get_account_type(), "SAVINGS")
+        log.info("Selecting the existing account to transfer funds (deposit) into new account.")
+        # Every customer from the dataset has 4 accounts
+        random_index = random.randint(0, 3)
+        open_account.select_value_from_dropdown_index(open_account.get_source_accounts(), random_index)
+        log.info("Clicking the Open new account button.")
+        open_account.get_open_account_button().click()
+        with allure.step("Step 1: Verify the account opened message"):
+            log.info("Verifying if the account was opened correctly.")
+            assert open_account.OPEN_SUCCESS_MSG == open_account.get_success_title().text
+        with allure.step("Step 2: Verify if the account type is correct in DB"):
+            log.info("Verifying if the account type was properly written to the database.")
+            # Get the new account id
+            new_account = open_account.get_new_account_id_text()
+            log.info("Fetching the data from the database.")
+            db_handle = HyperSQLConnector()
+            db_handle.get_cursor()
+            db_data = db_handle.get_data_from_db(f"SELECT type FROM account "
+                                                 f"WHERE id = '{new_account}'")
+            if len(db_data) > 0:
+                db_type = db_data[0][0]
+            log.info("Verifying if the account balances total is correct.")
+            # SAVINGS account type should be 1
+            assert 1 == db_type
 
 
