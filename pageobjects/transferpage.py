@@ -28,6 +28,12 @@ class TransferPage(BasePage):
     # Probably not used
     INTERNAL_ERROR: tuple = (By.ID, "showError")
 
+    # Declaring the success and error messages
+    TRANSFER_SUCCESS_MSG = "Transfer Complete!"
+    TRANSFER_ERROR_MSG = "Error!"
+    AMOUNT_EMPTY_ERROR_MSG = "The amount cannot be empty."
+    AMOUNT_INVALID_ERROR_MSG = "Please enter a valid amount."
+
     def __init__(self, driver):
         self._driver = driver
 
@@ -36,60 +42,67 @@ class TransferPage(BasePage):
         Returns the amount to transfer.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.AMOUNT)
+        return self.verify_element_presence(TransferPage.AMOUNT)
 
     def get_source_accounts(self) -> WebElement:
         """
         Returns the source account dropdown list.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.SOURCE_ACCOUNT)
+        return self.verify_element_presence(TransferPage.SOURCE_ACCOUNT)
 
     def get_target_accounts(self) -> WebElement:
         """
         Returns the target account dropdown list.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.TARGET_ACCOUNT)
+        return self.verify_element_presence(TransferPage.TARGET_ACCOUNT)
 
     def get_transfer_button(self) -> WebElement:
         """
         Returns the transfer button.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.TRANSFER_BUTTON)
+        return self.verify_element_presence(TransferPage.TRANSFER_BUTTON)
 
     def get_transfer_complete(self) -> WebElement:
         """
         Returns the transfer complete message.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.TRANSFER_COMPLETE)
+        return self.verify_element_presence(TransferPage.TRANSFER_COMPLETE)
 
     def get_amount_result(self) -> WebElement:
         """
         Returns the amount of the completed transfer.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.AMOUNT_RESULT)
+        return self.verify_element_presence(TransferPage.AMOUNT_RESULT)
 
     def get_source_account_result(self) -> WebElement:
         """
         Returns the source account of the completed transfer.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.SOURCE_ACCOUNT_RESULT)
+        return self.verify_element_presence(TransferPage.SOURCE_ACCOUNT_RESULT)
 
     def get_target_account_result(self) -> WebElement:
         """
         Returns the target account of the completed transfer.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.TARGET_ACCOUNT_RESULT)
+        return self.verify_element_presence(TransferPage.TARGET_ACCOUNT_RESULT)
 
     def get_amount_errors(self) -> WebElement:
         """
         Returns the amount errors.
         :return: webelement
         """
-        return self._driver.find_element(*TransferPage.AMOUNT_ERRORS)
+        return self.verify_element_presence(TransferPage.AMOUNT_ERRORS)
+
+    def get_internal_error(self) -> WebElement:
+        """
+        Returns the internal error.
+        :return: webelement
+        """
+        return self.verify_element_presence(TransferPage.INTERNAL_ERROR)

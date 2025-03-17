@@ -35,6 +35,7 @@ class ActivityPage(BasePage):
     # Declaring the success and error messages
     VALID_PAGE_TITLE_POSITIVE = "ParaBank | Account Activity"
     FUNDS_SENT = "Funds Transfer Sent"
+    FUNDS_RECEIVED = "Funds Transfer Received"
 
     def __init__(self, driver):
         self._driver = driver
