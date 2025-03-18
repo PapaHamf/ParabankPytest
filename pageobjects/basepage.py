@@ -6,6 +6,8 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from utils.exceptions import WebElementError
+
 class BasePage():
     """
     Base pase for all of the pages.

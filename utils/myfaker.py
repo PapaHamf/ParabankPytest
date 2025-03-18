@@ -50,7 +50,7 @@ class MyFaker(Faker):
         """
         Generates the customer data w/ all fields w/ proper values.
         :param locale: Lets you define the locale of the fake data. Default value is pl_Pl.
-        :param number: Describes the number of customer data generated.
+        :param number: The number of customer data sets generated.
         :return:
         """
         cust_data: list = []
@@ -69,6 +69,34 @@ class MyFaker(Faker):
             temp_dict["confirm"] = temp_dict["password"]
             cust_data.append(temp_dict)
         return cust_data
+
+    @staticmethod
+    def bill_data_all_fields(locale: str = "pl_PL", company: str = None, number: int = 1) -> list[dict]:
+        """
+        Generates the bill payment data w/ all fields w/ proper values.
+        :param locale: Lets you define the locale of the fake data. Default value is pl_Pl.
+        :param company: The optional company name.
+        :param number: The number of bill payment data sets generated.
+        :return:
+        """
+        bill_data: list = []
+        for i in range(number):
+            temp_dict = {}
+            if company:
+                temp_dict["payee"] = company
+            else:
+                temp_dict["payee"] = MyFaker(locale).unique.company()
+            temp_dict["payeeaddress"] = MyFaker(locale).unique.street_address()
+            temp_dict["city"] = MyFaker(locale).unique.city()
+            temp_dict["state"] = MyFaker(locale).unique.administrative_unit()
+            temp_dict["postcode"] = MyFaker(locale).unique.postalcode()
+            temp_dict["phonenumber"] = MyFaker(locale).unique.phone_number()
+            # bban() does not work
+            temp_dict["account"] = MyFaker(locale).unique.aba()
+            temp_dict["verifyaccount"] = temp_dict["account"]
+            temp_dict["amount"] = MyFaker(locale).unique.random_int(5000, 100000)
+            bill_data.append(temp_dict)
+        return bill_data
 
     def name_with_random_no(self) -> str:
         """
