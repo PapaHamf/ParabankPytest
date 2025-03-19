@@ -38,17 +38,22 @@ class BillPayPage(BasePage):
     PAYEE_AMOUNT_EMPTY_ERROR: tuple = (By.ID, "validationModel-amount-empty")
     PAYEE_AMOUNT_INVALID_ERROR: tuple = (By.ID, "validationModel-amount-invalid")
     PAYMENT_ERROR: tuple = (By.ID, "billpayError")
+    PAYMENT_ERROR_TITLE: tuple = (By.CLASS_NAME, "title")
 
-    # Success message
+    # Success message labels
     PAYMENT_SUCCESS: tuple = (By.ID, "billpayResult")
     PAYMENT_SUCCESS_TITLE: tuple = (By.CLASS_NAME, "title")
     SUCCESS_PAYEE_NAME: tuple = (By.ID, "payeeName")
     SUCCESS_AMOUNT: tuple = (By.ID, "amount")
+    SUCCESS_ACCOUNT: tuple = (By.ID, "fromAccountId")
 
     # Declaring success and error messages
+    BILL_PAYMENT_REQUIRED_MSG = " is required."
     BILL_PAYMENT_SUCCESS_MSG = "Bill Payment Complete"
     BILL_PAYMENT_ERROR_TITLE = "Error!"
     BILL_PAYMENT_ERROR_MSG = "An internal error has occurred and has been logged."
+    BILL_PAYMENT_INVALID_AMOUNT = "Please enter a valid amount."
+    BILL_PAYMENT_EMPTY_AMOUNT = "The amount cannot be empty. "
 
     def __init__(self, driver):
         self._driver = driver
@@ -158,6 +163,13 @@ class BillPayPage(BasePage):
         """
         return self.verify_element_presence(BillPayPage.SUCCESS_PAYEE_NAME)
 
+    def get_success_account(self) -> WebElement:
+        """
+        Returns the payment success source account.
+        :return: webelement
+        """
+        return self.verify_element_presence(BillPayPage.SUCCESS_ACCOUNT)
+
     def get_payee_name_error(self) -> WebElement:
         """
         Returns the payee name field error text.
@@ -255,4 +267,11 @@ class BillPayPage(BasePage):
         :return: webelement
         """
         return self.verify_element_presence(BillPayPage.PAYMENT_ERROR)
+
+    def get_payment_error_title(self) -> WebElement:
+        """
+        Returns the payment error message title.
+        :return: webelement
+        """
+        return self.get_payment_error().find_element(*BillPayPage.PAYMENT_ERROR_TITLE)
 

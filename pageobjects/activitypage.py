@@ -36,6 +36,7 @@ class ActivityPage(BasePage):
     VALID_PAGE_TITLE_POSITIVE = "ParaBank | Account Activity"
     FUNDS_SENT = "Funds Transfer Sent"
     FUNDS_RECEIVED = "Funds Transfer Received"
+    BILL_PAYMENT = "Bill Payment to "
 
     def __init__(self, driver):
         self._driver = driver
