@@ -54,7 +54,7 @@ class AccountOverview(BasePage):
 
     def select_account_number(self, acc_no: str) -> ActivityPage:
         """
-        Returns the activity page object for the passed account number.
+        Returns the activity page object for the account number.
         :param acc_no: The number of the account to open the activity page for.
         :return: page object
         """
@@ -121,8 +121,8 @@ class AccountOverview(BasePage):
 
     def get_account_balance(self, account_number: str) -> WebElement:
         """
-        Returns the given account balance.
-        :param account_number: The number of the account which balance should be returned.
+        Returns the account balance.
+        :param account_number: The number of the account whose balance should be returned.
         :return: webelement
         """
         self._rows = self.get_table_rows()
@@ -137,7 +137,7 @@ class AccountOverview(BasePage):
     def get_available_amount(self, account_number: str) -> WebElement:
         """
         Returns the given account available amount.
-        :param account_number: The number of the account which available amount should be returned.
+        :param account_number: The number of the account whose available amount should be returned.
         :return: webelement
         """
         self._rows = self.get_table_rows()

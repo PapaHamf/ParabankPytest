@@ -37,7 +37,7 @@ class BaseClass():
 
     def get_faker(self, locale: str = "pl_PL") -> MyFaker:
         """
-        Creates the faker object with given locale and returns it.
+        Creates the faker object with specified locale and returns it.
         :param locale: Lets you define the locale of the fake data. Default value is pl_Pl.
         :return: faker object
         """

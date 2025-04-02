@@ -25,7 +25,7 @@ class AboutUs(BasePage):
 
     def get_about_us_message(self, text: str) -> bool:
         """
-        Verifies if the given text (about us message) is present on the page.
+        Verifies if the text (about us message) is present on the page.
         :param text: Text
         :return: webelement
         """

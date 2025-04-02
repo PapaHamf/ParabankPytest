@@ -6,11 +6,9 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from utils.exceptions import WebElementError
-
 class BasePage():
     """
-    Base pase for all of the pages.
+    Base pase for all the pages.
     """
 
     # Web pages constants (not used in tests, except HOMEPAGE)
@@ -69,7 +67,7 @@ class BasePage():
         """
         Verifies if the webelement is visible.
         :param element: Webelement to be checked.
-        :param timeout: The timeout of the explicit waiting. The default value is 5.
+        :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return: webelement
         """
         self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
@@ -81,7 +79,7 @@ class BasePage():
         :param locator: The locator describing the webelement to be checked. Tuple containing the By
                         strategy and locator.
         :param text: Text to be located in given webelement.
-        :param timeout: The timeout of the explicit waiting. The default value is 5.
+        :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return:
         """
         self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
@@ -91,13 +89,13 @@ class BasePage():
         """
         Verifies if the text is present in the page title.
         :param text: Text to be located in page title.
-        :param timeout: The timeout of the explicit waiting. The default value is 5.
+        :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return:
         """
         self._wait: WebDriverWait = WebDriverWait(self._driver, timeout)
         return self._wait.until(EC.title_contains(text))
 
-    def verify_element_selected(self, element: WebElement, timeout: int = 10):
+    def verify_element_selected(self, element: WebElement, timeout: int = 10) -> bool:
         """
         Verifies if the webelement is selected.
         :param element: Webelement to be checked.
@@ -109,8 +107,8 @@ class BasePage():
 
     def get_list_values(self, dropdown_list: WebElement) -> list:
         """
-        Returns the list of elements from the passed static dropdown (webelement).
-        :param element: Webelement that references the static dropdown.
+        Returns the list of elements from the static dropdown (webelement).
+        :param dropdown_list: Webelement that references the static dropdown.
         :return: List of elements of the dropdown.
         """
         self._values = []
@@ -120,7 +118,7 @@ class BasePage():
 
     def get_elements_texts(self, elements: list[WebElement]) -> list:
         """
-        Returns the list of webelement texts from the passed list of webelements.
+        Returns the list of webelement texts from the list of webelements.
         :param elements: List of webelements
         :return: List of text strings
         """
@@ -131,7 +129,7 @@ class BasePage():
 
     def get_elements_numbers(self, elements: list[WebElement]) -> list:
         """
-        Returns the list of webelement texts converted to float from the passed list of webelements.
+        Returns the list of webelement texts converted to float from the list of webelements.
         :param elements: List of webelements
         :return: List of text strings
         """
@@ -142,20 +140,20 @@ class BasePage():
 
     def select_value_from_dropdown_text(self, element: WebElement, text: str) -> None:
         """
-        Selects the value from the passed list (webelement) using the text.
+        Selects the value from the list (webelement) using the text.
         :param element: Webelement that references the static dropdown.
         :param text: The text value to be selected.
-        :return: None
+        :return:
         """
         dropdown: Select = Select(element)
         dropdown.select_by_visible_text(text)
 
     def select_value_from_dropdown_index(self, element: WebElement, index: int) -> None:
         """
-        Selects the value from the passed list (webelement) using the index value.
+        Selects the value from the list (webelement) using the index value.
         :param element: Webelement that references the static dropdown.
         :param index: The index value to be selected.
-        :return: None
+        :return:
         """
         dropdown: Select = Select(element)
         dropdown.select_by_index(index)

@@ -20,7 +20,7 @@ class CSVData(TestDataSet):
         self._log: Logger = self._baseclass.get_logger()
 
     @staticmethod
-    def get_csv_data(file_name: str):
+    def get_csv_data(file_name: str) -> list[dict]:
         """
         Returns the data from the CSV file as a dictionary.
         The first row should contain the column names used for the dictionary keys.
@@ -37,5 +37,5 @@ class CSVData(TestDataSet):
                     csv_data.append(row)
         except FileNotFoundError as error:
             log.warning(f"File {CSVData.DIR_PREFIX + file_name} not found.")
-            raise OperationError(error.strerror)
+            raise OperationError(error.__str__())
         return csv_data

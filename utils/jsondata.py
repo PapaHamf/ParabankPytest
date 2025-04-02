@@ -15,7 +15,6 @@ class JSONData(TestDataSet):
     Class that provides the methods to handle the test data in JSON files.
     :param test_scenario: The name of the test scenario.
     :param testcase: The name of the current test case.
-    :param log: Logger object.
     """
 
     DIR_PREFIX: str = "../testdata/"
@@ -27,7 +26,7 @@ class JSONData(TestDataSet):
 
     def convert_time_to_seconds(self, time: str) -> int:
         """
-        Converts the given time string to the number of seconds.
+        Converts the time string to the number of seconds.
         :param time: The time in the hh:mm:ss format.
         :return:
         """
@@ -56,19 +55,19 @@ class JSONData(TestDataSet):
     @staticmethod
     def save_json_data(file_name: str, data: dict) -> None:
         """
-        Lets you save the formatted data to the JSON file.
-        :param file_name: Filename of the JSON file
+        Saves the formatted data to the JSON file.
+        :param file_name: Filename of the JSON file.
         :param data: Dictionary containing the data to be written.
-        :return: None
+        :return:
         """
         baseclass: BaseClass = BaseClass()
         log = baseclass.get_logger()
         try:
-            with open(self.DIR_PREFIX + file_name, "w") as file_handle:
+            with open(JSONData.DIR_PREFIX + file_name, "w") as file_handle:
                 json.dump(data, file_handle, indent = 5)
         except IOError as error:
             log.warning(f"Could not open the file {JSONData.DIR_PREFIX + file_name} for writing.")
-            raise OperationError(error.strerror)
+            raise OperationError(error.__str__())
 
 
     def save_data(self, timediff: int = 60) -> None:
@@ -76,7 +75,7 @@ class JSONData(TestDataSet):
         Saves the data to the JSON file.
         The file name is created based on the date & the test scenario name.
         :param timediff: Time difference used to add testcases to the same test scenario file. Default value is 60.
-        :return: None.
+        :return:
         """
         # Checking if the file exists
         date = datetime.now().date()
@@ -104,4 +103,4 @@ class JSONData(TestDataSet):
                 json.dump(self._data, file_handle, indent = 5)
         except IOError as error:
             self._log.warning(f"Could not open the file {self.DIR_PREFIX + file_name} for writing.")
-            raise OperationError(error.strerror, self._testcase)
+            raise OperationError(error.__str__(), self._testcase)

@@ -25,7 +25,7 @@ class DataBaseInitialise():
 
     def truncate_table(self, table_name: str) -> None:
         """
-        Truncates the given table of the database.
+        Truncates the table of the database.
         :param table_name: The name of the table to truncate/delete from.
         :return:
         """
@@ -38,7 +38,7 @@ class DataBaseInitialise():
 
     def insert_table(self, table_name: str, dataset: str) -> None:
         """
-        Inserts the given data set to the table of the database.
+        Inserts the data set to the table of the database.
         :param table_name: The name of the table to insert data to.
         :param dataset: Data set that will be inserted into DB.
         :return:
@@ -68,7 +68,7 @@ class DataBaseInitialise():
         self.truncate_table(DataBaseInitialise.DB_CUSTOMER)
         self.truncate_table(DataBaseInitialise.DB_STOCK)
 
-    def populate_database(self):
+    def populate_database(self) -> None:
         """
         Inserts the data from the Excel files into respective database tables.
         The tables are populated in the following sequence: Customer, Account, Transaction.
@@ -109,9 +109,3 @@ class DataBaseInitialise():
         :return:
         """
         return self._db.get_data_from_db(f"SELECT * FROM {DataBaseInitialise.DB_STOCK}")
-
-if __name__ == "__main__":
-    DBini = DataBaseInitialise()
-    # DBini.purge_database()
-    # DBini.populate_database()
-    print(DBini.get_database_table_customer())

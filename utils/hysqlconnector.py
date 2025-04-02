@@ -33,7 +33,7 @@ class HyperSQLConnector():
         """
         Returns the results of the database query passed in the SQL statement.
         :param statement: SQL statement that will be executed in the DB.
-        :return: list
+        :return: List w/ data
         """
         self._cursor.execute(statement)
         return self._cursor.fetchall()
@@ -42,7 +42,7 @@ class HyperSQLConnector():
         """
         Lets you insert the data into the database or create and drop tables.
         :param statement: SQL statement that will be executed in the DB.
-        :return: None
+        :return:
         """
         self._cursor.execute(statement)
         self._connection.commit()
@@ -50,6 +50,6 @@ class HyperSQLConnector():
     def close_connection(self) -> None:
         """
         Closes the connection w/ the database.
-        :return: None
+        :return:
         """
         self._connection.close()

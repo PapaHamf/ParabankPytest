@@ -13,7 +13,7 @@ class OperationError(Exception):
 
     def get_testcase(self) -> str:
         """
-        Returns the test case name that caused the exception
+        Returns the test case name that caused the exception.
         :return: Test case name
         """
         return self._testcase

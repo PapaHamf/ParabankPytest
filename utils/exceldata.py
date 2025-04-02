@@ -54,7 +54,7 @@ class ExcelData(TestDataSet):
                 excel_data.append(temp_dict)
         except FileNotFoundError as error:
             log.warning(f"File {ExcelData.DIR_PREFIX + file_name} not found.")
-            raise OperationError(error.strerror)
+            raise OperationError(error.__str__())
         return excel_data
 
     @staticmethod
@@ -65,7 +65,7 @@ class ExcelData(TestDataSet):
         :param file_name: Filename of the Excel file
         :param data: List of dictionaries containing the data to be written. First list should
         contain the table headers.
-        :return: None.
+        :return:
         """
         baseclass: BaseClass = BaseClass()
         log: Logger = baseclass.get_logger()
@@ -88,7 +88,7 @@ class ExcelData(TestDataSet):
             book.save(ExcelData.DIR_PREFIX + file_name)
         except IOError as error:
             log.warning(f"Could not open the file {ExcelData.DIR_PREFIX + file_name} for writing.")
-            raise OperationError(error.strerror)
+            raise OperationError(error.__str__())
 
     def save_data(self) -> None:
         """
@@ -144,5 +144,5 @@ class ExcelData(TestDataSet):
             book.save(self.DIR_PREFIX + self.EXCEL_ARCHIVE)
         except IOError as error:
             self._log.warning(f"Could not open the file {self.DIR_PREFIX + self.EXCEL_ARCHIVE} for writing.")
-            raise OperationError(error.strerror, self._testcase)
+            raise OperationError(error.__str__(), self._testcase)
 
