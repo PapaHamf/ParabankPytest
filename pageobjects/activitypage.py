@@ -32,7 +32,7 @@ class ActivityPage(BasePage):
     TRANSACTION_LINK: tuple = (By.TAG_NAME, "a")
     NO_TRANSACTION: tuple = (By.ID, "noTransactions")
 
-    # Declaring the success and error messages
+    # Declaring the success and error texts
     VALID_PAGE_TITLE_POSITIVE = "ParaBank | Account Activity"
     FUNDS_SENT = "Funds Transfer Sent"
     FUNDS_RECEIVED = "Funds Transfer Received"
@@ -99,7 +99,7 @@ class ActivityPage(BasePage):
 
     def get_transaction_dates(self) -> WebElement | list[WebElement]:
         """
-        Returns the transactions dates list or the no transactions message.
+        Returns the transactions dates list or "no transactions" message.
         :return: webelement
         """
         self._table = self.get_transaction_table()
@@ -110,7 +110,7 @@ class ActivityPage(BasePage):
 
     def get_transaction_names(self) -> WebElement | list[WebElement]:
         """
-        Returns the transactions names list or the no transactions message.
+        Returns the transactions names list or "no transactions" message.
         :return: webelement
         """
         self._table = self.get_transaction_table()
@@ -121,7 +121,7 @@ class ActivityPage(BasePage):
 
     def get_transaction_debits(self) -> WebElement | list[WebElement]:
         """
-        Returns the transactions debits amount list or the no transactions message.
+        Returns the transactions debits amount list or "no transactions" message.
         :return: webelement
         """
         self._table = self.get_transaction_table()
@@ -132,7 +132,7 @@ class ActivityPage(BasePage):
 
     def get_transaction_credits(self) -> WebElement | list[WebElement]:
         """
-        Returns the transactions credits amount list or the no transactions message.
+        Returns the transactions credits amount list or "no transactions" message.
         :return: webelement
         """
         self._table = self.get_transaction_table()
@@ -143,7 +143,7 @@ class ActivityPage(BasePage):
 
     def get_transaction_link_by_text(self, text: str) -> WebElement:
         """
-        Returns the transactions link using the text description.
+        Returns the transaction link using the text description.
         :param text: Text describing the transaction name.
         :return: webelement
         """
@@ -156,7 +156,7 @@ class ActivityPage(BasePage):
 
     def get_transaction_debit_by_name(self, text: str) -> WebElement:
         """
-        Returns the transactions debit amount using the text description.
+        Returns the transaction debit amount using the text description.
         :param text: Text describing the transaction name.
         :return: webelement
         """
@@ -169,7 +169,7 @@ class ActivityPage(BasePage):
 
     def get_transaction_credit_by_name(self, text: str) -> WebElement:
         """
-        Returns the transactions credit amount using the text description.
+        Returns the transaction credit amount using the text description.
         :param text: Text describing the transaction name.
         :return: webelement
         """
@@ -219,7 +219,7 @@ class ActivityPage(BasePage):
 
     def get_no_transactions(self) -> WebElement:
         """
-        Returns the no transactions message.
+        Returns the "no transactions" message.
         :return: webelement
         """
-        return self._driver.find_element(*ActivityPage.NO_TRANSACTION)
+        return self.verify_element_presence(ActivityPage.NO_TRANSACTION)

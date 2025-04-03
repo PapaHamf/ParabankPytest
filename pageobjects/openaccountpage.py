@@ -24,7 +24,7 @@ class OpenAccountPage(BasePage):
     INTERNAL_ERROR: tuple = (By.ID, "openAccountError")
     ERROR_TITLE: tuple = (By.CLASS_NAME, "title")
 
-    # Declaring the success and errors messages
+    # Declaring the success and errors texts
     OPEN_SUCCESS_MSG = "Account Opened!"
     OPEN_ERROR_MSG = "Error!"
 
@@ -48,7 +48,7 @@ class OpenAccountPage(BasePage):
     def get_source_accounts_text(self) -> list[str]:
         """
         Returns the source accounts numbers as strings.
-        :return: List of account numbers strings
+        :return: List of account numbers
         """
         return self.get_list_values(self.get_source_accounts())
 
@@ -97,7 +97,7 @@ class OpenAccountPage(BasePage):
 
     def get_error_title(self) -> WebElement:
         """
-        Returns the account opened error message title.
+        Returns the account error message title.
         :return: webelement
         """
         return self.get_internal_error().find_element(*OpenAccountPage.ERROR_TITLE)

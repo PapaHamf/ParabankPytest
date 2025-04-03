@@ -40,18 +40,14 @@ class HomePage(BasePage):
 
     # Declaring error labels
     LOGIN_ERROR: tuple = (By.TAG_NAME, "h1")
-    # Possible values:
-    # 1. Please enter a username and password.
-    # 2. The username and password could not be verified.
     ERROR_MSG: tuple = (By.CLASS_NAME, "error")
 
-    # Declaring the success and error messages
+    # Declaring the success and error texts
     VALID_PAGE_TITLE_NEGATIVE = "ParaBank | Error"
     VALID_PAGE_TITLE_POSITIVE = "ParaBank | Accounts Overview"
     HOME_PAGE_TITLE = "ParaBank | Welcome | Online Banking"
     ABOUT_US_TITLE = "ParaBank | About Us"
     CONTACT_US_TITLE = "ParaBank | Customer Care"
-
     ERROR_HEADER = "Error!"
     MISSING_USER_PASSWORD_MSG = "Please enter a username and password."
     NOT_VERIFIED_USER_PASSWORD_MSG = "The username and password could not be verified."
@@ -87,8 +83,8 @@ class HomePage(BasePage):
 
     def get_login_button(self) -> SideMenu:
         """
-        Returns the login button.
-        :return: webelement
+        Returns the side menu page object.
+        :return: page object
         """
         self.verify_element_clickable(HomePage.LOGIN_BUTTON).click()
         return SideMenu(self._driver)
@@ -179,7 +175,7 @@ class HomePage(BasePage):
     def get_header_image_load_timings(self) -> tuple:
         """
         Returns the header image response end time and the DOM load event end time.
-        :return: Tuple containing the image response end time & DOM load event end time.
+        :return: Tuple containing the time values.
         """
         self._image_load_end = self._driver.execute_script(HomePage.JS_IMAGE_LOAD_END)
         self._site_dom_load_end = self._driver.execute_script(HomePage.JS_SITE_DOM_LOAD_END)
@@ -203,7 +199,7 @@ class HomePage(BasePage):
 
     def get_about_us_icon(self) -> AboutUs:
         """
-        Returns the about us icon.
+        Returns the about us page object.
         :return: webelement
         """
         self.verify_element_clickable(HomePage.ABOUT_US_ICON).click()
@@ -211,7 +207,7 @@ class HomePage(BasePage):
 
     def hover_over_about_us_icon(self) -> str:
         """
-        Returns the value of CSS property "background" of the home page icon.
+        Returns the value of CSS property "background" of the about us icon.
         :return:
         """
         self._action = ActionChains(self._driver)

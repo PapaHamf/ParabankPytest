@@ -47,7 +47,7 @@ class BillPayPage(BasePage):
     SUCCESS_AMOUNT: tuple = (By.ID, "amount")
     SUCCESS_ACCOUNT: tuple = (By.ID, "fromAccountId")
 
-    # Declaring success and error messages
+    # Declaring success and error texts
     BILL_PAYMENT_REQUIRED_MSG = " is required."
     BILL_PAYMENT_SUCCESS_MSG = "Bill Payment Complete"
     BILL_PAYMENT_ERROR_TITLE = "Error!"
@@ -102,7 +102,7 @@ class BillPayPage(BasePage):
 
     def get_payee_account_number(self) -> WebElement:
         """
-        Returns the payee account_number field.
+        Returns the payee account number field.
         :return: webelement
         """
         return self.verify_element_presence(BillPayPage.PAYEE_ACCOUNT_NUMBER)
@@ -158,7 +158,7 @@ class BillPayPage(BasePage):
 
     def get_success_payee_name(self) -> WebElement:
         """
-        Returns the payment success amount.
+        Returns the payment success name.
         :return: webelement
         """
         return self.verify_element_presence(BillPayPage.SUCCESS_PAYEE_NAME)

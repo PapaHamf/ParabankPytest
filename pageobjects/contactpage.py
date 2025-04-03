@@ -32,7 +32,7 @@ class ContactPage(BasePage):
     # Success message
     SUCCESS_MSG: tuple = (By.XPATH, "//div[@id='rightPanel']/p[1]")
 
-    # Declaring the success & errors messages
+    # Declaring the success & errors texts
     ERROR_REQUIRED_MSG = " is required."
     ERROR_INVALID_MSG = " is invalid."
     CUSTOMER_CARE_SUCCESS_MSG = "Thank you "
@@ -89,7 +89,7 @@ class ContactPage(BasePage):
     def get_message_body_size(self) -> tuple[int]:
         """
         Returns the tuple with the width and height of the text area.
-        :return: Width and height of text area
+        :return: Tuple w/ width and height
         """
         self._sizes = self.get_message_body().get_attribute("style").split(";")
         self._width = int(self._sizes[0].split(":")[1].rstrip("px"))
