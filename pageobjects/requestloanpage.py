@@ -76,14 +76,14 @@ class RequestLoanPage(BasePage):
 
     def get_loan_approved_msg(self) -> WebElement:
         """
-        Returns the loan approved messsage.
+        Returns the loan approved message.
         :return: webelement
         """
         return self._driver.find_element(*RequestLoanPage.LOAN_APPROVED_MSG)
 
     def get_loan_denied_msg(self) -> WebElement:
         """
-        Returns the loan denied messsage.
+        Returns the loan denied message.
         :return: webelement
         """
         return self._driver.find_element(*RequestLoanPage.LOAN_DENIED_MSG)

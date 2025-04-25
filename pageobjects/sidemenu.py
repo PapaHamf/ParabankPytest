@@ -32,7 +32,7 @@ class SideMenu(BasePage):
     # Successful login
     SUCCESSFUL_LOGIN: tuple = (By.CLASS_NAME, "smallText")
 
-    # Declaring the errors & success messages
+    # Declaring the errors & success texts
     SUCCESSFULL_LOGIN_MSG = "Welcome "
 
     def __init__(self, driver):
@@ -110,7 +110,7 @@ class SideMenu(BasePage):
 
     def get_log_out_link(self) -> WebElement:
         """
-        Returns the log out link.
+        Returns the log-out link.
         :return: webelement
         """
         self._l_panel = self.verify_element_presence(SideMenu.LEFT_PANEL)

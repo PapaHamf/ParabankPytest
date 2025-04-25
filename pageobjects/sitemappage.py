@@ -122,7 +122,7 @@ class SiteMap(BasePage):
 
     def get_log_out_link(self) -> WebElement:
         """
-        Returns the log out link.
+        Returns the log-out link.
         :return: webelement
         """
         return self._driver.find_element(*SiteMap.LOG_OUT_LINK)

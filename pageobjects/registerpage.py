@@ -49,7 +49,7 @@ class RegisterPage(BasePage):
     # This locator should contain the text "Your account was created successfully."
     SUCCESSFUL_REGISTRATION_FULL_MSG: tuple = (By.CSS_SELECTOR, "div#rightPanel p")
 
-    # Declaring the success & errors messages
+    # Declaring the success & errors texts
     ERROR_REQUIRED_MSG = " is required."
     ERROR_INVALID_MSG = " is invalid."
     USERNAME_EXISTS_MSG = "This username already exists."
@@ -123,7 +123,7 @@ class RegisterPage(BasePage):
 
     def get_username(self) -> WebElement:
         """
-        Returns the user name field.
+        Returns the username field.
         :return: webelement
         """
         return self.verify_element_presence(RegisterPage.USERNAME)
@@ -144,8 +144,8 @@ class RegisterPage(BasePage):
 
     def get_register_button(self) -> SideMenu:
         """
-        Returns the register button.
-        :return: webelement
+        Returns the side menu page object.
+        :return: page object
         """
         self.verify_element_presence(RegisterPage.REGISTER_BUTTON).click()
         return SideMenu(self._driver)
@@ -215,7 +215,7 @@ class RegisterPage(BasePage):
 
     def get_username_error(self) -> WebElement:
         """
-        Returns the user name field error text.
+        Returns the username field error text.
         :return: webelement
         """
         return self.verify_element_presence(RegisterPage.USERNAME_ERROR)

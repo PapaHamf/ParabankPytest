@@ -137,7 +137,7 @@ class UpdateProfilePage(BasePage):
 
     def get_phone_number_error(self) -> WebElement:
         """
-        Returns the phone_number field error text.
+        Returns the phone number field error text.
         :return: webelement
         """
         return self._driver.find_element(*UpdateProfilePage.PHONE_NUMBER_ERROR)
