@@ -23,8 +23,7 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to log in the customer with empty Username and Password field.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
-    def test_logging_negative_no_username(self):
+    def test_logging_negative_both_fields_empty(self):
         """
         Tests the customer logging in w/ empty username and password field.
         :return:
@@ -32,14 +31,15 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        log.info(f"Testing the customer log in with empty Username and Password field.")
-        log.info("Logging in the user.")
-        log.info("Clicking the log in button.")
-        home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            log.info(f"Testing the customer log in with empty Username and Password field.")
+            log.info("Logging in the user.")
+            log.info("Clicking the log in button.")
+            home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the logging in"):
+        with allure.step("Step 3: Verify the logging in"):
             log.info("Verifying the error header.")
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")
@@ -55,7 +55,6 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to log in the customer with empty Username field.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_logging_negative_no_username(self):
         """
         Tests the customer logging in w/ empty username field.
@@ -64,22 +63,23 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        data_collection = ExcelData("Customer log in", "Empty username")
-        log.info(f"Testing the customer log in with empty Username field.")
-        customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
-        log.info("Logging in the user.")
-        user_name = ""
-        data_collection.add_data("username", user_name)
-        password = customer_data["password"]
-        log.info(f"Entering the password {password}")
-        data_collection.add_data("password", password)
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the log in button.")
-        home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("Customer log in", "Empty username")
+            log.info(f"Testing the customer log in with empty Username field.")
+            customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
+            log.info("Logging in the user.")
+            user_name = ""
+            data_collection.add_data("username", user_name)
+            password = customer_data["password"]
+            log.info(f"Entering the password {password}")
+            data_collection.add_data("password", password)
+            home_page.get_password().send_keys(password)
+            log.info("Clicking the log in button.")
+            home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the logging in"):
+        with allure.step("Step 3: Verify the logging in"):
             log.info("Verifying the error header.")
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")
@@ -95,7 +95,6 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to log in the customer with empty Password field.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_logging_negative_no_password(self):
         """
         Tests the customer logging in w/ empty password field.
@@ -104,22 +103,23 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        data_collection = ExcelData("Customer log in", "Empty password")
-        log.info(f"Testing the customer log in with empty Password field.")
-        customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
-        log.info("Logging in the user.")
-        user_name = customer_data["username"]
-        log.info(f"Entering the username {user_name}.")
-        data_collection.add_data("username", user_name)
-        home_page.get_username().send_keys(user_name)
-        password = ""
-        data_collection.add_data("password", password)
-        log.info("Clicking the log in button.")
-        home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("Customer log in", "Empty password")
+            log.info(f"Testing the customer log in with empty Password field.")
+            customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
+            log.info("Logging in the user.")
+            user_name = customer_data["username"]
+            log.info(f"Entering the username {user_name}.")
+            data_collection.add_data("username", user_name)
+            home_page.get_username().send_keys(user_name)
+            password = ""
+            data_collection.add_data("password", password)
+            log.info("Clicking the log in button.")
+            home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the logging in"):
+        with allure.step("Step 3: Verify the logging in"):
             log.info("Verifying the error header.")
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")
@@ -135,7 +135,6 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to log in the customer with wrong username.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_logging_negative_wrong_username(self):
         """
         Tests the customer logging in w/ wrong username.
@@ -144,24 +143,25 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        data_collection = ExcelData("Customer log in", "Wrong username")
-        log.info(f"Testing the customer log in with wrong username.")
-        customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
-        log.info("Logging in the user.")
-        user_name = customer_data["username"] + str(int(random.randint(0, 1000)))
-        log.info(f"Entering the username {user_name}.")
-        data_collection.add_data("username", user_name)
-        home_page.get_username().send_keys(user_name)
-        password = customer_data["password"]
-        log.info(f"Entering the password {password}")
-        data_collection.add_data("password", password)
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the log in button.")
-        home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("Customer log in", "Wrong username")
+            log.info(f"Testing the customer log in with wrong username.")
+            customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
+            log.info("Logging in the user.")
+            user_name = customer_data["username"] + str(int(random.randint(0, 1000)))
+            log.info(f"Entering the username {user_name}.")
+            data_collection.add_data("username", user_name)
+            home_page.get_username().send_keys(user_name)
+            password = customer_data["password"]
+            log.info(f"Entering the password {password}")
+            data_collection.add_data("password", password)
+            home_page.get_password().send_keys(password)
+            log.info("Clicking the log in button.")
+            home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the logging in"):
+        with allure.step("Step 3: Verify the logging in"):
             log.info("Verifying the error header.")
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")
@@ -177,7 +177,6 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to log in the customer with wrong password.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_logging_negative_wrong_password(self):
         """
         Tests the customer logging in w/ wrong password.
@@ -186,24 +185,25 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        data_collection = ExcelData("Customer log in", "Wrong password")
-        log.info(f"Testing the customer log in with wrong password.")
-        customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
-        log.info("Logging in the user.")
-        user_name = customer_data["username"]
-        log.info(f"Entering the username {user_name}.")
-        data_collection.add_data("username", user_name)
-        home_page.get_username().send_keys(user_name)
-        password = customer_data["password"] + str(int(random.randint(0, 1000)))
-        log.info(f"Entering the password {password}")
-        data_collection.add_data("password", password)
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the log in button.")
-        home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("Customer log in", "Wrong password")
+            log.info(f"Testing the customer log in with wrong password.")
+            customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
+            log.info("Logging in the user.")
+            user_name = customer_data["username"]
+            log.info(f"Entering the username {user_name}.")
+            data_collection.add_data("username", user_name)
+            home_page.get_username().send_keys(user_name)
+            password = customer_data["password"] + str(int(random.randint(0, 1000)))
+            log.info(f"Entering the password {password}")
+            data_collection.add_data("password", password)
+            home_page.get_password().send_keys(password)
+            log.info("Clicking the log in button.")
+            home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the logging in"):
+        with allure.step("Step 3: Verify the logging in"):
             log.info("Verifying the error header.")
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")
@@ -219,7 +219,6 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to log in the customer with correct username and password.")
     @pytest.mark.smoke
     @pytest.mark.positive
-    @pytest.mark.skip
     def test_logging_positive_correct_credentials(self, get_excel_data_customer_logins):
         """
         Tests the customer logging in w/ correct username and password.
@@ -228,23 +227,24 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        data_collection = ExcelData("Customer log in", "Correct credentials")
-        log.info(f"Testing the customer log in with correct username and password.")
-        log.info("Logging in the user.")
-        user_name = get_excel_data_customer_logins["username"]
-        log.info(f"Entering the username {user_name}.")
-        data_collection.add_data("username", user_name)
-        home_page.get_username().send_keys(user_name)
-        password = get_excel_data_customer_logins["password"]
-        log.info(f"Entering the password {password}")
-        data_collection.add_data("password", password)
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the log in button.")
-        side_menu = home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("Customer log in", "Correct credentials")
+            log.info(f"Testing the customer log in with correct username and password.")
+            log.info("Logging in the user.")
+            user_name = get_excel_data_customer_logins["username"]
+            log.info(f"Entering the username {user_name}.")
+            data_collection.add_data("username", user_name)
+            home_page.get_username().send_keys(user_name)
+            password = get_excel_data_customer_logins["password"]
+            log.info(f"Entering the password {password}")
+            data_collection.add_data("password", password)
+            home_page.get_password().send_keys(password)
+            log.info("Clicking the log in button.")
+            side_menu = home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_POSITIVE
-        with (allure.step("Step 2: Verify if the user is logged in")):
+        with (allure.step("Step 3: Verify if the user is logged in")):
             log.info("Verifying if the user is logged in.")
             logged_msg = side_menu.get_successful_login().text
             log.info(f"Logging out the user {get_excel_data_customer_logins["username"]}.")
@@ -263,7 +263,6 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to do the SQL injection attack displaying the whole table.")
     @pytest.mark.smoke
     @pytest.mark.security
-    @pytest.mark.skip
     def test_logging_security_sql_inject_all(self):
         """
         Tests the customer logging in w/ SQL inject attack string.
@@ -272,19 +271,20 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        log.info(f"Testing the customer log in with SQL injection strings.")
-        log.info("Logging in the user.")
-        log.info(f"Entering the username {TestLogin.SQL_INJECT_ALL}.")
-        home_page.get_username().send_keys(TestLogin.SQL_INJECT_ALL)
-        password = "SQL inject"
-        log.info(f"Entering the password {password}")
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the log in button.")
-        home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            log.info(f"Testing the customer log in with SQL injection strings.")
+            log.info("Logging in the user.")
+            log.info(f"Entering the username {TestLogin.SQL_INJECT_ALL}.")
+            home_page.get_username().send_keys(TestLogin.SQL_INJECT_ALL)
+            password = "SQL inject"
+            log.info(f"Entering the password {password}")
+            home_page.get_password().send_keys(password)
+            log.info("Clicking the log in button.")
+            home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the table data is not displayed"):
+        with allure.step("Step 3: Verify the table data is not displayed"):
             log.info("Verifying the error header.")
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")
@@ -300,7 +300,6 @@ class TestLogin(BaseClass):
     @allure.description("This test attempts to do the SQL injection attack displaying the usernames & passwords.")
     @pytest.mark.smoke
     @pytest.mark.security
-    @pytest.mark.skip
     def test_logging_security_sql_inject_up(self):
         """
         Tests the customer logging in w/ SQL inject attack string.
@@ -309,19 +308,20 @@ class TestLogin(BaseClass):
         log = self.get_logger()
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
-        log.info(f"Testing the customer log in with SQL injection strings.")
-        log.info("Logging in the user.")
-        log.info(f"Entering the username {TestLogin.SQL_INJECT_CUSTOMER}.")
-        home_page.get_username().send_keys(TestLogin.SQL_INJECT_CUSTOMER)
-        password = "SQL inject"
-        log.info(f"Entering the password {password}")
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the log in button.")
-        home_page.get_login_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            log.info(f"Testing the customer log in with SQL injection strings.")
+            log.info("Logging in the user.")
+            log.info(f"Entering the username {TestLogin.SQL_INJECT_CUSTOMER}.")
+            home_page.get_username().send_keys(TestLogin.SQL_INJECT_CUSTOMER)
+            password = "SQL inject"
+            log.info(f"Entering the password {password}")
+            home_page.get_password().send_keys(password)
+            log.info("Clicking the log in button.")
+            home_page.get_login_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert home_page.get_page_title() == home_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the table data is not displayed"):
+        with allure.step("Step 3: Verify the table data is not displayed"):
             log.info("Verifying the error header.")
             assert home_page.get_login_error().text == home_page.ERROR_HEADER
             log.info("Verifying the error message.")

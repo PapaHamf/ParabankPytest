@@ -21,7 +21,6 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_negative(self, get_customer_data_negative):
         """
         Tests the customer registration w/ one empty field.
@@ -32,61 +31,62 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Negative registration")
-        log.info(f"Testing the registration with empty {get_customer_data_negative["empty"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_customer_data_negative["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with empty"
-                                   f" {get_customer_data_negative["empty"]} field.")
-        first_name = get_customer_data_negative["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_customer_data_negative["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_customer_data_negative["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_customer_data_negative["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_customer_data_negative["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_customer_data_negative["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_customer_data_negative["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_customer_data_negative["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        user_name = get_customer_data_negative["username"]
-        log.info(f"Entering the user name: {user_name}")
-        data_collection.add_data("username", user_name)
-        register_page.get_username().send_keys(user_name)
-        password = get_customer_data_negative["password"]
-        log.info(f"Entering the password: {password}")
-        data_collection.add_data("password", password)
-        register_page.get_password().send_keys(password)
-        confirm_password = get_customer_data_negative["confirm"]
-        log.info(f"Entering the confirm password: {confirm_password}")
-        register_page.get_confirm_password().send_keys(confirm_password)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Negative registration")
+            log.info(f"Testing the registration with empty {get_customer_data_negative["empty"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_customer_data_negative["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with empty"
+                                       f" {get_customer_data_negative["empty"]} field.")
+            first_name = get_customer_data_negative["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_customer_data_negative["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_customer_data_negative["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_customer_data_negative["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_customer_data_negative["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_customer_data_negative["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_customer_data_negative["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_customer_data_negative["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            user_name = get_customer_data_negative["username"]
+            log.info(f"Entering the username: {user_name}")
+            data_collection.add_data("username", user_name)
+            register_page.get_username().send_keys(user_name)
+            password = get_customer_data_negative["password"]
+            log.info(f"Entering the password: {password}")
+            data_collection.add_data("password", password)
+            register_page.get_password().send_keys(password)
+            confirm_password = get_customer_data_negative["confirm"]
+            log.info(f"Entering the confirm password: {confirm_password}")
+            register_page.get_confirm_password().send_keys(confirm_password)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info("Verifying the number of errors on the page. Should equal 1.")
             assert len(errors_list) == 1
@@ -104,7 +104,6 @@ class TestRegistration(BaseClass):
                         " with proper values.")
     @pytest.mark.smoke
     @pytest.mark.positive
-    @pytest.mark.skip
     def test_registration_positive(self, get_customer_data_positive):
         """
         Tests the customer registration w/ all fields w/ proper values.
@@ -115,58 +114,59 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Positive registration")
-        log.info(f"Testing the registration with all fields with proper values.")
-        first_name = get_customer_data_positive["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_customer_data_positive["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_customer_data_positive["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_customer_data_positive["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_customer_data_positive["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_customer_data_positive["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_customer_data_positive["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_customer_data_positive["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        user_name = get_customer_data_positive["username"]
-        log.info(f"Entering the user name: {user_name}")
-        data_collection.add_data("username", user_name)
-        register_page.get_username().send_keys(user_name)
-        password = get_customer_data_positive["password"]
-        log.info(f"Entering the password: {password}")
-        data_collection.add_data("password", password)
-        register_page.get_password().send_keys(password)
-        confirm_password = get_customer_data_positive["confirm"]
-        log.info(f"Entering the confirm password: {confirm_password}")
-        register_page.get_confirm_password().send_keys(confirm_password)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        side_menu = register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Positive registration")
+            log.info(f"Testing the registration with all fields with proper values.")
+            first_name = get_customer_data_positive["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_customer_data_positive["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_customer_data_positive["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_customer_data_positive["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_customer_data_positive["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_customer_data_positive["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_customer_data_positive["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_customer_data_positive["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            user_name = get_customer_data_positive["username"]
+            log.info(f"Entering the username: {user_name}")
+            data_collection.add_data("username", user_name)
+            register_page.get_username().send_keys(user_name)
+            password = get_customer_data_positive["password"]
+            log.info(f"Entering the password: {password}")
+            data_collection.add_data("password", password)
+            register_page.get_password().send_keys(password)
+            confirm_password = get_customer_data_positive["confirm"]
+            log.info(f"Entering the confirm password: {confirm_password}")
+            register_page.get_confirm_password().send_keys(confirm_password)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            side_menu = register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
-        with allure.step("Step 2: Verify if the user is logged in"):
+        with allure.step("Step 3: Verify if the user is logged in"):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
             log.info(f"Logging out the user {get_customer_data_positive["username"]}.")
@@ -182,7 +182,6 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_strings_too_short(self, get_excel_data_strings_too_short):
         """
         Tests the customer registration w/ too short (one letter) string field values.
@@ -192,50 +191,51 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Too short")
-        log.info(f"Testing the registration with too short {get_excel_data_strings_too_short["tooshort"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_excel_data_strings_too_short["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with too short"
-                                   f" {get_excel_data_strings_too_short["tooshort"]} field.")
-        first_name = get_excel_data_strings_too_short["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_excel_data_strings_too_short["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_excel_data_strings_too_short["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_excel_data_strings_too_short["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_excel_data_strings_too_short["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_excel_data_strings_too_short["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_excel_data_strings_too_short["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_excel_data_strings_too_short["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Too short")
+            log.info(f"Testing the registration with too short {get_excel_data_strings_too_short["tooshort"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_excel_data_strings_too_short["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with too short"
+                                       f" {get_excel_data_strings_too_short["tooshort"]} field.")
+            first_name = get_excel_data_strings_too_short["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_excel_data_strings_too_short["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_excel_data_strings_too_short["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_excel_data_strings_too_short["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_excel_data_strings_too_short["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_excel_data_strings_too_short["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_excel_data_strings_too_short["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_excel_data_strings_too_short["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_excel_data_strings_too_short["tooshort"]} field.")
             assert errors_list[0] == get_excel_data_strings_too_short["tooshort"] + register_page.ERROR_INVALID_MSG
@@ -248,7 +248,6 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_strings_too_long(self, get_excel_data_strings_too_long):
         """
         Tests the customer registration w/ too long (36 letters) string field values.
@@ -258,63 +257,63 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Too long")
-        log.info(f"Testing the registration with too long {get_excel_data_strings_too_long["toolong"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_excel_data_strings_too_long["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with too long"
-                                   f" {get_excel_data_strings_too_long["toolong"]} field.")
-        first_name = get_excel_data_strings_too_long["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_excel_data_strings_too_long["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_excel_data_strings_too_long["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_excel_data_strings_too_long["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_excel_data_strings_too_long["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_excel_data_strings_too_long["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_excel_data_strings_too_long["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_excel_data_strings_too_long["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Too long")
+            log.info(f"Testing the registration with too long {get_excel_data_strings_too_long["toolong"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_excel_data_strings_too_long["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with too long"
+                                       f" {get_excel_data_strings_too_long["toolong"]} field.")
+            first_name = get_excel_data_strings_too_long["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_excel_data_strings_too_long["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_excel_data_strings_too_long["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_excel_data_strings_too_long["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_excel_data_strings_too_long["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_excel_data_strings_too_long["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_excel_data_strings_too_long["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_excel_data_strings_too_long["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_excel_data_strings_too_long["toolong"]} field.")
             assert errors_list[0] == get_excel_data_strings_too_long["toolong"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for new customer registration")
-    @allure.sub_suite("Registration field values verification - added digits to strings")
+    @allure.sub_suite("Registration field values verification - digits added to strings")
     @allure.tag("Negative", "Smoke", "Registration", "Added digits", "Strings")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_strings_added_digits(self, get_csv_data_strings_added_digits):
         """
         Tests the customer registration w/ random digits added to string field values.
@@ -324,64 +323,64 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Added digits")
-        log.info(f"Testing the registration with random digits added to the"
-                 f" {get_csv_data_strings_added_digits["added"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_csv_data_strings_added_digits["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with random"
-                                   f" digits added to the {get_csv_data_strings_added_digits["added"]} field.")
-        first_name = get_csv_data_strings_added_digits["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_csv_data_strings_added_digits["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_csv_data_strings_added_digits["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_csv_data_strings_added_digits["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_csv_data_strings_added_digits["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_csv_data_strings_added_digits["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_csv_data_strings_added_digits["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_csv_data_strings_added_digits["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Added digits")
+            log.info(f"Testing the registration with random digits added to the"
+                     f" {get_csv_data_strings_added_digits["added"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_csv_data_strings_added_digits["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with random"
+                                       f" digits added to the {get_csv_data_strings_added_digits["added"]} field.")
+            first_name = get_csv_data_strings_added_digits["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_csv_data_strings_added_digits["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_csv_data_strings_added_digits["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_csv_data_strings_added_digits["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_csv_data_strings_added_digits["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_csv_data_strings_added_digits["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_csv_data_strings_added_digits["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_csv_data_strings_added_digits["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_csv_data_strings_added_digits["added"]} field.")
             assert errors_list[0] == get_csv_data_strings_added_digits["added"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for new customer registration")
-    @allure.sub_suite("Registration field values verification - added special characters to strings")
+    @allure.sub_suite("Registration field values verification - special characters added to strings")
     @allure.tag("Negative", "Smoke", "Registration", "Added special characters", "Strings")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_strings_added_special(self, get_csv_data_strings_added_special):
         """
         Tests the customer registration w/ special characters added to string field values.
@@ -391,51 +390,52 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Added special")
-        log.info(f"Testing the registration with special characters added to the"
-                 f" {get_csv_data_strings_added_special["added"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_csv_data_strings_added_special["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with random"
-                                   f" digits added to the {get_csv_data_strings_added_special["added"]} field.")
-        first_name = get_csv_data_strings_added_special["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_csv_data_strings_added_special["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_csv_data_strings_added_special["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_csv_data_strings_added_special["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_csv_data_strings_added_special["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_csv_data_strings_added_special["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_csv_data_strings_added_special["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_csv_data_strings_added_special["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Added special")
+            log.info(f"Testing the registration with special characters added to the"
+                     f" {get_csv_data_strings_added_special["added"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_csv_data_strings_added_special["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with random"
+                                       f" digits added to the {get_csv_data_strings_added_special["added"]} field.")
+            first_name = get_csv_data_strings_added_special["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_csv_data_strings_added_special["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_csv_data_strings_added_special["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_csv_data_strings_added_special["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_csv_data_strings_added_special["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_csv_data_strings_added_special["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_csv_data_strings_added_special["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_csv_data_strings_added_special["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_csv_data_strings_added_special["added"]} field.")
             assert errors_list[0] == get_csv_data_strings_added_special["added"] + register_page.ERROR_INVALID_MSG
@@ -448,7 +448,6 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_numbers_letters(self, get_json_data_numbers_letters):
         """
         Tests the customer registration w/ letters added to numerical field values.
@@ -458,50 +457,51 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Letters in num")
-        log.info(f"Testing the registration with letters in {get_json_data_numbers_letters["letters"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_letters["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with letters in"
-                                   f" {get_json_data_numbers_letters["letters"]} field.")
-        first_name = get_json_data_numbers_letters["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_json_data_numbers_letters["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_json_data_numbers_letters["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_json_data_numbers_letters["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_json_data_numbers_letters["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_json_data_numbers_letters["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_json_data_numbers_letters["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_json_data_numbers_letters["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Letters in num")
+            log.info(f"Testing the registration with letters in {get_json_data_numbers_letters["letters"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_letters["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with letters in"
+                                       f" {get_json_data_numbers_letters["letters"]} field.")
+            first_name = get_json_data_numbers_letters["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_json_data_numbers_letters["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_json_data_numbers_letters["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_json_data_numbers_letters["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_json_data_numbers_letters["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_json_data_numbers_letters["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_json_data_numbers_letters["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_json_data_numbers_letters["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_json_data_numbers_letters["letters"]} field.")
             assert errors_list[0] == get_json_data_numbers_letters["letters"] + register_page.ERROR_INVALID_MSG
@@ -514,7 +514,6 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_numbers_too_short(self, get_json_data_numbers_too_short):
         """
         Tests the customer registration w/ too short (one digit) numerical field values.
@@ -524,50 +523,51 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Too short")
-        log.info(f"Testing the registration with letters in {get_json_data_numbers_too_short["tooshort"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_too_short["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with too short"
-                                   f" {get_json_data_numbers_too_short["tooshort"]} field.")
-        first_name = get_json_data_numbers_too_short["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_json_data_numbers_too_short["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_json_data_numbers_too_short["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_json_data_numbers_too_short["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_json_data_numbers_too_short["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_json_data_numbers_too_short["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_json_data_numbers_too_short["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_json_data_numbers_too_short["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Too short")
+            log.info(f"Testing the registration with letters in {get_json_data_numbers_too_short["tooshort"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_too_short["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with too short"
+                                       f" {get_json_data_numbers_too_short["tooshort"]} field.")
+            first_name = get_json_data_numbers_too_short["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_json_data_numbers_too_short["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_json_data_numbers_too_short["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_json_data_numbers_too_short["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_json_data_numbers_too_short["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_json_data_numbers_too_short["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_json_data_numbers_too_short["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_json_data_numbers_too_short["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_json_data_numbers_too_short["tooshort"]} field.")
             assert errors_list[0] == get_json_data_numbers_too_short["tooshort"] + register_page.ERROR_INVALID_MSG
@@ -580,7 +580,6 @@ class TestRegistration(BaseClass):
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_numbers_too_long(self, get_json_data_numbers_too_long):
         """
         Tests the customer registration w/ too long (15 digits) numerical field values.
@@ -590,63 +589,63 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Too long")
-        log.info(f"Testing the registration with letters in {get_json_data_numbers_too_long["toolong"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_too_long["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with too long"
-                                   f" {get_json_data_numbers_too_long["toolong"]} field.")
-        first_name = get_json_data_numbers_too_long["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_json_data_numbers_too_long["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_json_data_numbers_too_long["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_json_data_numbers_too_long["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_json_data_numbers_too_long["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_json_data_numbers_too_long["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_json_data_numbers_too_long["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_json_data_numbers_too_long["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Too long")
+            log.info(f"Testing the registration with letters in {get_json_data_numbers_too_long["toolong"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_too_long["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with too long"
+                                       f" {get_json_data_numbers_too_long["toolong"]} field.")
+            first_name = get_json_data_numbers_too_long["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_json_data_numbers_too_long["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_json_data_numbers_too_long["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_json_data_numbers_too_long["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_json_data_numbers_too_long["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_json_data_numbers_too_long["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_json_data_numbers_too_long["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_json_data_numbers_too_long["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_json_data_numbers_too_long["toolong"]} field.")
             assert errors_list[0] == get_json_data_numbers_too_long["toolong"] + register_page.ERROR_INVALID_MSG
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for new customer registration")
-    @allure.sub_suite("Registration field values verification - added special characters to numbers")
+    @allure.sub_suite("Registration field values verification - special characters added to numbers")
     @allure.tag("Negative", "Smoke", "Registration", "Added special characters", "Numbers")
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_numbers_specials(self, get_json_data_numbers_special):
         """
         Tests the customer registration w/ special characters added to numerical field values.
@@ -656,51 +655,52 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Added special")
-        log.info(f"Testing the registration with special characters in"
-                 f" {get_json_data_numbers_special["specials"]} field.")
-        allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_special["tc"]}")
-        allure.dynamic.description(f"This test attempts to register the customer with special characters in"
-                                   f" {get_json_data_numbers_special["specials"]} field.")
-        first_name = get_json_data_numbers_special["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = get_json_data_numbers_special["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = get_json_data_numbers_special["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = get_json_data_numbers_special["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = get_json_data_numbers_special["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = get_json_data_numbers_special["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = get_json_data_numbers_special["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = get_json_data_numbers_special["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Added special")
+            log.info(f"Testing the registration with special characters in"
+                     f" {get_json_data_numbers_special["specials"]} field.")
+            allure.dynamic.testcase(f"Test Case no {get_json_data_numbers_special["tc"]}")
+            allure.dynamic.description(f"This test attempts to register the customer with special characters in"
+                                       f" {get_json_data_numbers_special["specials"]} field.")
+            first_name = get_json_data_numbers_special["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = get_json_data_numbers_special["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = get_json_data_numbers_special["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = get_json_data_numbers_special["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = get_json_data_numbers_special["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = get_json_data_numbers_special["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = get_json_data_numbers_special["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = get_json_data_numbers_special["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             errors_list = register_page.get_errors()
             log.info(f"Verifying if the error is visible in {get_json_data_numbers_special["specials"]} field.")
             assert errors_list[0] == get_json_data_numbers_special["specials"] + register_page.ERROR_INVALID_MSG
@@ -716,7 +716,6 @@ class TestRegistration(BaseClass):
                         "separated by hyphen.")
     @pytest.mark.smoke
     @pytest.mark.positive
-    @pytest.mark.skip
     def test_registration_two_last_names(self):
         """
         Tests the customer registration w/ two last names separated by hyphen.
@@ -726,59 +725,60 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Two last names")
-        log.info(f"Testing the registration with two last names in Last name field.")
-        customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
-        first_name = customer_data["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = customer_data["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = customer_data["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = customer_data["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = customer_data["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = customer_data["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = customer_data["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = customer_data["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        user_name = customer_data["username"]
-        log.info(f"Entering the user name: {user_name}")
-        data_collection.add_data("username", user_name)
-        register_page.get_username().send_keys(user_name)
-        password = customer_data["password"]
-        log.info(f"Entering the password: {password}")
-        data_collection.add_data("password", password)
-        register_page.get_password().send_keys(password)
-        confirm_password = customer_data["confirm"]
-        log.info(f"Entering the confirm password: {confirm_password}")
-        register_page.get_confirm_password().send_keys(confirm_password)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        side_menu = register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Two last names")
+            log.info(f"Testing the registration with two last names in Last name field.")
+            customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
+            first_name = customer_data["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = customer_data["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = customer_data["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = customer_data["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = customer_data["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = customer_data["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = customer_data["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = customer_data["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            user_name = customer_data["username"]
+            log.info(f"Entering the username: {user_name}")
+            data_collection.add_data("username", user_name)
+            register_page.get_username().send_keys(user_name)
+            password = customer_data["password"]
+            log.info(f"Entering the password: {password}")
+            data_collection.add_data("password", password)
+            register_page.get_password().send_keys(password)
+            confirm_password = customer_data["confirm"]
+            log.info(f"Entering the confirm password: {confirm_password}")
+            register_page.get_confirm_password().send_keys(confirm_password)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            side_menu = register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
-        with allure.step("Step 2: Verify if the user is logged in."):
+        with allure.step("Step 3: Verify if the user is logged in."):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
             log.info(f"Logging out the user {customer_data["username"]}.")
@@ -796,7 +796,6 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer with the existing username.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_existing_username(self):
         """
         Tests the customer registration w/ the existing username.
@@ -806,59 +805,60 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Existing username")
-        log.info(f"Testing the registration with existing username.")
-        customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
-        first_name = customer_data["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = customer_data["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = customer_data["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = customer_data["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = customer_data["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = customer_data["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = customer_data["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = customer_data["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        user_name = customer_data["username"]
-        log.info(f"Entering the user name: {user_name}")
-        data_collection.add_data("username", user_name)
-        register_page.get_username().send_keys(user_name)
-        password = customer_data["password"]
-        log.info(f"Entering the password: {password}")
-        data_collection.add_data("password", password)
-        register_page.get_password().send_keys(password)
-        confirm_password = customer_data["password"]
-        log.info(f"Entering the confirm password: {confirm_password}")
-        register_page.get_confirm_password().send_keys(confirm_password)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Existing username")
+            log.info(f"Testing the registration with existing username.")
+            customer_data = random.choice(ExcelData.get_excel_data("dataset_customer.xlsx"))
+            first_name = customer_data["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = customer_data["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = customer_data["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = customer_data["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = customer_data["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = customer_data["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = customer_data["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = customer_data["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            user_name = customer_data["username"]
+            log.info(f"Entering the user name: {user_name}")
+            data_collection.add_data("username", user_name)
+            register_page.get_username().send_keys(user_name)
+            password = customer_data["password"]
+            log.info(f"Entering the password: {password}")
+            data_collection.add_data("password", password)
+            register_page.get_password().send_keys(password)
+            confirm_password = customer_data["password"]
+            log.info(f"Entering the confirm password: {confirm_password}")
+            register_page.get_confirm_password().send_keys(confirm_password)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             error = register_page.get_username_error()
             log.info(f"Verifying if the error is visible in Username field.")
             assert error.text == register_page.USERNAME_EXISTS_MSG
@@ -873,7 +873,6 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer with passwords not matching.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_two_different_passwords(self):
         """
         Tests the customer registration w/ two different passwords.
@@ -883,60 +882,61 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Different passwords")
-        log.info(f"Testing the registration with two different passwords in Password and Confirm password.")
-        customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
-        first_name = customer_data["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = customer_data["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = customer_data["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = customer_data["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = customer_data["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = customer_data["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = customer_data["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = customer_data["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        user_name = customer_data["username"]
-        log.info(f"Entering the user name: {user_name}")
-        data_collection.add_data("username", user_name)
-        register_page.get_username().send_keys(user_name)
-        password = customer_data["password"]
-        log.info(f"Entering the password: {password}")
-        data_collection.add_data("password", password)
-        register_page.get_password().send_keys(password)
-        # Use the repeated password
-        confirm_password = customer_data["confirm"] + customer_data["confirm"]
-        log.info(f"Entering the confirm password: {confirm_password}")
-        register_page.get_confirm_password().send_keys(confirm_password)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Different passwords")
+            log.info(f"Testing the registration with two different passwords in Password and Confirm password.")
+            customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
+            first_name = customer_data["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = customer_data["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = customer_data["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = customer_data["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = customer_data["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = customer_data["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = customer_data["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = customer_data["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            user_name = customer_data["username"]
+            log.info(f"Entering the username: {user_name}")
+            data_collection.add_data("username", user_name)
+            register_page.get_username().send_keys(user_name)
+            password = customer_data["password"]
+            log.info(f"Entering the password: {password}")
+            data_collection.add_data("password", password)
+            register_page.get_password().send_keys(password)
+            # Use the repeated password
+            confirm_password = customer_data["confirm"] + customer_data["confirm"]
+            log.info(f"Entering the confirm password: {confirm_password}")
+            register_page.get_confirm_password().send_keys(confirm_password)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             error = register_page.get_confirm_password_error()
             log.info(f"Verifying if the error is visible in the Confirm password field.")
             assert error.text == register_page.PASSWORDS_DO_NOT_MATCH
@@ -952,7 +952,6 @@ class TestRegistration(BaseClass):
                         " is written to the database correctly.")
     @pytest.mark.smoke
     @pytest.mark.positive
-    @pytest.mark.skip
     def test_registration_verify_database(self):
         """
         Tests the customer registration and verifies if the data is written to the database.
@@ -962,63 +961,64 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Database verification")
-        log.info(f"Testing the registration and verifying if the data is written to database correctly.")
-        customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
-        first_name = customer_data["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = customer_data["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = customer_data["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = customer_data["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = customer_data["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = customer_data["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = customer_data["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = customer_data["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        user_name = customer_data["username"]
-        log.info(f"Entering the user name: {user_name}")
-        data_collection.add_data("username", user_name)
-        register_page.get_username().send_keys(user_name)
-        password = customer_data["password"]
-        log.info(f"Entering the password: {password}")
-        data_collection.add_data("password", password)
-        register_page.get_password().send_keys(password)
-        confirm_password = customer_data["confirm"]
-        log.info(f"Entering the confirm password: {confirm_password}")
-        register_page.get_confirm_password().send_keys(confirm_password)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        side_menu = register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Database verification")
+            log.info(f"Testing the registration and verifying if the data is written to database correctly.")
+            customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
+            first_name = customer_data["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = customer_data["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = customer_data["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = customer_data["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = customer_data["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = customer_data["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = customer_data["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = customer_data["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            user_name = customer_data["username"]
+            log.info(f"Entering the username: {user_name}")
+            data_collection.add_data("username", user_name)
+            register_page.get_username().send_keys(user_name)
+            password = customer_data["password"]
+            log.info(f"Entering the password: {password}")
+            data_collection.add_data("password", password)
+            register_page.get_password().send_keys(password)
+            confirm_password = customer_data["confirm"]
+            log.info(f"Entering the confirm password: {confirm_password}")
+            register_page.get_confirm_password().send_keys(confirm_password)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            side_menu = register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_POSITIVE
-        with allure.step("Step 2: Verify if the user is logged in"):
+        with allure.step("Step 3: Verify if the user is logged in"):
             log.info("Verifying if the user is logged in.")
             logged_msg = register_page.get_successful_registration().text.split(" ")
             assert logged_msg[1] == customer_data["username"]
-        with allure.step("Step 3: Verify if the data is written to the database"):
+        with allure.step("Step 4: Verify if the data is written to the database"):
             log.info("Fetching the data from the database.")
             db_handle = HyperSQLConnector()
             db_handle.get_cursor()
@@ -1049,7 +1049,6 @@ class TestRegistration(BaseClass):
                         " matching and verifies if the data is not written to the database.")
     @pytest.mark.smoke
     @pytest.mark.negative
-    @pytest.mark.skip
     def test_registration_wrong_password_verify_database(self):
         """
         Tests the customer registration with passwords not matching and verifies if the data is not
@@ -1060,65 +1059,66 @@ class TestRegistration(BaseClass):
         self.driver.get(BasePage.HOME_PAGE)
         home_page = HomePage(self.driver)
         register_page = home_page.get_register_link()
-        data_collection = ExcelData("New customer registration", "Database verification")
-        log.info(f"Testing the registration with password not matching and verifying if the data"
-                 f" is not written to database.")
-        customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
-        first_name = customer_data["firstname"]
-        log.info(f"Entering the first name: {first_name}")
-        data_collection.add_data("firstname", first_name)
-        register_page.get_first_name().send_keys(first_name)
-        last_name = customer_data["lastname"]
-        log.info(f"Entering the last name: {last_name}")
-        data_collection.add_data("lastname", last_name)
-        register_page.get_last_name().send_keys(last_name)
-        address = customer_data["streetaddress"]
-        log.info(f"Entering the address: {address}")
-        data_collection.add_data("streetaddress", address)
-        register_page.get_address_street().send_keys(address)
-        city = customer_data["city"]
-        log.info(f"Entering the city: {city}")
-        data_collection.add_data("city", city)
-        register_page.get_address_city().send_keys(city)
-        state = customer_data["state"]
-        log.info(f"Entering the state: {state}")
-        data_collection.add_data("state", state)
-        register_page.get_address_state().send_keys(state)
-        post_code = customer_data["postcode"]
-        log.info(f"Entering the post code: {post_code}")
-        data_collection.add_data("postcode", post_code)
-        register_page.get_address_post_code().send_keys(post_code)
-        phone_number = customer_data["phonenumber"]
-        log.info(f"Entering the phone number: {phone_number}")
-        data_collection.add_data("phonenumber", phone_number)
-        register_page.get_phone_number().send_keys(phone_number)
-        ssn = customer_data["ssn"]
-        log.info(f"Entering the PESEL: {ssn}")
-        data_collection.add_data("ssn", ssn)
-        register_page.get_social_security_number().send_keys(ssn)
-        user_name = customer_data["username"]
-        log.info(f"Entering the user name: {user_name}")
-        data_collection.add_data("username", user_name)
-        register_page.get_username().send_keys(user_name)
-        password = customer_data["password"]
-        log.info(f"Entering the password: {password}")
-        data_collection.add_data("password", password)
-        register_page.get_password().send_keys(password)
-        # Use the repeated password
-        confirm_password = customer_data["confirm"] + customer_data["confirm"]
-        log.info(f"Entering the confirm password: {confirm_password}")
-        register_page.get_confirm_password().send_keys(confirm_password)
-        data_collection.save_data()
-        log.info("Clicking the register button.")
-        register_page.get_register_button()
-        with allure.step("Step 1: Verify the page title"):
+        with allure.step("Step 1: Enter the data"):
+            data_collection = ExcelData("New customer registration", "Database verification")
+            log.info(f"Testing the registration with password not matching and verifying if the data"
+                     f" is not written to database.")
+            customer_data = MyFaker.customer_data_all_fields(number = 1)[0]
+            first_name = customer_data["firstname"]
+            log.info(f"Entering the first name: {first_name}")
+            data_collection.add_data("firstname", first_name)
+            register_page.get_first_name().send_keys(first_name)
+            last_name = customer_data["lastname"]
+            log.info(f"Entering the last name: {last_name}")
+            data_collection.add_data("lastname", last_name)
+            register_page.get_last_name().send_keys(last_name)
+            address = customer_data["streetaddress"]
+            log.info(f"Entering the address: {address}")
+            data_collection.add_data("streetaddress", address)
+            register_page.get_address_street().send_keys(address)
+            city = customer_data["city"]
+            log.info(f"Entering the city: {city}")
+            data_collection.add_data("city", city)
+            register_page.get_address_city().send_keys(city)
+            state = customer_data["state"]
+            log.info(f"Entering the state: {state}")
+            data_collection.add_data("state", state)
+            register_page.get_address_state().send_keys(state)
+            post_code = customer_data["postcode"]
+            log.info(f"Entering the post code: {post_code}")
+            data_collection.add_data("postcode", post_code)
+            register_page.get_address_post_code().send_keys(post_code)
+            phone_number = customer_data["phonenumber"]
+            log.info(f"Entering the phone number: {phone_number}")
+            data_collection.add_data("phonenumber", phone_number)
+            register_page.get_phone_number().send_keys(phone_number)
+            ssn = customer_data["ssn"]
+            log.info(f"Entering the PESEL: {ssn}")
+            data_collection.add_data("ssn", ssn)
+            register_page.get_social_security_number().send_keys(ssn)
+            user_name = customer_data["username"]
+            log.info(f"Entering the username: {user_name}")
+            data_collection.add_data("username", user_name)
+            register_page.get_username().send_keys(user_name)
+            password = customer_data["password"]
+            log.info(f"Entering the password: {password}")
+            data_collection.add_data("password", password)
+            register_page.get_password().send_keys(password)
+            # Use the repeated password
+            confirm_password = customer_data["confirm"] + customer_data["confirm"]
+            log.info(f"Entering the confirm password: {confirm_password}")
+            register_page.get_confirm_password().send_keys(confirm_password)
+            data_collection.save_data()
+            log.info("Clicking the register button.")
+            register_page.get_register_button()
+        with allure.step("Step 2: Verify the page title"):
             log.info("Verifying the proper page title.")
             assert register_page.get_page_title() == register_page.VALID_PAGE_TITLE_NEGATIVE
-        with allure.step("Step 2: Verify the registration"):
+        with allure.step("Step 3: Verify the registration"):
             error = register_page.get_confirm_password_error()
             log.info(f"Verifying if the error is visible in the Confirm password field.")
             assert error.text == register_page.PASSWORDS_DO_NOT_MATCH
-        with allure.step("Step 3: Verify if the data is not written to the database"):
+        with allure.step("Step 4: Verify if the data is not written to the database"):
             log.info("Fetching the data from the database.")
             db_handle = HyperSQLConnector()
             db_handle.get_cursor()
