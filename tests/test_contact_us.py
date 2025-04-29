@@ -20,7 +20,6 @@ class TestContactUs(BaseClass):
     @allure.description("This test attempts to send the customer care support ticket.")
     @pytest.mark.positive
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_contact_form_positive(self):
         """
         Tests the sending of the customer care support ticket.
@@ -71,7 +70,6 @@ class TestContactUs(BaseClass):
     @allure.description("This test attempts to send the customer care support ticket with all fields empty.")
     @pytest.mark.negative
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_contact_form_negative(self):
         """
         Tests the sending of the customer care support ticket with all fields empty.
@@ -92,8 +90,7 @@ class TestContactUs(BaseClass):
         with allure.step("Step 3: Verify the number of errors"):
             log.info("Verifying if the number of displayed errors is correct.")
             # Four empty fields
-            no_of_errors = 4
-            assert contact_page.get_errors() == no_of_errors
+            assert contact_page.get_errors() == ContactPage.NO_OF_ERRORS
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for sending the customer care tickets")
@@ -103,13 +100,12 @@ class TestContactUs(BaseClass):
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 71")
     @allure.description("This test verifies if the support ticket confirmation message is sent to the"
-                        " given customer e-mail address.")
+                        " customer e-mail address.")
     @pytest.mark.positive
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_contact_form_verify_email(self):
         """
-        Tests if the support ticket confirmation message is sent to the given customer e-mail address.
+        Tests if the support ticket confirmation message is sent to the customer e-mail address.
         :return:
         """
         log = self.get_logger()
@@ -165,14 +161,12 @@ class TestContactUs(BaseClass):
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for sending the customer care tickets")
     @allure.sub_suite("Contact us form tests")
-    @allure.tag("Contact page", "Form", "Negative", "Resizing")
+    @allure.tag("Contact page", "Form", "Resizing")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.label("owner", "Parasoft")
     @allure.testcase("Test case no 72")
     @allure.description("This test attempts to resize the support ticket message text area.")
-    @pytest.mark.negative
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_contact_form_resize_textarea(self):
         """
         Tests the resize function of support ticket message text area.

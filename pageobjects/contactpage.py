@@ -14,6 +14,7 @@ class ContactPage(BasePage):
     MESSAGE_BODY_WIDTH: int = 300
     MESSAGE_BODY_HEIGHT: int = 126
     MESSAGE_SENTENCES: int = 5
+    NO_OF_ERRORS: int = 4
 
     # Declaring the page objects (fields & buttons)
     NAME: tuple = (By.ID, "name")

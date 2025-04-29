@@ -52,7 +52,6 @@ class TestContactUs(BaseClass):
                         " account numbers.")
     @pytest.mark.functional
     @pytest.mark.usefixtures("login_logout")
-    @pytest.mark.skip
     def test_account_overview_accounts_list(self, login_logout):
         """
         Tests if the accounts overview list is sorted properly.
@@ -77,7 +76,6 @@ class TestContactUs(BaseClass):
     @allure.description("This test verifies if the account balances total is calculated properly.")
     @pytest.mark.functional
     @pytest.mark.usefixtures("login_logout")
-    @pytest.mark.skip
     def test_account_overview_balances_total(self, login_logout):
         """
         Tests if the account balances total is correct.
@@ -105,7 +103,6 @@ class TestContactUs(BaseClass):
                         " same as in database.")
     @pytest.mark.functional
     @pytest.mark.usefixtures("login_logout")
-    @pytest.mark.skip
     def test_account_overview_balances_database(self, login_logout):
         """
         Tests if the accounts balances displayed are the same as in database.
@@ -125,4 +122,4 @@ class TestContactUs(BaseClass):
         if len(db_data) > 0:
             db_data = [element[0] for element in db_data]
         log.info("Verifying if the account balances total is correct.")
-        assert db_data == acc_balances
+        assert acc_balances == db_data

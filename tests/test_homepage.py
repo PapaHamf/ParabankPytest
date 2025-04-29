@@ -16,7 +16,6 @@ class TestHomePage(BaseClass):
     @allure.testcase("Test case no 56")
     @allure.description("This test verifies if the header logo is displayed properly.")
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_header_logo_displayed(self):
         """
         Tests if the home page header logo is visible.
@@ -38,7 +37,6 @@ class TestHomePage(BaseClass):
     @allure.testcase("Test case no 57")
     @allure.description("This test verifies if the header logo is clickable.")
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_header_logo_clickable(self):
         """
         Tests if the home page header logo is clickable.
@@ -60,7 +58,6 @@ class TestHomePage(BaseClass):
     @allure.testcase("Test case no 58")
     @allure.description("This test verifies if the icons on the home page are clickable and working.")
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_header_icons_working(self):
         """
         Tests if the home page header icons are clickable and working.
@@ -92,7 +89,6 @@ class TestHomePage(BaseClass):
     @allure.testcase("Test case no 59")
     @allure.description("This test verifies if the Home icon image changes properly on the mouse over.")
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_header_icons_hover_over(self):
         """
         Tests if the home page header Home icon changes properly on the mouse over.
@@ -115,7 +111,6 @@ class TestHomePage(BaseClass):
     @allure.testcase("Test case no 60")
     @allure.description("This test verifies if the header image loads with other content or at the end.")
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_header_image_loading_time(self):
         """
         Tests if the home page header image loads with other content or at the end.
@@ -135,12 +130,11 @@ class TestHomePage(BaseClass):
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for home page elements")
-    @allure.sub_suite("Home page bottom links")
-    @allure.tag("Home page", "Bottom links")
+    @allure.sub_suite("Home page footer links tests")
+    @allure.tag("Home page", "Footer" "Pages links")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.label("owner", "Parasoft")
     @pytest.mark.functional
-    @pytest.mark.skip
     def test_footer_links(self, get_csv_data_footer_links):
         """
         Tests if the home page footer links direct to the correct page.
