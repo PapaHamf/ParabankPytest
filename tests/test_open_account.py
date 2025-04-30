@@ -50,8 +50,7 @@ class TestOpenAccount(BaseClass):
     @allure.description("This test attempts to open a new checking account for the customer.")
     @pytest.mark.smoke
     @pytest.mark.usefixtures("login_logout")
-    @pytest.mark.skip
-    def test_open_account_postive(self, login_logout):
+    def test_open_account_positive(self, login_logout):
         """
         Tests the account opening for the customer.
         :return:
@@ -59,21 +58,22 @@ class TestOpenAccount(BaseClass):
         log = self.get_logger()
         log.info("Clicking the Open New Account link.")
         open_account = login_logout[0].get_open_account_page()
-        log.info("Selecting the CHECKING item from the account type list.")
-        open_account.select_value_from_dropdown_text(open_account.get_account_type(), "CHECKING")
-        log.info("Selecting the existing account to transfer funds (deposit) into new account.")
-        # Every customer from the dataset has 4 accounts
-        random_index = random.randint(0, 3)
-        open_account.select_value_from_dropdown_index(open_account.get_source_accounts(), random_index)
-        log.info("Clicking the Open new account button.")
-        open_account.get_open_account_button().click()
-        with allure.step("Step 1: Verify the account opened message"):
+        with allure.step("Step 1: Open the account"):
+            log.info("Selecting the CHECKING item from the account type list.")
+            open_account.select_value_from_dropdown_text(open_account.get_account_type(), "CHECKING")
+            log.info("Selecting the existing account to transfer funds (deposit) into new account.")
+            # Every customer from the dataset has 4 accounts
+            random_index = random.randint(0, 3)
+            open_account.select_value_from_dropdown_index(open_account.get_source_accounts(), random_index)
+            log.info("Clicking the Open new account button.")
+            open_account.get_open_account_button().click()
+        with allure.step("Step 2: Verify the account opened message"):
             log.info("Verifying if the account was opened correctly.")
-            assert open_account.OPEN_SUCCESS_MSG == open_account.get_success_title().text
-        with allure.step("Step 2: Verify the new account link"):
+            assert open_account.get_success_title().text == open_account.OPEN_SUCCESS_MSG
+        with allure.step("Step 3: Verify the new account link"):
             log.info("Verifying the new account link works correctly.")
             activity_page = open_account.get_new_account_id()
-            assert activity_page.VALID_PAGE_TITLE_POSITIVE == activity_page.get_page_title()
+            assert activity_page.get_page_title() == activity_page.VALID_PAGE_TITLE_POSITIVE
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for opening account")
@@ -85,7 +85,6 @@ class TestOpenAccount(BaseClass):
     @allure.description("This test attempts to open a new checking account for the customer using the "
                         "source account without sufficient funds for deposit.")
     @pytest.mark.smoke
-    @pytest.mark.skip
     def test_open_account_insufficient_funds(self):
         """
         Tests the account opening for the customer w/ insufficient funds.
@@ -94,31 +93,34 @@ class TestOpenAccount(BaseClass):
         log = self.get_logger()
         # Log in the user manually to select specific user (id 100)
         self.driver.get(BasePage.HOME_PAGE)
+        with allure.step("Step 1: Log in the user"):
         # Get the user data from Excel file
-        user_data = ExcelData.get_excel_data("dataset_customer.xlsx")[0]
-        user_name = user_data["username"]
-        password = user_data["password"]
-        log.info("Logging the user.")
-        home_page = HomePage(self.driver)
-        log.info(f"User name: {user_name}")
-        home_page.get_username().send_keys(user_name)
-        log.info(f"Password: {password}")
-        home_page.get_password().send_keys(password)
-        log.info("Clicking the login button.")
-        side_menu = home_page.get_login_button()
-        log.info("Clicking the Open New Account link.")
-        open_account = side_menu.get_open_account_page()
-        log.info("Selecting the CHECKING item from the account type list.")
-        open_account.select_value_from_dropdown_text(open_account.get_account_type(), "CHECKING")
-        log.info("Selecting the existing account to transfer funds (deposit) into new account.")
-        open_account.select_value_from_dropdown_text(open_account.get_source_accounts(), "1002")
-        log.info("Clicking the Open new account button.")
-        open_account.get_open_account_button().click()
-        error_title = open_account.get_error_title().text
-        log.info(f"Logging out the user {user_name}.")
-        side_menu.get_log_out_link().click()
-        self.driver.delete_all_cookies()
-        assert open_account.OPEN_ERROR_MSG == error_title
+            user_data = ExcelData.get_excel_data("dataset_customer.xlsx")[0]
+            user_name = user_data["username"]
+            password = user_data["password"]
+            log.info("Logging the user.")
+            home_page = HomePage(self.driver)
+            log.info(f"User name: {user_name}")
+            home_page.get_username().send_keys(user_name)
+            log.info(f"Password: {password}")
+            home_page.get_password().send_keys(password)
+            log.info("Clicking the login button.")
+            side_menu = home_page.get_login_button()
+        with allure.step("Step 2: Open the account"):
+            log.info("Clicking the Open New Account link.")
+            open_account = side_menu.get_open_account_page()
+            log.info("Selecting the CHECKING item from the account type list.")
+            open_account.select_value_from_dropdown_text(open_account.get_account_type(), "CHECKING")
+            log.info("Selecting the existing account to transfer funds (deposit) into new account.")
+            open_account.select_value_from_dropdown_text(open_account.get_source_accounts(), "1002")
+            log.info("Clicking the Open new account button.")
+            open_account.get_open_account_button().click()
+        with allure.step("Step 3: Verify the error message"):
+            error_title = open_account.get_error_title().text
+            log.info(f"Logging out the user {user_name}.")
+            side_menu.get_log_out_link().click()
+            self.driver.delete_all_cookies()
+            assert error_title == open_account.OPEN_ERROR_MSG
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for opening account")
@@ -130,7 +132,6 @@ class TestOpenAccount(BaseClass):
     @allure.description("This test verifies if the source account is correctly charged w/ the deposit.")
     @pytest.mark.smoke
     @pytest.mark.usefixtures("login_logout")
-    @pytest.mark.skip
     def test_open_account_deposit(self, login_logout):
         """
         Tests if the source account is charged correctly.
@@ -138,8 +139,8 @@ class TestOpenAccount(BaseClass):
         """
         log = self.get_logger()
         log.info("Clicking the Open New Account link.")
+        open_account = login_logout[0].get_open_account_page()
         with allure.step("Step 1: Open the account"):
-            open_account = login_logout[0].get_open_account_page()
             log.info("Selecting the CHECKING item from the account type list.")
             open_account.select_value_from_dropdown_text(open_account.get_account_type(), "CHECKING")
             log.info("Selecting the existing account to transfer funds (deposit) into new account.")
@@ -158,9 +159,10 @@ class TestOpenAccount(BaseClass):
             activity_page.get_activity_button().click()
             transaction = activity_page.get_transaction_by_index(-1)
             log.info(f"Verifying if the transaction name is {activity_page.FUNDS_SENT}")
-            assert activity_page.FUNDS_SENT == transaction[1]
+            assert transaction[1] == activity_page.FUNDS_SENT
             log.info("Verifying if the transaction amount is 5000.")
-            assert 5000 == transaction[2]
+            # Default deposit for the app is set to 5000
+            assert transaction[2] == 5000
 
     @allure.parent_suite("Tests for Parabank application")
     @allure.suite("Tests for opening account")
@@ -172,7 +174,6 @@ class TestOpenAccount(BaseClass):
     @allure.description("This test verifies if the account type is written properly to the database.")
     @pytest.mark.smoke
     @pytest.mark.usefixtures("login_logout")
-    @pytest.mark.skip
     def test_open_account_type_in_database(self, login_logout):
         """
         Tests if the account type is written properly to the database.
@@ -181,18 +182,19 @@ class TestOpenAccount(BaseClass):
         log = self.get_logger()
         log.info("Clicking the Open New Account link.")
         open_account = login_logout[0].get_open_account_page()
-        log.info("Selecting the SAVINGS item from the account type list.")
-        open_account.select_value_from_dropdown_text(open_account.get_account_type(), "SAVINGS")
-        log.info("Selecting the existing account to transfer funds (deposit) into new account.")
-        # Every customer from the dataset has 4 accounts
-        random_index = random.randint(0, 3)
-        open_account.select_value_from_dropdown_index(open_account.get_source_accounts(), random_index)
-        log.info("Clicking the Open new account button.")
-        open_account.get_open_account_button().click()
-        with allure.step("Step 1: Verify the account opened message"):
+        with allure.step("Step 1: Open the account"):
+            log.info("Selecting the SAVINGS item from the account type list.")
+            open_account.select_value_from_dropdown_text(open_account.get_account_type(), "SAVINGS")
+            log.info("Selecting the existing account to transfer funds (deposit) into new account.")
+            # Every customer from the dataset has 4 accounts
+            random_index = random.randint(0, 3)
+            open_account.select_value_from_dropdown_index(open_account.get_source_accounts(), random_index)
+            log.info("Clicking the Open new account button.")
+            open_account.get_open_account_button().click()
+        with allure.step("Step 2: Verify the account opened message"):
             log.info("Verifying if the account was opened correctly.")
-            assert open_account.OPEN_SUCCESS_MSG == open_account.get_success_title().text
-        with allure.step("Step 2: Verify if the account type is correct in DB"):
+            assert open_account.get_success_title().text == open_account.OPEN_SUCCESS_MSG
+        with allure.step("Step 3: Verify if the account type is correct in DB"):
             log.info("Verifying if the account type was properly written to the database.")
             # Get the new account id
             new_account = open_account.get_new_account_id_text()
@@ -203,8 +205,8 @@ class TestOpenAccount(BaseClass):
                                                  f"WHERE id = '{new_account}'")
             if len(db_data) > 0:
                 db_type = db_data[0][0]
-            log.info("Verifying if the account balances total is correct.")
+            log.info("Verifying if the account type is correct.")
             # SAVINGS account type should be 1
-            assert 1 == db_type
+            assert db_type == 1
 
 
