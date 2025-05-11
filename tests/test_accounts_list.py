@@ -102,6 +102,7 @@ class TestContactUs(BaseClass):
     @allure.description("This test verifies if the account balances displayed on the page are the"
                         " same as in database.")
     @pytest.mark.functional
+    @pytest.mark.database
     @pytest.mark.usefixtures("login_logout")
     def test_account_overview_balances_database(self, login_logout):
         """

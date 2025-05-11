@@ -951,6 +951,7 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer and verifies if the data"
                         " is written to the database correctly.")
     @pytest.mark.smoke
+    @pytest.mark.database
     @pytest.mark.positive
     def test_registration_verify_database(self):
         """
@@ -1048,6 +1049,7 @@ class TestRegistration(BaseClass):
     @allure.description("This test attempts to register the customer with passwords not"
                         " matching and verifies if the data is not written to the database.")
     @pytest.mark.smoke
+    @pytest.mark.database
     @pytest.mark.negative
     def test_registration_wrong_password_verify_database(self):
         """

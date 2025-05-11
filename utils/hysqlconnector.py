@@ -31,7 +31,7 @@ class HyperSQLConnector():
 
     def get_data_from_db(self, statement: str) -> list:
         """
-        Returns the results of the database query passed in the SQL statement.
+        Returns the results of the database query in the SQL statement.
         :param statement: SQL statement that will be executed in the DB.
         :return: List w/ data
         """

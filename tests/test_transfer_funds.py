@@ -123,6 +123,7 @@ class TestOpenAccount(BaseClass):
     @allure.testcase("Test case no 82")
     @allure.description("This test attempts to transfer funds from the account with insufficient funds.")
     @pytest.mark.smoke
+    @pytest.mark.database
     @pytest.mark.usefixtures("login_logout")
     def test_transfer_funds_insufficient_funds(self, login_logout):
         """

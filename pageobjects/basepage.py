@@ -78,7 +78,7 @@ class BasePage():
         Verifies if the text is present in the webelement.
         :param locator: The locator describing the webelement to be checked. Tuple containing the By
                         strategy and locator.
-        :param text: Text to be located in given webelement.
+        :param text: Text to be located in webelement.
         :param timeout: The timeout for the explicit waiting. The default value is 5.
         :return:
         """

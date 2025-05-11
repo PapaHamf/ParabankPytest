@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Bill payment TCs 19.03">
+    <list default="true" id="a88b822c-f10f-4804-953a-b85fe8d72677" name="Changes" comment="Allure steps, assert order 02.05">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pageobjects/basepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/pageobjects/basepage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/DB_initialise.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/DB_initialise.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/baseclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseclass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/csvdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/csvdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/exceldata.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/exceldata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/exceptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/hysqlconnector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/hysqlconnector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/jsondata.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/jsondata.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +36,39 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/tests/test_pageobjects.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="InstanceColorv3">
+    <option name="map">
+      <map>
+        <entry key="$PROJECT_DIR$/Writerside/pp.tree">
+          <value>
+            <ColorState>
+              <option name="customOrder" value="1" />
+              <option name="first">
+                <RgbState>
+                  <option name="blue" value="60" />
+                  <option name="darkBlue" value="60" />
+                  <option name="darkGreen" value="68" />
+                  <option name="darkRed" value="206" />
+                  <option name="green" value="68" />
+                  <option name="red" value="206" />
+                </RgbState>
+              </option>
+              <option name="second">
+                <RgbState>
+                  <option name="blue" value="65" />
+                  <option name="darkBlue" value="65" />
+                  <option name="darkGreen" value="126" />
+                  <option name="darkRed" value="231" />
+                  <option name="green" value="126" />
+                  <option name="red" value="231" />
+                </RgbState>
+              </option>
+            </ColorState>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -80,7 +104,11 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/student/NonameBranch/NonameTesters/utils/country.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;writerside.last.selected.productParabankPytest&quot;: &quot;pp&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
 }</component>
   <component name="RecentsManager">
@@ -127,70 +155,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736602020130</updated>
-    </task>
-    <task id="LOCAL-00031" summary="ExcelData class done 21.01">
-      <option name="closed" value="true" />
-      <created>1737465202803</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1737465202803</updated>
-    </task>
-    <task id="LOCAL-00032" summary="ExcelData class update 23.01">
-      <option name="closed" value="true" />
-      <created>1737653036740</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1737653036740</updated>
-    </task>
-    <task id="LOCAL-00033" summary="JSONData class  23.01">
-      <option name="closed" value="true" />
-      <created>1737655316811</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1737655316811</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Data classes done  24.01">
-      <option name="closed" value="true" />
-      <created>1737755591768</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1737755591768</updated>
-    </task>
-    <task id="LOCAL-00035" summary="HyperSQLConnector class 26.01">
-      <option name="closed" value="true" />
-      <created>1737905711935</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1737905711935</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Moved Excel &amp; JSON classes 26.01">
-      <option name="closed" value="true" />
-      <created>1737905776504</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1737905776504</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Hyper SQL connector class 29.01">
-      <option name="closed" value="true" />
-      <created>1738177529755</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1738177529755</updated>
-    </task>
-    <task id="LOCAL-00038" summary="JSON update 29.01">
-      <option name="closed" value="true" />
-      <created>1738188688489</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1738188688489</updated>
     </task>
     <task id="LOCAL-00039" summary="JSON test 30.01">
       <option name="closed" value="true" />
@@ -520,17 +484,74 @@
       <option name="project" value="LOCAL" />
       <updated>1742384595940</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Docstring fixes 02.04">
+      <option name="closed" value="true" />
+      <created>1743628483400</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1743628483400</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Docstring fixes 03.04">
+      <option name="closed" value="true" />
+      <created>1743711931749</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1743711931749</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Docstring fixes 25.04">
+      <option name="closed" value="true" />
+      <created>1745609686931</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1745609686932</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Allure steps, assert order 25.04">
+      <option name="closed" value="true" />
+      <created>1745613486844</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1745613486844</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Allure steps, assert order 29.04">
+      <option name="closed" value="true" />
+      <created>1745959666769</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1745959666769</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Allure steps, assert order 30.04">
+      <option name="closed" value="true" />
+      <created>1746045298875</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1746045298876</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Allure steps, assert order 30.04">
+      <option name="closed" value="true" />
+      <created>1746046692692</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1746046692692</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Allure steps, assert order 02.05">
+      <option name="closed" value="true" />
+      <created>1746216607039</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1746216607039</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test cases registration 24.02" />
-    <MESSAGE value="TCs too long/short, digits &amp; specials 28.02" />
-    <MESSAGE value="TCs numerical fields verif 28.02" />
-    <MESSAGE value="Added tcs 01.03" />
-    <MESSAGE value="Register &amp; log in TCs 03.03" />
-    <MESSAGE value="Log in TCs 04.03" />
-    <MESSAGE value="Log in TCs 07.03" />
     <MESSAGE value="Fixed log in TCs 07.03" />
     <MESSAGE value="Homepage TCs 07.03" />
     <MESSAGE value="Homepage TCs 08.03" />
@@ -549,6 +570,13 @@
     <MESSAGE value="Transfer funds TCs 18.03" />
     <MESSAGE value="Bill payment TCs 18.03" />
     <MESSAGE value="Bill payment TCs 19.03" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bill payment TCs 19.03" />
+    <MESSAGE value="Docstring fixes 02.04" />
+    <MESSAGE value="Docstring fixes 03.04" />
+    <MESSAGE value="Docstring fixes 25.04" />
+    <MESSAGE value="Allure steps, assert order 25.04" />
+    <MESSAGE value="Allure steps, assert order 29.04" />
+    <MESSAGE value="Allure steps, assert order 30.04" />
+    <MESSAGE value="Allure steps, assert order 02.05" />
+    <option name="LAST_COMMIT_MESSAGE" value="Allure steps, assert order 02.05" />
   </component>
 </project>

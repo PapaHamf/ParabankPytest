@@ -136,7 +136,7 @@ class AccountOverview(BasePage):
 
     def get_available_amount(self, account_number: str) -> WebElement:
         """
-        Returns the given account available amount.
+        Returns the account available amount.
         :param account_number: The number of the account whose available amount should be returned.
         :return: webelement
         """

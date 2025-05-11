@@ -173,6 +173,7 @@ class TestOpenAccount(BaseClass):
     @allure.testcase("Test case no 79")
     @allure.description("This test verifies if the account type is written properly to the database.")
     @pytest.mark.smoke
+    @pytest.mark.database
     @pytest.mark.usefixtures("login_logout")
     def test_open_account_type_in_database(self, login_logout):
         """
