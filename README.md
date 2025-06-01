@@ -3,7 +3,6 @@
 * [Pre-requisites](...)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Pull Request Rules](#pull-request-rules)
 
 ## General info
 This a Parabank framework written in Python with Selenium. It contains various
