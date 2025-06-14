@@ -12,12 +12,10 @@ registration test, transfer funds test, customer login tests, account list test,
 customer support form tests and bill payment tests.
 
 ## Pre-requisites
-* apache-maven-3.9.9
-* apache-tomcat-11.0.2
-* ChromeDriver 131.0.6778.108
-* geckodriver 0.35.0 
-* Microsoft Edge WebDriver 132.0.2957.41
-* Parabank application
+* ChromeDriver 131.0.6778.108+
+* geckodriver 0.35.0+
+* Microsoft Edge WebDriver 132.0.2957.41+
+* Docker Parabank application
 
 ## Technologies
 Project is created with:
@@ -35,18 +33,25 @@ Project is created with:
 ## Setup
 To setup the environment:
 
-1. Install the apache maven
-2. Install the apache tomcat
-3. Deploy the parabank application in apache tomcat
-4. Install the Chrome, Firefox & Edge browsers
-5. Download the proper chrome, gecko & edge drivers
-6. Install the pre-requisites according to requirements.txt
+1. Install docker (ver. 26.1.3+).
+2. Install the Chrome, Firefox & Edge browsers.
+3. Download the proper chrome, gecko & edge drivers.
+4. Install the docker parabank image.
+
+To install the docker image:
+```
+$ ./docker_install.sh
+```
 
 To run the tests:
 
 ```
-$ cd ParabankPytest
-$ pytest 
-$ allure serve allure-results
+$ ./start_tests.sh
+```
+
+To run the tests via Jenkins:
+
+```
+$ ./jenkins.sh
 ```
 

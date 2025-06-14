@@ -10,7 +10,7 @@ class HyperSQLConnector():
     def __init__(self):
         self._server: str = "localhost"
         self._driver: str = "org.hsqldb.jdbcDriver"
-        self._URL: str = f"jdbc:hsqldb:hsql://{self._server}/Parabank"
+        self._URL: str = f"jdbc:hsqldb:hsql://{self._server}/parabank"
         self._username: str = "SA"
         self._password: str = ""
         self._credentials: list = [self._username, self._password]

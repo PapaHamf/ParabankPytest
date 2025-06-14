@@ -12,7 +12,7 @@ class BasePage():
     """
 
     # Web pages constants (not used in tests, except HOMEPAGE)
-    HOME_PAGE: str = "http://localhost:8000/parabank/"
+    HOME_PAGE: str = "http://localhost:8080/parabank/"
     FORGOT_LOGIN_PAGE: str = "http://localhost:8000/parabank/lookup.htm"
     REGISTER_PAGE: str = "http://localhost:8000/parabank/register.htm"
     OPEN_ACCOUNT_PAGE: str = "http://localhost:8000/parabank/openaccount.htm"
