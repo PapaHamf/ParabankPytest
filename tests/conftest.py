@@ -135,7 +135,7 @@ def setup(request):
         match request.config.getoption("--browser-name"):
             case "chrome":
                 chrome_options: ChromeOptions = webdriver.ChromeOptions()
-                # chrome_options.add_argument("--headless")
+                chrome_options.add_argument("--headless")
                 chrome_options.add_argument("--ignore-certificate-errors")
                 driver = webdriver.Chrome(options = chrome_options)
             case "firefox":

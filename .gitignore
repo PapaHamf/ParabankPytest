@@ -1,5 +1,6 @@
 *allure-results*
-.venv
+.venv/
+.idea/
 Archive/
 history/
 logfile.log
