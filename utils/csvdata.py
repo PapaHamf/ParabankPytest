@@ -12,7 +12,7 @@ class CSVData(TestDataSet):
     :param testcase: The name of the current test case.
     """
 
-    DIR_PREFIX: str = "../testdata/"
+    DIR_PREFIX: str = "./testdata/"
 
     def __init__(self, test_scenario: str, testcase: str):
         super().__init__(test_scenario, testcase)

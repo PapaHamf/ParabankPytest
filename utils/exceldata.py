@@ -16,7 +16,7 @@ class ExcelData(TestDataSet):
     :param testcase: The name of the current test case.
     """
 
-    DIR_PREFIX: str = "../testdata/"
+    DIR_PREFIX: str = "./testdata/"
     EXCEL_ARCHIVE: str = "test_archive.xlsx"
     DATASET_TRANSACTION: str = "dataset_transaction.xlsx"
     DATASET_ACCOUNT: str = "dataset_account.xlsx"

@@ -1,0 +1,6 @@
+*allure-results*
+.venv
+Archive/
+history/
+logfile.log
+test_archive.xlsx

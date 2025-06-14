@@ -11,7 +11,7 @@ class BaseClass():
     Base class for all the test scenarios.
     """
 
-    DIR_PREFIX: str = "../testdata/"
+    DIR_PREFIX: str = "./testdata/"
 
     def get_logger(self, file_name: str = "logfile.log", level: str = "INFO") -> Logger:
         """

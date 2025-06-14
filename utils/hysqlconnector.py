@@ -14,7 +14,7 @@ class HyperSQLConnector():
         self._username: str = "SA"
         self._password: str = ""
         self._credentials: list = [self._username, self._password]
-        self._path_to_driver: str = "/opt/drivers/hsqldb.jar"
+        self._path_to_driver: str = "./utils/hsqldb.jar"
 
     def get_cursor(self) -> None:
         """
