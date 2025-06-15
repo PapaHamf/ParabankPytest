@@ -48,10 +48,3 @@ To run the tests:
 ```
 $ ./start_tests.sh
 ```
-
-To run the tests via Jenkins:
-
-```
-$ ./jenkins.sh
-```
-
