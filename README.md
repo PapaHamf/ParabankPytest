@@ -44,7 +44,12 @@ $ ./docker_install.sh
 ```
 
 To run the tests:
-
+You can start without the arguments to run the tests in Chrome:
 ```
 $ ./start_tests.sh
+```
+
+You can also pass the name of the browser (chrome, edge, firefox):
+```
+$ ./start_tests.sh <browser_name>
 ```

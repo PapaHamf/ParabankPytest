@@ -135,19 +135,20 @@ def setup(request):
         match request.config.getoption("--browser-name"):
             case "chrome":
                 chrome_options: ChromeOptions = webdriver.ChromeOptions()
-                chrome_options.add_argument("--headless")
+                #chrome_options.add_argument("--headless")
                 chrome_options.add_argument("--ignore-certificate-errors")
                 driver = webdriver.Chrome(options = chrome_options)
             case "firefox":
                 firefox_options: FirefoxOptions = webdriver.FirefoxOptions()
-                firefox_options.add_argument("--headless")
+                #firefox_options.add_argument("--headless")
                 firefox_options.add_argument("--ignore-certificate-errors")
                 driver = webdriver.Firefox(options = firefox_options)
             case "edge":
                 edge_options: EdgeOptions = webdriver.EdgeOptions()
-                edge_options.add_argument("--headless")
+                #edge_options.add_argument("--headless")
                 edge_options.add_argument("--ignore-certificate-errors")
                 driver = webdriver.Edge(options = edge_options)
+        driver.maximize_window()
         driver.implicitly_wait(5)
         request.cls.driver = driver
     yield driver
