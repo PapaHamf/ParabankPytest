@@ -35,7 +35,8 @@ To setup the environment:
 
 1. Install docker (ver. 26.1.3+).
 2. Install the Chrome, Firefox & Edge browsers.
-3. Download the proper chrome, gecko & edge drivers.
+3. Download the proper chrome, gecko & edge drivers, if necessary.
+   * Note: Usually this step is not needed as drivers will be downloaded automatically. 
 4. Install the docker parabank image.
 
 To install the docker image:
